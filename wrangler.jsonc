@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "notation-education-lms",
+  "main": "vinext/server/fetch-handler",
+  "compatibility_date": "2026-10-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "preview_urls": true,
+  "assets": {
+    "binding": "ASSETS",
+    "not_found_handling": "none"
+  }
+}
