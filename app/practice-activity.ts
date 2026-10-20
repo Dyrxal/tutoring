@@ -6,6 +6,7 @@ export type ActivityTopic={course:string;chapter:string;lesson:string};
 export type ActivityDay={date:string;lessonCount:number;reviewCount:number;count:number;topics:ActivityTopic[]};
 export const activityColours=["#F1F5F3","#DCFCE7","#86EFAC","#22C55E","#15803D"];
 export function activityLevel(count:number){return count===0?0:count<5?1:count<10?2:count<20?3:4}
+export function activityDateChanged(today:string,timezone?:string|null,now=new Date()){return localReviewDate(timezone||reviewFallbackTimezone,now)!==today}
 // Calendar arithmetic is performed in UTC on date-only values. Displayed dates
 // are computed in the student's persisted review timezone, including DST.
 export function shiftActivityDate(date:string,days:number){const value=new Date(`${date}T12:00:00Z`);value.setUTCDate(value.getUTCDate()+days);return value.toISOString().slice(0,10)}
