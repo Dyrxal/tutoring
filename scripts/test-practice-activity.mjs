@@ -9,7 +9,7 @@ import React from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 const require=createRequire(import.meta.url),cache=new Map();
 function load(file){file=path.resolve(file);if(cache.has(file))return cache.get(file);const exports={};vm.runInNewContext(ts.transpileModule(fs.readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX}}).outputText,{exports,Intl,Date,require:name=>{if(name.startsWith('.')){const base=path.resolve(path.dirname(file),name);return load(fs.existsSync(base+'.ts')?base+'.ts':base+'.tsx')}return require(name)}});cache.set(file,exports);return exports}
-const {buildPracticeActivity,activityLevel,shiftActivityDate}=load('app/practice-activity.ts'),Component=load('app/PracticeActivity.tsx').default;
+const {buildPracticeActivity,activityDateChanged,activityLevel,shiftActivityDate}=load('app/practice-activity.ts'),Component=load('app/PracticeActivity.tsx').default;
 const courses=[{id:'c',title:'Year 9',modules:[{id:'m',title:'Chapter 1',lessons:[{id:'l',title:'1A Integer operations',questions:[{id:'q'},{id:'q2'},{id:'q3'}]}]}]}];
 const now=new Date('2026-10-13T01:00:00Z'),attempt=(id,context='lesson',overrides={})=>({id,student_id:'s',question_id:'q',is_correct:false,selected_index:0,attempted_at:'2026-10-13T00:00:00Z',attempt_context:context,...overrides});
 const build=(attempts=[],overrides={})=>buildPracticeActivity({studentId:'s',courses,attempts,progress:[],now,...overrides});
@@ -33,6 +33,13 @@ test('eight Monday-first calendar columns hide future dates and cross month boun
 test('activity uses student timezone at midnight, with DST and an invalid-zone fallback',()=>{
  const rows=[attempt('a','lesson',{attempted_at:'2026-10-12T13:30:00Z'})];assert.equal(build(rows).days.get('2026-10-13').count,1);assert.equal(build(rows,{timezone:'UTC'}).days.get('2026-10-12').count,1);assert.equal(build(rows,{timezone:'not-valid'}).timezone,'Australia/Melbourne');
  const boundary=build([attempt('b','lesson',{attempted_at:'2026-10-03T13:59:59Z'}),attempt('c','lesson',{attempted_at:'2026-10-03T14:00:00Z'})]);assert.equal(boundary.days.get('2026-10-03').count,1);assert.equal(boundary.days.get('2026-10-04').count,1);
+});
+test('heatmap refresh guard changes only when the student local date changes',()=>{
+ assert.equal(activityDateChanged('2026-10-13','Australia/Melbourne',new Date('2026-10-13T00:00:00Z')),false);
+ assert.equal(activityDateChanged('2026-10-13','Australia/Melbourne',new Date('2026-10-13T13:00:00Z')),true);
+ assert.equal(activityDateChanged('2026-10-13','UTC',new Date('2026-10-13T23:59:59Z')),false);
+ assert.equal(activityDateChanged('2026-10-13','UTC',new Date('2026-10-14T00:00:00Z')),true);
+ assert.equal(activityDateChanged('2026-10-13','invalid',new Date('2026-10-13T00:00:00Z')),false);
 });
 test('four-week totals and weekly summaries keep activity separate from completions',()=>{
  const rows=[attempt('a','scheduled_review',{attempted_at:'2026-09-15T00:00:00Z'}),attempt('b','scheduled_review',{attempted_at:'2026-09-16T00:00:00Z'}),attempt('c','lesson',{attempted_at:'2026-10-11T00:00:00Z'}),attempt('d','lesson',{attempted_at:'2026-10-12T00:00:00Z'})];

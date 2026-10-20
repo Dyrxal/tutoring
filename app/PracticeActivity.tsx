@@ -1,13 +1,13 @@
 "use client";
 import {useEffect,useId,useMemo,useState,type KeyboardEvent} from "react";
-import {buildPracticeActivity,activityColours,activityLevel,type ActivityCourse,type ActivityProgress} from "./practice-activity";
+import {buildPracticeActivity,activityDateChanged,activityColours,activityLevel,type ActivityCourse,type ActivityProgress} from "./practice-activity";
 import {reviewDateLabel,type ReviewAttempt} from "./mistake-review";
 
 export default function PracticeActivity({studentId,courses,attempts,progress,timezone,loading=false,error="",onRetry,title="Your practice activity"}:{studentId:string;courses:ActivityCourse[];attempts:ReviewAttempt[];progress:ActivityProgress[];timezone?:string|null;loading?:boolean;error?:string;onRetry?:()=>void;title?:string}){
  const id=useId(),[now,setNow]=useState(()=>new Date()),[selected,setSelected]=useState<string|null>(null);
- // Refresh the date across midnight even when the page remains open.
- useEffect(()=>{const tick=()=>setNow(new Date());const timer=window.setInterval(tick,60000);window.addEventListener("focus",tick);return()=>{window.clearInterval(timer);window.removeEventListener("focus",tick)}},[]);
  const activity=useMemo(()=>buildPracticeActivity({studentId,courses,attempts,progress,timezone,now}),[studentId,courses,attempts,progress,timezone,now]);
+ // Refresh only when the student's local date changes; focus still catches sleep/wake.
+ useEffect(()=>{const tick=()=>{const next=new Date();if(activityDateChanged(activity.today,timezone,next))setNow(next)};const timer=window.setInterval(tick,60000);window.addEventListener("focus",tick);return()=>{window.clearInterval(timer);window.removeEventListener("focus",tick)}},[activity.today,timezone]);
  const day=activity.days.get(selected||activity.today),activeDate=day?.date||activity.today;
  const dateLabel=(date:string)=>new Intl.DateTimeFormat("en-AU",{weekday:"long",day:"numeric",month:"long",year:"numeric",timeZone:"UTC"}).format(new Date(`${date}T12:00:00Z`));
  function move(event:KeyboardEvent<HTMLButtonElement>,date:string){const offset={ArrowLeft:-7,ArrowRight:7,ArrowUp:-1,ArrowDown:1}[event.key];if(offset===undefined)return;event.preventDefault();const dates=[...activity.days.keys()],index=dates.indexOf(date);if(event.key==="ArrowUp"&&index%7===0||event.key==="ArrowDown"&&index%7===6)return;const target=dates[index+offset];if(target)document.getElementById(`${id}-${target}`)?.focus()}
