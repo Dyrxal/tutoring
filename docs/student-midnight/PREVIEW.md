@@ -19,3 +19,7 @@ The GitHub app transfer recreates commits with new metadata because local Git
 authentication/network access is unavailable. The transferred implementation and
 documentation trees are checked against the original local tree hashes. This
 preview-mode addition is a separate commit after those unchanged trees.
+
+Account keeps the approved identity, profile and appearance layout. Practice activity
+and progress metrics are shown in Progress rather than duplicated in Account, in
+both themes. Historical screenshots and verification notes predate this refinement.

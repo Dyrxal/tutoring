@@ -20,9 +20,10 @@ test('appearance exposes both choices and truthful loading and failure recovery'
  const html=render('StudentAppearance',{state:base,preview:false});assert(html.includes('Midnight Study'));assert(html.includes('Classic light'));assert(html.includes('role="alert"'));assert(html.includes('Offline'));assert(html.includes('Retry'));
  const loading=render('StudentAppearance',{state:{...base,loading:true,error:''},preview:false});assert(loading.includes('disabled'));assert(loading.includes('Loading'));
 });
-test('Midnight account retains supplied profile editor, activity and sign-out controls',()=>{
+test('Midnight account keeps settings and excludes progress metrics',()=>{
  const html=render('MidnightAccount',{profile:{full_name:'Real profile name',year_level:'Year 10',avatar_key:'cat'},editor:React.createElement('button',null,'Save profile'),appearance:React.createElement('p',null,'Appearance control'),activity:React.createElement('p',null,'Existing practice history'),signOut:React.createElement('button',null,'Sign out')});
- for(const text of ['Real profile name','Year 10','Save profile','Appearance control','Existing practice history','Sign out'])assert(html.includes(text));
+ for(const text of ['Real profile name','Year 10','Save profile','Appearance control','Sign out'])assert(html.includes(text));
+ assert(!html.includes('Existing practice history'));
 });
 test('Midnight Progress retains exact lesson counts alongside rounded percentages',()=>{
  const html=render('MidnightProgress',{activity:{studentId:'s',courses:[],attempts:[],progress:[]},courses:[{id:'c',title:'Real course'}],percent:()=>4,completion:()=>({done:1,total:25}),onOpen:()=>{}});

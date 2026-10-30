@@ -36,6 +36,6 @@ export function StudentAppearance({state,preview=false}:{state:AppearanceState;p
  </section>;
 }
 
-export function MidnightAccount({profile,editor,appearance,activity,signOut}:{profile?:{full_name?:string;email?:string;year_level?:string;avatar_key?:string};editor:ReactNode;appearance:ReactNode;activity:ReactNode;signOut:ReactNode}){
- return <><MidnightHeading title="Your account" description="Make your study space feel like yours."/><div className="midnight-account-grid"><div className="midnight-account-main"><div className="midnight-identity"><StudentAvatar avatarKey={profile?.avatar_key} name={profile?.full_name||profile?.email} size="lg"/><div><h2>{profile?.full_name||profile?.email||"Your profile"}</h2><p>{profile?.year_level||"Student"}</p></div></div>{editor}</div><aside className="midnight-account-aside">{appearance}<div className="midnight-signout">{signOut}</div></aside></div><div className="midnight-account-activity">{activity}</div></>;
+export function MidnightAccount({profile,editor,appearance,signOut}:{profile?:{full_name?:string;email?:string;year_level?:string;avatar_key?:string};editor:ReactNode;appearance:ReactNode;signOut:ReactNode}){
+ return <><MidnightHeading title="Your account" description="Make your study space feel like yours."/><div className="midnight-account-grid"><div className="midnight-account-main"><div className="midnight-identity"><StudentAvatar avatarKey={profile?.avatar_key} name={profile?.full_name||profile?.email} size="lg"/><div><h2>{profile?.full_name||profile?.email||"Your profile"}</h2><p>{profile?.year_level||"Student"}</p></div></div>{editor}</div><aside className="midnight-account-aside">{appearance}<div className="midnight-signout">{signOut}</div></aside></div></>;
 }
