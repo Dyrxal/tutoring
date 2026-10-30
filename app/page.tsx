@@ -78,7 +78,8 @@ function courseYear(title:string):string|null{const match=title.match(/^year\s*(
 // The hosted client build does not receive runtime environment variables.
 const url=process.env.NEXT_PUBLIC_SUPABASE_URL||"https://lmuwsjjrqmmmtmxjvqln.supabase.co";
 const key=process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY||"sb_publishable_JD3-Cfc_cDvOkuEDs-v_UA_sWBjXbCy";
-const db=url&&key?createClient(url,key):null;
+// Preview builds can use the existing sample-data mode without contacting Supabase.
+const db=process.env.NEXT_PUBLIC_DESIGN_PREVIEW==="true"?null:url&&key?createClient(url,key):null;
 async function fetchAllAttempts(client:NonNullable<typeof db>){const rows:any[]=[];for(let from=0;;from+=500){const result=await client.from("practice_attempts").select("*").order("attempted_at").order("id").range(from,from+499);if(result.error)return {data:null,error:result.error};rows.push(...(result.data||[]));if((result.data||[]).length<500)return {data:rows,error:null}}}
 const chapter8Practice={...chapter8EarlyPractice,...chapter8FurtherPractice};
 const chapter9ImportLocks=new Set<string>();
