@@ -1,0 +1,180 @@
+$ node --test scripts/test-*.mjs
+✔ Year 10 identifies renamed courses by saved IDs, preserves content, scopes all 99 sections and rejects ambiguity (375.729044ms)
+✔ whole Year 9 rollout recognises all 97 source sections without changing database content or Year 10 (168.708011ms)
+✔ rollout enables B–K only within the actual pilot module, preserves content and reports missing support (2.42711ms)
+✔ rollout skips non-21, duplicate IDs and unrecognised structure without changing saved tutor settings (1.555588ms)
+✔ existing hints link by question ID; edited questions lose defaults; common mistakes move without deletion (100.904107ms)
+✔ every rolled-out section renders Q1 and Q9 in their groups, resumes and gates completion at 7/8 (13.019434ms)
+✔ help shortcuts open the actual dropdown and move keyboard focus to the requested example (14.524837ms)
+✔ precision-sensitive Chapter 1 short answers and saved retry history retain their intended marking (39.031762ms)
+✔ 1A compatibility config preserves edits and every question; other lessons remain opt-in (1.030638ms)
+✔ a different lesson uses its own help links, reminders and common mistakes (0.35734ms)
+✔ template renders 8/13 groups, local progress and the nearby completion action (1.588577ms)
+✔ generic lesson/editor retain guided tasks and keep common mistakes separate (16.873971ms)
+✔ saving confirms the database result, throws on failure and recovers a duplicate retry (1.032191ms)
+✔ feedback/progress wait for confirmed saves; failures stay editable and retry the same ID (36.89975ms)
+✔ late saves cannot restore another account’s answer state (9.642104ms)
+✔ import routines do not delete questions or rewrite attempts to deduplicate (0.580341ms)
+✔ Midnight courses use the supplied course data and preserve an empty enrollment state (475.462251ms)
+✔ appearance exposes both choices and truthful loading and failure recovery (2.483683ms)
+✔ Midnight account retains supplied profile editor, activity and sign-out controls (3.480681ms)
+✔ Midnight Progress retains exact lesson counts alongside rounded percentages (75.605055ms)
+✔ review counts use one persisted timezone and handle UTC/local dates and daylight-saving boundaries (30.724516ms)
+✔ queues isolate students and accessible questions; overdue counts, order and latest revisions survive reopening (2.099736ms)
+✔ future reviews have no arbitrary daily cap or mutation when selected for early practice (0.803148ms)
+✔ lesson answer restoration ignores even newer correct review attempts and retains legacy responses (0.337807ms)
+✔ review summary uses first scheduled attempts; retries/early attempts and foreign students do not inflate retention (0.769487ms)
+✔ student dashboard and question render existing help, empty controls, context and precision-sensitive answer fields (15.672228ms)
+✔ tutor lesson analytics exclude reviews while the pilot summary is confined to an enrolled student profile (297.014104ms)
+✔ review API keeps stable IDs and revisions and never sends client-controlled marking or review context (0.932944ms)
+✔ setup errors retain the actual database code/message so a completed migration is diagnosable (0.378211ms)
+✔ schedule history fetch paginates beyond row limits and filters the student (0.844243ms)
+✔ double clicks cannot submit twice; feedback waits for atomic save confirmation (17.045566ms)
+✔ failed saves preserve response and submission payload; uncertain retries reuse the original ID (6.150023ms)
+✔ late responses after account change/unmount cannot apply answer or schedule state (4.711519ms)
+✔ known stale revisions expose refresh; help tracking and interval configuration preserve authority boundaries (6.193648ms)
+✖ SQL migration contains one authoritative transition, pilot/enrolment checks, private helpers and no performance rewrites (0.364711ms)
+✔ integration partitions reviews across enrolled lessons without affecting completion or navigation (0.700219ms)
+✔ automatic task follows chapter/lesson order, skips overviews and advances on completion only (1.804767ms)
+✔ last-used enrolled course is preferred even for an overview, and foreign courses cannot be selected (0.236261ms)
+✔ extras isolate students/enrolments and deduplicate active rows; completion is derived, never written (7.875724ms)
+✔ no arbitrary cap on tutor extras and repeated merge preserves removed/completed assignment history (10.117009ms)
+✔ extra task fetch paginates, constrains student and exposes setup failures without affecting derivation (1.208744ms)
+✔ uncertain save retries reuse IDs, retain expected tutor and never return unconfirmed success (0.655673ms)
+✔ student and tutor summaries render distinct next tasks, empty shells and accessible controls (8.656682ms)
+✖ migration and UI enforce tutor-only writes, enrolment, retry safety, account guards and preservation (0.885804ms)
+✔ lesson retries count once per question/day, including legacy and incorrect answers (34.118075ms)
+✔ each saved review response counts, even on the same question/day after lesson practice (1.303303ms)
+✔ duplicate submission IDs count only once without mutating attempts or progress (0.867026ms)
+✔ foreign students, unavailable content, invalid timestamps and unknown contexts are excluded (7.61708ms)
+✔ eight Monday-first calendar columns hide future dates and cross month boundaries correctly (0.926103ms)
+✔ activity uses student timezone at midnight, with DST and an invalid-zone fallback (2.839802ms)
+✔ four-week totals and weekly summaries keep activity separate from completions (1.265127ms)
+✔ green density thresholds include every agreed bucket (0.882239ms)
+✔ rendered heat map exposes day buttons, text legend, totals and counting explanation (50.283336ms)
+✔ loading and failure states never present an empty heat map as confirmed inactivity (6.832145ms)
+✔ accepted and resolved decisions save different private notes; history and latest note persist after reopening (11.470015ms)
+✔ uncertain note confirmation retries the original action without duplicate history or false success (0.853146ms)
+✔ ticket view retains identity, loads saved notes automatically and clears drafts only after verified history (0.284983ms)
+✔ ticket keeps its draft until verified saving succeeds and ignores duplicate clicks or late responses (29.526383ms)
+✔ failed note confirmation retains draft and retries the original action with its original ID (11.286905ms)
+✔ validates reports before making a request and sends context IDs without trusting student identity or dates (0.377049ms)
+✔ uncertain submission and tutor action retries keep stable IDs and payloads; failed saves never return success (0.437509ms)
+✔ search/filter preserves full history, combines filters and handles lesson-level reports (0.342959ms)
+✔ report and action history loading paginate beyond Supabase row limits and fail visibly (0.712527ms)
+✔ form and dashboard provide keyboard-friendly labels, history filters and no student-entered context (121.325417ms)
+✔ migration and integration retain authority boundaries and keep writes separate from learning records (1.819178ms)
+✔ flag retries retain the submission ID and expected account; no result is returned after save failure (1.931064ms)
+✔ withdrawal and review target the original flag and are repeatable without new history IDs (0.294877ms)
+✔ attempt context handles unanswered questions, retries, short answers and isolates students/questions (9.394878ms)
+✔ reviewed and withdrawn flags remain in history when a student flags again (0.300927ms)
+✔ fetching flags paginates and constrains the student trial to its lesson (0.675632ms)
+✔ provider stays absent outside eligible courses; tutor panel includes review/history and student/course filters (106.005981ms)
+✔ migration enforces pilot, enrolment, actor identity, active uniqueness and no learning record writes (0.72804ms)
+✔ shared flag RPC uses stable IDs and keeps the installed 1A RPC working until SQL activation (1.313889ms)
+✔ student flag reads constrain both lesson and signed-in student on every page (0.416408ms)
+✔ general provider saves once, retains stable failure retries and ignores a late response from another lesson/account (11.15607ms)
+✖ expansion SQL preserves flag history, registers both courses safely and enforces scope/ownership without learning writes (0.363089ms)
+✔ enabled catalog includes both year levels but excludes unregistered lessons without rewriting content (0.902048ms)
+✔ chapter filters distinguish matching chapter numbers across courses and select only shown future reviews (0.932483ms)
+✔ mixed-year due/future queue preserves scheduling and student ownership (12.910203ms)
+✔ review settings fetch paginates and lesson interval saves affect only the selected lesson (0.554052ms)
+✖ migration registers existing courses idempotently, preserves schedules and rejects ambiguous course identification (0.371571ms)
+✔ expanded SQL keeps server grading, enrolled-only RLS, account ownership and atomic idempotent scheduling (0.238223ms)
+✔ normalization is strict and Midnight scope is student-only and limited to four screens (39.781005ms)
+✔ initial load gates rendering, database preference wins, preview never reads real legacy keys (65.90801ms)
+✔ failed save reverts, retry persists only after confirmation, loads cannot overwrite a selection (18.018951ms)
+✔ queued saves are serial and last selection wins even when earlier selection fails (13.156423ms)
+✔ actor render reset, A to B to A, auth events and unmount discard stale work immediately (12.549148ms)
+✔ legacy choice migrates only for its owner and null database profile, with no cache writes on failure (15.118599ms)
+✔ missing migration, invalid response and offline reads fail gracefully without saving (24.703879ms)
+✔ same-render A to B to A auth transitions recover with a fresh generation (18.588105ms)
+✔ client replacement, disabled role and preview boundaries reset synchronously (11.878632ms)
+✔ recognized legacy migrates once after confirmation and unknown legacy never saves (36.881855ms)
+✔ unexpected session owner prevents every read, write and legacy migration (7.856326ms)
+✔ reload during save waits for the write and cannot accept an earlier read (8.611395ms)
+✔ migration keeps profile grants and policies unchanged and exposes self/student RPCs only (0.637696ms)
+✔ save failure restores a previously confirmed Midnight choice and unmounted writes never touch cache (7.936754ms)
+✔ sign-out cancels queued writes before they can run under another account (8.350108ms)
+✔ session transport failures show load feedback and remain retryable without auth events (16.035598ms)
+✔ session transport errors and throws on save revert with feedback and permit immediate retry (16.624393ms)
+✔ replacing the client for one actor serializes the next choice after its old in-flight save (8.82394ms)
+ℹ tests 100
+ℹ suites 0
+ℹ pass 96
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3210.058017
+
+✖ failing tests:
+
+test at scripts/test-mistake-review.mjs:70:1
+✖ SQL migration contains one authoritative transition, pilot/enrolment checks, private helpers and no performance rewrites (0.364711ms)
+  Error: ENOENT: no such file or directory, open 'public/setup/20261013_mistake_review_1a.sql'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (file:///workspace/tutoring-midnight/scripts/test-mistake-review.mjs:71:22)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'public/setup/20261013_mistake_review_1a.sql'
+  }
+
+test at scripts/test-next-tasks.mjs:43:1
+✖ migration and UI enforce tutor-only writes, enrolment, retry safety, account guards and preservation (0.885804ms)
+  Error: ENOENT: no such file or directory, open 'public/setup/20261012_next_tasks.sql'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (file:///workspace/tutoring-midnight/scripts/test-next-tasks.mjs:45:22)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'public/setup/20261012_next_tasks.sql'
+  }
+
+test at scripts/test-question-flags.mjs:52:1
+✖ expansion SQL preserves flag history, registers both courses safely and enforces scope/ownership without learning writes (0.363089ms)
+  Error: ENOENT: no such file or directory, open 'public/setup/20261013_question_flags_all_lessons.sql'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (file:///workspace/tutoring-midnight/scripts/test-question-flags.mjs:53:118)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'public/setup/20261013_question_flags_all_lessons.sql'
+  }
+
+test at scripts/test-review-expansion.mjs:10:1
+✖ migration registers existing courses idempotently, preserves schedules and rejects ambiguous course identification (0.371571ms)
+  Error: ENOENT: no such file or directory, open 'public/setup/20261013_mistake_review_all_lessons.sql'
+      at Object.readFileSync (node:fs:484:20)
+      at TestContext.<anonymous> (file:///workspace/tutoring-midnight/scripts/test-review-expansion.mjs:10:244)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'public/setup/20261013_mistake_review_all_lessons.sql'
+  }
+[ELIFECYCLE] Test failed. See above for more details.
