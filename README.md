@@ -23,5 +23,9 @@ Requires Node.js 22.13+ and pnpm 11.25.0. Run `pnpm install --frozen-lockfile`, 
 ## Notes
 
 - The export removes the Sites-only build and mock-auth integration. LMS accounts continue to use Supabase authentication.
-- No database migration is included or needed for hosting. All existing LMS data remains in Supabase.
+- No database migration is needed for hosting alone. The optional Student Midnight feature has its own additive preference migration; see the feature notes before enabling it. All existing LMS data remains in Supabase.
 - Cloudflare DNS and custom-domain routing are separate from this source export. Connect the domain only after the `workers.dev` deployment is working.
+
+## Student Midnight Study
+
+The student Courses, Progress and Account feature is documented in [implementation and release notes](docs/student-midnight/README.md). That document records its preference migration, theme scope, screenshots, verification limits and required release approvals.

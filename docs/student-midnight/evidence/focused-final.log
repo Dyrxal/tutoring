@@ -1,0 +1,41 @@
+$ node --test scripts/test-student-theme.mjs scripts/test-midnight-screens.mjs scripts/test-practice-activity.mjs
+✔ Midnight courses use the supplied course data and preserve an empty enrollment state (298.781815ms)
+✔ appearance exposes both choices and truthful loading and failure recovery (1.787467ms)
+✔ Midnight account retains supplied profile editor, activity and sign-out controls (1.14363ms)
+✔ Midnight Progress retains exact lesson counts alongside rounded percentages (26.52799ms)
+✔ lesson retries count once per question/day, including legacy and incorrect answers (32.968894ms)
+✔ each saved review response counts, even on the same question/day after lesson practice (1.173874ms)
+✔ duplicate submission IDs count only once without mutating attempts or progress (1.013603ms)
+✔ foreign students, unavailable content, invalid timestamps and unknown contexts are excluded (1.777652ms)
+✔ eight Monday-first calendar columns hide future dates and cross month boundaries correctly (0.874615ms)
+✔ activity uses student timezone at midnight, with DST and an invalid-zone fallback (4.958694ms)
+✔ four-week totals and weekly summaries keep activity separate from completions (1.75587ms)
+✔ green density thresholds include every agreed bucket (0.989798ms)
+✔ rendered heat map exposes day buttons, text legend, totals and counting explanation (25.568788ms)
+✔ loading and failure states never present an empty heat map as confirmed inactivity (2.983354ms)
+✔ normalization is strict and Midnight scope is student-only and limited to four screens (45.82539ms)
+✔ initial load gates rendering, database preference wins, preview never reads real legacy keys (51.717759ms)
+✔ failed save reverts, retry persists only after confirmation, loads cannot overwrite a selection (18.442565ms)
+✔ queued saves are serial and last selection wins even when earlier selection fails (12.009625ms)
+✔ actor render reset, A to B to A, auth events and unmount discard stale work immediately (31.289318ms)
+✔ legacy choice migrates only for its owner and null database profile, with no cache writes on failure (12.356005ms)
+✔ missing migration, invalid response and offline reads fail gracefully without saving (20.183162ms)
+✔ same-render A to B to A auth transitions recover with a fresh generation (18.158759ms)
+✔ client replacement, disabled role and preview boundaries reset synchronously (12.945422ms)
+✔ recognized legacy migrates once after confirmation and unknown legacy never saves (68.004201ms)
+✔ unexpected session owner prevents every read, write and legacy migration (9.993063ms)
+✔ reload during save waits for the write and cannot accept an earlier read (11.355831ms)
+✔ migration keeps profile grants and policies unchanged and exposes self/student RPCs only (0.615105ms)
+✔ save failure restores a previously confirmed Midnight choice and unmounted writes never touch cache (9.002665ms)
+✔ sign-out cancels queued writes before they can run under another account (7.511662ms)
+✔ session transport failures show load feedback and remain retryable without auth events (7.301347ms)
+✔ session transport errors and throws on save revert with feedback and permit immediate retry (17.357684ms)
+✔ replacing the client for one actor serializes the next choice after its old in-flight save (7.216509ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 668.361935

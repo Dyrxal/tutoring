@@ -1,0 +1,745 @@
+{
+  "baseURL": "http://127.0.0.1:8790",
+  "synthetic": true,
+  "checks": [
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "light Courses screenshot and no overflow",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "light Progress screenshot and no overflow",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "light Account screenshot and no overflow",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "failed save rolls back with visible error",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "retry saves Midnight",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "midnight Courses screenshot and no overflow",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "midnight Progress screenshot and no overflow",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "midnight Account screenshot and no overflow",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "completed next-task state retains Midnight palette",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "midnight Dashboard screenshot and no overflow",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "keyboard focus remains on actionable control",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "heatmap click shows 12 generated responses",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "course and lesson outside Midnight scope",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "return to Courses restores Midnight",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "theme and name/year/avatar persist after reload",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "migration preference load falls back to light with error",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "offline preference load falls back to light with error",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "sign out",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "tutor has no appearance selector or Midnight scope",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "no uncaught browser exceptions or unknown fixture requests",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "light Courses screenshot and no overflow",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "light Progress screenshot and no overflow",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "light Account screenshot and no overflow",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "failed save rolls back with visible error",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "retry saves Midnight",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "midnight Courses screenshot and no overflow",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "midnight Progress screenshot and no overflow",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "midnight Account screenshot and no overflow",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "completed next-task state retains Midnight palette",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "midnight Dashboard screenshot and no overflow",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "keyboard focus remains on actionable control",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "heatmap click shows 12 generated responses",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "course and lesson outside Midnight scope",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "return to Courses restores Midnight",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "theme and name/year/avatar persist after reload",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "migration preference load falls back to light with error",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "offline preference load falls back to light with error",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "sign out",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "tutor has no appearance selector or Midnight scope",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "no uncaught browser exceptions or unknown fixture requests",
+      "passed": true
+    }
+  ],
+  "unknown": [],
+  "violations": [
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "scheme": "light",
+      "screen": "Courses",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".side-label"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6b7c95, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "small"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #738198, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".heading > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.02 (foreground color: #6b7c95, background color: #f7f9fc, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".heading > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.3 (foreground color: #69778d, background color: #f7f9fc, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".course-card:nth-child(1) > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6b7c95, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".course-card:nth-child(1) > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.43 (foreground color: #687991, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".course-card:nth-child(2) > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6b7c95, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".course-card:nth-child(2) > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.43 (foreground color: #687991, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "scheme": "light",
+      "screen": "Progress",
+      "violations": [
+        {
+          "id": "aria-progressbar-name",
+          "impact": "serious",
+          "description": "Ensure every ARIA progressbar node has an accessible name",
+          "nodes": [
+            {
+              "target": [
+                "div[aria-valuetext=\"4%\"]"
+              ],
+              "summary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            },
+            {
+              "target": [
+                "div[aria-valuetext=\"0%\"]"
+              ],
+              "summary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".side-label"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6b7c95, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "small"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #738198, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".heading > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.02 (foreground color: #6b7c95, background color: #f7f9fc, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".heading > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.3 (foreground color: #69778d, background color: #f7f9fc, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".progress-card:nth-child(3) > div:nth-child(1) > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #718099, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".progress-card:nth-child(4) > div:nth-child(1) > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #718099, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "scheme": "light",
+      "screen": "Account",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".side-label"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6b7c95, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "small"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.94 (foreground color: #738198, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".heading > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.02 (foreground color: #6b7c95, background color: #f7f9fc, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card > div > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #718099, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".student-profile-editor > div > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6b7c95, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".student-profile-editor > div > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.13 (foreground color: #6f7e92, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "scheme": "midnight",
+      "screen": "Courses",
+      "violations": []
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "scheme": "midnight",
+      "screen": "Progress",
+      "violations": []
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "scheme": "midnight",
+      "screen": "Account",
+      "violations": []
+    },
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "scheme": "midnight",
+      "screen": "Dashboard",
+      "violations": []
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scheme": "light",
+      "screen": "Courses",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".heading > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.02 (foreground color: #6b7c95, background color: #f7f9fc, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".heading > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.3 (foreground color: #69778d, background color: #f7f9fc, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".course-card:nth-child(1) > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6b7c95, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".course-card:nth-child(1) > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.43 (foreground color: #687991, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".course-card:nth-child(2) > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6b7c95, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".course-card:nth-child(2) > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.43 (foreground color: #687991, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scheme": "light",
+      "screen": "Progress",
+      "violations": [
+        {
+          "id": "aria-progressbar-name",
+          "impact": "serious",
+          "description": "Ensure every ARIA progressbar node has an accessible name",
+          "nodes": [
+            {
+              "target": [
+                "div[aria-valuetext=\"4%\"]"
+              ],
+              "summary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            },
+            {
+              "target": [
+                "div[aria-valuetext=\"0%\"]"
+              ],
+              "summary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".heading > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.02 (foreground color: #6b7c95, background color: #f7f9fc, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".heading > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.3 (foreground color: #69778d, background color: #f7f9fc, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".progress-card:nth-child(3) > div:nth-child(1) > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #718099, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".progress-card:nth-child(4) > div:nth-child(1) > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #718099, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scheme": "light",
+      "screen": "Account",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": [
+                ".heading > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.02 (foreground color: #6b7c95, background color: #f7f9fc, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".account-card > div > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4 (foreground color: #718099, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".student-profile-editor > div > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6b7c95, background color: #ffffff, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".student-profile-editor > div > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.13 (foreground color: #6f7e92, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scheme": "midnight",
+      "screen": "Courses",
+      "violations": []
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scheme": "midnight",
+      "screen": "Progress",
+      "violations": []
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scheme": "midnight",
+      "screen": "Account",
+      "violations": []
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scheme": "midnight",
+      "screen": "Dashboard",
+      "violations": []
+    }
+  ]
+}

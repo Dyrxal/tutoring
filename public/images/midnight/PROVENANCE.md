@@ -1,0 +1,7 @@
+# Midnight notebook photograph
+
+`notebook.webp` is an AI-generated standalone photograph asset authored for this feature on 29 October 2026. It is not a crop of an approved interface mockup and contains no interface elements. Original generated image: `exec-7982018f-4f43-4914-b896-f088aee8fb5a.png`. Converted to WebP quality83 with ImageMagick for delivery (2172×724).
+
+Generation prompt: Create a single professional photographic image asset for a midnight-blue maths learning website. Ultra-wide landscape 3:1 panorama, open mathematics notebook on dark desk, softly lit slate-blue pages with subtle handwritten algebra and an understated triangle/coordinate sketch, pencil and drawing compass at far right. Left third mostly dark unfocused paper so website heading can overlay it; center-right has softly focused notebook crease and elegant geometric pencil construction. Desaturated charcoal, slate, blue-grey, gentle cold natural light, realistic fine paper, quiet academic mood. No interface, no logo, no legible heading or labels, no browser, no website mockup, no white page glare. Full-bleed clean background photograph, no border. This is an authored standalone image asset, not a crop of a mockup.
+
+This decorative generated maths imagery is not instructional material. All course names, descriptions, progress and actions are real application data rendered as text above/alongside the asset.

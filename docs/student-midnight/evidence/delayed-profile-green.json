@@ -1,0 +1,24 @@
+{
+  "baseURL": "http://127.0.0.1:8790",
+  "synthetic": true,
+  "checks": [
+    {
+      "viewport": {
+        "width": 1513,
+        "height": 1040
+      },
+      "name": "late profile initializes account editor",
+      "passed": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "name": "late profile initializes account editor",
+      "passed": true
+    }
+  ],
+  "unknown": [],
+  "violations": []
+}

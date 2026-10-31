@@ -1,0 +1,2 @@
+$ node scripts/check-student-theme-sql.mjs
+PASS: in-memory PostgreSQL migration twice; constraints, self/student/anonymous checks, account isolation, profile grants and safe search paths. No staging/live writes.
