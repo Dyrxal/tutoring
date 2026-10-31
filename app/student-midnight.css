@@ -12,3 +12,21 @@
 .student-midnight .next-tasks .empty,.student-midnight .next-task-primary,.student-midnight .next-task-row,.student-midnight .mistake-review,.student-midnight .mistake-review .review-session,.student-midnight .mistake-review .review-question,.student-midnight .mistake-review .review-future-options,.student-midnight .mistake-review .review-batch-finished{background:#14232d;border-color:#344651;color:#e2edf2}.student-midnight .next-tasks .muted,.student-midnight .next-task-copy p,.student-midnight .mistake-review .muted,.student-midnight .mistake-review .review-context,.student-midnight .mistake-review .review-option-instruction,.student-midnight .mistake-review .review-future-number{color:#b6cad4}.student-midnight .mistake-review>.section-head h2,.student-midnight .mistake-review .review-session-head h3{color:#d3edf5}.student-midnight .mistake-review .review-question-badge{background:#243a48;border-color:#496676;color:#d5ebf6}.student-midnight .mistake-review .options button{background:#1e3443;border-color:#4b6677;color:#e2edf2}.student-midnight .report-error{background:#36262e;border-color:#81515d;color:#ffd2d8}.student-midnight .report-error p{color:inherit}.student-midnight .course-card p,.student-midnight .course-card .progress-label{color:#b6cad4}
 
 .student-midnight .course-card .progress-label strong{color:#d3edf5}.student-midnight .midnight-completion-row strong small{display:block;font-size:12px;font-weight:400;color:#afc1cb;margin-top:4px}
+
+/* Preserve the supplied Progress reference: square calendar and totals beneath it. */
+.student-midnight .midnight-activity{grid-template-columns:minmax(0,1.053fr) minmax(0,1fr);column-gap:22px;row-gap:0;padding:30px 24px;background:#19232d;border-color:#344651;border-radius:14px}
+.student-midnight .activity-heading{grid-column:1/-1;grid-row:1;display:flex;align-items:center;justify-content:space-between;margin:0 0 18px}
+.student-midnight .activity-heading h2{font-size:21px;line-height:1.3;margin:0;color:#e2e8ed}
+.student-midnight .activity-period{font-size:13px;color:#bac6cf}
+.student-midnight .midnight-activity .activity-summary{display:block;grid-column:1/-1;grid-row:2;font-size:15px;line-height:1.6;margin:0 0 9px;color:#e2e8ed}
+.student-midnight .midnight-activity .activity-caption{grid-column:1/-1;grid-row:3;font-size:13px;line-height:1.5;margin:0 0 16px;color:#bac6cf}
+.student-midnight .activity-calendar{grid-column:1;grid-row:4;padding-right:36px;gap:12px}
+.student-midnight .activity-square{aspect-ratio:1;min-height:0;border-color:#40505b;border-radius:4px}
+.student-midnight [data-level="0"]{background:#293640}.student-midnight [data-level="1"]{background:#204b37}.student-midnight [data-level="2"]{background:#2c7250}.student-midnight [data-level="3"]{background:#439e68}.student-midnight [data-level="4"]{background:#73cf96}
+.student-midnight .activity-legend{grid-column:1;grid-row:5;margin:18px 0 0;font-size:11px;gap:8px}
+.student-midnight .activity-day-detail{grid-column:2;grid-row:4/8;min-height:0;padding:20px;background:#202d38;border-color:#3b505e;border-radius:9px}
+.student-midnight .activity-day-detail strong{font-size:14px;color:#e2e8ed}.student-midnight .activity-day-detail p{font-size:14px;color:#bac6cf;line-height:1.55}
+.student-midnight .activity-totals{grid-column:1;grid-row:6;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;border-top:0;border-bottom:1px solid #3b505e;padding:36px 0 20px;margin:0 0 14px}
+.student-midnight .activity-totals strong{font-size:24px;color:#e2e8ed}.student-midnight .activity-totals span{font-size:13px;color:#bac6cf}
+.student-midnight .midnight-activity .activity-counting{grid-column:1;grid-row:7;border-top:0;padding:0;font-size:13px}.student-midnight .activity-counting summary{color:#80c99a}
+@media(max-width:800px){.student-midnight .midnight-activity{grid-template-columns:minmax(0,1fr);padding:20px 18px}.student-midnight .activity-calendar{padding-right:0}.student-midnight .activity-day-detail{grid-column:1;grid-row:8;min-height:160px;margin-top:18px}.student-midnight .activity-totals{padding-top:24px}.student-midnight .activity-heading{gap:8px}.student-midnight .activity-square{min-height:0}}

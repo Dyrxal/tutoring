@@ -23,3 +23,13 @@ preview-mode addition is a separate commit after those unchanged trees.
 Account keeps the approved identity, profile and appearance layout. Practice activity
 and progress metrics are shown in Progress rather than duplicated in Account, in
 both themes. Historical screenshots and verification notes predate this refinement.
+
+Progress now follows the supplied practice-activity reference: approximately 57 px
+square cells and 5 px gaps at a 1156 px panel width, green density buckets, a
+right-aligned period label, visible eight-week summary, right-hand day details,
+and weekly totals/counting help below the calendar. The extra summary strip was
+removed. The calendar shrinks to square cells and stacks day details on mobile.
+The eight-week summary now counts the displayed calendar window; separate
+four-week calculation fields are retained for compatibility. Local static React
+renders were inspected at 1272 px and 390 px, with no horizontal overflow. This
+is not a claim of hosted Cloudflare verification.
