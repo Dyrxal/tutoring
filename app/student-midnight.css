@@ -30,3 +30,5 @@
 .student-midnight .activity-totals strong{font-size:24px;color:#e2e8ed}.student-midnight .activity-totals span{font-size:13px;color:#bac6cf}
 .student-midnight .midnight-activity .activity-counting{grid-column:1;grid-row:7;border-top:0;padding:0;font-size:13px}.student-midnight .activity-counting summary{color:#80c99a}
 @media(max-width:800px){.student-midnight .midnight-activity{grid-template-columns:minmax(0,1fr);padding:20px 18px}.student-midnight .activity-calendar{padding-right:0}.student-midnight .activity-day-detail{grid-column:1;grid-row:8;min-height:160px;margin-top:18px}.student-midnight .activity-totals{padding-top:24px}.student-midnight .activity-heading{gap:8px}.student-midnight .activity-square{min-height:0}}
+
+.notation-mark{display:block;width:36px;height:42px;flex:none}.appearance-preview-nav .notation-mark{width:24px;height:28px}

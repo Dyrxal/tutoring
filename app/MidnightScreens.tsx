@@ -1,4 +1,5 @@
 "use client";
+import NotationMark from "./NotationMark";
 import {useId,type ComponentProps,type ReactNode} from "react";
 import {BookOpen,ChevronRight} from "lucide-react";
 import {StudentAvatar} from "./StudentAvatar";
@@ -27,7 +28,7 @@ export function MidnightProgress({activity,courses,percent,completion,onOpen}:{a
 export function StudentAppearance({state,preview=false}:{state:AppearanceState;preview?:boolean}){
  const id=useId();
  return <section className="student-appearance" aria-labelledby={`${id}-heading`} aria-busy={state.loading||state.saving}><h2 id={`${id}-heading`}>Appearance</h2><p>Choose the view that feels right for you.</p>
-  <div className={`appearance-preview preview-${state.theme}`} aria-hidden="true"><div className="appearance-preview-nav"><b>N</b><i/><i/><i/><i/></div><div className="appearance-preview-content"><i/><div><i/><i/></div><div><i/><i/></div></div></div>
+  <div className={`appearance-preview preview-${state.theme}`} aria-hidden="true"><div className="appearance-preview-nav"><b><NotationMark/></b><i/><i/><i/><i/></div><div className="appearance-preview-content"><i/><div><i/><i/></div><div><i/><i/></div></div></div>
   <label htmlFor={`${id}-theme`}>Colour scheme</label><select id={`${id}-theme`} value={state.theme} disabled={state.loading||state.saving} aria-describedby={`${id}-scope`} onChange={event=>void state.changeTheme(event.target.value as Theme)}><option value="light">Classic light</option><option value="midnight">Midnight Study</option></select>
   <p id={`${id}-scope`} className="appearance-note">Available on Dashboard, Courses, Progress and Account.</p>
   {preview&&<p className="appearance-note">Preview only. Your choice lasts while this preview is open.</p>}
