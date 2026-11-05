@@ -29,7 +29,7 @@ export function buildPracticeActivity({studentId,courses,attempts,progress,timez
   day.count++;const topic=questionTopics.get(attempt.question_id)!;
   if(!day.topics.some(t=>t.course===topic.course&&t.chapter===topic.chapter&&t.lesson===topic.lesson))day.topics.push(topic);
  }
- const recent=[...days.values()].filter(day=>day.date>=recentStart),thisWeek=recent.filter(day=>day.date>=weekStart),completedLessons=new Set<string>();
+ const range=[...days.values()],recent=range.filter(day=>day.date>=recentStart),thisWeek=recent.filter(day=>day.date>=weekStart),completedLessons=new Set<string>();
  for(const record of progress){if(record.student_id!==studentId||!lessonIds.has(record.lesson_id)||!record.completed_at||!Number.isFinite(Date.parse(record.completed_at)))continue;const date=dateInZone(new Date(record.completed_at));if(date>=weekStart&&date<=today)completedLessons.add(record.lesson_id)}
- return {today,start,weekStart,timezone:zone,days,columns:Array.from({length:8},(_,week)=>Array.from({length:7},(_,day)=>{const date=shiftActivityDate(start,week*7+day);return days.get(date)||null})),recentResponses:recent.reduce((total,day)=>total+day.count,0),recentActiveDays:recent.filter(day=>day.count>0).length,weekResponses:thisWeek.reduce((total,day)=>total+day.count,0),weekLessons:completedLessons.size};
+ return {today,start,weekStart,timezone:zone,days,columns:Array.from({length:8},(_,week)=>Array.from({length:7},(_,day)=>{const date=shiftActivityDate(start,week*7+day);return days.get(date)||null})),rangeResponses:range.reduce((total,day)=>total+day.count,0),rangeActiveDays:range.filter(day=>day.count>0).length,recentResponses:recent.reduce((total,day)=>total+day.count,0),recentActiveDays:recent.filter(day=>day.count>0).length,weekResponses:thisWeek.reduce((total,day)=>total+day.count,0),weekLessons:completedLessons.size};
 }

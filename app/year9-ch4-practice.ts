@@ -1,7 +1,8 @@
 import type {QuestionValues} from "./QuestionEditor";
+import type {LinearGraphSpec} from "./question-types";
 
 type SeedQuestion=QuestionValues&{seed_id:string};
-type Draft={p:string;a:string;d:string[];e:string;short?:string[];exact?:boolean};
+type Draft={p:string;a:string;d:string[];e:string;short?:string[];exact?:boolean;graph?:LinearGraphSpec;graphChoices?:[string,string,string,string];graphAnswer?:number;seedId?:string};
 
 // New practice follows the section learning sequence: 8 core questions, then
 // 13 optional fluency, application and reasoning questions. 4D's first two
@@ -10,12 +11,18 @@ type Draft={p:string;a:string;d:string[];e:string;short?:string[];exact?:boolean
 let choice=0;
 function build(code:string,drafts:Draft[]):SeedQuestion[]{
  if(drafts.length!==21)throw new Error(`${code} must contain 21 questions; found ${drafts.length}`);
- return drafts.map((q,i)=>{
+ const questions=drafts.map((q,i):SeedQuestion=>{
   const tail=`${String(code.charCodeAt(1)).padStart(2,"0")}${String(i+1).padStart(10,"0")}`;
-  if(q.short){return {prompt:q.p,options:{kind:"short_answer",accepted:q.short,exact:q.exact},correct_index:0,explanation:q.e,seed_id:`4c000004-0000-4000-8000-${tail}`};}
+  const seed_id=q.seedId||`4c000004-0000-4000-8000-${tail}`;
+  if(q.short){return {prompt:q.p,options:{kind:"short_answer",accepted:q.short,exact:q.exact},correct_index:0,explanation:q.e,seed_id};}
+  if(q.graph&&q.graphChoices){return {prompt:q.p,options:{kind:"graph_choice",choices:q.graphChoices,graph:q.graph},correct_index:q.graphAnswer??0,explanation:q.e,seed_id};}
   const slot=choice++%4,options=[...q.d];options.splice(slot,0,q.a);
-  return {prompt:q.p,options,correct_index:slot,explanation:q.e,seed_id:`4c000004-0000-4000-8000-${tail}`};
+  return {prompt:q.p,options,correct_index:slot,explanation:q.e,seed_id};
  });
+ // The replaced 4A questions used two generated MCQ option slots. Keep the
+ // existing deterministic answer ordering in every later subchapter.
+ if(code==="4A")choice+=2;
+ return questions;
 }
 const mc=(p:string,a:string,d:string[],e:string):Draft=>({p,a,d,e});
 const sa=(p:string,a:string,e:string,exact=false):Draft=>({p,a,d:[],e,short:[a],exact});
@@ -40,9 +47,9 @@ export const chapter4Practice:Record<string,SeedQuestion[]>={
   mc("For a linear relation, x increases by 3 while y increases by 12. What is its gradient?","4",["1/4","9","36"],"Gradient is change in y divided by change in x: 12 ÷ 3 = 4."),
   sa("A straight line includes (−2, 5) and (2, −3). Find the gradient.","-2","m = [−3 − 5] ÷ [2 − (−2)] = −8 ÷ 4 = −2."),
   mc("A line has rule y = 3x + c and contains (2, 11). Find c.","5",["−5","7","17"],"Substitute the point: 11 = 3(2) + c, so c = 5."),
-  mc("Points in a table lie on a straight line. Which feature confirms the relation is linear?","Equal changes in y for equal changes in x",["The y-values are always positive","The x-values must start at zero","The graph must pass through the origin"],"A constant rate of change gives a straight-line graph; positivity or passing through the origin is not required."),
-  mc("A line goes through (0, 2) and (4, 2). Which statement is true?","Its rule is y = 2",["Its rule is x = 2","It has gradient 2","It passes through the origin"],"Both points have y = 2, so this is a horizontal line with rule y = 2."),
-  sa("The points (1, 2), (3, 8) and (5, k) lie on one straight line. Find k.","14","The gradient from the first two points is 6 ÷ 2 = 3. Two more x-units increase y by 6, so k = 14.")
+  {p:"A table gives x = 0, 1, 2, 3 and y = 1, 3, 5, 7. Which labelled graph represents the same relation?",a:"Graph A",d:["Graph B","Graph C","Graph D"],e:"The table increases by 2 in y for each 1 in x and has y-intercept 1. That is the solid line labelled A.",graphAnswer:0,graphChoices:["Graph A","Graph B","Graph C","Graph D"],seedId:"4c000004-0000-4000-8000-650000000022",graph:{title:"Choose the graph matching the table",description:"Cartesian axes. x ranges from minus 1 to 4 in steps of 1; y ranges from minus 3 to 9 in steps of 2. Four straight lines are labelled A, B, C and D, with distinct line patterns.",caption:"Compare the table’s change in y and value at x = 0 with the four labelled lines.",xLabel:"x",yLabel:"y",xMin:-1,xMax:4,xStep:1,yMin:-3,yMax:9,yStep:2,series:[{label:"A",points:[[-1,-1],[4,9]],style:"solid"},{label:"B",points:[[-1,0],[4,5]],style:"dashed"},{label:"C",points:[[-1,-3],[4,7]],style:"dotted"},{label:"D",points:[[-1,6],[4,1]],style:"dash_dot"}]}},
+  {p:"Read the value of y when x = 2 from the graph.",a:"4",d:["2","6","8"],e:"Following x = 2 up to the line gives y = 4.",graphAnswer:1,graphChoices:["2","4","6","8"],seedId:"4c000004-0000-4000-8000-650000000023",graph:{title:"Read a value from a straight-line graph",description:"Cartesian axes. x ranges from 0 to 4 in steps of 1 and y ranges from minus 2 to 10 in steps of 2. One straight line rises from left to right.",caption:"Use the labelled axes and grid to read the corresponding y-value.",xLabel:"x",yLabel:"y",xMin:0,xMax:4,xStep:1,yMin:-2,yMax:10,yStep:2,series:[{label:"",points:[[0,-2],[4,10]]}]}},
+  {p:"Which table matches the straight-line graph?",a:"x: 0, 2, 4; y: 4, 2, 0",d:["x: 0, 2, 4; y: 0, 2, 4","x: 0, 2, 4; y: 4, 4, 4","x: 0, 2, 4; y: 4, 1, 0"],e:"The graph passes through (0, 4), (2, 2) and (4, 0), so the first table matches.",graphAnswer:0,graphChoices:["x: 0, 2, 4; y: 4, 2, 0","x: 0, 2, 4; y: 0, 2, 4","x: 0, 2, 4; y: 4, 4, 4","x: 0, 2, 4; y: 4, 1, 0"],seedId:"4c000004-0000-4000-8000-650000000024",graph:{title:"Match a graph to a table",description:"Cartesian axes. Both x and y range from 0 to 4 in steps of 1. A straight line slopes down from left to right and crosses both axes at 4.",caption:"Read the plotted values at x = 0, 2 and 4, then choose the matching table.",xLabel:"x",yLabel:"y",xMin:0,xMax:4,xStep:1,yMin:0,yMax:4,yStep:1,series:[{label:"",points:[[0,4],[2,2],[4,0]]}]}}
  ]),
  "4B":build("4B",[
   mc("For y = 2x − 6, what is the y-intercept?","(0, −6)",["(3, 0)","(0, 2)","(−6, 0)"],"Set x = 0 to obtain y = −6."),
