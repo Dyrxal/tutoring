@@ -3,6 +3,7 @@ import {useEffect,useRef,useState} from "react";
 import type {SupabaseClient} from "@supabase/supabase-js";
 import {ChevronLeft,ChevronRight,X} from "lucide-react";
 import {Button} from "@/components/ui/button";
+// Let Vite emit the matching worker; Vinext rewrites import.meta.url to a server file URL.
 import pdfWorkerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 
 export default function PdfViewer({client,path,title,onClose}:{client:SupabaseClient;path:string;title:string;onClose:()=>void}){

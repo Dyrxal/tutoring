@@ -1,6 +1,6 @@
 // Optional browser acceptance: requires Playwright available to Node (e.g. NODE_PATH).
 // MM_TEST_ACCOUNTS points to an untracked JSON array of {email,password} fixtures.
-const {chromium}=require('playwright');
+const {chromium,devices}=require('playwright');
 const fs=require('node:fs');
 const assert=require('node:assert/strict');
 const base=process.env.MM_PREVIEW_URL||'https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/';
@@ -13,7 +13,7 @@ const expectedVersion=JSON.parse(fs.readFileSync(require.resolve('pdfjs-dist/pac
  const results=[];
  try{
   for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
-   const context=await browser.newContext({viewport});
+   const context=await browser.newContext({...((viewport.width<600)?devices['Pixel 5']:{}),viewport});
    const page=await context.newPage();const workers=[],errors=[];
    page.on('worker',w=>workers.push(w.url()));page.on('pageerror',e=>errors.push(e.message));
    await page.route('**/*',route=>{
@@ -30,7 +30,10 @@ const expectedVersion=JSON.parse(fs.readFileSync(require.resolve('pdfjs-dist/pac
     workers.length=0;
     if(phase==='after-reload')await page.reload();
     await page.getByText('MM Preview Mathematics',{exact:false}).first().waitFor({timeout:60000});
-    await page.getByRole('button',{name:'Continue lesson'}).click();
+    await page.locator('.student-dashboard-course-card').filter({has:page.getByRole('heading',{name:'MM Preview Mathematics',exact:true})}).getByRole('button',{name:'Open course'}).click();
+    const moduleButton=page.getByRole('button',{name:/Algebra practice/});
+    if(await moduleButton.getAttribute('aria-expanded')==='false')await moduleButton.click();
+    await page.getByRole('button',{name:/Linear relationships/}).click();
     await page.getByRole('button',{name:/mm-acceptance.pdf/}).click();
     const dialog=page.getByRole('dialog',{name:'View mm-acceptance.pdf',exact:true});
     await Promise.race([dialog.getByText('Page 1 of 1',{exact:true}).waitFor({timeout:60000}),dialog.getByRole('alert').waitFor({timeout:60000})]);
@@ -44,7 +47,7 @@ const expectedVersion=JSON.parse(fs.readFileSync(require.resolve('pdfjs-dist/pac
     const workerUrl=workers.find(u=>u.startsWith(new URL(base).origin+'/'));
     const response=await page.request.get(workerUrl);assert.equal(response.status(),200);assert.match(response.headers()['content-type'],/javascript/);assert((await response.text()).includes(expectedVersion),'Worker/library version mismatch');
     const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);assert.equal(overflow,false,'Page overflows viewport');
-    results.push({viewport,phase,passed:true,workerPath:new URL(workerUrl).pathname,version:expectedVersion,nonblankCanvas:true});
+    results.push({viewport,mobileEmulation:viewport.width<600,phase,passed:true,workerPath:new URL(workerUrl).pathname,version:expectedVersion,nonblankCanvas:true});
     await dialog.getByRole('button',{name:'Close document'}).click();
    }
    assert.deepEqual(errors,[]);await context.close();

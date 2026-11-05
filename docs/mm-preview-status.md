@@ -7,13 +7,51 @@ This branch moves the verified published Sites application into the existing Git
 - Imported Sites version 120, commit `116e72b356169832f15c18529d77d0072361ab57`, on GitHub main `97ab688d9ef138429fd05d78678e2d1236be9957`.
 - Standalone Cloudflare build; same `2026-05-15` compatibility date as the verified baseline build. Original Sites identity retained as provenance.
 - Separate Free Supabase project `lcddnpafrkbwsrhqexqe`, Notation LMS Preview, Tokyo. Captured application schema installed only there: 15 tables, 25 functions, 34 policies, 3 triggers, 3 private buckets. All 15 application tables have RLS enabled.
-- Synthetic content only: 2 courses, 2 modules, 3 lessons, 10 questions; one review-enabled lesson and a flag RPC course scope. No production records, accounts or uploaded learning files copied into this test project.
+- Initial synthetic seed: 2 courses, 2 modules, 3 lessons, 10 questions; one review-enabled lesson and a flag RPC course scope. No production records, accounts or uploaded learning files copied into this test project.
 - Build selects preview by default and rejects the production project for preview use. Production requires explicit target and configuration. Secret/service-role keys are rejected. Preview browser bundle contains the test hostname and zero occurrences of the production hostname.
 - TypeScript check passes. Preview and explicit production-target builds pass; build output restored to preview afterward. No production deployment performed.
 - 94 tests: **91 pass, 3 fail**, matching the three existing published-source failures. All 9 new backend-isolation tests pass. The existing failures are Year 10/99-section identification, Year 9/97-section rollout, and the next-tasks test expecting a UI component absent from the published source. They were not hidden or repaired by changing application behavior.
 - Local baseline/migration render comparisons: login, student dashboard and lesson at **1440×1000** and **390×844**. Each matched comparison has **0 changed pixels**; no page exceptions or horizontal overflow. These are comparisons of local builds with mocked synthetic requests, not proof of a hosted end-to-end match. See [screenshots and machine-readable results](mm-comparisons/results.json).
 
-## Hosted acceptance — 6 November 2026 (Australia/Sydney)
+## Current acceptance — PDF fix follow-up, 6 November 2026
+
+Continued from `345476a`; worker fix pushed as `6aab022`. Tested only the allowed branch preview and **Supabase `lcddnpafrkbwsrhqexqe`**. No production requests/data access, production deployment, merge or DNS changes. The existing review-branch workflow published the preview update. [Detailed current evidence](mm-acceptance/pdf-followup.json); the historical run below is retained and superseded by this section.
+
+### Passing
+
+- **Private PDF: 4/4 hosted render checks.** Chromium desktop **1440×1000** and Android mobile emulation **390×844**, each after password sign-in and after reload. Verified “Page 1 of 1”, nonblank rendered pixels, a newly created same-origin worker per phase, HTTP 200 JavaScript worker content, PDF.js **6.3.289** and no viewport overflow/page exceptions. Physical iOS/Safari was not tested.
+- The old URL was reproduced in a failing browser regression. `app/PdfViewer.tsx` now imports `pdfjs-dist/build/pdf.worker.min.mjs?url`; Vite emits the worker from the installed package. It no longer resolves the URL against Vinext's server `file:///ROOT/...` replacement. The original authenticated private download and in-memory PDF bytes are unchanged. No CDN or copied/version-mismatched worker was introduced.
+- Preview build and TypeScript check pass. Local built-app PDF checks also pass on desktop/mobile. Independent code review found no blocking issue; its reload-worker test gap was addressed by requiring a new worker for each phase.
+- **78 API checks pass:** the previous 70 were repeated (existing progress upsert correctly returns 200 and was reread), plus 6 checks on the retained private PDF and 2 controlled scheduled-review transitions. Enrolled private download succeeds; anonymous/public/unenrolled access and unenrolled signing fail; student upload fails. All three buckets remain private, and all 15 application tables retain RLS.
+- **6 additional hosted UI checks pass:** Year 9 1B and Year 10 1A flag/withdraw with persistence after reload; 8 core answers saved and lesson completion retained after reload without optional answers; tutor lesson-text and notes/example image saves with reload; tutor question-diagram edit with reload; enrolled-student decoding of all three private images.
+- Scheduled-review fixture: a due correct answer advances stage 0→1 and next due date by 3 days; correct answer with help already used resets stage to 0/due +1 day. Original schedule stage/dates restored; monotonic current revision and synthetic test attempts retained. These are controlled preview fixtures, not an overnight clock test.
+
+### Failing / unresolved
+
+- **Stale review conflict response:** two requests using an outdated revision timed out after 25 seconds. Preview logs show repeated SQLSTATE `40001` from `submit_mistake_review` line 26 under PostgREST 14.18 at approximately one-second intervals. The stale write was not counted as accepted, but a prompt denial and UI recovery response were not verified. The captured RPC error/retry interaction needs a separate fix; no schema/RPC permissions were changed here.
+- **Source suite remains 91/94**, the same before and after the worker fix. Failures: Year 10/99-section identification; Year 9/97-section rollout; next-tasks UI assertion expecting the absent `StudentNextTasks` component. They were not hidden by changing application behavior.
+- **Password reset UI is absent** in the captured application: no recovery request action/form or `PASSWORD_RECOVERY` handler. This is a feature gap, separate from email delivery. The PDF fix does not add an authentication feature.
+- Generic synthetic question distractors still differ from the committed seed. Transient “No courses assigned”/answer-loading states remain unchanged. Security advisors still report 4 anon and 17 authenticated SECURITY DEFINER signatures, plus disabled leaked-password protection. These findings were not silently cleared. [Password-security guidance](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection).
+
+### Unverified / prerequisites
+
+- **No real emails sent.** Public preview Auth settings confirm email enabled, signup allowed and confirmation required. No approved test inbox was supplied. Site URL, redirect allowlist, SMTP sender/configuration and actual delivery are not exposed by that public endpoint and remain unverified. [Exact email acceptance prerequisites and steps](mm-email-acceptance.md).
+- Full all-section Year 9/10 acceptance remains pending; one 21-question representative lesson per year was tested. Full hosted visual parity, physical mobile browsers and real overnight review rollover remain unverified. Automatic year-based enrolment remains absent from the captured backend; fixtures are explicitly enrolled.
+
+### Retained fixtures and rerun
+
+Added two separate repository-bank acceptance courses, leaving original generic fixture content intact. Current preview totals: **3 accounts, 4 courses, 4 modules, 6 lessons, 52 questions**. Student A is enrolled in the original mathematics course plus both acceptance courses; Student B remains enrolled only in MM Access Check. Retained Storage: the existing private PDF and three UI-uploaded images on the new Year 9 lesson (4 objects total). Replaced and API-only upload objects were removed. No production records were copied.
+
+Optional browser regression (Playwright 1.62.1 and Chromium were available in this execution environment):
+
+```sh
+MM_TEST_ACCOUNTS=/path/to/untracked-preview-accounts.json node scripts/check-pdf-preview.cjs
+```
+
+The untracked JSON array must contain the enrolled test student first as `{ "email": "...", "password": "..." }`. The script permits only this branch host or local builds, blocks other application hosts, and writes no credentials/tokens. `MM_PREVIEW_URL` and `CHROMIUM_PATH` select a local build/browser if required. Playwright must be available to Node; it is not a new application dependency.
+
+## Historical acceptance — before the PDF fix (6 November 2026)
+
 
 Tested commit `6fd82bf` on `feat/mm-cloudflare-migration`. The active managed environment reported running, connected, current observations and enforced network policy. Only the [allowed branch preview](https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/) and preview Supabase **`lcddnpafrkbwsrhqexqe`** were used for application checks. The version-specific deployment URL remains blocked and was not retried in this run. No production application/backend requests, merge, production deployment, DNS change, schema change or production data write was performed.
 
@@ -50,13 +88,13 @@ Tested commit `6fd82bf` on `feat/mm-cloudflare-migration`. The active managed en
 - Full representative Year 9/10 fixtures, flag UI, scheduled review day transitions, full tutor lesson/image editor workflows, and hosted mobile/visual parity remain pending. RPC acceptance does not establish those UI flows. Existing baseline source-test failures and advisor findings below are not cleared by these checks.
 - Existing source/backend discrepancy remains: auto-enrol helper functions/triggers referenced by UI text are absent from the captured database. Account fixtures were explicitly enrolled; automatic year-based enrolment was not claimed to work.
 
-## Review
+## Historical source/security review
 
 Unused legacy `mockups/` files are excluded from this branch and retained in the original source backup. Automatic approval review rejected uploading one legacy dashboard mockup because its contents had not been verified for GitHub disclosure. No indirect upload of its SVG/embedded-image equivalent was attempted. New comparison screenshots use verified synthetic mocks.
 
 Independent review found no critical issue or application-code drift from the published baseline. It identified missing review/flag fixture enablement (added; UI acceptance remains pending) and a duplicate synthetic MC answer (corrected in file and test database).
 
-Supabase advisors flag the captured SECURITY DEFINER RPC exposure: four functions callable by anon and seventeen signatures by authenticated users. These match the captured baseline permissions, not a new grant expansion. Authenticated actor/role checks and access boundaries still require integration testing. See the [anon function advisory](https://supabase.com/docs/guides/database/database-linter?lint=0028_anon_security_definer_function_executable) and [authenticated function advisory](https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable).
+Supabase advisors flag the captured SECURITY DEFINER RPC exposure: four functions callable by anon and seventeen signatures by authenticated users. These match the captured baseline permissions, not a new grant expansion. At that review, authenticated actor/role checks and access boundaries were pending. Current acceptance above verifies the named flows, not every exposed function signature. See the [anon function advisory](https://supabase.com/docs/guides/database/database-linter?lint=0028_anon_security_definer_function_executable) and [authenticated function advisory](https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable).
 
 ## Screen comparisons
 

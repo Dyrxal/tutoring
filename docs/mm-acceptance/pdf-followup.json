@@ -1,0 +1,776 @@
+{
+  "checked_date_sydney": "2026-11-06",
+  "base_commit": "345476a",
+  "pdf_fix_commit": "6aab02241aa7878d5ad1ccf3e5505f934875d676",
+  "project_ref": "lcddnpafrkbwsrhqexqe",
+  "host": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/",
+  "worker_fix": {
+    "root_cause": "Vinext transformed import.meta.url into a server file URL in the client bundle",
+    "implementation": "Vite ?url import from installed pdfjs-dist/build/pdf.worker.min.mjs",
+    "library_version": "6.3.289",
+    "observed_hosted_page_chunk": "/_next/static/chunks/page-B_2XjFwN.js",
+    "private_download_unchanged": true,
+    "red_before_fix": "PDF viewer error: Setting up fake worker failed: Failed to fetch dynamically imported module: file:///_next/static/media/pdf.worker.min.Dswkl-cV.mjs"
+  },
+  "hosted_pdf": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "mobileEmulation": false,
+      "phase": "after-sign-in",
+      "passed": true,
+      "workerPath": "/_next/static/media/pdf.worker.min.Dswkl-cV.mjs",
+      "version": "6.3.289",
+      "nonblankCanvas": true
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "mobileEmulation": false,
+      "phase": "after-reload",
+      "passed": true,
+      "workerPath": "/_next/static/media/pdf.worker.min.Dswkl-cV.mjs",
+      "version": "6.3.289",
+      "nonblankCanvas": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mobileEmulation": true,
+      "phase": "after-sign-in",
+      "passed": true,
+      "workerPath": "/_next/static/media/pdf.worker.min.Dswkl-cV.mjs",
+      "version": "6.3.289",
+      "nonblankCanvas": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mobileEmulation": true,
+      "phase": "after-reload",
+      "passed": true,
+      "workerPath": "/_next/static/media/pdf.worker.min.Dswkl-cV.mjs",
+      "version": "6.3.289",
+      "nonblankCanvas": true
+    }
+  ],
+  "other_hosted_ui": [
+    {
+      "name": "Year 9 representative layout and flag",
+      "status": "passing",
+      "detail": {
+        "flagPersistsAfterReload": true,
+        "withdraw": true,
+        "coreQuestions": 8
+      }
+    },
+    {
+      "name": "Student completes eight core questions and reloads completion",
+      "status": "passing",
+      "detail": {
+        "coreAnswers": 8,
+        "optionalAnswers": 0,
+        "completionRestored": true
+      }
+    },
+    {
+      "name": "Year 10 representative layout and flag",
+      "status": "passing",
+      "detail": {
+        "flagPersistsAfterReload": true,
+        "withdraw": true,
+        "coreQuestions": 8
+      }
+    },
+    {
+      "name": "Tutor question diagram edit and reload",
+      "status": "passing",
+      "detail": {
+        "diagramSaved": true,
+        "renderedAfterReload": true
+      }
+    },
+    {
+      "name": "Tutor lesson text and notes/example image editor",
+      "status": "passing",
+      "detail": {
+        "textSaved": true,
+        "imagesReloaded": 2
+      }
+    },
+    {
+      "name": "Enrolled student sees all tutor-uploaded private images",
+      "status": "passing",
+      "detail": {
+        "decodedImages": 3
+      }
+    }
+  ],
+  "repeated_api_checks": [
+    {
+      "name": "password login MM student-a",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "error": null
+      }
+    },
+    {
+      "name": "password login MM student-b",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "error": null
+      }
+    },
+    {
+      "name": "password login MM tutor",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "error": null
+      }
+    },
+    {
+      "name": "course visibility MM student-a",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "rows": 1
+      }
+    },
+    {
+      "name": "course visibility MM student-b",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "rows": 1
+      }
+    },
+    {
+      "name": "course visibility MM tutor",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "rows": 2
+      }
+    },
+    {
+      "name": "anonymous course denial",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "save practice attempt",
+      "passed": true,
+      "detail": {
+        "status": 201,
+        "error": null
+      }
+    },
+    {
+      "name": "reload persisted attempt",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "other student cannot read attempt",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "deny spoof student",
+      "passed": true,
+      "detail": {
+        "status": 403,
+        "body": "{\"code\":\"42501\",\"details\":null,\"hint\":null,\"message\":\"This question is not available to this student.\"}"
+      }
+    },
+    {
+      "name": "deny unenrolled question",
+      "passed": true,
+      "detail": {
+        "status": 403,
+        "body": "{\"code\":\"42501\",\"details\":null,\"hint\":null,\"message\":\"new row violates row-level security policy for table \\\"practice_attempts\\\"\"}"
+      }
+    },
+    {
+      "name": "deny role escalation",
+      "passed": true,
+      "detail": {
+        "status": 403,
+        "body": "{\"code\":\"42501\",\"details\":null,\"hint\":\"Grant the required privileges to the current role with: GRANT UPDATE ON public.profiles TO authenticated;\",\"message\":\"permission denied for table profiles\"}"
+      }
+    },
+    {
+      "name": "deny self enrolment",
+      "passed": true,
+      "detail": {
+        "status": 403
+      }
+    },
+    {
+      "name": "deny student content edit",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "body": "[]"
+      }
+    },
+    {
+      "name": "save own progress",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "reload_status": 200,
+        "explanation": "Existing row upsert correctly returns 200; original harness expected insert-only 201. Retested write and persisted read."
+      }
+    },
+    {
+      "name": "deny unenrolled progress",
+      "passed": true,
+      "detail": {
+        "status": 403
+      }
+    },
+    {
+      "name": "save own profile",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "tutor save student reload",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "question-images tutor upload",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "body": "{\"Key\":\"question-images/d1111111-1111-4111-8111-000000000001/mm-41d89c33-6ece-44ab-a873-ab5022cecb65.png\",\"Id\":\"614c2bf6-988e-47fc-be42-893e10040353\"}"
+      }
+    },
+    {
+      "name": "question-images download MM student-a",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "question-images download MM student-b",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "question-images public denied",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "question-images enrolled signed URL",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "question-images signed download",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "question-images unenrolled signing denied",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "question-images student upload denied",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "question-images cleanup",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "lesson-images tutor upload",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "body": "{\"Key\":\"lesson-images/c1111111-1111-4111-8111-111111111111/mm-926a4e5a-830f-462b-b36a-3ce2082cd41a.png\",\"Id\":\"df0a8148-8186-4f54-a514-c5bd8d0845f3\"}"
+      }
+    },
+    {
+      "name": "lesson-images download MM student-a",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "lesson-images download MM student-b",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "lesson-images public denied",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "lesson-images enrolled signed URL",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "lesson-images signed download",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "lesson-images unenrolled signing denied",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "lesson-images student upload denied",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "lesson-images cleanup",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "lesson-resources tutor upload",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "body": "{\"Key\":\"lesson-resources/c1111111-1111-4111-8111-111111111111/mm-4aa01715-042b-415d-abc9-c624da899b59.pdf\",\"Id\":\"105849d6-29eb-48f9-ab88-a6d1e85bc0e4\"}"
+      }
+    },
+    {
+      "name": "lesson-resources download MM student-a",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "lesson-resources download MM student-b",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "lesson-resources public denied",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "lesson-resources enrolled signed URL",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "lesson-resources signed download",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "lesson-resources unenrolled signing denied",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "lesson-resources student upload denied",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "lesson-resources cleanup",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "review initialise MM student-a",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "body": "{\"scope\": \"year9_year10\", \"today\": \"2026-11-06\", \"timezone\": \"Australia/Melbourne\", \"intervals\": [1, 3, 7, 14, 30, 60]}"
+      }
+    },
+    {
+      "name": "review initialise MM student-b",
+      "passed": true,
+      "detail": {
+        "status": 403,
+        "body": "{\"code\":\"42501\",\"details\":null,\"hint\":null,\"message\":\"Student permission is required.\"}"
+      }
+    },
+    {
+      "name": "review initialise MM tutor",
+      "passed": true,
+      "detail": {
+        "status": 403,
+        "body": "{\"code\":\"42501\",\"details\":null,\"hint\":null,\"message\":\"Student permission is required.\"}"
+      }
+    },
+    {
+      "name": "review initialise anon",
+      "passed": true,
+      "detail": {
+        "status": 401,
+        "body": "{\"code\":\"42501\",\"details\":null,\"hint\":null,\"message\":\"permission denied for function initialise_mistake_reviews\"}"
+      }
+    },
+    {
+      "name": "review submit",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "body": "{\"attempt\": {\"id\": \"e5ec6b95-aa37-4d76-b6f4-3330d71b377c\", \"is_correct\": true, \"student_id\": \"e1111111-1111-4111-8111-111111111111\", \"question_id\": \"d1111111-1111-4111-8111-000000000001\", \"attempted_at\": \"2026-11-05T14:14:14.906767+00:00\", \"response_text\": null, \"review_outcome\": {\"stage\": 0, \"next_due\": \"2026-11-07\", \"revision\": 4, \"timezone\": \"Australia/Melbourne\", \"reported_help_used\": false}, \"selected_index\": 0, \"attempt_context\": \"early_practice\", \"review_help_used\": false, \"review_local_date\": \"2026-11-06\"}, \"schedule\": {\"stage\": 0, \"next_due\": \"2026-11-07\", \"revision\": 4, \"timezone\": \"Australia/Melbourne\", \"created_at\": \"2026-11-05T13:33:59.905697+00:00\", \"student_id\": \"e1111111-1111-4111-8111-111111111111\", \"updated_at\": \"2026-11-05T14:14:14.906767+00:00\", \"question_id\": \"d1111111-1111-4111-8111-000000000001\", \"help_used_on\": null, \"last_scheduled_date\": null}}"
+      }
+    },
+    {
+      "name": "review idempotent retry",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "review actor spoof denied",
+      "passed": true,
+      "detail": {
+        "status": 403
+      }
+    },
+    {
+      "name": "flag enrolled question",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "body": "{\"id\": \"4951d0e9-77f0-4c58-b4de-e20c1a38d908\", \"status\": \"outstanding\", \"context\": {\"course_title\": \"MM Preview Mathematics\", \"lesson_title\": \"Linear relationships\", \"student_name\": \"MM student-a saved\", \"chapter_title\": \"Algebra practice\", \"question_number\": 1, \"question_prompt\": \"For y = 2x + 1, find y when x = 0.\"}, \"closed_at\": null, \"course_id\": \"a1111111-1111-4111-8111-111111111111\", \"lesson_id\": \"c1111111-1111-4111-8111-111111111111\", \"created_at\": \"2026-11-05T14:14:16.203445+00:00\", \"student_id\": \"e1111111-1111-4111-8111-111111111111\", \"question_id\": \"d1111111-1111-4111-8111-000000000001\", \"reviewed_by\": null, \"reviewer_name\": null}"
+      }
+    },
+    {
+      "name": "flag actor spoof denied",
+      "passed": true,
+      "detail": {
+        "status": 403
+      }
+    },
+    {
+      "name": "withdraw own flag",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "tutor assign task",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "body": "[{\"id\": \"8684c481-6138-4e6c-ad80-334a87488c39\", \"lesson_id\": \"c1111111-1111-4111-8111-111111111111\", \"removed_at\": null, \"removed_by\": null, \"sort_order\": 0, \"student_id\": \"e1111111-1111-4111-8111-111111111111\", \"assigned_at\": \"2026-11-05T13:35:35.717416+00:00\", \"assigned_by\": \"e1111111-1111-4111-8111-111111111113\"}]"
+      }
+    },
+    {
+      "name": "student tutor spoof denied",
+      "passed": true,
+      "detail": {
+        "status": 403
+      }
+    },
+    {
+      "name": "student problem report",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "tutor resolve report",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "student report moderation denied",
+      "passed": true,
+      "detail": {
+        "status": 403
+      }
+    },
+    {
+      "name": "deny direct forged review metadata",
+      "passed": true,
+      "detail": {
+        "status": 403,
+        "body": "{\"code\":\"42501\",\"details\":null,\"hint\":null,\"message\":\"new row violates row-level security policy \\\"review_metadata_rpc_only\\\" for table \\\"practice_attempts\\\"\"}"
+      }
+    },
+    {
+      "name": "tutor reads saved attempts",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "rows": 5
+      }
+    },
+    {
+      "name": "deny other profile edit",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "deny other progress edit",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "invalid refresh token denied",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "valid refresh restores session",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "sign out",
+      "passed": true,
+      "detail": {
+        "status": 204
+      }
+    },
+    {
+      "name": "signed out refresh denied",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "wrong password denied",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    }
+  ],
+  "additional_api_checks": [
+    {
+      "name": "retained private PDF MM student-a",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "retained private PDF MM student-b",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "retained private PDF anonymous",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "private PDF public URL denied",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "private PDF unenrolled signing denied",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "student PDF upload denied",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "due correct advances stage",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "stage": 1,
+        "due": "2026-11-09",
+        "today": "2026-11-06"
+      }
+    },
+    {
+      "name": "stale review revision request",
+      "passed": false,
+      "detail": {
+        "outcome": "timed out after 25s; denial not verified"
+      }
+    },
+    {
+      "name": "due correct with prior help resets",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "stage": 0,
+        "due": "2026-11-07",
+        "today": "2026-11-06"
+      }
+    }
+  ],
+  "stale_conflict_logs": {
+    "window_utc": [
+      "2026-11-05T14:25:00Z",
+      "2026-11-05T14:27:00Z"
+    ],
+    "application": "PostgREST 14.18",
+    "sqlstate": "40001",
+    "context": "PL/pgSQL function public.submit_mistake_review(uuid,uuid,uuid,integer,text,boolean,bigint,jsonb) line 26 at RAISE",
+    "observation": "Repeated conflict logs at approximately one-second intervals; HTTP request timed out after 25 seconds on two attempts. Normal response denial and UI refresh handling not verified."
+  },
+  "auth_email_settings": {
+    "http_status": 200,
+    "email_enabled": true,
+    "disable_signup": false,
+    "mailer_autoconfirm": false,
+    "real_emails_sent": 0,
+    "approved_test_address_supplied": false
+  },
+  "build_and_tests": {
+    "preview_build": "pass",
+    "typecheck": "pass",
+    "source_suite": {
+      "tests": 94,
+      "passed": 91,
+      "failed": 3,
+      "same_before_and_after": true,
+      "failures": [
+        "Year 10 identifies renamed courses by saved IDs, preserves content, scopes all 99 sections and rejects ambiguity",
+        "whole Year 9 rollout recognises all 97 source sections without changing database content or Year 10",
+        "migration and UI enforce tutor-only writes, enrolment, retry safety, account guards and preservation (assertion expects absent StudentNextTasks component)"
+      ]
+    }
+  },
+  "final_counts": {
+    "auth_users": 3,
+    "courses": 4,
+    "modules": 4,
+    "lessons": 6,
+    "questions": 52,
+    "private_buckets": 3,
+    "storage_objects": 4,
+    "application_rls_tables": 15
+  },
+  "fixture_controls": [
+    "Original generic fixture content retained; new repository-bank courses contain no production records.",
+    "Review due dates/stage temporarily controlled through preview-only SQL, then restored; test attempts retained; no real overnight test.",
+    "Tutor notes and three images retained only on the new Year 9 acceptance lesson. Replaced objects removed by normal tutor UI.",
+    "Playwright Chromium desktop and Android mobile emulation; physical iOS/Safari not tested.",
+    "Harness corrections (existing upsert 200 vs insert 201, responsive navigation and unambiguous form locators) were verified before counting passes."
+  ],
+  "unverified": [
+    "Real signup/confirmation/recovery email delivery and preview Site URL/redirect/SMTP config",
+    "Password recovery UI absent, identified as a feature gap; no auth feature added in PDF fix",
+    "All-section Year9/10 acceptance (one representative lesson each was tested)",
+    "Full hosted visual parity against a saved approved baseline",
+    "Real overnight schedule rollover"
+  ],
+  "security_advisors": [
+    {
+      "name": "anon_security_definer_function_executable",
+      "count": 4
+    },
+    {
+      "name": "authenticated_security_definer_function_executable",
+      "count": 17
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "count": 1
+    }
+  ]
+}
