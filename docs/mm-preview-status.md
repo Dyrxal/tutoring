@@ -13,14 +13,42 @@ This branch moves the verified published Sites application into the existing Git
 - 94 tests: **91 pass, 3 fail**, matching the three existing published-source failures. All 9 new backend-isolation tests pass. The existing failures are Year 10/99-section identification, Year 9/97-section rollout, and the next-tasks test expecting a UI component absent from the published source. They were not hidden or repaired by changing application behavior.
 - Local baseline/migration render comparisons: login, student dashboard and lesson at **1440×1000** and **390×844**. Each matched comparison has **0 changed pixels**; no page exceptions or horizontal overflow. These are comparisons of local builds with mocked synthetic requests, not proof of a hosted end-to-end match. See [screenshots and machine-readable results](mm-comparisons/results.json).
 
-## Still unverified / blocked
+## Hosted acceptance — 6 November 2026 (Australia/Sydney)
 
-- Real test Auth accounts and hosted sign-in/save/reload, upload/download and enrolment boundaries. Workspace network policy does not yet allow `lcddnpafrkbwsrhqexqe.supabase.co`; no Auth accounts exist yet. No production access was used to substitute for this check.
-- Email confirmation/reset URLs and delivery on the new preview project. Existing production Auth settings have not been changed.
-- Mistake review scheduling/RPC acceptance and flag workflow. Fixtures now include database enablement, but the synthetic course intentionally lacks the baseline Year 9/10 identification markers used to show flag UI. Full representative fixtures and authenticated acceptance checks are still required. No claim that these flows pass.
-- Tutor UI acceptance and signed private Storage access. No production uploads were copied to preview.
-- Cloudflare feature-branch build and actual preview URL are recorded separately after remote creation; no guessed URL is provided here.
-- Existing production source/backend discrepancy: auto-enrol helper functions/triggers referenced by UI text are absent from the inspected database. Migration preserves observed behavior; that feature is not silently repaired.
+Tested commit `6fd82bf` on `feat/mm-cloudflare-migration`. The active managed environment reported running, connected, current observations and enforced network policy. Only the [allowed branch preview](https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/) and preview Supabase **`lcddnpafrkbwsrhqexqe`** were used for application checks. The version-specific deployment URL remains blocked and was not retried in this run. No production application/backend requests, merge, production deployment, DNS change, schema change or production data write was performed.
+
+**70/70 authenticated/anonymous API checks pass. Hosted acceptance is not fully passing: the PDF viewer fails.** [Recorded results, statuses and exact limitations](mm-acceptance/results.json).
+
+| Check | Actual result |
+|---|---|
+| Preview network | Branch app HTTP 200; Supabase reached and identified the preview project (401 without a key). Authenticated REST/Auth/Storage requests succeeded. |
+| Test accounts | Three confirmed synthetic accounts provisioned through preview-only SQL fixtures, including email identities and password hashes. Profile trigger created student profiles; only the tutor fixture was explicitly promoted through privileged SQL. These were not successful self-service signups. |
+| Password sign-in | Student A, Student B and tutor pass through Auth. Hosted browser sign-in passes for all three; tutor sees Content and both synthetic courses. |
+| Session handling | Valid refresh succeeds, sign-out succeeds, refresh after sign-out and wrong password are denied. Hosted student sign-out remains signed out after reload. Existing access JWT lifetime was not tested. |
+| Student saving | Own practice attempt, profile and lesson-progress writes persist. Hosted short answer `3` saves with HTTP 201 and is restored as “Your answer: 3” after reload and a separate sign-in. Existing incorrect MC answer also restores. Lesson completion was written as an API fixture; completing all core questions through UI remains unverified. |
+| Tutor saving | Tutor lesson-note edit is visible to enrolled student on a fresh read; original notes restored afterward. Tutor can read student attempts. Task assignment and report resolution RPCs pass. |
+| Course/data boundaries | Each student reads only their enrolled course; tutor reads both. Student B hosted dashboard shows only MM Access Check. Other-student attempts are hidden. Forged student IDs, unenrolled answers/progress, self-enrolment, role escalation and direct forged review metadata are denied. Other-profile/progress/content updates affect zero rows or are denied. |
+| Uploads/private Storage | Tutor upload, byte-identical enrolled-student download, enrolled signing/signed download, public denial, unenrolled download/signing denial, student-upload denial and tutor cleanup pass for question-images, lesson-images and lesson-resources. All three buckets remain private. |
+| Hosted PDF upload | Tutor uploads valid synthetic one-page `mm-acceptance.pdf`; lesson resource list saves and enrolled student can open its viewer. **Rendering fails; see below.** |
+| Review RPC | Initialisation, early-practice submission and idempotent retry pass. Other-student/tutor/anonymous initialisation and actor spoofing are denied. Future due-date progression has not been time-advanced or tested. |
+| Flag/report/task RPCs | Enrolled flag/withdraw, student report submission, tutor report resolution and tutor task assignment pass. Spoofed flag actor, student tutor spoof and student moderation are denied. |
+
+### Synthetic fixtures retained
+
+- Student A: `mm-student-a-20261106@example.com`, ID `e1111111-1111-4111-8111-111111111111`; enrolled only in MM Preview Mathematics.
+- Student B: `mm-student-b-20261106@example.com`, ID `e1111111-1111-4111-8111-111111111112`; enrolled only in MM Access Check.
+- Tutor: `mm-tutor-20261106@example.com`, ID `e1111111-1111-4111-8111-111111111113`.
+- Random passwords, session tokens and temporary automation files are untracked in the execution workspace; none are included in GitHub evidence. These fixture emails are not inboxes.
+- Synthetic saved attempts/progress, one withdrawn flag, one resolved problem report, one assigned task and review schedule are retained for repeat checks. API-only upload fixtures were deleted and verified absent before the hosted PDF test. The single hosted PDF and its lesson resource reference are retained to reproduce the viewer error. Original lesson notes were restored.
+
+### Unresolved / not release-ready
+
+- **PDF worker failure:** tutor upload and enrolled private download succeed, but hosted student viewer reports `Setting up fake worker failed: "Failed to fetch dynamically imported module: file:///_next/static/media/pdf.worker.min.Dswkl-cV.mjs".` Worker requests fail and “Page 1 of 1” never appears within 60 seconds. A canvas element alone was not accepted as rendering proof. Investigate the build/runtime worker URL in `app/PdfViewer.tsx`; no application change or preview redeploy was made in this acceptance run.
+- **Self-service signup/email:** requests with synthetic `example.com` addresses returned `email_address_invalid` (400), followed by `over_email_send_rate_limit` (429). Confirmed fixtures allow real sign-in tests but do not verify signup email, confirmation/reset redirects or delivery. No real recipient email was used and no Auth delivery configuration was changed.
+- **Fixture drift:** live preview question 3 options are `["5","4","6","3"]`; committed seed specifies `["5","4","6","7"]`. Other distractors also differ. Correct answer used in acceptance remains unchanged. No live content was overwritten to conceal this discrepancy.
+- **Loading UX:** student dashboard briefly shows “No courses assigned” before its real catalogue request finishes; lesson answers also populate asynchronously. Course/answer checks passed when waiting for data. This transient empty state remains unchanged.
+- Full representative Year 9/10 fixtures, flag UI, scheduled review day transitions, full tutor lesson/image editor workflows, and hosted mobile/visual parity remain pending. RPC acceptance does not establish those UI flows. Existing baseline source-test failures and advisor findings below are not cleared by these checks.
+- Existing source/backend discrepancy remains: auto-enrol helper functions/triggers referenced by UI text are absent from the captured database. Account fixtures were explicitly enrolled; automatic year-based enrolment was not claimed to work.
 
 ## Review
 
