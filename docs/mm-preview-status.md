@@ -13,7 +13,44 @@ This branch moves the verified published Sites application into the existing Git
 - 94 tests: **91 pass, 3 fail**, matching the three existing published-source failures. All 9 new backend-isolation tests pass. The existing failures are Year 10/99-section identification, Year 9/97-section rollout, and the next-tasks test expecting a UI component absent from the published source. They were not hidden or repaired by changing application behavior.
 - Local baseline/migration render comparisons: login, student dashboard and lesson at **1440×1000** and **390×844**. Each matched comparison has **0 changed pixels**; no page exceptions or horizontal overflow. These are comparisons of local builds with mocked synthetic requests, not proof of a hosted end-to-end match. See [screenshots and machine-readable results](mm-comparisons/results.json).
 
-## Current acceptance — PDF fix follow-up, 6 November 2026
+## Current acceptance — review/conflict follow-up, 6 November 2026
+
+Continued from `5f9abb9`. Runtime fix `bd3a24b` was verified on the **allowed branch preview** with **Supabase `lcddnpafrkbwsrhqexqe` only**. [Current evidence](mm-acceptance/review-followup.json). No production access, merge, production deployment or DNS changes. The previous sections below are historical and superseded where noted.
+
+### Passing
+
+- **Stale review timeout fixed.** Expected stale revision, edited question and missing-schedule conflicts now use SQLSTATE `PT409`/HTTP **409**, rather than retryable `40001`/HTTP500. The reproduced 25-second timeout became a **0.56-second** response. The client recognises both new and legacy conflict codes and offers refresh while retaining the typed answer.
+- Applied preview migration **`20261106074516_mm_review_conflicts.sql`** to `submit_mistake_review` and `note_mistake_review_help`. Only the four logical conflict error codes changed; owner, ACL, security/search-path settings, actor/enrolment checks, grading, locks and idempotency are unchanged. The local migration/setup mirror uses the actual applied version (the CLI-generated draft was renamed to align with the recorded preview migration). Future preview setup must apply this follow-up after its captured baseline; historical setup files remain historical.
+- **22/22 preview API checks:** fast conflicts with no answer/schedule write, saved short answer, same-ID uncertain retry, duplicate-ID/different-answer rejection, fresh revision retry, concurrent duplicate retries producing exactly one answer and one schedule transition, and anonymous/other-account/unenrolled denials.
+- **5/5 hosted browser flows:** tutor assignment is visible and opens its lesson without duplicating the current continue card; stale refresh retains typed `5` and saves under a fresh ID; a deliberately lost successful response retries with the **same** ID; a held A response released after same-page sign-out/sign-in cannot populate B's dashboard, before or after reload; signing back into A restores the original ordinary lesson answer `4`, separate from review answer `5`.
+- Four authenticated rereads confirmed the conflicted browser submission was absent and each successful browser submission was stored once. The assigned fixture is also the automatic next lesson, explicitly covering that filter edge.
+- **98/98 source tests pass**, including four new conflict/retry/account/assignment tests. Preview build and TypeScript pass. Independent review found no blocking/important issue and independently passed 44 affected tests.
+- **PDF non-regression: 4/4** hosted desktop/Android-emulated render checks still pass after sign-in/reload. The same private PDF, browser worker/version and nonblank-pixel checks were used.
+
+### Three previous baseline failures: diagnosis and resolution
+
+| Failure | Classification | Resolution without weakening safeguards |
+|---|---|---|
+| Year10/99-section assertion | Stale assertion | Import `6fd82bf` deliberately added common-mistakes-only fallbacks. Flow-map presence does not mean structured practice is enabled. Tests still cover all 99 sections and now verify skipped reasons, legacy rendered grouping, saved opt-out and unchanged data. Rollout code/content unchanged. |
+| Year9/97-section assertion | Stale assertion | Same published fallback. Retained all 97 sections and added rendered checks for incomplete/duplicate-ID sets and unchanged inputs. No content/eligibility rules relaxed. |
+| Missing StudentNextTasks mount | Actual defect | Tutor-created assignments were persisted but invisible to students. Restored the existing component in assignment-only mode, preserving the current resume card and showing unfinished accessible assignments, including an assigned automatic lesson. Original integration assertion remains. |
+
+The source history and clarified behavior are recorded in [lesson-template guidance](lesson-template.md#imported-common-mistakes-fallback-and-skipped-layouts). The tests were not made green by dropping cases, lowering section counts or enabling invalid layouts.
+
+### Failing / unresolved
+
+- No failing check in this run's 98-test suite, 22 API checks or named hosted browser flows. This does not establish release readiness for the unverified items below.
+- Password-reset UI is still absent. This is an explicitly deferred feature gap, not an implemented fix. The smallest proposal is two auth-card modes: request a link and choose a new password from a verified recovery session, with cold-load/reload/error handling. [Concrete proposal, touched files and prerequisites](mm-email-acceptance.md#smallest-password-reset-change-proposed-not-implemented). **Not implemented pending agreement.**
+- Existing captured auto-enrolment absence, generic distractor fixture drift, transient catalogue-loading empty state and advisor findings remain unchanged. Advisors still show 4 anon/17 authenticated SECURITY DEFINER signatures and disabled leaked-password protection.
+
+### Unverified / retained fixtures
+
+- **Email delivery remains unverified. No real emails sent.** No approved test address was supplied; no signup/confirmation/reset send endpoint or delivery configuration was used/changed. SMTP, Site URL and redirects still need preview-only verification before an approved-inbox test.
+- Full all-section hosted acceptance, full hosted visual parity, physical iOS/Safari and real overnight schedule rollover remain unverified. Passing source tests and controlled fixtures do not establish those results.
+- Added one clearly named preview review lesson with three questions, two incorrect lesson attempts, a tutor assignment and synthetic review history for reproducibility. Current totals: 3 accounts, 4 courses, **7 lessons/55 questions**, 3 private buckets/4 retained objects, 15 application tables with RLS. Only this new fixture's due date was controlled; its final schedule was saved by the real RPC. Original lesson content and account enrolments are retained.
+- Optional acceptance runner: `MM_TEST_ACCOUNTS=/path/to/untracked-preview-accounts.json node scripts/check-review-preview.cjs` (Playwright/Chromium available to Node). It uses the retained fixture, starts from a due short-answer review, confines requests to branch/local preview plus the specified preview backend, and writes no credentials. It simulates stale/lost/delayed responses against actual preview RPCs. A fresh run may need that **preview-only** fixture marked due; never change real account schedules to run it.
+
+## Previous acceptance — PDF fix follow-up, 6 November 2026
 
 Continued from `345476a`; worker fix pushed as `6aab022`. Tested only the allowed branch preview and **Supabase `lcddnpafrkbwsrhqexqe`**. No production requests/data access, production deployment, merge or DNS changes. The existing review-branch workflow published the preview update. [Detailed current evidence](mm-acceptance/pdf-followup.json); the historical run below is retained and superseded by this section.
 
