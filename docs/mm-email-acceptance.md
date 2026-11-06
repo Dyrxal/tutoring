@@ -14,3 +14,14 @@ Needed before delivery acceptance:
 6. With the approved inbox and recovery UI in place: request one reset, follow its link, set a test password, sign out, confirm old password fails/new password succeeds, test used/expired links, and confirm all requests/redirects stay on preview. Record delivery and actual outcomes separately from API response codes.
 
 References: [Supabase custom SMTP restrictions](https://supabase.com/docs/guides/auth/auth-smtp), [password-based auth and recovery](https://supabase.com/docs/guides/auth/passwords), [redirect URLs](https://supabase.com/docs/guides/auth/redirect-urls).
+
+## Smallest password-reset change proposed (not implemented)
+
+Keep the current sign-in/signup and dashboard flows. Add two small auth-card modes:
+
+1. **Request reset:** a “Forgot password?” action on sign-in opens an email field. Submit `resetPasswordForEmail` with a preview-only return URL on the allowed branch origin. Show the same acknowledgement whether or not an account exists, plus a rate-limit/network retry state.
+2. **Choose new password:** handle a verified recovery session before rendering the dashboard. Show new-password and confirmation fields, validate them, then call `updateUser({password})`. Return to sign-in after a successful update. An expired/invalid recovery link offers a new reset request rather than a dashboard or a stuck form.
+
+Limit the implementation to a small recovery component, its integration in `app/page.tsx`, and focused auth tests. Do not refactor the existing app shell or add another backend. Keep a recovery marker in the preview callback URL so a cold load/reload can restore the intended screen; the marker must never establish authentication by itself. Use the SDK's verified recovery session and handle `PASSWORD_RECOVERY`, initial session loading, sign-out, and account changes. Do not put tokens in application logs or saved test evidence. Use the existing password-policy errors from Supabase rather than inventing a conflicting policy.
+
+Before implementation: agree on these two modes and the preview callback URL. Before any delivery test: approve an inbox and verify the preview project's Site URL/redirect allowlist and sender configuration. No reset UI was implemented in the stale-review fix, no email endpoint was called, and email delivery remains unverified.

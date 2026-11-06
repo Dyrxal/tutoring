@@ -108,3 +108,19 @@ load. Source-level tests cover all 97 target section banks, preservation,
 grouping, 7/8 completion gating and Year 10 isolation. Browser/mobile and live
 Supabase checks must be reported separately from those tests.
 
+
+## Imported common-mistakes fallback and skipped layouts
+
+The published source imported by MM added `commonMistakesForSection` and explicit
+read-through support for recognised sections, including incomplete, duplicate-ID
+or tutor-disabled sets. This supersedes the older statement above that *all*
+flow data is left alone: the **structured layout and saved database content**
+remain untouched, but missing common-mistakes text can be supplied in the rendered
+flow. Existing tutor mistake text wins. A fallback flow is not evidence that the
+8/13 layout is enabled. The eligibility report stays Skipped; an explicit template
+opt-out remains false; no questions, answers or saved content are inserted/edited.
+
+The MM follow-up tests verify those rendered safeguards and unchanged input data
+for all 97 Year 9 and 99 Year 10 source sets, rather than asserting that the flow
+map must have no entry. This is an assertion correction, not a rollout behavior
+change.

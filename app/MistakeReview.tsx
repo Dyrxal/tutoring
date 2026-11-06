@@ -47,7 +47,7 @@ export function ReviewQuestionCard({client,studentId,question:q,schedule,lesson,
   const old=pending.current;
   const action=old&&old.selectedIndex===selected&&old.responseText===response?old:{id:crypto.randomUUID(),studentId,questionId:q.id,selectedIndex:selected,responseText:response,helpUsed:supportUsed.current,revision:schedule.revision,questionState:{prompt:q.prompt,options:q.options,correct_index:q.correct_index,explanation:q.explanation}};pending.current=action;
   try{const saved=await saveReview(client,action);if(!alive.current)return;setResult(saved);onSaved(saved);pending.current=null}
-  catch(e){if(alive.current){setError((e as Error).message);setConflict(e instanceof ReviewError&&e.code==="40001")}}
+  catch(e){if(alive.current){setError((e as Error).message);setConflict(e instanceof ReviewError&&["40001","PT409"].includes(e.code))}}
   finally{lock.current=false;if(alive.current){setSaving(false);onBusy(false)}}
  }
  function retry(){setResult(null);setChosen(null);setError("");pending.current=null}
