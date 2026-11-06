@@ -13,7 +13,30 @@ This branch moves the verified published Sites application into the existing Git
 - 94 tests: **91 pass, 3 fail**, matching the three existing published-source failures. All 9 new backend-isolation tests pass. The existing failures are Year 10/99-section identification, Year 9/97-section rollout, and the next-tasks test expecting a UI component absent from the published source. They were not hidden or repaired by changing application behavior.
 - Local baseline/migration render comparisons: login, student dashboard and lesson at **1440×1000** and **390×844**. Each matched comparison has **0 changed pixels**; no page exceptions or horizontal overflow. These are comparisons of local builds with mocked synthetic requests, not proof of a hosted end-to-end match. See [screenshots and machine-readable results](mm-comparisons/results.json).
 
-## Current acceptance — review/conflict follow-up, 6 November 2026
+## Current acceptance — password recovery, 6 November 2026
+
+Continued from `896e6ce`; implementation `e19d15f` is pushed to the review branch and served on the allowed branch preview. Only preview Supabase `lcddnpafrkbwsrhqexqe` was contacted. [Evidence](mm-acceptance/password-reset.json) and [email acceptance procedure/blockers](mm-email-acceptance.md). Historical sections below are superseded where noted.
+
+### Passing
+
+- Implemented the documented two-screen proposal: “Forgot password?” request form and verified recovery/new-password form. Existing sign-in and registration fields/metadata are retained; signup explicitly requests the branch root as its confirmation redirect.
+- Recovery requires a server-verified user and matching recovery callback, SDK event or account/session-bound tab proof. A query marker or ordinary cached login alone is insufficient. Reload retains valid recovery intent; account changes clear sensitive fields. Password mutation uses an isolated, nonpersistent SDK client bound to the verified session, preventing a switched shared account from receiving the update.
+- **13/13 mocked browser scenarios pass locally and on the hosted branch preview**, including retry/rate errors, generic acknowledgements, duplicate submission, expired/invalid links, recovery reload, password validation, mobile layout, signup confirmation callback, account switching and signout failures. All Supabase HTTP requests in these browser tests were intercepted; these results do not establish delivery or real token acceptance.
+- **105/105 source tests pass**, including 7 recovery tests. Preview build and TypeScript pass. Review findings were reproduced and fixed: cached-session request navigation, wrong-account mutation race, misleading cancellation status and stale async exit handling.
+- Read-only preview public Auth settings returned HTTP200: email enabled, signup enabled, confirmation required. No real signup/reset messages were requested; existing preview accounts were not changed by this task.
+
+### Failing
+
+- No failing check in the named source suite or mocked browser scenarios. Real email acceptance remains incomplete; mocked success is not a substitute.
+
+### Unverified / blockers
+
+- **Approved test inbox required before any real messages.** Signup delivery, actual confirmation/recovery links, real redirect destinations, old/new password login, token expiry/reuse and sender quota remain unverified. No approved address has been supplied.
+- Preview Auth Site URL, redirect allowlist and sender configuration remain unverified. Public settings do not expose them. Automatic approval review rejected adding a separate persistent Supabase OAuth connection because it could grant account/project access beyond this preview. No connection was created. Supply the preview settings directly or explicitly approve that broader connection before management inspection.
+- Requested confirmation redirect: branch root. Requested recovery redirect: branch root with `?auth=recovery`. Both request values and mocked callbacks pass; the real service allowlist/fallback behavior is not yet verified.
+- No production access, merge, production deployment or DNS changes. Existing non-email acceptance gaps recorded below remain open.
+
+## Previous acceptance — review/conflict follow-up, 6 November 2026
 
 Continued from `5f9abb9`. Runtime fix `bd3a24b` was verified on the **allowed branch preview** with **Supabase `lcddnpafrkbwsrhqexqe` only**. [Current evidence](mm-acceptance/review-followup.json). No production access, merge, production deployment or DNS changes. The previous sections below are historical and superseded where noted.
 
@@ -40,7 +63,7 @@ The source history and clarified behavior are recorded in [lesson-template guida
 ### Failing / unresolved
 
 - No failing check in this run's 98-test suite, 22 API checks or named hosted browser flows. This does not establish release readiness for the unverified items below.
-- Password-reset UI is still absent. This is an explicitly deferred feature gap, not an implemented fix. The smallest proposal is two auth-card modes: request a link and choose a new password from a verified recovery session, with cold-load/reload/error handling. [Concrete proposal, touched files and prerequisites](mm-email-acceptance.md#smallest-password-reset-change-proposed-not-implemented). **Not implemented pending agreement.**
+- Historical status at the review/conflict checkpoint: password-reset UI was still absent. This is an explicitly deferred feature gap, not an implemented fix. The smallest proposal is two auth-card modes: request a link and choose a new password from a verified recovery session, with cold-load/reload/error handling. [Concrete proposal, touched files and prerequisites](mm-email-acceptance.md#smallest-password-reset-change-proposed-not-implemented). **Implemented in the current password-recovery checkpoint above.**
 - Existing captured auto-enrolment absence, generic distractor fixture drift, transient catalogue-loading empty state and advisor findings remain unchanged. Advisors still show 4 anon/17 authenticated SECURITY DEFINER signatures and disabled leaked-password protection.
 
 ### Unverified / retained fixtures
