@@ -9,5 +9,5 @@ Review focus: compressed/escaped assets and redaction; stale/wrong-project snaps
 
 - [x] Write behavioral tests exercising CLI exits/output and core negative cases; observe RED.
 - [x] Implement asset scanning and snapshot validators/comparators, guarded-package verification, read-only SQL generation and report aggregation; run tests GREEN.
-- [ ] Capture current preview/production metadata/aggregates only; pin reviewed preview metadata and SQL package contract. Run actual builds/scans and real read-only comparison; retain blockers.
-- [ ] Document exact executable commands, backup/restore validation and candidate handling; verify full suite/types/build; commit/push.
+- [x] Capture current preview/production metadata/aggregates only; pin reviewed preview metadata and SQL package contract. Run actual builds/scans and real read-only comparison; retain blockers.
+- [x] Document exact executable commands, backup/restore validation and candidate handling; verify full suite/types/build. Evidence: docs/mm-acceptance/preflight-verification.json and release-preflight.json. Commit/push is the final repository handoff.

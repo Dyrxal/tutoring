@@ -1,0 +1,82 @@
+{
+  "format": 1,
+  "kind": "readiness",
+  "project_ref": "lmuwsjjrqmmmtmxjvqln",
+  "captured_at": "2026-11-07T11:14:37.103Z",
+  "candidate": "f64782c23460a2ae1364b3e1022f42a9c8eabf52",
+  "note": "Console omits passing checks; --out preserves full evidence. Not launch authorization.",
+  "ready": false,
+  "summary": {
+    "passing": 126,
+    "failing": 0,
+    "blocked": 9,
+    "unverified": 4
+  },
+  "checks": [
+    {
+      "id": "backend_release_state",
+      "status": "blocked",
+      "detail": "Production change is not verified installed; preparation evidence only"
+    },
+    {
+      "id": "production_auth",
+      "status": "blocked",
+      "detail": "Owner screenshot: localhost Site URL, empty redirects; official callbacks/templates/limits not verified."
+    },
+    {
+      "id": "smtp",
+      "status": "blocked",
+      "detail": "Last Resend screenshot pending DNS verification; production SMTP not configured/tested."
+    },
+    {
+      "id": "database_backup",
+      "status": "blocked",
+      "detail": "Free plan has no scheduled backups; no authorized verified manual export."
+    },
+    {
+      "id": "storage_backup",
+      "status": "blocked",
+      "detail": "Private objects inventoried but separate byte backup/recovery not performed."
+    },
+    {
+      "id": "restore_rehearsal",
+      "status": "blocked",
+      "detail": "No sensitive production-data restore authorized or rehearsed."
+    },
+    {
+      "id": "production_build_settings",
+      "status": "blocked",
+      "detail": "Local artifact check does not establish Cloudflare Production build configuration; owner screenshot showed no variables."
+    },
+    {
+      "id": "rollback_version",
+      "status": "unverified",
+      "detail": "Owner screenshot captures active prefix 3862f733, but full rollback selection/recovery not verified."
+    },
+    {
+      "id": "owner_launch_approval",
+      "status": "blocked",
+      "detail": "Production changes/merge/deployment not approved by current task."
+    },
+    {
+      "id": "device_time_acceptance",
+      "status": "unverified",
+      "detail": "Physical Safari/iOS, actual overnight rollover and time expiry need verification or explicit owner deferral."
+    },
+    {
+      "id": "security_acceptance",
+      "status": "unverified",
+      "detail": "Existing SECURITY DEFINER exposure/leaked-password warnings need explicit remediation or owner deferral; not silently cleared."
+    },
+    {
+      "id": "enrolment_behavior",
+      "status": "unverified",
+      "detail": "Tutor-managed enrolment preserved; automatic year-enrolment promises/expectations need explicit owner acceptance or scoped follow-up."
+    },
+    {
+      "id": "production_smoke_scope",
+      "status": "blocked",
+      "detail": "Production test accounts/recipients and minimal smoke writes require explicit owner approval."
+    }
+  ]
+}

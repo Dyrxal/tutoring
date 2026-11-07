@@ -1,5 +1,7 @@
 # Executable MM preflight
 
+Tested candidate: `f64782c23460a2ae1364b3e1022f42a9c8eabf52`. [Current dated result](../mm-acceptance/release-preflight.json): 126 passing, 0 failing, 9 blocked, 4 unverified. [Test/build/live-read evidence](../mm-acceptance/preflight-verification.json). This result is preparation only and expires for live gating; regenerate fresh inputs near release.
+
 Run from the review repository root with Node 22.13+ and the committed dependencies. `pnpm test:preflight` exercises the tooling; `pnpm test` runs the entire suite. No new dependency, credential connection or paid service is required. The CLI never executes SQL or deploys. Only `build` invokes `pnpm build`; every other command is local file inspection/transformation.
 
 Exit codes: **0** requested checks passed, **1** invalid input/failing check/drift, **2** blocked or unverified release readiness. A preparation report with exit 2 is expected; never append `|| true` to an actual launch gate.
@@ -22,7 +24,7 @@ Production build-only rehearsal requires explicit production environment setting
 pnpm --silent preflight build --target production --out /workspace/work/mm-preflight/production-assets.json
 ```
 
-This is not permission to deploy. Archive the production build outside the checkout if needed, then restore a preview build before other local/preview work. Do not deploy a dummy-key rehearsal. Public-key format/reference checks do not cryptographically prove an opaque publishable key is valid; retrieve it only through the correct project-scoped source. Actual Cloudflare configuration remains a separate gate.
+This is not permission to deploy. Archive the production build outside the checkout if needed, using a new empty destination: merging into an old directory can leave stale files and invalidate the artifact digest. Run `assets --target production --dir /path/to/new-archive/client` on the archive, then restore a preview build before other local/preview work. Do not deploy a dummy-key rehearsal. Public-key format/reference checks do not cryptographically prove an opaque publishable key is valid; retrieve it only through the correct project-scoped source. Actual Cloudflare configuration remains a separate gate.
 
 Scanner hashes/scans every served file, including SVG/TXT/binary bytes, plus decoded gzip/brotli and common JavaScript escapes. It rejects unexpected/lookalike Supabase hosts, modern secret-key prefixes, non-anon/mismatched JWTs, environment files and symlinks without printing key values. It cannot prove absence of arbitrary obfuscated/encrypted secrets; do not intentionally put credentials into source/build outputs. Keep reports outside the browser asset directory.
 

@@ -1,0 +1,315 @@
+{
+  "format": 1,
+  "kind": "preflight-verification",
+  "candidate": "f64782c23460a2ae1364b3e1022f42a9c8eabf52",
+  "verified_at": "2026-11-07T11:14:37.103Z",
+  "scope": "Local tooling/builds plus existing project-scoped read-only metadata/aggregates. No hosted browser/device checks repeated in this task; earlier named preview evidence retained separately.",
+  "commands": [
+    {
+      "command": "pnpm test",
+      "status": "passing",
+      "tests": 141,
+      "application_and_config": 108,
+      "preflight": 33,
+      "failures": 0,
+      "skipped": 0
+    },
+    {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "status": "passing"
+    },
+    {
+      "command": "node scripts/mm-preflight.mjs build --target production",
+      "status": "passing",
+      "report": {
+        "format": 1,
+        "kind": "assets",
+        "project_ref": "lmuwsjjrqmmmtmxjvqln",
+        "captured_at": "2026-11-07T11:14:13.484Z",
+        "source_commit": "f64782c23460a2ae1364b3e1022f42a9c8eabf52",
+        "provenance": {
+          "status": "passing",
+          "source_commit": "f64782c23460a2ae1364b3e1022f42a9c8eabf52",
+          "project_ref": "lmuwsjjrqmmmtmxjvqln"
+        },
+        "artifact_digest": "24a961ef8f2f87ca820dfc39488183e0635428cdc6c7bb02ca8b6a4d955e885f",
+        "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+        "ready": true,
+        "summary": {
+          "passing": 5,
+          "failing": 0,
+          "blocked": 0,
+          "unverified": 0
+        },
+        "checks": [
+          {
+            "id": "build_manifest",
+            "status": "passing",
+            "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+          },
+          {
+            "id": "files",
+            "status": "passing",
+            "detail": "Browser files scanned: 100"
+          },
+          {
+            "id": "backend",
+            "status": "passing",
+            "detail": "Intended hostname present; unexpected project count: 0"
+          },
+          {
+            "id": "public_key",
+            "status": "passing",
+            "detail": "Publishable/ matching legacy anon key present"
+          },
+          {
+            "id": "secrets",
+            "status": "passing",
+            "detail": "Exposure findings: 0"
+          }
+        ]
+      },
+      "public_key_source": "Existing retained-project scoped get_publishable_keys; no key value committed. Build only; no backend content request or deployment."
+    },
+    {
+      "command": "node scripts/mm-preflight.mjs assets --target production --dir NEW_ARCHIVE/client",
+      "status": "passing",
+      "note": "Clean archive artifact digest and Git/input provenance match. Earlier merged archive left seven stale files and correctly failed; never used as passing evidence."
+    },
+    {
+      "command": "node scripts/mm-preflight.mjs build --target preview",
+      "status": "passing",
+      "report": {
+        "format": 1,
+        "kind": "assets",
+        "project_ref": "lcddnpafrkbwsrhqexqe",
+        "captured_at": "2026-11-07T11:14:24.380Z",
+        "source_commit": "f64782c23460a2ae1364b3e1022f42a9c8eabf52",
+        "provenance": {
+          "status": "passing",
+          "source_commit": "f64782c23460a2ae1364b3e1022f42a9c8eabf52",
+          "project_ref": "lcddnpafrkbwsrhqexqe"
+        },
+        "artifact_digest": "5852da67223b5d8f847a6b120606ef8b812559ee3f5015fa4f020753e2d46fc9",
+        "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+        "ready": true,
+        "summary": {
+          "passing": 5,
+          "failing": 0,
+          "blocked": 0,
+          "unverified": 0
+        },
+        "checks": [
+          {
+            "id": "build_manifest",
+            "status": "passing",
+            "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+          },
+          {
+            "id": "files",
+            "status": "passing",
+            "detail": "Browser files scanned: 100"
+          },
+          {
+            "id": "backend",
+            "status": "passing",
+            "detail": "Intended hostname present; unexpected project count: 0"
+          },
+          {
+            "id": "public_key",
+            "status": "passing",
+            "detail": "Publishable/ matching legacy anon key present"
+          },
+          {
+            "id": "secrets",
+            "status": "passing",
+            "detail": "Exposure findings: 0"
+          }
+        ]
+      },
+      "note": "Final local output restored to isolated preview target."
+    },
+    {
+      "command": "node scripts/mm-preflight.mjs metadata --actual production-metadata.json --phase before",
+      "status": "passing",
+      "summary": {
+        "passing": 85,
+        "failing": 0,
+        "blocked": 0,
+        "unverified": 0
+      },
+      "evidence_at": "2026-11-07T10:48:33.031025+00:00",
+      "contract_digest": "3da472f210f6a16ba02796b2fcc432b1c93da08b4a1ce8ea78367bdaf678189c",
+      "note": "Pinned preview contract; only four known legacy error-code differences in two production functions and four explicitly reviewed PUBLIC ACL differences allowed."
+    },
+    {
+      "command": "node scripts/mm-preflight.mjs baseline --before before.json --after after.json",
+      "status": "passing",
+      "summary": {
+        "passing": 12,
+        "failing": 0,
+        "blocked": 0,
+        "unverified": 0
+      },
+      "before_at": "2026-11-07T10:48:25.157196+00:00",
+      "after_at": "2026-11-07T10:58:35.905362+00:00",
+      "scope": {},
+      "after_aggregates": {
+        "content": [
+          {
+            "rows": 2,
+            "digest": "1cd230b8380eb57705718e7c9156f0e5",
+            "entity": "courses"
+          },
+          {
+            "rows": 20,
+            "digest": "f14bad9161df0f80ec63030bf8490dee",
+            "entity": "modules"
+          },
+          {
+            "rows": 217,
+            "digest": "21361e3a931b82721b645b4689f81c73",
+            "entity": "lessons"
+          },
+          {
+            "rows": 4138,
+            "digest": "02953316bda1ad489005fe0208633a1c",
+            "entity": "questions"
+          }
+        ],
+        "storage": [
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "lesson-images"
+          },
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "lesson-resources"
+          },
+          {
+            "rows": 13,
+            "digest": "58fdfde569499e962963a51a1f3aadb0",
+            "entity": "question-images"
+          }
+        ],
+        "excluded": [
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "courses"
+          },
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "modules"
+          },
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "lessons"
+          },
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "questions"
+          }
+        ],
+        "missing_refs": {
+          "notes": 0,
+          "examples": 0,
+          "questions": 0,
+          "resources": 0
+        }
+      },
+      "note": "Unchanged aggregates over this short read-only observation. No cutover performed. Not a backup, file decode or every-question correctness check."
+    },
+    {
+      "command": "node scripts/mm-preflight.mjs review --actual production-metadata.json --direction forward",
+      "status": "passing",
+      "summary": {
+        "passing": 3,
+        "failing": 0,
+        "blocked": 0,
+        "unverified": 0
+      },
+      "evidence_at": "2026-11-07T10:48:33.031025+00:00",
+      "note": "SQL SHA pins and exact old function guards match. Production functions unchanged; after/rollback behavior covered by synthetic tests and retained earlier transactional preview rehearsal, not a new production write."
+    },
+    {
+      "command": "node scripts/mm-preflight.mjs report --reports ... --gates docs/mm-launch/gates.json --candidate f64782c23460a2ae1364b3e1022f42a9c8eabf52",
+      "exit_code": 2,
+      "summary": {
+        "passing": 126,
+        "failing": 0,
+        "blocked": 9,
+        "unverified": 4
+      },
+      "note": "Blocked/unverified is the correct final result; zero failing checks is not launch readiness."
+    }
+  ],
+  "live_capture_safety": {
+    "production_ref": "lmuwsjjrqmmmtmxjvqln",
+    "preview_ref": "lcddnpafrkbwsrhqexqe",
+    "identity_check": "Generated SQL begins READ ONLY and asserts reviewed pg_control_system identity; a production-labelled query was executed against preview and rejected before snapshot capture. No project relabelling.",
+    "fixture_scope_test": {
+      "project_ref": "lcddnpafrkbwsrhqexqe",
+      "captured_at": "2026-11-07T10:58:28.212867+00:00",
+      "scope": {
+        "questions": [
+          "d1111111-1111-4111-8111-000000000001"
+        ]
+      },
+      "core_questions": 54,
+      "excluded_questions": 1,
+      "total_questions": 55,
+      "note": "Existing approved synthetic question only; exclusion query read-only, no data created or changed."
+    },
+    "not_performed": [
+      "Production writes/schema changes",
+      "Student answer/password retrieval",
+      "Private file download",
+      "Sensitive backup export/restore",
+      "Production data copied into preview",
+      "Email send",
+      "Merge/deployment/DNS changes",
+      "Purchase/new connection"
+    ]
+  },
+  "negative_coverage": [
+    "Mixed, lookalike and escaped backend hosts",
+    "Secret prefixes and wrong-project/non-anon JWTs",
+    "SVG/TXT/binary/compressed served assets",
+    "Missing/tampered manifest, changed artifacts and dirty inputs",
+    "Nonexistent candidate and live protected-contract drift",
+    "Wrong/missing project cluster identity",
+    "Incomplete metadata/function/owner/ACL evidence",
+    "Altered forward/rollback package and drifted current definitions",
+    "Unknown/changed fixture scope, omitted excluded aggregates and empty buckets",
+    "Unapproved legitimate edit; exact approval cannot excuse a subsequent change",
+    "Stale source observations and incomplete/contradictory report inputs",
+    "Absent gates and additional owner-supplied failing gates"
+  ],
+  "independent_review": "Completed local independent code review. Findings on all-file scanning, real commit provenance, project identity and incomplete report evidence fixed with regression tests before final builds.",
+  "evidence_sha256": {
+    "production-assets.json": "7bed3aea3a08110105ae880f4a5acaedbab5c861785c11b03106f87036aa7f1b",
+    "restored-preview-assets.json": "063d1135e0910713920156a3dedc8cdef9445808ccfedcb90427168ce4c2755e",
+    "metadata-result.json": "fcc60b55a62bebccde4eba9a83d417ddb601d10e241f69fb3bfe25d604d770f6",
+    "baseline-result.json": "4965215abf18d143b6f394b691689f8579e31b43ecfac9317f6281172214d170",
+    "review-result.json": "a564bce50cdb9eb9cad7d649cc73d1ad65e5f1db7ad115ea560e9aa0d8bbef7d",
+    "production-before.bound.json": "c2d4f046db5bac20ab0440a7e7ee9cfe9586fd95df0d0101ca27f4923c371119",
+    "production-after.json": "53ccad11172538afc067d4b581f7a688f712ee0798d8ad540c64f9e31ee8e41f",
+    "production-metadata.bound.json": "cce4ce252f7a15a8b3f346dd3255501c05bf22a432ed968a2ac8fbf88061325c",
+    "full-readiness.json": "e1e1cb4a7619ee0e2a44e53ae8c57af5592179e3bba66ffc41ba1bf66124719a"
+  },
+  "limitations": [
+    "Dated report expires for live release gating; default source freshness 3600 seconds.",
+    "Local provenance is an integrity record, not signed deployment attestation.",
+    "Opaque publishable-key prefix alone does not prove project binding; actual scoped public setting used for rehearsal.",
+    "Scanner does not prove absence of arbitrary obfuscated/encrypted secrets.",
+    "Database, separate Storage bytes and restore rehearsal remain blocked; no backup claimed.",
+    "Production Auth/SMTP/build settings remain blocked or unknown until actual evidence.",
+    "Physical iOS/Safari/time checks and existing security/enrolment acceptance remain unverified."
+  ]
+}
