@@ -1,6 +1,6 @@
 # MM current completion checklist — 7 November 2026
 
-Authoritative current status; older checkpoints in mm-preview-status.md are historical. Owner scope: retain current content and production Supabase, no new curriculum or redesign. Tested executable candidate **`f64782c23460a2ae1364b3e1022f42a9c8eabf52`** includes the completed preview fixes and release-preflight tools. The final evidence/documentation commit adds no application changes. Historical preview evidence at `14dae44` and launch-package evidence at `af9dc66` remain applicable within their stated limits. Production read-only inspection authorized; production writes, merge, deployment and DNS await final approval. No new emails sent in this preparation.
+Authoritative current status; older checkpoints in mm-preview-status.md are historical. Owner scope: retain current content and production Supabase, no new curriculum or redesign. Tested executable candidate **`f64782c23460a2ae1364b3e1022f42a9c8eabf52`** includes the completed preview fixes and release-preflight tools. The final evidence/documentation commit adds no application changes. Historical preview evidence at `14dae44` and launch-package evidence at `af9dc66` remain applicable within their stated limits. Production read-only inspection authorized; production writes, merge, deployment and DNS await final approval. No emails were sent during the preflight-tooling preparation; the later preview Resend recovery check is recorded below.
 
 ## Executable release preflight — current result
 
@@ -21,7 +21,7 @@ The checked-in report is a dated observation. Fresh captures and reports are req
 | Function privileges | Passing for app roles; inherited warning | Effective anon/authenticated permissions match. Four production helpers retain PUBLIC EXECUTE absent in preview; no permission widening proposed | Review warning/deferral before launch |
 | Content/resource baseline | Passing for structural references | Assistant: aggregate content/path digests captured; zero missing referenced private images/resources; no file decoding/content copying | No |
 | Preview runtime evidence | Passing named checks | 108 source tests, types/build; 17 local and hosted mocked browser cases; 4 real private PDF checks desktop/mobile; 5 real review/assignment/account-switch flows; tutor notes/two private image saves with reload; enrolled student decodes 3 private images; representative Year 9/10 saved answers/completion/flags reread. Exact tested commits and limits in preview-final-followup.json | No |
-| Real preview email | Passing earlier evidence | Confirmation automatic signin/reload and password recovery verified; reused tokens denied. No further send needed | No |
+| Real preview email | Passing named checks; new sender recovery owner-verified | Resend domain verified; preview SMTP saved. Controlled reset request HTTP 200; owner confirmed delivery, recovery screen, password update, sign-in and reload. Earlier confirmation/reused-token evidence retained; no new signup send. See preview-resend-smtp.json | No repeat message needed |
 | Production build isolation | Passing build-only | Tested candidate built with actual retained-project public settings obtained through existing scoped access; all served files scanned, no preview hostname or secret exposure detected, Git/input/artifact provenance matches. Actual Cloudflare build environment unverified; local preview build restored | No |
 | Executable release checks | Passing tooling; launch blocked | 33 new tooling tests, 141 total; metadata/baseline/package guards exercised against read-only captures and synthetic negative fixtures. Generated report above retains 9 blockers and 4 unverified gates | Resolve named prerequisites before final approval |
 | Review timeout production fix | Prepared, not applied | Exact guarded forward/rollback SQL in mm-launch; definitions compared against production; both executed/asserted in a preview transaction and rolled back | Final write approval after prerequisites |
@@ -35,9 +35,17 @@ The checked-in report is a dated observation. Fresh captures and reports are req
 | Full-content hosted fidelity | Unverified | Source registries do not write on login; no production question text downloaded. Full live rendering requires approved test-access/smoke scope | Final account/access approval |
 | Official launch | Blocked | Resolve hard prerequisites, review exact package and approve actions before launch | One final specific approval |
 
+## Resend sender follow-up — 7 November 2026
+
+[Exact evidence and verification method](mm-acceptance/preview-resend-smtp.json). Owner screenshot now shows `auth.notationeducation.online` **Verified**, with Resend Forge enabled. Owner saved the scoped-key SMTP configuration in preview. The first browser request timed out; no matching recovery request appeared in the inspected preview Auth/edge log window. A subsequent single controlled request to preview returned HTTP 200 at 12:30:56 UTC with the exact allowed `/?auth=recovery` redirect. The approved preview account's existence/confirmation was checked with read-only booleans only.
+
+The owner then confirmed receipt and completion of the instructed recovery-screen, password-update, new-password sign-in and reload sequence. **Passing as owner-reported end-to-end preview acceptance**; the request/target/redirect were independently observed, but the assistant did not inspect the inbox or independently operate that callback. No password or live recovery link was collected. No fresh signup/confirmation email, device/expiry/quota test or production email was performed. No repeat send is needed for this passed flow.
+
+This supersedes older statements that the sending domain was still pending. It does not clear production SMTP/Auth, recovery/backup, build/deployment or final approval gates. The dated preflight report above is preserved as its original observation; its default freshness window has elapsed and it must be regenerated near launch.
+
 ## Preview acceptance follow-up — 7 November 2026
 
-[Detailed evidence and exact tested commits](mm-acceptance/preview-final-followup.json). No production request/content access, DNS change, new connection, purchase or email send during this task. Earlier owner-approved email DNS additions are a separate historical action, still pending Resend verification.
+[Detailed evidence and exact tested commits](mm-acceptance/preview-final-followup.json). No production request/content access, DNS change, new connection, purchase or email send during this task. Earlier owner-approved email DNS additions were pending at that checkpoint; the later sender follow-up above records successful domain verification.
 
 ### Passing
 

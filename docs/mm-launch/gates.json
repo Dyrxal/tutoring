@@ -5,7 +5,7 @@
   },
   "smtp": {
     "status": "blocked",
-    "evidence": "Last Resend screenshot pending DNS verification; production SMTP not configured/tested."
+    "evidence": "Resend auth.notationeducation.online verified by owner screenshot; preview SMTP saved and recovery/delivery/sign-in/reload passed by owner report (docs/mm-acceptance/preview-resend-smtp.json), request HTTP 200 independently observed. Production SMTP/configuration and delivery remain unverified; no production change."
   },
   "database_backup": {
     "status": "blocked",
