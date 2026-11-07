@@ -223,12 +223,17 @@ test('saving confirms the database result, throws on failure and recovers a dupl
 
 function submissionHarness(save){
  const state={answers:{},shortAnswers:{},attempts:[],saving:{},errors:{}};
- const context={userId:'student',activeStudentId:{current:'student'},pendingSubmissions:{current:new Set()},submissionIds:{current:new Map()},db:{},crypto:webcrypto,savePracticeAttempt:save,
+ const context={practiceHistoryReady:true,userId:'student',activeStudentId:{current:'student'},pendingSubmissions:{current:new Set()},submissionIds:{current:new Map()},db:{},crypto:webcrypto,savePracticeAttempt:save,
   setAnswers:f=>state.answers=f(state.answers),setShortAnswers:f=>state.shortAnswers=f(state.shortAnswers),setAttemptRecords:f=>state.attempts=f(state.attempts),setAnswerSaving:f=>state.saving=f(state.saving),setAnswerErrors:f=>state.errors=f(state.errors)};
  const start=page.indexOf(' async function submitAnswer('),end=page.indexOf(' async function answer(q:',start);
  const output=ts.transpileModule(page.slice(start,end)+'\nglobalThis.submit=submitAnswer;',{compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText;
  vm.runInNewContext(output,context);return {state,context,submit:context.submit};
 }
+
+test('practice writes are blocked until saved history is available',async()=>{
+ let writes=0;const harness=submissionHarness(async()=>{writes++;return {}});harness.context.practiceHistoryReady=false;
+ await harness.submit({id:'q'},0,true);assert.equal(writes,0);assert.equal(harness.state.attempts.length,0);assert(harness.state.errors.q);assert.equal(harness.state.answers.q,undefined);
+});
 
 test('feedback/progress wait for confirmed saves; failures stay editable and retry the same ID',async()=>{
  let resolve,seen=[];
