@@ -1,24 +1,14 @@
 # MM roadmap to official launch
 
-Status: 7 November 2026. Six remaining milestones. This is a completion map, not authorization to access production, merge, deploy production or change DNS. Those actions remain prohibited until separately approved.
+Updated 7 November 2026. Owner confirmed faithful migration of existing content, retaining production Supabase. No new chapter authoring is required. [Single current checklist and concrete launch sequence](mm-launch-readiness.md).
 
-The application is running on the review preview. Existing evidence covers 105 passing source tests, representative saving/editing/upload/permission flows, private PDF rendering and real password recovery. Full chapter content completeness and official launch readiness have not been established. Source tests are not a measure of percentage complete.
+| Milestone | Status | Next step / owner |
+|---|---|---|
+| 1. Inventory/preservation | Baseline captured | Assistant: retain live rows/paths; final pre/post-cutover comparison pending |
+| 2. Preview fixes | Named checks passing | Assistant: four-code production review fix prepared; other limitations explicitly classified in checklist |
+| 3. Acceptance | Partial | Existing source/preview checks pass; full live-content/device/time checks remain unverified, require completion or explicit deferral |
+| 4. Launch package | Prepared but blocked | Owner: production Auth, backup and Cloudflare configuration observations; assistant: finalize exact settings/actions from them |
+| 5. Owner review/approval | Not requested yet | One specific approval once hard prerequisites are resolved; no blanket permission |
+| 6. Launch/verify | Not executed | Assistant: approved merge/deploy/DB/Auth/route actions, smoke and rollback readiness |
 
-| Milestone | Current status | Assistant work / completion evidence | User involvement |
-| --- | --- | --- | --- |
-| 1. Audit requested chapter content | Pending; major scope uncertainty | Inventory intended years/chapters against available specifications and actual app content. Produce a chapter table with required/actual question counts, missing material, answer/explanation issues, editability and content source. Identify unresolved requirements rather than assume them. Complete when each launch chapter is accounted for and remaining authoring scope is explicit. | Resolve only requirements not recoverable from existing project/conversation materials; review content inventory. |
-| 2. Finish preview content and defects | In progress | Complete agreed missing chapter material and fix actual release blockers. Reproduce first-use confirmation navigation using the approved alias after sender quota permits; verify full Site URL/fallback. Review enrolment behavior, loading states, fixture drift and security findings; resolve blockers or document explicit deferrals. Preserve existing content. | Supply full preview Site URL; any sender/dashboard action that cannot be performed with existing preview-only access. No repeat inbox approval needed for the two approved addresses. Scope decisions if audit reveals substantial missing authoring. |
-| 3. Final preview acceptance | Partial | Verify all launch chapters plus representative full tutor/student journeys: edit/publish visibility, sign-in, chapter access, saved work, uploads, permissions and account switching. Cover desktop/mobile, relevant Safari/iOS, hosted appearance and scheduled-review date boundaries. Recheck after fixes and classify pass/fail/unverified. Complete when release blockers are resolved and any deferred limitations accepted. | Physical-device check only if a required browser/device is unavailable to the assistant. |
-| 4. Prepare the production launch package | Not started; planning only | Specify final hosting/backend/domain, preview-fixture exclusions, real content/account/data transfer needs, backup/restore, production email setup, secrets/access, exact deployment/DNS steps and rollback. Rehearse on preview where possible. Do not presume the preview database should become production. Complete when there is a concrete reviewable launch plan. | Confirm intended live setup and provide narrowly scoped access only when needed. No production reads/writes under current authorization. |
-| 5. Owner acceptance and launch approval | Not started | Present preview link, chapter checklist, remaining limitations, launch/rollback plan and proposed timing. Complete when the owner accepts the content/functionality and explicitly authorizes the specified production actions. | Review the site/content and approve the concrete launch plan. |
-| 6. Official launch and verification | Blocked until milestone 5 approval | Carry out only approved merge/deployment/data/DNS actions; verify real domain, TLS, email redirects, chapter content, student/tutor access and saving. Monitor initial results; use approved rollback if needed. Complete when the official site passes its smoke checks and operational ownership is documented. | Final ownership of accounts/domain and any provider-only action; no extra approval for steps already explicitly authorized. |
-
-Milestone 1 can proceed while email quota blocks the confirmation retest. Milestones 1–3 are preview work. Milestone 4 is preparation only. Milestones 5–6 are a separate production approval and launch phase.
-
-The main unknown for an effort estimate is milestone 1: migration preserves the existing content, but does not prove every requested chapter/question set was authored. Do not give a launch date or percentage until that inventory establishes missing scope. The current email-rate-limit delay is a specific blocker, not evidence that every other task must wait.
-
-See [current preview checklist](mm-preview-status.md), [live email evidence](mm-acceptance/email-live.json) and [confirmation retry blocker](mm-acceptance/email-confirmation-retry.json).
-
-## Scope clarification — 7 November 2026
-
-Owner requires faithful migration of current content, without expanding chapter banks. Milestone 1 inventory is delivered; missing new authoring is not a migration blocker. Replace milestone 2 authoring scope with reconciliation/transfer of existing saved content and resources under a concrete approved plan. Production access remains prohibited. Fresh confirmation automatic sign-in/reload now passes; prior timeout not reproduced. See the current preview checklist.
+Read-only production metadata/content-summary inspection is authorized and completed for the named comparisons. Production writes, merge/deployment, DNS, paid services and broader OAuth remain gated. Existing email recipient approvals apply only to preview tests; production test recipients/accounts/writes form part of final approval.

@@ -1,5 +1,11 @@
 # Existing backend compatibility — 7 November 2026
 
+## Updated detailed comparison
+
+See [the current checklist](mm-launch-readiness.md) and [evidence](mm-acceptance/launch-preparation.json). All 109 column definitions/defaults, 58 constraints, 34 policies, 3 triggers and public table grants match preview. All 25 signatures and owners match; 23 definitions match after line-ending normalization. Two review definitions differ only at the four expected conflict codes. Effective anon/authenticated EXECUTE matches; production additionally retains PUBLIC EXECUTE on four helpers, whereas preview omits PUBLIC. No privileges changed. Aggregate baselines and zero missing referenced Storage paths are recorded in [preservation evidence](mm-acceptance/content-preservation-baseline.json). These findings supersede corresponding unverified metadata/path items below; Auth, recovery readiness and production live acceptance remain unverified.
+
+The exact proposed forward/rollback SQL was rehearsed successfully in a preview transaction and rolled back. The production database has not been written. Earlier baseline notes follow.
+
 Owner explicitly authorized proceeding with the previously proposed read-only production inspection. Existing project `lmuwsjjrqmmmtmxjvqln` is ACTIVE_HEALTHY. No writes, real emails, deployment, merge, DNS changes, new connections, student-answer reads or private file downloads occurred.
 
 ## Observed preservation baseline

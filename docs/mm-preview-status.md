@@ -2,6 +2,10 @@
 
 This branch moves the verified published Sites application into the existing GitHub/Cloudflare build workflow. It does not release production or change DNS. Existing application UI, learning templates and functionality are preserved. Midnight redesign work remains separate.
 
+## Current status — launch preparation, 7 November 2026
+
+**Use the [single current completion checklist](mm-launch-readiness.md)** for status, owners, evidence and exact remaining input. All following checkpoints are historical unless reaffirmed there. Retain existing Supabase/content: no data import is part of cutover. Authorized read-only comparison now confirms columns/constraints/policies/triggers/table grants match preview, and only four logical conflict codes differ across the two review RPC definitions. See [evidence](mm-acceptance/launch-preparation.json). No production writes, emails, merge, production deployment or DNS changes in this preparation.
+
 ## Completed
 
 - Imported Sites version 120, commit `116e72b356169832f15c18529d77d0072361ab57`, on GitHub main `97ab688d9ef138429fd05d78678e2d1236be9957`.
@@ -21,7 +25,7 @@ The owner subsequently approved the proposed read-only production check. [Initia
 
 Owner confirmed retaining the established production Supabase project and continuing MM. Fresh local verification at `99ac33f`: 105/105 source tests, TypeScript and preview build pass. [Concrete compatibility/cutover gates](mm-existing-backend-cutover.md) preserve existing saved content and isolate preview. Production has not been inspected or modified. Next production gate is bounded read-only metadata/configuration/content-summary inspection with separate approval; launch remains a later explicit approval. No source-bank content import is proposed.
 
-## Current acceptance — confirmation succeeds and scope clarified, 7 November 2026
+## Previous acceptance — confirmation succeeds and scope clarified, 7 November 2026
 
 User clarified that existing content must migrate correctly; expanding chapter/question content is not required for this migration. Content audit authoring gaps are therefore not launch blockers by themselves. Faithful transfer/reconciliation of existing saved content remains required; source banks and synthetic preview fixtures are not proof of that transfer. No production access is authorized by this clarification.
 

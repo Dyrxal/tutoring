@@ -4,7 +4,7 @@ Decision confirmed by owner, 7 November 2026: retain established Supabase projec
 
 ## Current authorization
 
-Review-branch work and preview acceptance are authorized. Production reads/writes, merge, production deployment and DNS changes remain prohibited until separately approved. This document does not execute or authorize them.
+Review-branch work and preview acceptance are authorized. Read-only production inspection is now explicitly authorized. Production writes, merge, production deployment and DNS changes remain prohibited until separately approved. This document does not execute or authorize them.
 
 ## Gate 1 — application readiness
 
@@ -55,6 +55,6 @@ Execute only the approved package. Use approved test accounts for sign-in, enrol
 
 Monitor request/auth errors and saving. If deployment fails, restore the previous website version first where compatible. Do not restore an earlier database over new student work merely to undo frontend code. Any database rollback/restore requires its own approved, impact-assessed steps.
 
-## Next owner decision
+## Current next gate
 
-The next production permission needed is Gate 2's bounded read-only compatibility inspection, not deployment. Without it we can finish preview work and preparation, but cannot certify current production compatibility or faithful live-content presentation.
+Read-only comparison has progressed; use [the current checklist](mm-launch-readiness.md) for exact results and remaining Auth/backup/Cloudflare configuration blockers. Do not request the already granted read-only permission again. Final production-change approval comes after those prerequisites are resolved.

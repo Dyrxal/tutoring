@@ -1,0 +1,43 @@
+{
+  "base_commit": "af9dc66",
+  "date": "2026-11-07",
+  "production_ref": "lmuwsjjrqmmmtmxjvqln",
+  "preview_ref": "lcddnpafrkbwsrhqexqe",
+  "matching": {
+    "columns": 109,
+    "constraints": 58,
+    "policies": 34,
+    "triggers": 3
+  },
+  "functions": {
+    "signatures": 25,
+    "owners_equal": true,
+    "definitions_equal_after_line_endings": 23,
+    "changed": [
+      "note_mistake_review_help",
+      "submit_mistake_review"
+    ],
+    "error_code_replacements": 4
+  },
+  "acl_note": "Production has explicit PUBLIC EXECUTE on is_tutor, enrolled_in, can_read_lesson and create_profile; preview omits PUBLIC. Effective anon/authenticated EXECUTE and all public table grants match. Other ACL differences are entry ordering. No grants changed.",
+  "static_review": "Policies require actor/ownership or tutor checks; review functions guard actor/enrolment/revision/idempotency. Equality is not a full security audit. Existing advisors remain for explicit review.",
+  "checks": {
+    "source_tests": 105,
+    "source_failures": 0,
+    "typescript": "pass",
+    "preview_build": "pass",
+    "hosted_mock_auth": 13,
+    "hosted_pdf": 4,
+    "production_target_build": "pass with dummy publishable key; no deployment/live requests",
+    "production_bundle_preview_hostname_occurrences": 0,
+    "preview_build_restored": true,
+    "sql_rehearsal": "forward/rollback guards and DDL passed in preview transaction, rolled back; no persistent change",
+    "webkit": "launch attempted; executable missing; physical Safari/iOS unverified"
+  },
+  "production_writes": 0,
+  "new_emails": 0,
+  "sql_sha256": {
+    "review-conflicts.forward.sql": "2164ce7f88ddd913b75e0af3e1d0ce2fe7ae021a32b693838a62a3e5553cb3d7",
+    "review-conflicts.rollback.sql": "454aa94ebbcaab6b5955f50e809a46cba2b7de36488ab3313816326b55bb48e1"
+  }
+}
