@@ -13,8 +13,8 @@ Authoritative current status; older checkpoints in mm-preview-status.md are hist
 | Real preview email | Passing earlier evidence | Confirmation automatic signin/reload and password recovery verified; reused tokens denied. No further send needed | No |
 | Production build isolation | Passing build-only | Explicit production target with dummy public key contains production hostname, no preview hostname. Actual deployment environment unverified; preview build restored | No |
 | Review timeout production fix | Prepared, not applied | Exact guarded forward/rollback SQL in mm-launch; definitions compared against production; both executed/asserted in a preview transaction and rolled back | Final write approval after prerequisites |
-| Production Auth/email/templates | Blocked | Existing tools lack management settings; no broad OAuth. Need Site URL, all redirects, signup/reset templates, sender mode and limits | Dashboard values/screenshots, no passwords |
-| Database + Storage recovery | Blocked | No backup metadata/restore/download interface available through existing tools. Need actual recovery coverage/date and separate object-copy/restore evidence | Dashboard backup information and existing backup evidence; no student-data uploads to chat |
+| Production Auth/email/templates | Blocked | Existing tools lack management settings; no broad OAuth. Owner screenshots: localhost Site URL, no redirects, custom SMTP off. Need official-origin plan plus templates/limits | Dashboard values/screenshots, no passwords |
+| Database + Storage recovery | Blocked | No backup metadata/restore/download interface available through existing tools. Owner screenshot: Free plan has no project backups. Need verified manual/existing backup and separate Storage recovery, or an explicitly approved alternative | Dashboard backup information and existing backup evidence; no student-data uploads to chat |
 | Cloudflare integration | Preview verified; production blocked | GitHub Cloudflare Workers Builds check successful for af9dc66; no GitHub workflow directory. Wrangler unauthenticated, CLI GitHub denied; connector reads work | Worker Settings → Builds and Domains & Routes; current production deployment/version |
 | Final domain / DNS | Unverified | Existing notationeducation.online is the proposed retained domain; current route/owner not verified. Do not assume changes needed | Confirm official hostname and route screenshots |
 | Remaining device/time acceptance | Unverified, proposed deferral | Physical iOS/Safari, actual overnight rollover and time-based link expiry. WebKit launch attempted: executable missing. No device-result claim | Explicit deferral or actual device verification |
@@ -23,11 +23,19 @@ Authoritative current status; older checkpoints in mm-preview-status.md are hist
 | Full-content hosted fidelity | Unverified | Source registries do not write on login; no production question text downloaded. Full live rendering requires approved test-access/smoke scope | Final account/access approval |
 | Official launch | Blocked | Resolve hard prerequisites, review exact package and approve actions before launch | One final specific approval |
 
+## Owner dashboard observations — 7 November 2026
+
+Screenshots supplied while following the production-project links show Site URL `http://localhost:3000`, an empty redirect allowlist, custom SMTP disabled, and “Free Plan does not include project backups.” URL/SMTP screenshots are cropped and do not independently display a project ref; these are owner-supplied observations, not a management-API read. Backup screenshot is the Tutoring LMS dashboard sequence. No settings were changed by the assistant.
+
+- Auth remains blocked for official launch: exact official-origin callbacks and suitable email delivery need a concrete approved configuration. Templates/rate-limit values still unknown.
+- Scheduled project-backup availability is now known to be absent on the current plan. This does not prove no external/manual backup exists. Database and separate Storage backup/restore readiness remain blocked. Do not upgrade automatically or export private records under the existing metadata-only authorization.
+- Next dashboard evidence: Cloudflare production Builds and Domains & Routes. Backup options can then be presented alongside the exact launch requirements, without repeated blanket permission requests.
+
 ## Hard prerequisites before requesting launch approval
 
 Supply only these non-secret observations (screenshots are fine):
 
-1. **Production Supabase project lmuwsjjrqmmmtmxjvqln**: Auth → URL Configuration; Emails → SMTP Settings (enabled/sender, no credentials); confirm/reset templates showing link expressions; Auth → Rate Limits. These are production observations, not preview settings; do not change them yet. Public flags do not establish delivery readiness.
+1. **Production Supabase project lmuwsjjrqmmmtmxjvqln**: URL and SMTP screenshots received. Remaining: confirm/reset templates showing link expressions and Auth → Rate Limits. These are production observations, not preview settings; do not change them yet. Public flags do not establish delivery readiness.
 2. **Same project**: Database → Backups showing available backups/recovery type/date; what separate backup exists for the 13 Storage objects and how it can be restored. If absent, a concrete backup/restore rehearsal must be separately prepared and authorized; do not purchase an upgrade automatically.
 3. **Cloudflare Worker notation-education-lms**: Settings → Builds (connected repository/production branch, install/build/deploy commands and variable names/scope); Domains & Routes; current production version/deployment. Keep values of credentials hidden. Confirm whether notationeducation.online is the final domain.
 
