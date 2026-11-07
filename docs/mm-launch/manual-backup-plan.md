@@ -28,3 +28,40 @@ Record success/failure and omissions. If a supported managed restore is unavaila
 ## Before launch
 
 Recapture a consistent baseline immediately before cutover; plan for legitimate concurrent writes and no unapproved global write freeze. Retain old frontend version 3862f733 (full ID still needed before executing rollback). Prefer frontend rollback for application failures; don't restore an old database over newly saved student work. Backup readiness remains blocked until the chosen export/recovery path is authorized, executed and checked. No data export, private-file download, backup restore, purchase or production mutation has occurred in this preparation.
+
+## Staged operator procedure — execute only after separate sensitive-data handling approval
+
+These commands are preparation, not a backup taken by this task. On the approved private workstation/executor, confirm `supabase --version`, `supabase db dump --help`, `psql --version` and Docker requirements against the official guide first. Use tools compatible with the production Postgres major version. Keep the connection string/password in privately entered environment variables or a supported credential file, not shell history, chat, screenshots, Git, public build variables or shared logs. Do not reset the live database password merely to obtain access.
+
+After the destination, retention, encryption and scope are approved, a POSIX-shell procedure follows the official CLI's role/schema/data separation:
+
+```sh
+umask 077
+mkdir -p "$MM_BACKUP_DIR"
+supabase db dump --db-url "$MM_DATABASE_URL" -f "$MM_BACKUP_DIR/roles.sql" --role-only
+supabase db dump --db-url "$MM_DATABASE_URL" -f "$MM_BACKUP_DIR/schema.sql"
+supabase db dump --db-url "$MM_DATABASE_URL" -f "$MM_BACKUP_DIR/data.sql" --use-copy --data-only -x "storage.buckets_vectors" -x "storage.vector_indexes"
+```
+
+`MM_DATABASE_URL` must be the privately supplied retained-project connection string, and MM_BACKUP_DIR the approved protected destination. Recheck exclusion flags against the installed CLI. Keep only validated non-sensitive manifests in the review branch. The SQL dump may contain authentication hashes/student records: do not display its contents to the assistant or publish it. Encrypt it with the owner's chosen tool/vault and verify successful decryption locally. A failed command means no complete backup; do not continue launch.
+
+Separately preserve migration history and custom Auth/Storage schema changes when needed by the official procedure. Review this project's captured create_profile trigger and Storage policies for inclusion; do not assume a default filtered dump preserves every managed-schema customization. Save original deploy/Auth configuration separately without putting credentials into the dump manifest.
+
+Use an owner-approved Storage download/export method to copy actual object bytes with private access. Preserve bucket configuration, full paths, MIME types and byte checksums. An S3 tool/API connection must be scoped and approved; no new connection or service-role key is created by this plan. A database dump's storage.objects rows are not copies of the files. Refresh the object inventory rather than assume the historical 13-object count.
+
+Restore rehearsal must use an isolated, explicitly approved target with outbound emails/jobs disabled, not production or the existing synthetic preview. Check destination identity before any restore. Follow the official ordered role/schema/data restore, enable stop-on-error, use a transaction where supported and suppress replay triggers only as documented, restoring normal operation afterward. Check Postgres/Auth/Storage version compatibility; a vanilla local Postgres restore is not automatically equivalent to a fully recovered managed Supabase project.
+
+### Restore-validation checklist
+
+- [ ] Encrypted backup decrypts; role/schema/data files and separate Storage bytes have matching manifests/checksums.
+- [ ] Approved isolated destination identity checked; outbound email/jobs disabled; no live or synthetic-preview overwrite.
+- [ ] Restore exits successfully with no suppressed errors; required managed schema/custom changes and migration history accounted for.
+- [ ] Aggregate Auth account/profile counts compared locally without exposing rows/hashes; application relationships/FKs preserved.
+- [ ] New identity-bound baseline capture and comparison establishes courses/modules/lessons/questions/order/lesson configuration preservation; no automatic aggregate approvals.
+- [ ] RLS, effective grants, function definitions, constraints and triggers match the recorded contract; planned review-function state identified explicitly.
+- [ ] All bucket/object paths and byte checksums restored; controlled test account can decode representative images/PDF; anonymous/unenrolled access denied.
+- [ ] Controlled test account login/save/reload tested without impersonating real users or sending real messages.
+- [ ] Recovery limitations, duration, retention, decryption access and operator ownership recorded; a second operator can locate the materials.
+- [ ] Rehearsal target cleaned up only under approved retention/cleanup scope; no production data left publicly reachable.
+
+The preflight baseline checks aggregate content/resources only. They cannot verify Auth passwords, dump completeness, object bytes or recovery execution; database_backup/storage_backup/restore_rehearsal gates must remain blocked until those separate checks actually pass.

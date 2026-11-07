@@ -15,7 +15,9 @@
     "deploy": "wrangler deploy",
     "preview:deploy": "wrangler preview",
     "test": "node --experimental-strip-types --test scripts/test-*.mjs",
-    "test:config": "node --experimental-strip-types --test scripts/test-backend-config.mjs"
+    "test:config": "node --experimental-strip-types --test scripts/test-backend-config.mjs",
+    "preflight": "node scripts/mm-preflight.mjs",
+    "test:preflight": "node --test scripts/test-mm-preflight.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
