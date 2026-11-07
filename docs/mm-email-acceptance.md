@@ -1,5 +1,13 @@
 # Email signup, confirmation and password reset
 
+## Latest live results — 7 November 2026
+
+The user approved an inbox and updated only preview Auth URLs. Both emails delivered. Real signup/unconfirmed-login denial, account confirmation/profile, fresh sign-in/reload, recovery redirect/reload/update/signout, old-password denial/new-password success and consumed-link denial were verified on preview only. **First-use confirmation automatic navigation timed out and remains unresolved**, despite persisted confirmation and successful fresh login. See [current checklist](mm-preview-status.md#current-acceptance--live-preview-email-7-november-2026) and [redacted evidence](mm-acceptance/email-live.json).
+
+Custom SMTP remains off; observed sender is Supabase Auth `<noreply@mail.app.supabase.io>`. Two sends total, only to the approved recipient. No broad OAuth connection or production access. Full Site URL is still truncated in the screenshot; effective explicit recovery redirect passes, but fallback is not established. A fresh explicitly approved signup inbox/alias is needed to reproduce first-use confirmation navigation; actual time expiry and mobile callbacks remain unverified.
+
+The earlier implementation/prerequisite notes below describe the previous checkpoint and are superseded by these live results where applicable.
+
 ## Current implementation and evidence
 
 Continued from `896e6ce`; the documented two-mode proposal is implemented in `e19d15f`. [Checklist](mm-preview-status.md#current-acceptance--password-recovery-6-november-2026), [machine-readable evidence](mm-acceptance/password-reset.json).

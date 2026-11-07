@@ -13,7 +13,29 @@ This branch moves the verified published Sites application into the existing Git
 - 94 tests: **91 pass, 3 fail**, matching the three existing published-source failures. All 9 new backend-isolation tests pass. The existing failures are Year 10/99-section identification, Year 9/97-section rollout, and the next-tasks test expecting a UI component absent from the published source. They were not hidden or repaired by changing application behavior.
 - Local baseline/migration render comparisons: login, student dashboard and lesson at **1440×1000** and **390×844**. Each matched comparison has **0 changed pixels**; no page exceptions or horizontal overflow. These are comparisons of local builds with mocked synthetic requests, not proof of a hosted end-to-end match. See [screenshots and machine-readable results](mm-comparisons/results.json).
 
-## Current acceptance — password recovery, 6 November 2026
+## Current acceptance — live preview email, 7 November 2026
+
+Continued from `cdf4bc8`. User approved the exact test inbox and updated preview Auth URLs in the dashboard. [Redacted live evidence](mm-acceptance/email-live.json). This section supersedes earlier missing-inbox/allowlist blockers; all backend access remained on `lcddnpafrkbwsrhqexqe`. No broad OAuth connection, production access, merge, production deployment or DNS change.
+
+### Passing
+
+- Dashboard screenshot shows both exact branch root and `/?auth=recovery` allowlist entries. Site URL shows the branch prefix but is truncated. Custom SMTP remains off; actual messages arrived from Supabase Auth `<noreply@mail.app.supabase.io>` in the approved connected inbox.
+- One real hosted signup request returned HTTP200/session absent and the expected confirmation notice. Before confirmation, password login returned HTTP400/“Email not confirmed”. The delivered signup link targets the preview Auth verify endpoint with the exact allowed branch-root redirect. The account became confirmed with the expected student name/year/role. Fresh password login and reload succeeded.
+- One real hosted reset request returned HTTP200 with the exact recovery redirect. Email delivered; actual verify response HTTP303 returned to the allowed branch origin/root with `auth=recovery`. Verified recovery fields rendered and survived reload. Real password update succeeded and signed out (HTTP204), returning to sign-in. Old password then failed HTTP400/“Invalid login credentials”; new password succeeded and dashboard survived reload.
+- Reusing each consumed email link returned preview `otp_expired`, no callback access token and no password fields. Recovery displays invalid/expired state with Request a new link. Both reuse destinations stayed on the allowed branch.
+- Two real send requests total (one signup, one reset); no retries of sends. Earlier browser selector timeouts occurred before submission. One synthetic preview student account retained; no course content/enrolments changed. Prior source/build/mock results remain recorded below; no application code changed in this email run.
+
+### Failing / unresolved
+
+- First-use confirmation browser timed out waiting for Account/dashboard after 60 seconds. Confirmation itself persisted, and fresh login works, but callback automatic sign-in/navigation is **not passing**. Final callback state was not captured, so a root cause cannot be claimed. A fresh explicitly approved signup inbox/alias is needed to reproduce without reusing the consumed link.
+- Reused confirmation links return to ordinary sign-in without a visible expiry notice. Backend denies reuse; user-facing diagnostic is absent.
+
+### Unverified
+
+- Full Site URL value (truncated screenshot), actual time-based expiry, real mobile email callbacks, live recovery account-switch race, sender quota/rate limits and custom template settings. Successful explicit redirects do not prove Site URL fallback. Existing mobile/account-switch mocks remain separate.
+- Other broader migration acceptance gaps below remain open. These email checks do not establish production release readiness.
+
+## Previous acceptance — password recovery, 6 November 2026
 
 Continued from `896e6ce`; implementation `e19d15f` is pushed to the review branch and served on the allowed branch preview. Only preview Supabase `lcddnpafrkbwsrhqexqe` was contacted. [Evidence](mm-acceptance/password-reset.json) and [email acceptance procedure/blockers](mm-email-acceptance.md). Historical sections below are superseded where noted.
 

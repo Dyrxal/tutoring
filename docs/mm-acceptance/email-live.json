@@ -1,0 +1,162 @@
+{
+  "review_base": "cdf4bc8",
+  "date": "2026-11-07",
+  "project_ref": "lcddnpafrkbwsrhqexqe",
+  "recipient": "explicitly approved user-controlled inbox (redacted)",
+  "scope": "allowed branch preview and preview Supabase only",
+  "configuration": {
+    "source": "user dashboard screenshots",
+    "site_url": "branch prefix visible; full value truncated; effective recovery redirect verified live",
+    "redirect_allowlist": [
+      "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/",
+      "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/?auth=recovery"
+    ],
+    "custom_smtp_enabled": false,
+    "observed_sender": "Supabase Auth <noreply@mail.app.supabase.io>"
+  },
+  "signup": {
+    "phase": "signup",
+    "status": 200,
+    "error_code": null,
+    "message": null,
+    "has_user": true,
+    "has_session": false,
+    "redirect": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/",
+    "ui": "Check your email to confirm your account."
+  },
+  "unconfirmed_login": {
+    "status": 400,
+    "error_code": null,
+    "ui": "Email not confirmed"
+  },
+  "profile": {
+    "confirmed": true,
+    "role": "student",
+    "full_name": "MM Preview Email Test",
+    "year_level": "Year 9"
+  },
+  "confirmation": {
+    "email_delivered": true,
+    "link_host": "lcddnpafrkbwsrhqexqe.supabase.co",
+    "requested_redirect": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/",
+    "confirmed_database": true,
+    "automatic_callback_dashboard": "failed: browser timed out after 60 seconds; final callback state was not captured; cause unresolved",
+    "fresh_password_login": {
+      "status": 200,
+      "error_code": null,
+      "dashboard": true,
+      "reload": true
+    }
+  },
+  "reset_request": {
+    "status": 200,
+    "redirect": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/?auth=recovery",
+    "error_code": null,
+    "message": null
+  },
+  "reset": {
+    "delivery": true,
+    "link_host": "lcddnpafrkbwsrhqexqe.supabase.co",
+    "requested_redirect": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/?auth=recovery",
+    "responses": [
+      {
+        "path": "/auth/v1/verify",
+        "status": 303
+      },
+      {
+        "path": "/auth/v1/user",
+        "status": 200
+      },
+      {
+        "path": "/rest/v1/profiles",
+        "status": 200
+      },
+      {
+        "path": "/auth/v1/user",
+        "status": 200
+      },
+      {
+        "path": "/auth/v1/user",
+        "status": 200
+      },
+      {
+        "path": "/auth/v1/user",
+        "status": 200
+      },
+      {
+        "path": "/rest/v1/profiles",
+        "status": 200
+      },
+      {
+        "path": "/rest/v1/enrolments",
+        "status": 200
+      },
+      {
+        "path": "/auth/v1/user",
+        "status": 200
+      },
+      {
+        "path": "/auth/v1/user",
+        "status": 200
+      },
+      {
+        "path": "/auth/v1/user",
+        "status": 200
+      },
+      {
+        "path": "/auth/v1/logout",
+        "status": 204
+      }
+    ],
+    "blocked_hosts": [],
+    "actual_origin": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev",
+    "actual_path": "/",
+    "marker": "recovery",
+    "form": true,
+    "reload": true,
+    "updated": true
+  },
+  "old_password": {
+    "status": 400,
+    "error_code": null,
+    "ui": "Invalid login credentials"
+  },
+  "new_password": {
+    "status": 200,
+    "error_code": null,
+    "dashboard": true,
+    "reload": true
+  },
+  "link_reuse": {
+    "confirmation": {
+      "origin": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev",
+      "path": "/",
+      "error": "otp_expired",
+      "accessTokenInCallback": false,
+      "recoveryInputs": 0,
+      "ui": "WELCOME\nSign in to learn\n\nLessons, practice and progress in one place.\n\nEmail\nPassword\nSign in\nForgot password?\nNew here? Create an account"
+    },
+    "reset": {
+      "origin": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev",
+      "path": "/",
+      "error": "otp_expired",
+      "accessTokenInCallback": false,
+      "recoveryInputs": 0,
+      "ui": "ACCOUNT ACCESS\nChoose a new password\n\nThis password reset link is invalid or has expired. Request a new link.\n\nRequest a new link\nBack to sign in"
+    }
+  },
+  "remaining": [
+    "First-use confirmation automatic sign-in/navigation needs fresh approved signup inbox or alias; do not use an unapproved alias.",
+    "Actual time-based expiry not waited out.",
+    "Live mobile email callback and live recovery account-switch race not exercised; existing mocked coverage remains separate.",
+    "Full Site URL is truncated in screenshot; do not infer it from successful explicit redirects.",
+    "Provider rate-limit/quota and custom email-template configuration not inspected."
+  ],
+  "real_send_requests": {
+    "signup": 1,
+    "reset": 1
+  },
+  "production_access": false,
+  "new_oauth_connection": false,
+  "retained_preview_fixture": "one newly confirmed student test account; generated password changed only for this preview account; no content/enrolment writes"
+}
