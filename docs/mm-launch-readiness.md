@@ -15,7 +15,7 @@ Authoritative current status; older checkpoints in mm-preview-status.md are hist
 | Review timeout production fix | Prepared, not applied | Exact guarded forward/rollback SQL in mm-launch; definitions compared against production; both executed/asserted in a preview transaction and rolled back | Final write approval after prerequisites |
 | Production Auth/email/templates | Blocked | Existing tools lack management settings; no broad OAuth. Owner screenshots: localhost Site URL, no redirects, custom SMTP off. Need official-origin plan plus templates/limits | Dashboard values/screenshots, no passwords |
 | Database + Storage recovery | Blocked | No backup metadata/restore/download interface available through existing tools. Owner screenshot: Free plan has no project backups. Need verified manual/existing backup and separate Storage recovery, or an explicitly approved alternative | Dashboard backup information and existing backup evidence; no student-data uploads to chat |
-| Cloudflare integration | Dashboard verified; configuration change pending approval | Owner screenshots: Dyrxal/tutoring, production main, builds enabled, npm run build, npx wrangler deploy, root /. No production build variables/secrets. Migration defaults to preview: explicit production configuration required before merge | Final configuration approval; current production rollback version still needed |
+| Cloudflare integration | Dashboard verified; configuration change pending approval | Owner screenshots: Dyrxal/tutoring, production main, builds enabled, npm run build, npx wrangler deploy, root /. No production build variables/secrets. Migration defaults to preview: explicit production configuration required before merge | Final configuration approval; active frontend version 3862f733 captured, rollback execution unverified |
 | Final domain / DNS | Existing custom domain observed | Screenshot lists notationeducation.online as Production custom domain on notation-education-lms. Worker and preview workers.dev URLs enabled. No DNS change proposed; actual TLS/runtime smoke remains pending | Final launch approval, not DNS editing |
 | Remaining device/time acceptance | Unverified, proposed deferral | Physical iOS/Safari, actual overnight rollover and time-based link expiry. WebKit launch attempted: executable missing. No device-result claim | Explicit deferral or actual device verification |
 | Existing loading/enrolment behavior | Known limitations | No automatic year-enrolment trigger in either schema; keep tutor-managed enrolment. Brief loading-empty state persists | Accept existing behavior or request scoped fix |
@@ -56,7 +56,7 @@ Supply only these non-secret observations (screenshots are fine):
 
 1. **Production Supabase project lmuwsjjrqmmmtmxjvqln**: URL and SMTP screenshots received. Remaining: confirm/reset templates showing link expressions and Auth → Rate Limits. These are production observations, not preview settings; do not change them yet. Public flags do not establish delivery readiness.
 2. **Same project**: Database → Backups showing available backups/recovery type/date; what separate backup exists for the 13 Storage objects and how it can be restored. If absent, a concrete backup/restore rehearsal must be separately prepared and authorized; do not purchase an upgrade automatically.
-3. **Cloudflare Worker notation-education-lms**: Builds and Domains screenshots received. Remaining recovery evidence: Deployments → current active production version/deployment and rollback availability. No additional Builds/Domain screenshots needed.
+3. **Cloudflare Worker notation-education-lms**: Builds and Domains screenshots received. Deployments screenshot received: active version 3862f733, 100% traffic, main, Ready; earlier versions 13a8552f and 2afeeb91 are listed. No further Cloudflare screenshots requested at this stage. Full version identifier and actual rollback availability/execution still need confirmation before launch.
 
 These are information blockers, not a new request for blanket production permission. Do not create a broad OAuth connection or paste API/SMTP secrets. No launch approval is being requested until the missing facts make the package executable.
 
@@ -76,7 +76,7 @@ These are information blockers, not a new request for blanket production permiss
 
 Stop on wrong backend hostname, failed authentication/authorization boundaries, content-baseline differences not attributable to approved activity, missing resources or failed saving. Restore the previous frontend version first; do not overwrite new student work with an old database. The prepared backend rollback script restores only the two original definitions and guards against drift. It is not a data backup and restores legacy timeout behavior; use only when required and authorized. Roll back any changed Auth/route settings using captured originals. Database/Storage restoration requires separate impact review and approval.
 
-No promised downtime/cost: these depend on the unverified domain/integration, backup and email configuration. No paid service or DNS action has been taken. No current production version was captured; recovery readiness is therefore **not passing**.
+No promised downtime/cost: these depend on the unverified domain/integration, backup and email configuration. No paid service or DNS action has been taken. Current active frontend version prefix 3862f733 was captured from the owner dashboard, serving 100% traffic. This is a frontend rollback candidate, not a verified database/Storage recovery plan; recovery readiness remains **not passing**.
 
 ## Evidence
 
@@ -85,3 +85,9 @@ No promised downtime/cost: these depend on the unverified domain/integration, ba
 - [Prior named preview evidence](mm-preview-status.md)
 - [Prepared SQL scripts](mm-launch/review-conflicts.forward.sql) and [rollback](mm-launch/review-conflicts.rollback.sql)
 - [SECURITY DEFINER guidance](https://supabase.com/docs/guides/database/database-linter?lint=0028_anon_security_definer_function_executable) and [leaked-password protection](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection)
+
+## Active deployment observation
+
+Owner screenshot: version prefix `3862f733`, main build Ready, 100% traffic, deployed “23 days ago”; listed older versions `13a8552f` and `2afeeb91` are manually deployed/Ready. These are version identifiers, not assumed Git commit SHAs. The screenshot's instantaneous 0% error rate is not a reliability test. Retain this frontend version through cutover; obtain the full identifier from the dashboard before an approved rollback action. No deployment/rollout was changed.
+
+Next owner information: whether an existing email delivery provider/account already serves notationeducation.online. Do not open accounts, purchase service, configure SMTP or add DNS records without the final concrete approval. Manual database/Storage backup preparation remains an option; executing exports of sensitive data needs explicitly scoped handling authorization, with no dumps/credentials in chat or Git.
