@@ -13,6 +13,10 @@ This branch moves the verified published Sites application into the existing Git
 - 94 tests: **91 pass, 3 fail**, matching the three existing published-source failures. All 9 new backend-isolation tests pass. The existing failures are Year 10/99-section identification, Year 9/97-section rollout, and the next-tasks test expecting a UI component absent from the published source. They were not hidden or repaired by changing application behavior.
 - Local baseline/migration render comparisons: login, student dashboard and lesson at **1440×1000** and **390×844**. Each matched comparison has **0 changed pixels**; no page exceptions or horizontal overflow. These are comparisons of local builds with mocked synthetic requests, not proof of a hosted end-to-end match. See [screenshots and machine-readable results](mm-comparisons/results.json).
 
+## Content audit — 7 November 2026
+
+[Chapter/section inventory and launch content work](mm-content-audit.md): all 196 recovered Year 9/10 registry sections inventoried, with source counts and preview exact-prompt matches. Preview catalogue is synthetic acceptance fixtures, not the complete launch curriculum. No chapter is certified complete: original scope/count approval, mathematical review, resources and full hosted visibility/editability remain unverified. No content/database/settings changes or email sends during this audit.
+
 ## Current acceptance — confirmation retry blocked, 7 November 2026
 
 Continued from `432f716`. The user explicitly approved one additional Gmail alias for a fresh preview signup to investigate confirmation automatic navigation. One hosted signup request to preview `lcddnpafrkbwsrhqexqe` returned **HTTP429 / `over_email_send_rate_limit` / “email rate limit exceeded”**, displayed by the app. No success/session returned. [Redacted evidence](mm-acceptance/email-confirmation-retry.json).
