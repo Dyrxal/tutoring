@@ -38,3 +38,13 @@ export function canRecover(session: Session | null, user: Pick<User, 'id'> | nul
         return false;
     }
 }
+
+// Callback URLs are untrusted input; show fixed guidance, never provider descriptions.
+export function readAuthCallbackError(location: Pick<Location, 'search' | 'hash'>): string {
+    const query = new URLSearchParams(location.search), hash = new URLSearchParams(location.hash.slice(1));
+    if (readRecoveryEntry(location).requested || !(hash.has('error') || query.has('error'))) return '';
+    const code = hash.get('error_code') || query.get('error_code');
+    return code === 'otp_expired'
+        ? 'This email link is invalid, expired, or already used. If you have already confirmed your account, sign in below.'
+        : 'We could not complete email sign-in. Sign in below or use a new email link.';
+}

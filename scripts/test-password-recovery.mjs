@@ -45,3 +45,12 @@ test('a late exit cannot sign out a newly active account after its owner ref is 
 test('late exit errors cannot overwrite the new account recovery screen',async()=>{
  let reject;const h=exitHarness({auth:{getSession:()=>new Promise((_,r)=>reject=r),signOut:async()=>({error:null})}});const pending=h.exit();h.context.owner.current=null;h.context.generation.current++;reject(new Error('Old account network failure'));await pending;assert.equal(h.state.error,'');
 });
+test('callback errors provide fixed guidance without reflecting untrusted provider text',()=>{
+ const message=exports.readAuthCallbackError({search:'',hash:'#error=access_denied&error_code=otp_expired&error_description=ATTACKER_TEXT'});
+ assert.match(message,/expired|already used/i);assert(!message.includes('ATTACKER_TEXT'));
+ const other=exports.readAuthCallbackError({search:'?error=server_error&error_description=ATTACKER_TEXT',hash:''});
+ assert.match(other,/sign.in/i);assert(!other.includes('ATTACKER_TEXT'));
+});
+test('normal links and recovery callbacks do not acquire a sign-in error notice',()=>{
+ for(const location of [{search:'',hash:''},{search:'',hash:'#type=signup&access_token=example'},{search:'?auth=recovery',hash:'#error=access_denied&error_code=otp_expired'}])assert.equal(exports.readAuthCallbackError(location),'');
+});
