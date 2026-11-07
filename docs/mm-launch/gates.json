@@ -9,11 +9,11 @@
   },
   "database_backup": {
     "status": "blocked",
-    "evidence": "Owner requested starting protected backup. Precheck blocked before export: no configured scoped DB credential, database TCP target, destination or owner-controlled encryption/retrieval setup (docs/mm-acceptance/protected-backup-start.json). No real backup exists from this task."
+    "evidence": "Owner authorized protected backup and selected Google Drive. Private owner-only destination created; non-sensitive status-note upload/readback verified. Database export credential/TCP access and owner-controlled encryption/retrieval setup still missing; no dump/archive exists (docs/mm-acceptance/protected-backup-start.json)."
   },
   "storage_backup": {
     "status": "blocked",
-    "evidence": "Owner requested protected private-file backup; no configured scoped Storage export access or protected destination. No object bytes exported or verified; metadata inventory/local synthetic copy is not a backup."
+    "evidence": "Private Google Drive destination prepared; no object bytes exported or encrypted archive verified. Scoped Storage export access and owner-controlled recovery key remain missing; metadata/local synthetic copy is not a backup."
   },
   "restore_rehearsal": {
     "status": "blocked",

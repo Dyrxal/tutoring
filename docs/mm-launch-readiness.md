@@ -1,4 +1,4 @@
-# MM current completion checklist — 7 November 2026
+# MM current completion checklist — 8 November 2026 (Australia/Sydney)
 
 Authoritative current status; older checkpoints in mm-preview-status.md are historical. Owner scope: retain current content and production Supabase, no new curriculum or redesign. Tested executable candidate **`f21dabf2e021a0dcef439bc1329bb51ebc043081`** includes the completed preview fixes and release-preflight tools. The final evidence/documentation commit adds no application changes. Historical preview evidence at `14dae44` and launch-package evidence at `af9dc66` remain applicable within their stated limits. Production read-only inspection authorized; production writes, merge, deployment and DNS await final approval. No emails were sent during the preflight-tooling preparation; the later preview Resend recovery check is recorded below.
 
@@ -37,7 +37,7 @@ The checked-in report is a dated observation. Fresh captures and reports are req
 
 ## Protected backup start — current blocker
 
-The owner requested starting the actual protected backup. [Precheck evidence](mm-acceptance/protected-backup-start.json): no sensitive export has started. This environment has no configured database/Storage export credential, approved database TCP target, backup destination or owner-controlled encryption/retrieval setup. Existing metadata/SQL tools cannot safely substitute for a native sensitive dump or private-file export. Backup permission need not be requested again; the next input is the destination and private setup path. Production was not changed; database, Storage and real restore gates remain blocked.
+The owner requested starting the actual protected backup. [Precheck evidence](mm-acceptance/protected-backup-start.json): no sensitive export has started. The owner selected Google Drive on 8 November (Australia/Sydney). A folder and non-sensitive status note were created through the existing connection and read back with owner-only permissions; no sharing was added. No encrypted archive exists. This environment still has no configured database/Storage export credential, approved database TCP target or owner-controlled encryption/retrieval setup. Existing metadata/SQL tools cannot safely substitute for a native sensitive dump or private-file export. Backup permission need not be requested again; the next inputs are the existing source credential through a private setup path and an owner-controlled recovery key. Production was not changed; database, Storage and real restore gates remain blocked.
 
 ## Independent recovery and permission work — 7 November 2026
 

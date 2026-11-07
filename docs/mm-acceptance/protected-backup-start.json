@@ -26,15 +26,28 @@
     "synthetic_rehearsal": "local-database-rehearsal.json"
   },
   "concrete_missing_setup": [
-    "Owner-controlled destination and retrieval/retention plan for encrypted database and private-object archives",
-    "Owner-controlled encryption recipient/recovery key, entered privately or supplied as a public encryption recipient",
-    "Retained-project database export credential entered through private environment settings or an owner-run export on a trusted computer; do not reset a live password",
-    "Project-scoped private Storage export access and matching network destination; do not create a broad connection"
+    "Owner-controlled encryption/recovery key and retrieval/retention plan, kept separately from Drive archive",
+    "Retained-project database export credential entered privately, with matching database network access; do not reset a live password",
+    "Project-scoped private Storage export access and matching network destination"
   ],
   "sensitive_exports_started": 0,
   "database_backup_verified": false,
   "storage_backup_verified": false,
   "restore_performed": false,
   "no_data_return_through_sql_tool": "Do not replace a native dump with SELECT/COPY output through chat/tool responses; this would expose records/password material and would not establish a complete restorable backup.",
-  "production_changed": false
+  "production_changed": false,
+  "destination_follow_up": {
+    "observed_at_australia_sydney": "2026-11-08T00:25:24.017285+11:00",
+    "owner_choice": "Google Drive",
+    "folder_created": true,
+    "folder_name": "Notation Education - Protected Backups",
+    "readback_shared": false,
+    "readback_permissions": "One user-owner permission; no additional sharing/public link added",
+    "non_sensitive_status_note_uploaded_and_read_back": true,
+    "status_note_bytes": 949,
+    "archive_created_or_uploaded": false,
+    "credentials_or_keys_uploaded": false,
+    "folder_identifier_handling": "Folder URL delivered privately in conversation; identifier retained outside Git in /workspace/work/mm-backup-drive/destination.json.",
+    "scope": "Existing Google Drive connection only; no new connection or permission widening."
+  }
 }
