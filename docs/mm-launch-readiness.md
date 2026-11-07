@@ -15,8 +15,8 @@ Authoritative current status; older checkpoints in mm-preview-status.md are hist
 | Review timeout production fix | Prepared, not applied | Exact guarded forward/rollback SQL in mm-launch; definitions compared against production; both executed/asserted in a preview transaction and rolled back | Final write approval after prerequisites |
 | Production Auth/email/templates | Blocked | Existing tools lack management settings; no broad OAuth. Owner screenshots: localhost Site URL, no redirects, custom SMTP off. Need official-origin plan plus templates/limits | Dashboard values/screenshots, no passwords |
 | Database + Storage recovery | Blocked | No backup metadata/restore/download interface available through existing tools. Owner screenshot: Free plan has no project backups. Need verified manual/existing backup and separate Storage recovery, or an explicitly approved alternative | Dashboard backup information and existing backup evidence; no student-data uploads to chat |
-| Cloudflare integration | Preview verified; production blocked | GitHub Cloudflare Workers Builds check successful for af9dc66; no GitHub workflow directory. Wrangler unauthenticated, CLI GitHub denied; connector reads work | Worker Settings → Builds and Domains & Routes; current production deployment/version |
-| Final domain / DNS | Unverified | Existing notationeducation.online is the proposed retained domain; current route/owner not verified. Do not assume changes needed | Confirm official hostname and route screenshots |
+| Cloudflare integration | Dashboard verified; configuration change pending approval | Owner screenshots: Dyrxal/tutoring, production main, builds enabled, npm run build, npx wrangler deploy, root /. No production build variables/secrets. Migration defaults to preview: explicit production configuration required before merge | Final configuration approval; current production rollback version still needed |
+| Final domain / DNS | Existing custom domain observed | Screenshot lists notationeducation.online as Production custom domain on notation-education-lms. Worker and preview workers.dev URLs enabled. No DNS change proposed; actual TLS/runtime smoke remains pending | Final launch approval, not DNS editing |
 | Remaining device/time acceptance | Unverified, proposed deferral | Physical iOS/Safari, actual overnight rollover and time-based link expiry. WebKit launch attempted: executable missing. No device-result claim | Explicit deferral or actual device verification |
 | Existing loading/enrolment behavior | Known limitations | No automatic year-enrolment trigger in either schema; keep tutor-managed enrolment. Brief loading-empty state persists | Accept existing behavior or request scoped fix |
 | Security findings | Unresolved warning, proposed deferral | SECURITY DEFINER exposure and leaked-password protection warning; same policies/role checks as tested preview. No exploit-free claim or silent revocation | Review/accept limitation or separately approve remediation plan |
@@ -31,13 +31,32 @@ Screenshots supplied while following the production-project links show Site URL 
 - Scheduled project-backup availability is now known to be absent on the current plan. This does not prove no external/manual backup exists. Database and separate Storage backup/restore readiness remain blocked. Do not upgrade automatically or export private records under the existing metadata-only authorization.
 - Next dashboard evidence: Cloudflare production Builds and Domains & Routes. Backup options can then be presented alongside the exact launch requirements, without repeated blanket permission requests.
 
+## Exact Cloudflare configuration proposal — not applied
+
+Owner screenshots confirm existing production custom domain `notationeducation.online`, Worker URL `notation-education-lms.drisyantshrestha.workers.dev`, production branch main with builds enabled, build `npm run build`, deploy `npx wrangler deploy`, root `/`, and no production build variables/secrets. Existing API build-token label is visible; token contents were neither requested nor read.
+
+Before an approved merge, set the following in **Builds → Production → Variables and secrets** (build-time settings, not merely Worker runtime bindings):
+
+| Name | Proposed value |
+|---|---|
+| NEXT_PUBLIC_LMS_TARGET | production |
+| NEXT_PUBLIC_SUPABASE_URL | https://lmuwsjjrqmmmtmxjvqln.supabase.co |
+| NEXT_PUBLIC_SUPABASE_ANON_KEY | Existing project's publishable/anon key, entered through provider settings; never secret/service-role |
+| NEXT_PUBLIC_DESIGN_PREVIEW | false, or absent |
+
+Keep these out of Previews Base. Preview continues using its isolated project and existing command. Cloudflare has a build API token but no backend build variables; merging the migration unchanged would otherwise select preview defaults. Do not merge to test this. Use the configured `npm run build`/`npx wrangler deploy` integration unless a specific command problem is reproduced; verify install uses the committed pnpm lockfile and supported Node/pnpm versions before release. Current screenshot does not establish install command or versions.
+
+With the observed custom domain retained, proposed production Auth values are Site URL `https://notationeducation.online/`, and exact callbacks `https://notationeducation.online/` plus `https://notationeducation.online/?auth=recovery`. Inspect existing email templates before relying on their redirects. Do not add branch preview callbacks to production. No DNS edits are proposed on current evidence.
+
+Apply only after the final launch package, recovery prerequisites and explicit settings/deployment approval. No configuration was changed during screenshot review.
+
 ## Hard prerequisites before requesting launch approval
 
 Supply only these non-secret observations (screenshots are fine):
 
 1. **Production Supabase project lmuwsjjrqmmmtmxjvqln**: URL and SMTP screenshots received. Remaining: confirm/reset templates showing link expressions and Auth → Rate Limits. These are production observations, not preview settings; do not change them yet. Public flags do not establish delivery readiness.
 2. **Same project**: Database → Backups showing available backups/recovery type/date; what separate backup exists for the 13 Storage objects and how it can be restored. If absent, a concrete backup/restore rehearsal must be separately prepared and authorized; do not purchase an upgrade automatically.
-3. **Cloudflare Worker notation-education-lms**: Settings → Builds (connected repository/production branch, install/build/deploy commands and variable names/scope); Domains & Routes; current production version/deployment. Keep values of credentials hidden. Confirm whether notationeducation.online is the final domain.
+3. **Cloudflare Worker notation-education-lms**: Builds and Domains screenshots received. Remaining recovery evidence: Deployments → current active production version/deployment and rollback availability. No additional Builds/Domain screenshots needed.
 
 These are information blockers, not a new request for blanket production permission. Do not create a broad OAuth connection or paste API/SMTP secrets. No launch approval is being requested until the missing facts make the package executable.
 
