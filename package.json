@@ -17,7 +17,8 @@
     "test": "node --experimental-strip-types --test scripts/test-*.mjs",
     "test:config": "node --experimental-strip-types --test scripts/test-backend-config.mjs",
     "preflight": "node scripts/mm-preflight.mjs",
-    "test:preflight": "node --test scripts/test-mm-preflight.mjs"
+    "test:preflight": "node --test scripts/test-mm-preflight.mjs",
+    "test:database-local": "node scripts/check-mm-local-database.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
