@@ -1,0 +1,426 @@
+{
+  "date": "2026-11-07",
+  "base_commit": "3cf33b6",
+  "fix_commits": [
+    "b6d9939",
+    "3f01eca",
+    "14dae44"
+  ],
+  "scope": "allowed branch preview and Supabase lcddnpafrkbwsrhqexqe only; no production requests, DNS changes or email sends",
+  "fixes": [
+    {
+      "problem": "Expired/reused confirmation callback silently showed ordinary sign-in",
+      "resolution": "Capture callback error before SDK processing; fixed non-reflective guidance after hydration; normal signup and recovery behavior retained; consume callback error URL parameters after displaying guidance so sign-in/reload cannot revive the warning",
+      "red": "Hosted callback had no alert; regression now passes locally; extended regression reproduced warning returning after successful sign-in/reload before cleanup fix"
+    },
+    {
+      "problem": "Pending/failed enrolment fetch falsely asserted No courses assigned",
+      "resolution": "Loading state, failure state and explicit retry; genuine empty response still shows no courses",
+      "red": "Held request rendered empty catalogue; failed request lacked retry guidance"
+    },
+    {
+      "problem": "Practice allowed submissions before saved history resolved",
+      "resolution": "MC and short-answer controls disabled while history unavailable; handler guard prevents writes; history-error retry offered",
+      "red": "Real browser MC option enabled while history request held"
+    }
+  ],
+  "verification": {
+    "source_tests": {
+      "passed": 108,
+      "failed": 0
+    },
+    "typescript": "passed",
+    "preview_build": "passed",
+    "local_browser_mocks": {
+      "base": "http://127.0.0.1:8791/",
+      "mockedRequestsOnly": true,
+      "results": [
+        {
+          "check": "Expired confirmation shows safe guidance without granting a session",
+          "passed": true
+        },
+        {
+          "check": "Pending enrolments never display a false empty catalogue",
+          "passed": true
+        },
+        {
+          "check": "Failed enrolments offer retry instead of asserting no courses",
+          "passed": true
+        },
+        {
+          "check": "Saved-answer loading locks practice until previous answers are restored",
+          "passed": true
+        },
+        {
+          "check": "Request link uses preview redirect; existing and unknown emails share acknowledgement",
+          "passed": true
+        },
+        {
+          "check": "Rate and network failures keep the email and support retry",
+          "passed": true
+        },
+        {
+          "check": "Marker alone and expired link cannot change a password",
+          "passed": true
+        },
+        {
+          "check": "Recovery verifies session, survives reload, validates passwords, updates and returns to sign-in",
+          "passed": true
+        },
+        {
+          "check": "A cached normal session plus recovery marker is insufficient",
+          "passed": true
+        },
+        {
+          "check": "Mobile recovery screen has no horizontal overflow",
+          "passed": true
+        },
+        {
+          "check": "Existing sign-in and registration fields/metadata remain intact",
+          "passed": true
+        },
+        {
+          "check": "Double submission sends one reset request",
+          "passed": true
+        },
+        {
+          "check": "Account switch clears recovery fields and cannot submit the previous account password",
+          "passed": true
+        },
+        {
+          "check": "Password mutation never uses a newly switched shared account",
+          "passed": true
+        },
+        {
+          "check": "Cancel signout failure never reports a password update",
+          "passed": true
+        },
+        {
+          "check": "Successful password update survives signout failure without another password PUT",
+          "passed": true
+        },
+        {
+          "check": "Signup confirmation callback follows normal sign-in and survives reload",
+          "passed": true
+        }
+      ]
+    },
+    "hosted_browser_mocks": {
+      "base": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/",
+      "mockedRequestsOnly": true,
+      "results": [
+        {
+          "check": "Expired confirmation shows safe guidance without granting a session",
+          "passed": true
+        },
+        {
+          "check": "Pending enrolments never display a false empty catalogue",
+          "passed": true
+        },
+        {
+          "check": "Failed enrolments offer retry instead of asserting no courses",
+          "passed": true
+        },
+        {
+          "check": "Saved-answer loading locks practice until previous answers are restored",
+          "passed": true
+        },
+        {
+          "check": "Request link uses preview redirect; existing and unknown emails share acknowledgement",
+          "passed": true
+        },
+        {
+          "check": "Rate and network failures keep the email and support retry",
+          "passed": true
+        },
+        {
+          "check": "Marker alone and expired link cannot change a password",
+          "passed": true
+        },
+        {
+          "check": "Recovery verifies session, survives reload, validates passwords, updates and returns to sign-in",
+          "passed": true
+        },
+        {
+          "check": "A cached normal session plus recovery marker is insufficient",
+          "passed": true
+        },
+        {
+          "check": "Mobile recovery screen has no horizontal overflow",
+          "passed": true
+        },
+        {
+          "check": "Existing sign-in and registration fields/metadata remain intact",
+          "passed": true
+        },
+        {
+          "check": "Double submission sends one reset request",
+          "passed": true
+        },
+        {
+          "check": "Account switch clears recovery fields and cannot submit the previous account password",
+          "passed": true
+        },
+        {
+          "check": "Password mutation never uses a newly switched shared account",
+          "passed": true
+        },
+        {
+          "check": "Cancel signout failure never reports a password update",
+          "passed": true
+        },
+        {
+          "check": "Successful password update survives signout failure without another password PUT",
+          "passed": true
+        },
+        {
+          "check": "Signup confirmation callback follows normal sign-in and survives reload",
+          "passed": true
+        }
+      ]
+    },
+    "pdf": {
+      "base": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/",
+      "checks": [
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "mobileEmulation": false,
+          "phase": "after-sign-in",
+          "passed": true,
+          "workerPath": "/_next/static/media/pdf.worker.min.Dswkl-cV.mjs",
+          "version": "6.3.289",
+          "nonblankCanvas": true
+        },
+        {
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "mobileEmulation": false,
+          "phase": "after-reload",
+          "passed": true,
+          "workerPath": "/_next/static/media/pdf.worker.min.Dswkl-cV.mjs",
+          "version": "6.3.289",
+          "nonblankCanvas": true
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "mobileEmulation": true,
+          "phase": "after-sign-in",
+          "passed": true,
+          "workerPath": "/_next/static/media/pdf.worker.min.Dswkl-cV.mjs",
+          "version": "6.3.289",
+          "nonblankCanvas": true
+        },
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "mobileEmulation": true,
+          "phase": "after-reload",
+          "passed": true,
+          "workerPath": "/_next/static/media/pdf.worker.min.Dswkl-cV.mjs",
+          "version": "6.3.289",
+          "nonblankCanvas": true
+        }
+      ]
+    },
+    "review": {
+      "base": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/",
+      "results": [
+        {
+          "check": "Assigned task visible and opens enrolled lesson without duplicate automatic card",
+          "passed": true
+        },
+        {
+          "check": "PT409 refresh preserves typed answer and saves with fresh submission",
+          "passed": true,
+          "invalidId": "788bba98-fad2-4336-9f76-a85a82b7dcfe",
+          "savedId": "75b6dae7-a2d3-4c70-889a-d3b32aedee80"
+        },
+        {
+          "check": "Lost response retry preserves answer and reuses saved submission ID",
+          "passed": true,
+          "savedId": "5c6e11eb-603a-404a-98a7-f68415918801"
+        },
+        {
+          "check": "Late A response cannot populate B account before or after reload",
+          "passed": true,
+          "savedId": "0d0d1a09-d43a-4879-b26d-cc2b58553179"
+        },
+        {
+          "check": "Ordinary saved lesson answer remains 4; review answer 5 does not overwrite lesson practice",
+          "passed": true
+        }
+      ],
+      "submissions": [
+        {
+          "id": "788bba98-fad2-4336-9f76-a85a82b7dcfe",
+          "revision": 16,
+          "response": "5",
+          "mode": "stale"
+        },
+        {
+          "id": "75b6dae7-a2d3-4c70-889a-d3b32aedee80",
+          "revision": 16,
+          "response": "5",
+          "mode": "pass"
+        },
+        {
+          "id": "5c6e11eb-603a-404a-98a7-f68415918801",
+          "revision": 17,
+          "response": "5",
+          "mode": "drop"
+        },
+        {
+          "id": "5c6e11eb-603a-404a-98a7-f68415918801",
+          "revision": 17,
+          "response": "5",
+          "mode": "pass"
+        },
+        {
+          "id": "0d0d1a09-d43a-4879-b26d-cc2b58553179",
+          "revision": 18,
+          "response": "5",
+          "mode": "hold"
+        }
+      ]
+    },
+    "tutor_notes": [
+      {
+        "name": "Tutor lesson text and notes/example image editor",
+        "status": "passing",
+        "detail": {
+          "textSaved": true,
+          "imagesReloaded": 2
+        }
+      }
+    ],
+    "student_images": [
+      {
+        "name": "Enrolled student sees all tutor-uploaded private images",
+        "status": "passing",
+        "detail": {
+          "decodedImages": 3
+        }
+      }
+    ],
+    "student_flows": [
+      {
+        "name": "Year 9 representative layout and flag",
+        "status": "passing",
+        "detail": {
+          "flagPersistsAfterReload": true,
+          "withdraw": true,
+          "coreQuestions": 8
+        }
+      },
+      {
+        "name": "Student completes eight core questions and reloads completion",
+        "status": "passing",
+        "detail": {
+          "coreAnswers": 8,
+          "optionalAnswers": 0,
+          "completionRestored": true
+        }
+      },
+      {
+        "name": "Year 10 representative layout and flag",
+        "status": "passing",
+        "detail": {
+          "flagPersistsAfterReload": true,
+          "withdraw": true,
+          "coreQuestions": 8
+        }
+      }
+    ],
+    "source_candidate": "14dae44",
+    "hosted_mock_commit": "14dae44",
+    "pdf_commit": "b6d9939",
+    "review_commit": "b6d9939",
+    "tutor_notes_commit": "b6d9939",
+    "student_flows_commit": "3f01eca",
+    "student_flows_note": "Previously saved 8 core answers and completion verified after reload, not eight new answer writes. Synthetic flags created, persisted and withdrawn.",
+    "read_boundaries": {
+      "project": "lcddnpafrkbwsrhqexqe",
+      "results": [
+        {
+          "check": "Anonymous courses denied",
+          "passed": true,
+          "status": 200,
+          "rows": 0
+        },
+        {
+          "check": "Anonymous questions denied",
+          "passed": true,
+          "status": 200,
+          "rows": 0
+        },
+        {
+          "check": "Unenrolled course denied",
+          "passed": true,
+          "status": 200,
+          "rows": 0
+        },
+        {
+          "check": "Unenrolled lesson denied",
+          "passed": true,
+          "status": 200,
+          "rows": 0
+        },
+        {
+          "check": "Unenrolled question rows denied",
+          "passed": true,
+          "status": 200,
+          "rows": 0
+        },
+        {
+          "check": "Other student profile denied",
+          "passed": true,
+          "status": 200,
+          "rows": 0
+        },
+        {
+          "check": "Enrolled student course readable",
+          "passed": true,
+          "status": 200,
+          "rows": 1
+        },
+        {
+          "check": "Tutor course readable",
+          "passed": true,
+          "status": 200,
+          "rows": 1
+        }
+      ],
+      "application_writes": 0,
+      "email_requests": 0
+    },
+    "hosted_mock_note": "Final case includes expired notice display, successful signin and reload without stale notice; all 17 pass.",
+    "cloudflare_preview": {
+      "commit": "14dae4469bc6b30d5b95e68e928800a380384a6b",
+      "conclusion": "success"
+    }
+  },
+  "reused_evidence": {
+    "permissions_private_uploads_API": "docs/mm-acceptance/pdf-followup.json (78 prior API checks; not rerun)",
+    "tutor_question_edit": "docs/mm-acceptance/pdf-followup.json (prior diagram save/reload)",
+    "real_email": "docs/mm-acceptance/email-live.json and email-confirmation-success.json; no new sends"
+  },
+  "fixture_changes": "Three synthetic review question schedules temporarily isolated for due review; original next_due values restored, revision monotonic; three new successful review attempts retained. Synthetic tutor notes/example images saved/reloaded; no real content changed.",
+  "test_harness_adjustment": "Two existing submit-handler tests explicitly provide the new history-ready precondition; their save/retry/late-account assertions retained. New negative test proves unavailable history emits no writes.",
+  "limitations": [
+    "Full production content/rendering outside scope and not accessed.",
+    "Physical iOS/Safari not tested; prior WebKit launch found executable missing.",
+    "Actual time-based token expiry and overnight clock rollover not waited out. Mocked/consumed-link behavior and controlled schedule dates are not equivalent.",
+    "Production launch/Auth/email/backup readiness unchanged; no new broad connections.",
+    "Full catalogue visual parity is not established by representative synthetic fixtures."
+  ]
+}

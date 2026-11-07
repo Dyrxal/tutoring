@@ -1,0 +1,399 @@
+{
+  "note": "Local builds; all Supabase requests mocked with synthetic data. This does not test real hosted authentication or database persistence.",
+  "renders": [
+    {
+      "source": "baseline",
+      "screen": "login",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "page_errors": [],
+      "horizontal_overflow": false
+    },
+    {
+      "source": "migration",
+      "screen": "login",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "page_errors": [],
+      "horizontal_overflow": false
+    },
+    {
+      "source": "baseline",
+      "screen": "dashboard",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "page_errors": [],
+      "horizontal_overflow": false
+    },
+    {
+      "source": "baseline",
+      "screen": "lesson",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "page_errors": [],
+      "horizontal_overflow": false
+    },
+    {
+      "source": "migration",
+      "screen": "dashboard",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "page_errors": [],
+      "horizontal_overflow": false
+    },
+    {
+      "source": "migration",
+      "screen": "lesson",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "page_errors": [],
+      "horizontal_overflow": false
+    },
+    {
+      "source": "baseline",
+      "screen": "login",
+      "viewport": [
+        390,
+        844
+      ],
+      "page_errors": [],
+      "horizontal_overflow": false
+    },
+    {
+      "source": "migration",
+      "screen": "login",
+      "viewport": [
+        390,
+        844
+      ],
+      "page_errors": [],
+      "horizontal_overflow": false
+    },
+    {
+      "source": "baseline",
+      "screen": "dashboard",
+      "viewport": [
+        390,
+        844
+      ],
+      "page_errors": [],
+      "horizontal_overflow": false
+    },
+    {
+      "source": "baseline",
+      "screen": "lesson",
+      "viewport": [
+        390,
+        844
+      ],
+      "page_errors": [],
+      "horizontal_overflow": false
+    },
+    {
+      "source": "migration",
+      "screen": "dashboard",
+      "viewport": [
+        390,
+        844
+      ],
+      "page_errors": [],
+      "horizontal_overflow": false
+    },
+    {
+      "source": "migration",
+      "screen": "lesson",
+      "viewport": [
+        390,
+        844
+      ],
+      "page_errors": [],
+      "horizontal_overflow": false
+    }
+  ],
+  "comparisons": [
+    {
+      "screen": "login",
+      "viewport": "desktop",
+      "baseline_size": [
+        1440,
+        1000
+      ],
+      "migration_size": [
+        1440,
+        1000
+      ],
+      "changed_pixels": 0
+    },
+    {
+      "screen": "login",
+      "viewport": "mobile",
+      "baseline_size": [
+        390,
+        844
+      ],
+      "migration_size": [
+        390,
+        844
+      ],
+      "changed_pixels": 0
+    },
+    {
+      "screen": "dashboard",
+      "viewport": "desktop",
+      "baseline_size": [
+        1440,
+        1314
+      ],
+      "migration_size": [
+        1440,
+        1314
+      ],
+      "changed_pixels": 0
+    },
+    {
+      "screen": "dashboard",
+      "viewport": "mobile",
+      "baseline_size": [
+        390,
+        1588
+      ],
+      "migration_size": [
+        390,
+        1588
+      ],
+      "changed_pixels": 0
+    },
+    {
+      "screen": "lesson",
+      "viewport": "desktop",
+      "baseline_size": [
+        1440,
+        4297
+      ],
+      "migration_size": [
+        1440,
+        4297
+      ],
+      "changed_pixels": 0
+    },
+    {
+      "screen": "lesson",
+      "viewport": "mobile",
+      "baseline_size": [
+        390,
+        4494
+      ],
+      "migration_size": [
+        390,
+        4494
+      ],
+      "changed_pixels": 0
+    }
+  ],
+  "mocked_requests": [
+    {
+      "path": "/rest/v1/profiles",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/enrolments",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/courses",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/modules",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/lesson_progress",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/lessons",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/questions",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/practice_attempts",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/rpc/initialise_mistake_reviews",
+      "method": "POST"
+    },
+    {
+      "path": "/rest/v1/mistake_review_schedules",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/mistake_review_settings",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/lesson_progress",
+      "method": "POST"
+    },
+    {
+      "path": "/rest/v1/profiles",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/enrolments",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/courses",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/modules",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/lesson_progress",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/lessons",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/questions",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/practice_attempts",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/rpc/initialise_mistake_reviews",
+      "method": "POST"
+    },
+    {
+      "path": "/rest/v1/mistake_review_schedules",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/mistake_review_settings",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/lesson_progress",
+      "method": "POST"
+    },
+    {
+      "path": "/rest/v1/profiles",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/enrolments",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/courses",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/modules",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/lesson_progress",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/lessons",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/questions",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/practice_attempts",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/rpc/initialise_mistake_reviews",
+      "method": "POST"
+    },
+    {
+      "path": "/rest/v1/mistake_review_schedules",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/mistake_review_settings",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/lesson_progress",
+      "method": "POST"
+    },
+    {
+      "path": "/rest/v1/profiles",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/enrolments",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/courses",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/modules",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/lesson_progress",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/lessons",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/questions",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/practice_attempts",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/rpc/initialise_mistake_reviews",
+      "method": "POST"
+    },
+    {
+      "path": "/rest/v1/mistake_review_schedules",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/mistake_review_settings",
+      "method": "GET"
+    },
+    {
+      "path": "/rest/v1/lesson_progress",
+      "method": "POST"
+    }
+  ]
+}

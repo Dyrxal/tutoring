@@ -28,6 +28,21 @@ const {chapter1TemplateRollout,chapter1TemplateSections}=load('app/chapter1-temp
 const {year9TemplateRollout,year9TemplateSections}=load('app/year9-template-rollout.ts');
 const {year10TemplateRollout,year10TemplateSections}=load('app/year10-template-rollout.ts');
 
+// Imported common-mistakes defaults may produce a flow for a skipped lesson.
+// The contract is that they cannot enable the structured layout or mutate content.
+function assertSkippedLegacy(result,target,reason){
+ const report=result.reports.find(r=>r.id===target.id);assert.equal(report.status,'Skipped');assert.match(report.reason,reason);
+ const flow=result.flows.get(target.id)||target.lesson_flow||{};
+ assert(flow.template?.version!==1||flow.template.enabled===false,'A skipped lesson must not acquire an enabled template');
+ if(target.lesson_flow?.template)assert.equal(flow.template,target.lesson_flow.template,'Tutor opt-out/configuration must survive');
+ for(const key of ['recall','review','guided','application'])if(target.lesson_flow?.[key])assert.equal(flow[key],target.lesson_flow[key]);
+ const Template=load('app/LessonPracticeTemplate.tsx').default;
+ const html=renderToStaticMarkup(React.createElement(Template,{config:flow.template,questions:target.questions,help:{},workedExampleAvailable:true,tutor:false,answered:0,coreCount:Math.min(8,target.questions.length),showSuggested:true,completed:false,canComplete:false,hasNext:false,onSuggested:()=>{},onComplete:()=>{},onNext:()=>{}},target.questions.map((q,i)=>React.createElement('div',{key:i},`SAVED-QUESTION-${i}-END`))));
+ assert(!html.includes('CORE QUESTIONS'));assert(!html.includes('SUGGESTED PRACTICE'));assert.equal((html.match(/SAVED-QUESTION-\d+-END/g)||[]).length,target.questions.length);
+ if(result.flows.has(target.id)){assert(flow.common_mistakes?.prompt);assert(flow.common_mistakes?.solution)}
+}
+
+
 test('Year 10 identifies renamed courses by saved IDs, preserves content, scopes all 99 sections and rejects ambiguity',()=>{
  const targets=year10TemplateSections.map(s=>({id:`y10-${s.code}`,module_id:'renamed-module',title:'Tutor renamed lesson',worked_example:'Existing example',questions:s.questions.map(q=>({...q,id:q.seed_id})),lesson_flow:{recall:{prompt:'Tutor recall',solution:'Keep'},review:{prompt:'Common mistakes',solution:'Existing mistake'}}}));
  const course={id:'year10',modules:[{id:'renamed-module',lessons:targets}]},year9=chapterFixture().courses[0],courses=[year9,course];
@@ -46,7 +61,7 @@ test('Year 10 identifies renamed courses by saved IDs, preserves content, scopes
  assert.equal(year10TemplateRollout([year9]).flows.size,0);
  assert.equal(year10TemplateRollout([course,{...course,id:'ambiguous-copy'}]).flows.size,0);
  const saved={version:1,help_links:[],reasoning_prompts:{}};targets[0].lesson_flow={template:saved};targets[1].questions.pop();targets[2].questions=[];targets[3].lesson_flow={template:{...saved,enabled:false}};
- const repeat=year10TemplateRollout(courses);assert.equal(repeat.flows.get(targets[0].id).template,saved);for(const target of targets.slice(1,4))assert(!repeat.flows.has(target.id));
+ const changed=JSON.stringify(courses),repeat=year10TemplateRollout(courses);assert.equal(repeat.flows.get(targets[0].id).template,saved);assertSkippedLegacy(repeat,targets[1],/21 distinct/);assertSkippedLegacy(repeat,targets[2],/21 distinct/);assertSkippedLegacy(repeat,targets[3],/disabled/);assert.equal(JSON.stringify(courses),changed);
  assert(!/void add(?:All)?Year10/.test(page),'Year 10 imports must not run on login');
 });
 
@@ -70,8 +85,8 @@ test('whole Year 9 rollout recognises all 97 source sections without changing da
  }
  const untouched={version:1,help_links:[],reasoning_prompts:{}};targets[0].lesson_flow={template:untouched};
  targets[1].questions.pop();targets[2].questions=[];targets[3].questions[1].id=targets[3].questions[0].id;
- const again=year9TemplateRollout(courses);assert.equal(again.flows.get(targets[0].id).template,untouched);
- for(const target of targets.slice(1,4))assert.equal(again.flows.has(target.id),false);
+ const changed=JSON.stringify(courses),again=year9TemplateRollout(courses);assert.equal(again.flows.get(targets[0].id).template,untouched);
+ for(const target of targets.slice(1,4))assertSkippedLegacy(again,target,/21 distinct/);assert.equal(JSON.stringify(courses),changed);
  assert(!/void addChapter\d+Practice\(/.test(page),'Year 9 must not auto-populate skipped lessons');
  assert(!page.includes('void addYear10Chapter1Practice('),'Year 10 imports are now explicit too');
 });
@@ -208,12 +223,17 @@ test('saving confirms the database result, throws on failure and recovers a dupl
 
 function submissionHarness(save){
  const state={answers:{},shortAnswers:{},attempts:[],saving:{},errors:{}};
- const context={userId:'student',activeStudentId:{current:'student'},pendingSubmissions:{current:new Set()},submissionIds:{current:new Map()},db:{},crypto:webcrypto,savePracticeAttempt:save,
+ const context={practiceHistoryReady:true,userId:'student',activeStudentId:{current:'student'},pendingSubmissions:{current:new Set()},submissionIds:{current:new Map()},db:{},crypto:webcrypto,savePracticeAttempt:save,
   setAnswers:f=>state.answers=f(state.answers),setShortAnswers:f=>state.shortAnswers=f(state.shortAnswers),setAttemptRecords:f=>state.attempts=f(state.attempts),setAnswerSaving:f=>state.saving=f(state.saving),setAnswerErrors:f=>state.errors=f(state.errors)};
  const start=page.indexOf(' async function submitAnswer('),end=page.indexOf(' async function answer(q:',start);
  const output=ts.transpileModule(page.slice(start,end)+'\nglobalThis.submit=submitAnswer;',{compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText;
  vm.runInNewContext(output,context);return {state,context,submit:context.submit};
 }
+
+test('practice writes are blocked until saved history is available',async()=>{
+ let writes=0;const harness=submissionHarness(async()=>{writes++;return {}});harness.context.practiceHistoryReady=false;
+ await harness.submit({id:'q'},0,true);assert.equal(writes,0);assert.equal(harness.state.attempts.length,0);assert(harness.state.errors.q);assert.equal(harness.state.answers.q,undefined);
+});
 
 test('feedback/progress wait for confirmed saves; failures stay editable and retry the same ID',async()=>{
  let resolve,seen=[];

@@ -31,15 +31,16 @@ labels to other topics; author their configuration against existing question IDs
 lesson title is used to determine rollout scope. Year 10 and other chapters are
 excluded, even if they contain identical questions. Eligibility requires 21
 distinct question IDs and unambiguous matches to the existing section banks in
-both the core and suggested groups. Unrecognised or differently sized sets are
-left alone and listed in the tutor-only Chapter 1 status panel on the course page.
+both the core and suggested groups. Unrecognised or differently sized sets do not acquire the structured layout
+and are listed in the tutor-only Chapter 1 status panel. Recognised sections
+may receive the common-mistakes-only read-through fallback described below.
 
 The adapter creates no database rows and performs no writes on login. Chapter 1's
 old empty-lesson auto-import is disabled; deliberate imports remain in Content.
 The existing tutor editor receives the resolved configuration and persists it in
 `lessons.lesson_flow` on Save lesson. Any saved template (including disabled or
-empty help settings) takes precedence over defaults, so repeat loads never refill
-removed support or overwrite tutor edits. Questions, attempts, videos, resources
+empty help settings) takes precedence over defaults, so repeat loads keep saved help links/reminders and never overwrite tutor text.
+Missing common-mistakes text can receive the published fallback described below. Questions, attempts, videos, resources
 and completion records are not modified by the rollout.
 
 Help shortcuts use the existing worked example and existing core-question hints.
@@ -92,12 +93,15 @@ configuration for recognised 21-question sections across Chapters 1–10.
 `year9-template-rollout.ts` supplies metadata to the existing rollout engine;
 it does not insert questions or write database rows. Source banks identify
 the existing 8/13 grouping by multiple matching prompts in both groups.
-Renamed lessons still work. Unrecognised, incomplete or duplicate-ID sets are
-left unchanged and reported in the tutor course overview. Year 10 is excluded.
+Renamed lessons still work. Unrecognised, incomplete or duplicate-ID sets
+keep their saved question data and legacy layout and are reported in the tutor
+course overview. Recognised sections may receive common-mistakes text only.
+Year 10 is excluded.
 
 Existing saved template settings remain authoritative. Existing examples and
-question-level hints provide help targets; missing review activities, common
-mistakes and staged hints are reported rather than invented. Brief reminders
+question-level hints provide help targets; missing review activities and staged
+hints are reported rather than invented. Missing common-mistakes text uses the
+published section fallback, with tutor text taking precedence. Brief reminders
 bind to unchanged prompts, not arbitrary positions. Tutor Save lesson persists
 the editable configuration through the existing data layer.
 
@@ -108,3 +112,17 @@ load. Source-level tests cover all 97 target section banks, preservation,
 grouping, 7/8 completion gating and Year 10 isolation. Browser/mobile and live
 Supabase checks must be reported separately from those tests.
 
+
+## Imported common-mistakes fallback and skipped layouts
+
+The published source imported by MM added `commonMistakesForSection` and explicit
+read-through support for recognised sections, including incomplete, duplicate-ID
+or tutor-disabled sets. The **structured layout and saved database content** remain untouched,
+but missing common-mistakes text can be supplied in the rendered flow. Existing tutor mistake text wins. A fallback flow is not evidence that the
+8/13 layout is enabled. The eligibility report stays Skipped; an explicit template
+opt-out remains false; no questions, answers or saved content are inserted/edited.
+
+The MM follow-up tests verify those rendered safeguards and unchanged input data
+for all 97 Year 9 and 99 Year 10 source sets, rather than asserting that the flow
+map must have no entry. This is an assertion correction, not a rollout behavior
+change.

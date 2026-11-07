@@ -76,3 +76,21 @@ test('SQL migration contains one authoritative transition, pilot/enrolment check
 test('integration partitions reviews across enrolled lessons without affecting completion or navigation',()=>{
  const page=fs.readFileSync('app/page.tsx','utf8'),analytics=fs.readFileSync('app/TutorAnalytics.tsx','utf8'),hook=fs.readFileSync('app/use-mistake-reviews.ts','utf8');assert(page.includes('entries={reviewEntries}'));assert(!page.includes('lesson.id===reviewPilotLessonId'));assert(page.includes('const reviewEntries=visible.flatMap')); assert(page.includes('setAttemptRecords((ats.data||[]).filter(isLessonAttempt))'));assert(page.includes('setReviewAttemptRecords((ats.data||[]).filter(a=>!isLessonAttempt(a)))'));assert(analytics.includes('allAttempts.filter(isLessonAttempt)'));assert(hook.includes('session?.user.id!==actorId'));assert(hook.includes('generation.current!==request'));assert(!source.includes('lesson_progress'));assert(!source.includes('onComplete'));assert(!source.includes('from("practice_attempts")'));assert(source.includes('MathText'));assert(source.includes('ShortAnswerPractice'));assert(source.includes('QuestionHelp'));
 });
+
+test('non-retryable HTTP conflict keeps the answer and offers refresh, including legacy backend conflicts',async()=>{
+ for(const code of ['PT409','40001']){
+  const h=harness(async()=>{throw new api.ReviewError({code,message:'Changed in another tab'})});
+  await h.submit(null,'5.00');assert.equal(h.state.conflict,true,code);assert.equal(h.state.result,null);assert.equal(h.context.lastPayload.current.response,'5.00');assert.equal(h.state.saving,false);assert.equal(h.state.busy,false);
+ }
+});
+test('after conflict refresh the retained short answer uses the new revision and a new submission ID',async()=>{
+ const calls=[],h=harness(async(_,action)=>{calls.push({...action});if(calls.length===1)throw new api.ReviewError({code:'PT409',message:'Refresh'});return {attempt:attempt(action.id,'early_practice',true,{response_text:action.responseText}),schedule:schedule('q',{revision:6})}});
+ await h.submit(null,'5.00');const failedId=h.context.pending.current.id;
+ // The refresh handler discards the stale submission only after successful reload.
+ h.context.pending.current=null;h.context.schedule={...h.context.schedule,revision:5};
+ await h.submit(null,h.context.lastPayload.current.response);assert.notEqual(calls[1].id,failedId);assert.equal(calls[1].revision,5);assert.equal(calls[1].responseText,'5.00');assert.equal(h.state.result.attempt.response_text,'5.00');
+});
+test('late review errors after account switch cannot display the previous account answer or error',async()=>{
+ let reject;const h=harness(async()=>new Promise((_,r)=>reject=r));const pending=h.submit(null,'private response');h.context.alive.current=false;reject(new api.ReviewError({code:'PT409',message:'Old account conflict'}));await pending;
+ assert.equal(h.state.result,null);assert.equal(h.state.error,'');assert.equal(h.state.confirmed.length,0);
+});

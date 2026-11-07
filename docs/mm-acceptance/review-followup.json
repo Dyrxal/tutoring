@@ -1,0 +1,388 @@
+{
+  "date_sydney": "2026-11-06",
+  "base_commit": "5f9abb9",
+  "tested_hosted_fix_commit": "bd3a24b",
+  "preview_host": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/",
+  "project_ref": "lcddnpafrkbwsrhqexqe",
+  "timeout_fix": {
+    "before": "25-second HTTP timeout; repeated SQLSTATE40001",
+    "after": "HTTP409/PT409",
+    "representative_seconds": 0.56,
+    "migration_version": "20261106074516",
+    "changed_functions": [
+      "submit_mistake_review",
+      "note_mistake_review_help"
+    ],
+    "scope": "Logical stale/missing/edited-state conflicts only. No owner, ACL, SECURITY DEFINER, search-path, enrolment/actor, grading, locking or idempotency changes.",
+    "client_compatibility": [
+      "PT409",
+      "40001"
+    ]
+  },
+  "api_checks": [
+    {
+      "name": "seed incorrect 1",
+      "passed": true,
+      "detail": {
+        "status": 201
+      }
+    },
+    {
+      "name": "seed incorrect 2",
+      "passed": true,
+      "detail": {
+        "status": 201
+      }
+    },
+    {
+      "name": "stale revision prompt denial",
+      "passed": true,
+      "detail": {
+        "status": 409,
+        "seconds": 0.618,
+        "code": "PT409"
+      }
+    },
+    {
+      "name": "stale revision prompt denial writes nothing",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "edited question prompt denial",
+      "passed": true,
+      "detail": {
+        "status": 409,
+        "seconds": 0.262,
+        "code": "PT409"
+      }
+    },
+    {
+      "name": "edited question prompt denial writes nothing",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "missing schedule prompt denial",
+      "passed": true,
+      "detail": {
+        "status": 409,
+        "seconds": 0.213,
+        "code": "PT409"
+      }
+    },
+    {
+      "name": "missing schedule prompt denial writes nothing",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "missing help schedule prompt denial",
+      "passed": true,
+      "detail": {
+        "status": 409
+      }
+    },
+    {
+      "name": "server saves short answer",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "uncertain retry returns original answer and schedule once",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "submission ID cannot overwrite another answer",
+      "passed": true,
+      "detail": {
+        "status": 400
+      }
+    },
+    {
+      "name": "old short-answer revision denied",
+      "passed": true,
+      "detail": {
+        "status": 409,
+        "seconds": 0.216,
+        "code": "PT409"
+      }
+    },
+    {
+      "name": "old short-answer revision denied writes nothing",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "refreshed short answer saves under new ID",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "concurrent retry is one saved attempt and one schedule transition",
+      "passed": true,
+      "detail": {
+        "statuses": [
+          200,
+          200
+        ]
+      }
+    },
+    {
+      "name": "spoof student review denied",
+      "passed": true,
+      "detail": {
+        "status": 403
+      }
+    },
+    {
+      "name": "unenrolled actor review denied",
+      "passed": true,
+      "detail": {
+        "status": 403
+      }
+    },
+    {
+      "name": "anonymous review denied",
+      "passed": true,
+      "detail": {
+        "status": 401
+      }
+    },
+    {
+      "name": "other account cannot read practice_attempts",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "other account cannot read mistake_review_schedules",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    },
+    {
+      "name": "tutor assigns review fixture lesson",
+      "passed": true,
+      "detail": {
+        "status": 200
+      }
+    }
+  ],
+  "hosted_browser": {
+    "base": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/",
+    "results": [
+      {
+        "check": "Assigned task visible and opens enrolled lesson without duplicate automatic card",
+        "passed": true
+      },
+      {
+        "check": "PT409 refresh preserves typed answer and saves with fresh submission",
+        "passed": true,
+        "invalidId": "88f23a12-aff7-42e1-a8e5-0f189de7823d",
+        "savedId": "123406c3-574c-4942-8187-0af15a9fcbfe"
+      },
+      {
+        "check": "Lost response retry preserves answer and reuses saved submission ID",
+        "passed": true,
+        "savedId": "8fdab6ca-5e56-44ac-afb4-e30a6926046f"
+      },
+      {
+        "check": "Late A response cannot populate B account before or after reload",
+        "passed": true,
+        "savedId": "2310a4ec-9c7b-45e8-8e68-38ce164f693f"
+      },
+      {
+        "check": "Ordinary saved lesson answer remains 4; review answer 5 does not overwrite lesson practice",
+        "passed": true
+      }
+    ],
+    "submissions": [
+      {
+        "id": "88f23a12-aff7-42e1-a8e5-0f189de7823d",
+        "revision": 12,
+        "response": "5",
+        "mode": "stale"
+      },
+      {
+        "id": "123406c3-574c-4942-8187-0af15a9fcbfe",
+        "revision": 12,
+        "response": "5",
+        "mode": "pass"
+      },
+      {
+        "id": "8fdab6ca-5e56-44ac-afb4-e30a6926046f",
+        "revision": 13,
+        "response": "5",
+        "mode": "drop"
+      },
+      {
+        "id": "8fdab6ca-5e56-44ac-afb4-e30a6926046f",
+        "revision": 13,
+        "response": "5",
+        "mode": "pass"
+      },
+      {
+        "id": "2310a4ec-9c7b-45e8-8e68-38ce164f693f",
+        "revision": 14,
+        "response": "5",
+        "mode": "hold"
+      }
+    ]
+  },
+  "browser_saved_rereads": [
+    {
+      "check": "Conflicted browser submission was not saved",
+      "passed": true
+    },
+    {
+      "check": "PT409 refresh preserves typed answer and saves with fresh submission persisted once",
+      "passed": true,
+      "id": "123406c3-574c-4942-8187-0af15a9fcbfe",
+      "rows": 1,
+      "response": "5"
+    },
+    {
+      "check": "Lost response retry preserves answer and reuses saved submission ID persisted once",
+      "passed": true,
+      "id": "8fdab6ca-5e56-44ac-afb4-e30a6926046f",
+      "rows": 1,
+      "response": "5"
+    },
+    {
+      "check": "Late A response cannot populate B account before or after reload persisted once",
+      "passed": true,
+      "id": "2310a4ec-9c7b-45e8-8e68-38ce164f693f",
+      "rows": 1,
+      "response": "5"
+    }
+  ],
+  "automatic_assignment_coverage": {
+    "automaticLesson": "c3333333-3333-4333-8333-333333333333",
+    "automaticAlsoTutorAssigned": true,
+    "visibleInHostedBrowser": true
+  },
+  "pdf_regression": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "mobileEmulation": false,
+      "phase": "after-sign-in",
+      "passed": true,
+      "workerPath": "/_next/static/media/pdf.worker.min.Dswkl-cV.mjs",
+      "version": "6.3.289",
+      "nonblankCanvas": true
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "mobileEmulation": false,
+      "phase": "after-reload",
+      "passed": true,
+      "workerPath": "/_next/static/media/pdf.worker.min.Dswkl-cV.mjs",
+      "version": "6.3.289",
+      "nonblankCanvas": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mobileEmulation": true,
+      "phase": "after-sign-in",
+      "passed": true,
+      "workerPath": "/_next/static/media/pdf.worker.min.Dswkl-cV.mjs",
+      "version": "6.3.289",
+      "nonblankCanvas": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mobileEmulation": true,
+      "phase": "after-reload",
+      "passed": true,
+      "workerPath": "/_next/static/media/pdf.worker.min.Dswkl-cV.mjs",
+      "version": "6.3.289",
+      "nonblankCanvas": true
+    }
+  ],
+  "source_suite": {
+    "tests": 98,
+    "pass": 98,
+    "fail": 0,
+    "new_tests": 4
+  },
+  "build": "passing",
+  "typecheck": "passing",
+  "baseline_diagnosis": [
+    {
+      "test": "Year10 99-section rollout",
+      "classification": "stale assertion",
+      "evidence": "Imported6fd82bf added a common-mistakes-only flow for recognised skipped/disabled lessons. Map presence no longer means structured layout is enabled.",
+      "change": "Retained99-section coverage; assert Skipped reasons, rendered legacy grouping, tutor opt-out and unchanged inputs."
+    },
+    {
+      "test": "Year9 97-section rollout",
+      "classification": "stale assertion",
+      "evidence": "Same deliberate common-mistakes fallback; no automatic layout or content insertion.",
+      "change": "Retained97-section coverage; assert skipped incomplete/duplicate-ID safeguards, rendered grouping and unchanged inputs."
+    },
+    {
+      "test": "StudentNextTasks page integration",
+      "classification": "actual defect",
+      "evidence": "Tutor assignments were saved and editable but StudentNextTasks was no longer mounted. Current resume card did not load/render assigned rows.",
+      "change": "Restore assignment-only StudentNextTasks within dashboard, preserving existing resume card. Show every unfinished accessible assignment, including the automatic lesson."
+    }
+  ],
+  "independent_review": {
+    "blocking": 0,
+    "important": 0,
+    "affected_tests_independently_passed": 44,
+    "followups": [
+      "Clarified assignment-only failure copy",
+      "Bounded held-response confirmation to30seconds",
+      "Verified an automatic lesson that is also tutor-assigned in authenticated fixture data and hosted UI"
+    ]
+  },
+  "fixtures": {
+    "new_lesson": "c3333333-3333-4333-8333-333333333333",
+    "questions": 3,
+    "purpose": "Preview-only conflict, short-answer retry and missing-schedule checks",
+    "counts": {
+      "accounts": 3,
+      "courses": 4,
+      "lessons": 7,
+      "questions": 55,
+      "private_buckets": 3,
+      "private_objects": 4,
+      "rls_tables": 15
+    },
+    "controlled_dates": "Only the new short-answer review fixture was made due to exercise the UI; its server-saved schedule and test attempts are retained. Original content was not changed."
+  },
+  "email_delivery": "UNVERIFIED; no approved address, real-email or recovery request. Password-reset proposal documented, not implemented.",
+  "remaining_unverified": [
+    "SMTP/SiteURL/redirect configuration and real confirmation/reset delivery",
+    "All-section hosted acceptance beyond source tests and representative preview lessons",
+    "Full hosted visual parity, physical iOS/Safari, real overnight review rollover"
+  ],
+  "unchanged_advisors": {
+    "anon_security_definer_signatures": 4,
+    "authenticated_security_definer_signatures": 17,
+    "leaked_password_protection_disabled": true
+  }
+}
