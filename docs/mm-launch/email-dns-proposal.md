@@ -19,3 +19,9 @@ Actual verified sending status, SMTP key/configuration, production callback sett
 ## Approval boundary
 
 Conflict check is now complete; DNS additions remain unapplied. Original migration instructions require final approval before DNS changes. Any earlier email-verification setup needs an explicit exception limited to these three additions; this must not be interpreted as approval for website changes, production SMTP/DB writes, merging or deployment. The apex Worker record and www CNAME remain untouched. Cloudflare's root-MX warning is not a reason to enable receiving or add root MX/DMARC records to this sending-only setup. The www target is truncated in the screenshot; validate full www routing/redirect behavior before final website launch.
+
+## Owner approval and execution blocker
+
+Owner explicitly approved these three DNS additions, then continuing migration. No further approval is needed for that exact scope. Approval does not cover website-record edits, root MX/DMARC, broad OAuth, production SMTP settings, merge or deployment.
+
+Execution discovery found Cloudflare DNS tools but no active Cloudflare connection (Composio session `this`). Wrangler was previously unauthenticated; environment reports no credentials/identities. Shared desktop is enabled/state unknown for environment `ccarenv_b64_Y2NhcmVudl9hYzg2YTk5MDBiOTg4MTkxODZjZWFlODNjYTBlNzM5Mg`, but no desktop js/control tool is offered. No broader connection was created, no API write attempted and no uncertain write exists to retry. Owner dashboard entry is the available narrow path. After entry, Resend DNS verification and exact record readback are required; neither is claimed complete yet.
