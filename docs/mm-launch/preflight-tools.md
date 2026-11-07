@@ -10,8 +10,8 @@ Commit application/build/tooling inputs first; dirty or untracked inputs cannot 
 
 ```sh
 mkdir -p /workspace/work/mm-preflight
-pnpm preflight build --target preview --out /workspace/work/mm-preflight/preview-assets.json
-pnpm preflight assets --target preview --dir dist/client --out /workspace/work/mm-preflight/preview-rescan.json
+pnpm --silent preflight build --target preview --out /workspace/work/mm-preflight/preview-assets.json
+pnpm --silent preflight assets --target preview --dir dist/client --out /workspace/work/mm-preflight/preview-rescan.json
 ```
 
 `build` forces the requested target, disables Cloudflare binding fetch/metrics, runs the existing build, scans output, and records `dist/client/mm-build-manifest.json`. It does not select production credentials implicitly or disable the preview safety flag for you. Changing source/artifact bytes or using a nonexistent candidate invalidates provenance. Missing manifest remains unverified for release even if asset scanning alone returns 0.
@@ -19,7 +19,7 @@ pnpm preflight assets --target preview --dir dist/client --out /workspace/work/m
 Production build-only rehearsal requires explicit production environment settings (set privately through the existing environment, not chat): NEXT_PUBLIC_SUPABASE_URL for retained project, its publishable/anon key, NEXT_PUBLIC_DESIGN_PREVIEW=false, then:
 
 ```sh
-pnpm preflight build --target production --out /workspace/work/mm-preflight/production-assets.json
+pnpm --silent preflight build --target production --out /workspace/work/mm-preflight/production-assets.json
 ```
 
 This is not permission to deploy. Archive the production build outside the checkout if needed, then restore a preview build before other local/preview work. Do not deploy a dummy-key rehearsal. Public-key format/reference checks do not cryptographically prove an opaque publishable key is valid; retrieve it only through the correct project-scoped source. Actual Cloudflare configuration remains a separate gate.
@@ -29,8 +29,8 @@ Scanner hashes/scans every served file, including SVG/TXT/binary bytes, plus dec
 ## 2. Read-only, identity-bound captures
 
 ```sh
-pnpm preflight sql --kind metadata --project-ref lmuwsjjrqmmmtmxjvqln > /workspace/work/mm-preflight/production-metadata.sql
-pnpm preflight sql --kind baseline --project-ref lmuwsjjrqmmmtmxjvqln > /workspace/work/mm-preflight/production-baseline.sql
+pnpm --silent preflight sql --kind metadata --project-ref lmuwsjjrqmmmtmxjvqln > /workspace/work/mm-preflight/production-metadata.sql
+pnpm --silent preflight sql --kind baseline --project-ref lmuwsjjrqmmmtmxjvqln > /workspace/work/mm-preflight/production-baseline.sql
 ```
 
 Execute these SQL files through the existing **matching project-scoped connection**, or the matching Supabase SQL editor. Both begin READ ONLY, assert the database's `pg_control_system` identifier against reviewed project-bindings.json, return metadata/aggregate hashes only, and end ROLLBACK. A production-labelled query run in preview fails before returning a snapshot. The two identities were initially observed through the existing scoped connections; no secret was collected. An upgrade/restore that changes identity requires explicit review/rebinding, never automatic learning. If identity access is unavailable, capture is blocked.
@@ -40,24 +40,24 @@ Do not substitute a bootstrap, seed, arbitrary export or SQL change package. Do 
 Save the returned snapshot JSON object, or the SQL editor's single-row `[{"snapshot":{...}}]` JSON export, outside Git. Normalize and validate wrappers:
 
 ```sh
-pnpm preflight snapshot --input /workspace/work/mm-preflight/raw.json --kind metadata --project-ref lmuwsjjrqmmmtmxjvqln --out /workspace/work/mm-preflight/production-metadata.json
+pnpm --silent preflight snapshot --input /workspace/work/mm-preflight/raw.json --kind metadata --project-ref lmuwsjjrqmmmtmxjvqln --out /workspace/work/mm-preflight/production-metadata.json
 ```
 
 Do not manually relabel project IDs or timestamps. Snapshots missing identity, fixture scope or required sections fail. The reviewed `metadata-contract.json` is a preview schema contract, not a production data dump. Permissions are compared exactly, with the previously reviewed PUBLIC EXECUTE difference restricted to four helper functions. Effective anon/authenticated permissions must still match.
 
 ```sh
-pnpm preflight metadata --actual /workspace/work/mm-preflight/production-metadata.json --phase before --out /workspace/work/mm-preflight/metadata-result.json
-pnpm preflight review --actual /workspace/work/mm-preflight/production-metadata.json --direction forward --out /workspace/work/mm-preflight/review-result.json
+pnpm --silent preflight metadata --actual /workspace/work/mm-preflight/production-metadata.json --phase before --out /workspace/work/mm-preflight/metadata-result.json
+pnpm --silent preflight review --actual /workspace/work/mm-preflight/production-metadata.json --direction forward --out /workspace/work/mm-preflight/review-result.json
 ```
 
-Before-change metadata allows only the four pinned legacy conflict codes in the two known functions. After an approved application of the change, recapture and use `--phase after` plus `review --direction rollback`: installed definitions must equal the tested versions, and rollback guards must match. `review` checks exact package SHA-256 pins and current captured definitions; it never runs forward/rollback SQL. Package edits abort rather than silently repinning. The report rechecks package integrity too.
+Before-change metadata allows only the four pinned legacy conflict codes in the two known functions. After an approved application of the change, recapture and use `--phase after` plus `review --direction rollback`: installed definitions must equal the tested versions, and rollback guards must match. `review` checks exact package SHA-256 pins and current captured definitions; it never runs forward/rollback SQL. Package edits abort rather than silently repinning. The report rechecks package integrity too, and binds the metadata contract, project bindings, SQL hash pins and both change scripts to the actual candidate Git commit. Local edits to those protected files cannot be hidden behind an old asset report.
 
 ## 3. Content/resource preservation
 
 Capture two baselines with the generated query, before/after the approved operation. Both must be from the same bound project and exclusion scope, in chronological order. All four content entities and all three buckets (including empty ones) are required. Rows are hashed in stable-ID order; storage names/metadata are hashed. These digests detect changes; they are neither a backup nor proof of mathematical correctness.
 
 ```sh
-pnpm preflight baseline --before /workspace/work/mm-preflight/before.json --after /workspace/work/mm-preflight/after.json --out /workspace/work/mm-preflight/baseline-result.json
+pnpm --silent preflight baseline --before /workspace/work/mm-preflight/before.json --after /workspace/work/mm-preflight/after.json --out /workspace/work/mm-preflight/baseline-result.json
 ```
 
 Legitimate tutor edits are **not** ignored automatically. An approved change file must bind the exact group/entity, complete before/after aggregate objects and a reason, e.g. `{ "group":"content", "entity":"questions", "before":{"entity":"questions","rows":1,"digest":"..."}, "after":{...}, "reason":"Owner-approved edit, evidence reference" }` inside an array. Pass `--approvals /path/approved-changes.json`. A subsequent extra change is still rejected. The file records an approval; the tool cannot authenticate who wrote it.
@@ -71,12 +71,12 @@ Missing referenced images/private resource paths fail. External links and actual
 All paths are inputs produced above. Use the full candidate SHA written by the build manifest (not a fabricated or abbreviated label):
 
 ```sh
-pnpm preflight report --reports /workspace/work/mm-preflight/production-assets.json,/workspace/work/mm-preflight/metadata-result.json,/workspace/work/mm-preflight/baseline-result.json,/workspace/work/mm-preflight/review-result.json --gates docs/mm-launch/gates.json --candidate FULL_CANDIDATE_SHA --out /workspace/work/mm-preflight/full-readiness.json
+pnpm --silent preflight report --reports /workspace/work/mm-preflight/production-assets.json,/workspace/work/mm-preflight/metadata-result.json,/workspace/work/mm-preflight/baseline-result.json,/workspace/work/mm-preflight/review-result.json --gates docs/mm-launch/gates.json --candidate FULL_CANDIDATE_SHA --out /workspace/work/mm-preflight/full-readiness.json
 ```
 
-The console gives counts and nonpassing checks; `--out` preserves every check. Reports from different projects, incomplete function/owner/ACL evidence, contradictory readiness flags, altered contract/package, mismatched candidate/provenance or stale source observations fail. Default freshness is 3,600 seconds; `--max-age-seconds` changes the explicit window, never the observation time. Recapture close to launch. Preview artifacts cannot pass as an official production release.
+The console gives counts and nonpassing checks; `--out` preserves every check. Reports from different projects, current source/contract drift, incomplete function/owner/ACL evidence, contradictory readiness flags, altered contract/package, mismatched candidate/provenance or stale source observations fail. Default freshness is 3,600 seconds; `--max-age-seconds` changes the explicit window, never the observation time. Recapture close to launch. Preview artifacts cannot pass as an official production release.
 
-Before-change metadata and forward preconditions are preparation only: the final report stays blocked until the installed state is verified. Auth, sender, database/Storage backups, actual restore rehearsal, production settings, full rollback selection, owner launch approval and device/time verification/explicit deferral must have real evidence in gates.json. Missing/unknown settings stay blocked/unverified. Do not replace blocked values with “passing” to make CI green. A report is not authorization; no command performs the launch.
+Before-change metadata and forward preconditions are preparation only: the final report stays blocked until the installed state is verified. Auth, sender, database/Storage backups, actual restore rehearsal, production settings, full rollback selection, owner launch approval, production smoke scope, existing security/enrolment limitations and device/time verification/explicit deferral must have real evidence in gates.json. Missing/unknown settings stay blocked/unverified. Do not replace blocked values with “passing” to make CI green. A report is not authorization; no command performs the launch.
 
 ## Backup and rollback handoff
 

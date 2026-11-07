@@ -14,10 +14,13 @@ export function result(kind, project_ref, checks, extra = {}) { const summary = 
 export const check = (id, pass, detail) => ({ id, status: pass ? 'passing' : 'failing', detail });
 export function read(p) { return JSON.parse(fs.readFileSync(p, 'utf8')); }
 export const projectBindings = read(new URL('../../docs/mm-launch/project-bindings.json', import.meta.url)).bindings;
-export function validateScope(scope) { if (!scope || typeof scope !== 'object' || Array.isArray(scope))
-    throw Error('Fixture scope required'); for (const [key, ids] of Object.entries(scope))
-    if (!['courses', 'modules', 'lessons', 'questions'].includes(key) || !Array.isArray(ids) || new Set(ids).size !== ids.length || ids.some(id => typeof id !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)))
-        throw Error('Invalid fixture scope'); }
+export function validateScope(scope) {
+    if (!scope || typeof scope !== 'object' || Array.isArray(scope))
+        throw Error('Fixture scope required');
+    for (const [key, ids] of Object.entries(scope))
+        if (!['courses', 'modules', 'lessons', 'questions'].includes(key) || !Array.isArray(ids) || new Set(ids).size !== ids.length || ids.some(id => typeof id !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)))
+            throw Error('Invalid fixture scope');
+}
 export function snapshot(s, kind) {
     if (s?.format !== 1 || s.kind !== kind || !Object.values(refs).includes(s.project_ref) || !s.data || !Number.isFinite(Date.parse(s.captured_at)))
         throw Error('Invalid ' + kind + ' snapshot');
@@ -137,7 +140,7 @@ export function review(actual, states, direction, maxAge = 3600) {
     const map = new Map(actual.data.functions.map(f => [f.identity, norm(f.definition)]));
     return result('review', actual.project_ref, [check('freshness', fresh(actual, maxAge), 'Snapshot age'), ...Object.entries(states[direction]).map(([id, def]) => check('guard:' + id, map.get(id) === def, 'Read-only ' + direction + ' precondition; no SQL executed'))], { direction, evidence_at: actual.captured_at });
 }
-export const gateNames = ['production_auth', 'smtp', 'database_backup', 'storage_backup', 'restore_rehearsal', 'production_build_settings', 'rollback_version', 'owner_launch_approval', 'device_time_acceptance'];
+export const gateNames = ['production_auth', 'smtp', 'database_backup', 'storage_backup', 'restore_rehearsal', 'production_build_settings', 'rollback_version', 'owner_launch_approval', 'device_time_acceptance', 'security_acceptance', 'enrolment_behavior', 'production_smoke_scope'];
 export function report(reports, gates, candidate, maxAge = 3600) {
     if (!candidate)
         throw Error('Candidate commit required');
@@ -175,7 +178,7 @@ export function report(reports, gates, candidate, maxAge = 3600) {
         for (const r of reports)
             checks.push(check('project:' + r.kind, r.project_ref === asset.project_ref, 'Same project across evidence'));
     }
-    for (const name of gateNames) {
+    for (const name of new Set([...gateNames, ...Object.keys(gates || {})])) {
         const g = gates?.[name];
         checks.push(g && ['passing', 'failing', 'blocked', 'unverified'].includes(g.status) && typeof g.evidence === 'string' && g.evidence.trim() ? { id: name, status: g.status, detail: g.evidence } : { id: name, status: 'blocked', detail: 'Evidence missing' });
     }

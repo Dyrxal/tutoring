@@ -3,8 +3,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assets } from './mm-preflight/assets.mjs';
-import { read, result, metadata, baseline, review, report, packageState, snapshot } from './mm-preflight/core.mjs';
-import { build } from './mm-preflight/build.mjs';
+import { read, result, metadata, baseline, review, report, packageState, snapshot, check } from './mm-preflight/core.mjs';
+import { build, candidateIntegrity } from './mm-preflight/build.mjs';
 import { captureSQL } from './mm-preflight/sql.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const [command, ...args] = process.argv.slice(2), o = {};
@@ -71,6 +71,12 @@ try {
     else if (command === 'report') {
         states();
         r = report((o.reports || '').split(',').filter(Boolean).map(read), o.gates ? read(o.gates) : {}, o.candidate, age);
+        let integrity = false;
+        try {
+            integrity = candidateIntegrity(o.candidate);
+        }
+        catch { }
+        r = result(r.kind, r.project_ref, [...r.checks, check('candidate_inputs', integrity, 'Candidate Git tree and protected metadata/SQL contracts match current files')], { candidate: r.candidate, note: r.note });
     }
     else
         throw Error('Unknown command; use assets, sql, metadata, baseline, review or report');
