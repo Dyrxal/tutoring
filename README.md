@@ -23,7 +23,8 @@ Do not run the historic `supabase/schema.sql` or other setup files on production
 - `pnpm test:config`: backend isolation and key validation.
 - `pnpm exec tsc --noEmit --incremental false`: TypeScript check.
 - `pnpm test:preflight`: 33 release-tooling checks, including wrong backend, exposed secrets, stale evidence, candidate/package drift and incomplete reports.
-- `pnpm test`: 141 passing tests (108 application/configuration and 33 preflight). See [current readiness](docs/mm-launch-readiness.md) for evidence and remaining blockers.
+- `pnpm test`: 144 passing tests (108 application/configuration, 33 preflight and 3 local-runner safety checks). See [current readiness](docs/mm-launch-readiness.md) for evidence and remaining blockers.
+- `pnpm test:database-local --out /absolute/new/report.json`: 37 checks in disposable local Postgres, including exact SQL forward/rollback, permission boundaries and synthetic restore. Requires the pinned Docker image; see [the local runbook](docs/mm-launch/local-database-rehearsal.md). No hosted database URL is accepted.
 - `pnpm --silent preflight ...`: executable build/asset, metadata, content/resource baseline, review-SQL and readiness checks. Use [the tested command runbook](docs/mm-launch/preflight-tools.md); SQL generation never executes a database change. Use `--silent` when redirecting SQL/JSON to a file.
 
 Source provenance: Sites commit `116e72b356169832f15c18529d77d0072361ab57`, imported on top of GitHub main `97ab688d9ef138429fd05d78678e2d1236be9957`. PR #2 was not merged or used as the migration baseline. Private backups and uploaded learning content remain outside this repository.

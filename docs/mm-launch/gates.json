@@ -17,7 +17,7 @@
   },
   "restore_rehearsal": {
     "status": "blocked",
-    "evidence": "No sensitive production-data restore authorized or rehearsed."
+    "evidence": "37 local synthetic checks pass, including role/schema/data restore and separate byte checksums (docs/mm-acceptance/local-database-rehearsal.json). No real production export or managed-project restore is authorized/rehearsed; this gate remains blocked."
   },
   "production_build_settings": {
     "status": "blocked",
@@ -37,11 +37,11 @@
   },
   "security_acceptance": {
     "status": "unverified",
-    "evidence": "Existing SECURITY DEFINER exposure/leaked-password warnings need explicit remediation or owner deferral; not silently cleared."
+    "evidence": "Bounded review and local permission checks documented in docs/mm-launch/security-review.md; public definer exposure, inherited broad table grants and leaked-password settings still need explicit remediation/acceptance. No silent deferral."
   },
   "enrolment_behavior": {
     "status": "unverified",
-    "evidence": "Tutor-managed enrolment preserved; automatic year-enrolment promises/expectations need explicit owner acceptance or scoped follow-up."
+    "evidence": "Local registration metadata/role/self-enrolment checks confirm tutor-managed enrolment is preserved. Automatic year-enrolment expectations still need explicit owner acceptance or scoped follow-up."
   },
   "production_smoke_scope": {
     "status": "blocked",

@@ -2,8 +2,8 @@
   "format": 1,
   "kind": "readiness",
   "project_ref": "lmuwsjjrqmmmtmxjvqln",
-  "captured_at": "2026-11-07T11:14:37.103Z",
-  "candidate": "f64782c23460a2ae1364b3e1022f42a9c8eabf52",
+  "captured_at": "2026-11-07T12:55:01.185Z",
+  "candidate": "f21dabf2e021a0dcef439bc1329bb51ebc043081",
   "note": "Console omits passing checks; --out preserves full evidence. Not launch authorization.",
   "ready": false,
   "summary": {
@@ -26,7 +26,7 @@
     {
       "id": "smtp",
       "status": "blocked",
-      "detail": "Last Resend screenshot pending DNS verification; production SMTP not configured/tested."
+      "detail": "Resend auth.notationeducation.online verified by owner screenshot; preview SMTP saved and recovery/delivery/sign-in/reload passed by owner report (docs/mm-acceptance/preview-resend-smtp.json), request HTTP 200 independently observed. Production SMTP/configuration and delivery remain unverified; no production change."
     },
     {
       "id": "database_backup",
@@ -41,7 +41,7 @@
     {
       "id": "restore_rehearsal",
       "status": "blocked",
-      "detail": "No sensitive production-data restore authorized or rehearsed."
+      "detail": "37 local synthetic checks pass, including role/schema/data restore and separate byte checksums (docs/mm-acceptance/local-database-rehearsal.json). No real production export or managed-project restore is authorized/rehearsed; this gate remains blocked."
     },
     {
       "id": "production_build_settings",
@@ -66,12 +66,12 @@
     {
       "id": "security_acceptance",
       "status": "unverified",
-      "detail": "Existing SECURITY DEFINER exposure/leaked-password warnings need explicit remediation or owner deferral; not silently cleared."
+      "detail": "Bounded review and local permission checks documented in docs/mm-launch/security-review.md; public definer exposure, inherited broad table grants and leaked-password settings still need explicit remediation/acceptance. No silent deferral."
     },
     {
       "id": "enrolment_behavior",
       "status": "unverified",
-      "detail": "Tutor-managed enrolment preserved; automatic year-enrolment promises/expectations need explicit owner acceptance or scoped follow-up."
+      "detail": "Local registration metadata/role/self-enrolment checks confirm tutor-managed enrolment is preserved. Automatic year-enrolment expectations still need explicit owner acceptance or scoped follow-up."
     },
     {
       "id": "production_smoke_scope",

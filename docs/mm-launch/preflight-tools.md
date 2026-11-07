@@ -1,6 +1,6 @@
 # Executable MM preflight
 
-Tested candidate: `f64782c23460a2ae1364b3e1022f42a9c8eabf52`. [Current dated result](../mm-acceptance/release-preflight.json): 126 passing, 0 failing, 9 blocked, 4 unverified. [Test/build/live-read evidence](../mm-acceptance/preflight-verification.json). This result is preparation only and expires for live gating; regenerate fresh inputs near release.
+Tested candidate: `f21dabf2e021a0dcef439bc1329bb51ebc043081`. [Current dated result](../mm-acceptance/release-preflight.json): 126 passing, 0 failing, 9 blocked, 4 unverified. [Test/build/live-read evidence](../mm-acceptance/independent-verification.json). This result is preparation only and expires for live gating; regenerate fresh inputs near release.
 
 Run from the review repository root with Node 22.13+ and the committed dependencies. `pnpm test:preflight` exercises the tooling; `pnpm test` runs the entire suite. No new dependency, credential connection or paid service is required. The CLI never executes SQL or deploys. Only `build` invokes `pnpm build`; every other command is local file inspection/transformation.
 

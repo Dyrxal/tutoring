@@ -1,0 +1,174 @@
+{
+  "format": 1,
+  "kind": "managed-schema-recovery-inventory",
+  "source_project_ref": "lcddnpafrkbwsrhqexqe",
+  "source_captured_at": "2026-11-07T05:56:34.823701+00:00",
+  "metadata_contract_sha256": "c10e29e064fff19693cff04083160f90336dc0bf34e2826d8e20f1f58fe1e97a",
+  "purpose": "Non-sensitive customizations the default Supabase CLI schema dump excludes. Inventory only: not permission or executable restore SQL. Refresh from approved source metadata before actual export/restore.",
+  "target_project_ref": null,
+  "target_status": "blocked: an isolated managed recovery target and sensitive-data handling are not approved",
+  "storage_policies": [
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "question_image_upload",
+      "schemaname": "storage",
+      "with_check": "((bucket_id = 'question-images'::text) AND is_tutor() AND (EXISTS ( SELECT 1\n   FROM questions q\n  WHERE (q.id = (split_part(objects.name, '/'::text, 1))::uuid))))"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((bucket_id = 'question-images'::text) AND (EXISTS ( SELECT 1\n   FROM questions q\n  WHERE ((q.id = (split_part(objects.name, '/'::text, 1))::uuid) AND can_read_lesson(q.lesson_id)))))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "question_image_read",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "DELETE",
+      "qual": "((bucket_id = 'question-images'::text) AND is_tutor())",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "question_image_delete",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "lesson_resource_upload",
+      "schemaname": "storage",
+      "with_check": "((bucket_id = 'lesson-resources'::text) AND is_tutor() AND can_read_lesson((split_part(name, '/'::text, 1))::uuid))"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((bucket_id = 'lesson-resources'::text) AND can_read_lesson((split_part(name, '/'::text, 1))::uuid))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "lesson_resource_read",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "DELETE",
+      "qual": "((bucket_id = 'lesson-resources'::text) AND is_tutor())",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "lesson_resource_delete",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "lesson_images_upload",
+      "schemaname": "storage",
+      "with_check": "((bucket_id = 'lesson-images'::text) AND is_tutor() AND (EXISTS ( SELECT 1\n   FROM lessons l\n  WHERE (l.id = (split_part(objects.name, '/'::text, 1))::uuid))))"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((bucket_id = 'lesson-images'::text) AND (EXISTS ( SELECT 1\n   FROM lessons l\n  WHERE ((l.id = (split_part(objects.name, '/'::text, 1))::uuid) AND can_read_lesson(l.id)))))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "lesson_images_read",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "DELETE",
+      "qual": "((bucket_id = 'lesson-images'::text) AND is_tutor())",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "lesson_images_delete",
+      "schemaname": "storage",
+      "with_check": null
+    }
+  ],
+  "auth_triggers": [
+    {
+      "table": "users",
+      "definition": "CREATE TRIGGER on_auth_user_created AFTER INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION create_profile()"
+    }
+  ],
+  "public_dependency": "public.create_profile() and all public application functions, owners/grants, constraints and two public attempt triggers must also restore from schema.sql.",
+  "separate_requirements": [
+    "Actual Storage bytes with bucket/path/MIME/checksum manifest",
+    "Migration history schema/data if retention required",
+    "Auth/SMTP/URL/provider settings and any separate encrypted vault/extension material if actually used",
+    "Managed Auth/Storage schema/service version compatibility; do not import synthetic stubs into a real project"
+  ],
+  "not_included": [
+    "Auth/user/password records",
+    "Private file contents",
+    "Secrets or live recovery links",
+    "A tested managed Supabase restore"
+  ],
+  "retained_server_read_only_metadata": {
+    "observed_at": "2026-11-07T12:56:37.583Z",
+    "project_ref": "lmuwsjjrqmmmtmxjvqln",
+    "server_version": "17.6",
+    "server_version_num": "170006",
+    "extensions": [
+      {
+        "name": "pg_stat_statements",
+        "schema": "extensions",
+        "version": "1.11"
+      },
+      {
+        "name": "pgcrypto",
+        "schema": "extensions",
+        "version": "1.3"
+      },
+      {
+        "name": "plpgsql",
+        "schema": "pg_catalog",
+        "version": "1.0"
+      },
+      {
+        "name": "supabase_vault",
+        "schema": "vault",
+        "version": "0.3.1"
+      },
+      {
+        "name": "uuid-ossp",
+        "schema": "extensions",
+        "version": "1.1"
+      }
+    ],
+    "scope": "Read-only version/extension metadata only; no Vault data/key read."
+  },
+  "extension_limitations": "Installed supabase_vault is not evidence of actual Vault use; no secret values or encryption keys were inspected/exported. Target extension/schema compatibility and any actual encrypted-material recovery remain separately gated."
+}

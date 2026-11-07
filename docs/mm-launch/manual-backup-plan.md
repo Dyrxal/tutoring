@@ -31,6 +31,8 @@ Recapture a consistent baseline immediately before cutover; plan for legitimate 
 
 ## Staged operator procedure — execute only after separate sensitive-data handling approval
 
+Version pin checked on 7 November: **Supabase CLI 2.122.1**. Its `db dump --help` and schema/data `--dry-run` scripts were inspected using a dummy loopback URL; no live dump ran. CLI **3.0.0 no longer accepts `--db-url`**, so do not use an unversioned latest install with this procedure. The repeated `-x` arguments below were confirmed to generate both exclusions in 2.122.1. `--use-copy` produces COPY data with trigger suppression/reset statements. These dry runs establish command construction, not recovery completeness.
+
 These commands are preparation, not a backup taken by this task. On the approved private workstation/executor, confirm `supabase --version`, `supabase db dump --help`, `psql --version` and Docker requirements against the official guide first. Use tools compatible with the production Postgres major version. Keep the connection string/password in privately entered environment variables or a supported credential file, not shell history, chat, screenshots, Git, public build variables or shared logs. Do not reset the live database password merely to obtain access.
 
 After the destination, retention, encryption and scope are approved, a POSIX-shell procedure follows the official CLI's role/schema/data separation:
@@ -38,14 +40,27 @@ After the destination, retention, encryption and scope are approved, a POSIX-she
 ```sh
 umask 077
 mkdir -p "$MM_BACKUP_DIR"
-supabase db dump --db-url "$MM_DATABASE_URL" -f "$MM_BACKUP_DIR/roles.sql" --role-only
-supabase db dump --db-url "$MM_DATABASE_URL" -f "$MM_BACKUP_DIR/schema.sql"
-supabase db dump --db-url "$MM_DATABASE_URL" -f "$MM_BACKUP_DIR/data.sql" --use-copy --data-only -x "storage.buckets_vectors" -x "storage.vector_indexes"
+npm exec --yes --package=supabase@2.122.1 -- supabase db dump --db-url "$MM_DATABASE_URL" -f "$MM_BACKUP_DIR/roles.sql" --role-only
+npm exec --yes --package=supabase@2.122.1 -- supabase db dump --db-url "$MM_DATABASE_URL" -f "$MM_BACKUP_DIR/schema.sql"
+npm exec --yes --package=supabase@2.122.1 -- supabase db dump --db-url "$MM_DATABASE_URL" -f "$MM_BACKUP_DIR/data.sql" --use-copy --data-only -x "storage.buckets_vectors" -x "storage.vector_indexes"
 ```
 
 `MM_DATABASE_URL` must be the privately supplied retained-project connection string, and MM_BACKUP_DIR the approved protected destination. Recheck exclusion flags against the installed CLI. Keep only validated non-sensitive manifests in the review branch. The SQL dump may contain authentication hashes/student records: do not display its contents to the assistant or publish it. Encrypt it with the owner's chosen tool/vault and verify successful decryption locally. A failed command means no complete backup; do not continue launch.
 
 Separately preserve migration history and custom Auth/Storage schema changes when needed by the official procedure. Review this project's captured create_profile trigger and Storage policies for inclusion; do not assume a default filtered dump preserves every managed-schema customization. Save original deploy/Auth configuration separately without putting credentials into the dump manifest.
+
+Read-only source version/extension metadata is recorded in the inventory: production Postgres **17.6**, pg_stat_statements 1.11, pgcrypto 1.3, plpgsql 1.0, supabase_vault 0.3.1 and uuid-ossp 1.1. The local exercise uses Postgres 17, but does not establish a managed target with these service/extension versions. Vault being installed does not prove it contains application secrets; no Vault values/keys were inspected. Any actually used encrypted material needs a separately scoped recovery plan.
+
+The inspected default schema script **excludes `auth`, `storage` and `supabase_migrations`**. The [managed recovery inventory](managed-recovery-inventory.json) records the known **nine custom Storage policies and one Auth profile-creation trigger**, plus dependencies, from the reviewed non-sensitive metadata contract. A plain successful schema dump is therefore insufficient. Refresh these definitions at export time and restore the customizations separately into the explicitly approved compatible managed target; never replace its managed schemas with the synthetic stubs used by local tests. Exact target compatibility and restore SQL remain blocked until a target/handling scope is approved.
+
+If migration-history preservation is needed, the official procedure adds two separately protected files (same CLI pin/approved source URL):
+
+```sh
+npm exec --yes --package=supabase@2.122.1 -- supabase db dump --db-url "$MM_DATABASE_URL" -f "$MM_BACKUP_DIR/history_schema.sql" --schema supabase_migrations
+npm exec --yes --package=supabase@2.122.1 -- supabase db dump --db-url "$MM_DATABASE_URL" -f "$MM_BACKUP_DIR/history_data.sql" --use-copy --data-only --schema supabase_migrations
+```
+
+These additional exports were not run against production. Review the `auth,storage` diff/customization process from the official guide on the approved executor; do not introduce a broad CLI connection or blindly apply a managed-schema diff. The inventory is a checklist of required objects, not executable restore SQL or an independently verified production backup.
 
 Use an owner-approved Storage download/export method to copy actual object bytes with private access. Preserve bucket configuration, full paths, MIME types and byte checksums. An S3 tool/API connection must be scoped and approved; no new connection or service-role key is created by this plan. A database dump's storage.objects rows are not copies of the files. Refresh the object inventory rather than assume the historical 13-object count.
 
@@ -65,3 +80,9 @@ Restore rehearsal must use an isolated, explicitly approved target with outbound
 - [ ] Rehearsal target cleaned up only under approved retention/cleanup scope; no production data left publicly reachable.
 
 The preflight baseline checks aggregate content/resources only. They cannot verify Auth passwords, dump completeness, object bytes or recovery execution; database_backup/storage_backup/restore_rehearsal gates must remain blocked until those separate checks actually pass.
+
+## What was rehearsed independently
+
+`pnpm test:database-local --out /absolute/new/report.json` runs the committed synthetic test in two disposable local containers with no network or published ports. See [local evidence](../mm-acceptance/local-database-rehearsal.json). It tests the exact forward/rollback scripts, permission boundaries, role/schema/data restoration, trigger-replay failure/rollback and a separately copied synthetic Storage-byte checksum manifest. Real production data, private files and secrets are never inputs. Hosted preview is not overwritten.
+
+This test uses raw `pg_dump` on minimal local Auth/Storage **stubs**; it is deliberately separate from the Supabase CLI's managed-project filtering. It demonstrates recovery mechanics and catches package regressions. It cannot clear the real database, separate Storage protection or managed restore-rehearsal gates. Source and target containers/volumes and synthetic byte files are removed after the run.
