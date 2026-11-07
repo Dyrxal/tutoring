@@ -13,6 +13,10 @@ This branch moves the verified published Sites application into the existing Git
 - 94 tests: **91 pass, 3 fail**, matching the three existing published-source failures. All 9 new backend-isolation tests pass. The existing failures are Year 10/99-section identification, Year 9/97-section rollout, and the next-tasks test expecting a UI component absent from the published source. They were not hidden or repaired by changing application behavior.
 - Local baseline/migration render comparisons: login, student dashboard and lesson at **1440×1000** and **390×844**. Each matched comparison has **0 changed pixels**; no page exceptions or horizontal overflow. These are comparisons of local builds with mocked synthetic requests, not proof of a hosted end-to-end match. See [screenshots and machine-readable results](mm-comparisons/results.json).
 
+## Authorized production inspection — 7 November 2026
+
+The owner subsequently approved the proposed read-only production check. [Initial compatibility findings](mm-production-compatibility.md): 2 courses/20 modules/217 lessons/4,138 questions, zero orphan questions, all 15 application tables RLS-enabled, all three buckets private. Production review functions retain legacy conflicts; no database change applied. Full field/policy compatibility, Auth configuration, resource integrity and backup readiness remain unverified. Earlier no-production-access statements are historical; this later inspection was explicitly authorized. No production writes/deployment/DNS changes occurred.
+
 ## Existing-backend continuation — 7 November 2026
 
 Owner confirmed retaining the established production Supabase project and continuing MM. Fresh local verification at `99ac33f`: 105/105 source tests, TypeScript and preview build pass. [Concrete compatibility/cutover gates](mm-existing-backend-cutover.md) preserve existing saved content and isolate preview. Production has not been inspected or modified. Next production gate is bounded read-only metadata/configuration/content-summary inspection with separate approval; launch remains a later explicit approval. No source-bank content import is proposed.
