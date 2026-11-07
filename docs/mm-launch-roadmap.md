@@ -18,3 +18,7 @@ Milestone 1 can proceed while email quota blocks the confirmation retest. Milest
 The main unknown for an effort estimate is milestone 1: migration preserves the existing content, but does not prove every requested chapter/question set was authored. Do not give a launch date or percentage until that inventory establishes missing scope. The current email-rate-limit delay is a specific blocker, not evidence that every other task must wait.
 
 See [current preview checklist](mm-preview-status.md), [live email evidence](mm-acceptance/email-live.json) and [confirmation retry blocker](mm-acceptance/email-confirmation-retry.json).
+
+## Scope clarification — 7 November 2026
+
+Owner requires faithful migration of current content, without expanding chapter banks. Milestone 1 inventory is delivered; missing new authoring is not a migration blocker. Replace milestone 2 authoring scope with reconciliation/transfer of existing saved content and resources under a concrete approved plan. Production access remains prohibited. Fresh confirmation automatic sign-in/reload now passes; prior timeout not reproduced. See the current preview checklist.
