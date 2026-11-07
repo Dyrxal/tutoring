@@ -35,6 +35,10 @@ The checked-in report is a dated observation. Fresh captures and reports are req
 | Full-content hosted fidelity | Unverified | Source registries do not write on login; no production question text downloaded. Full live rendering requires approved test-access/smoke scope | Final account/access approval |
 | Official launch | Blocked | Resolve hard prerequisites, review exact package and approve actions before launch | One final specific approval |
 
+## Protected backup start — current blocker
+
+The owner requested starting the actual protected backup. [Precheck evidence](mm-acceptance/protected-backup-start.json): no sensitive export has started. This environment has no configured database/Storage export credential, approved database TCP target, backup destination or owner-controlled encryption/retrieval setup. Existing metadata/SQL tools cannot safely substitute for a native sensitive dump or private-file export. Backup permission need not be requested again; the next input is the destination and private setup path. Production was not changed; database, Storage and real restore gates remain blocked.
+
 ## Independent recovery and permission work — 7 November 2026
 
 [Current evidence](mm-acceptance/independent-verification.json), [37-check local rehearsal](mm-acceptance/local-database-rehearsal.json), [repeatable command](mm-launch/local-database-rehearsal.md), [security findings](mm-launch/security-review.md). No application behavior or hosted data was changed. All new database writes used two network-isolated disposable local containers and synthetic Auth/Storage stubs; containers/volumes and temporary bytes were removed.

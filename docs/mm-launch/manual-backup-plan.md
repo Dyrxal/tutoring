@@ -1,6 +1,6 @@
 # Manual recovery preparation — no export performed
 
-Scope: retain production Supabase; create a recovery option before approved production changes. Free dashboard screenshot shows no scheduled project backups. This document is preparation only. Existing production authorization is metadata/aggregate inspection; full database exports contain authentication and student data and require explicitly approved handling, destination and restore scope before execution.
+Scope: retain production Supabase; create a recovery option before approved production changes. Free dashboard screenshot shows no scheduled project backups. This document is preparation only. The owner has now requested starting the protected database/private-file backup. [Start precheck](../mm-acceptance/protected-backup-start.json) is blocked before export because source credentials/network, owner-controlled destination and decryption/retrieval setup are not configured. Do not ask again for blanket backup permission; collect those missing setup details privately. Full exports contain authentication and student data. A restore target/scope remains separately unapproved.
 
 ## Current official guidance
 

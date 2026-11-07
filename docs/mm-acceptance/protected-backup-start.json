@@ -1,0 +1,40 @@
+{
+  "format": 1,
+  "kind": "protected-backup-start",
+  "observed_at": "2026-11-07T13:00:38.218090+00:00",
+  "production_project_ref": "lmuwsjjrqmmmtmxjvqln",
+  "status": "blocked before sensitive export",
+  "owner_request": "can u start the protected backupo",
+  "authorization": "Owner requested starting the protected database/private-file backup. Continue necessary reversible preparation without asking again for blanket backup permission. Destination, owner-controlled decryption/retrieval, scoped source access and network setup are still missing. No restore, purchase, credential reset, broad connection, production write, merge or deployment authorized by this request.",
+  "prechecks": {
+    "environment_current": true,
+    "network_policy_enforced": true,
+    "configured_database_or_storage_secret_bindings": 0,
+    "configured_runtime_variables": 0,
+    "outbound_identities": 0,
+    "existing_pgpass": false,
+    "existing_database_service_file": false,
+    "approved_database_tcp_targets": 0,
+    "scoped_dump_or_storage_export_tool_available": false,
+    "destination_configured": false,
+    "owner_controlled_encryption_recipient_or_recovery_location_configured": false,
+    "local_crypto_tools_available": [
+      "gpg",
+      "openssl"
+    ],
+    "prepared_procedure": "../mm-launch/manual-backup-plan.md",
+    "synthetic_rehearsal": "local-database-rehearsal.json"
+  },
+  "concrete_missing_setup": [
+    "Owner-controlled destination and retrieval/retention plan for encrypted database and private-object archives",
+    "Owner-controlled encryption recipient/recovery key, entered privately or supplied as a public encryption recipient",
+    "Retained-project database export credential entered through private environment settings or an owner-run export on a trusted computer; do not reset a live password",
+    "Project-scoped private Storage export access and matching network destination; do not create a broad connection"
+  ],
+  "sensitive_exports_started": 0,
+  "database_backup_verified": false,
+  "storage_backup_verified": false,
+  "restore_performed": false,
+  "no_data_return_through_sql_tool": "Do not replace a native dump with SELECT/COPY output through chat/tool responses; this would expose records/password material and would not establish a complete restorable backup.",
+  "production_changed": false
+}
