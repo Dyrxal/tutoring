@@ -1,6 +1,6 @@
 # MM current completion checklist — 7 November 2026
 
-Authoritative current status; older checkpoints in mm-preview-status.md are historical. Owner scope: retain current content and production Supabase, no new curriculum or redesign. Review baseline `af9dc66`; this package changes documentation/SQL proposals only, not application code. Production read-only inspection authorized; production writes, merge, deployment and DNS await final approval. No new emails sent in this preparation.
+Authoritative current status; older checkpoints in mm-preview-status.md are historical. Owner scope: retain current content and production Supabase, no new curriculum or redesign. Current preview application candidate `14dae44` (follow-up from `3cf33b6`), with fixes for auth-link guidance, catalogue loading/retry and saved-history submission protection. Historical launch-package evidence at `af9dc66` remains linked below. Production read-only inspection authorized; production writes, merge, deployment and DNS await final approval. No new emails sent in this preparation.
 
 | Task | Status | Owner / next action | Owner input needed? |
 |---|---|---|---|
@@ -9,7 +9,7 @@ Authoritative current status; older checkpoints in mm-preview-status.md are hist
 | RPC compatibility | Passing except proposed fix | Assistant: 25 signatures; 23 normalized definitions equal; two differ only at four expected stale error codes | No |
 | Function privileges | Passing for app roles; inherited warning | Effective anon/authenticated permissions match. Four production helpers retain PUBLIC EXECUTE absent in preview; no permission widening proposed | Review warning/deferral before launch |
 | Content/resource baseline | Passing for structural references | Assistant: aggregate content/path digests captured; zero missing referenced private images/resources; no file decoding/content copying | No |
-| Preview runtime evidence | Passing named checks | 105 source tests, types/build; 13 hosted mocked Auth scenarios; 4 real private PDF checks after signin/reload desktop/mobile Chromium. Earlier API/edit/save/permissions evidence retained | No |
+| Preview runtime evidence | Passing named checks | 108 source tests, types/build; 17 local and hosted mocked browser cases; 4 real private PDF checks desktop/mobile; 5 real review/assignment/account-switch flows; tutor notes/two private image saves with reload; enrolled student decodes 3 private images; representative Year 9/10 saved answers/completion/flags reread. Exact tested commits and limits in preview-final-followup.json | No |
 | Real preview email | Passing earlier evidence | Confirmation automatic signin/reload and password recovery verified; reused tokens denied. No further send needed | No |
 | Production build isolation | Passing build-only | Explicit production target with dummy public key contains production hostname, no preview hostname. Actual deployment environment unverified; preview build restored | No |
 | Review timeout production fix | Prepared, not applied | Exact guarded forward/rollback SQL in mm-launch; definitions compared against production; both executed/asserted in a preview transaction and rolled back | Final write approval after prerequisites |
@@ -18,10 +18,29 @@ Authoritative current status; older checkpoints in mm-preview-status.md are hist
 | Cloudflare integration | Dashboard verified; configuration change pending approval | Owner screenshots: Dyrxal/tutoring, production main, builds enabled, npm run build, npx wrangler deploy, root /. No production build variables/secrets. Migration defaults to preview: explicit production configuration required before merge | Final configuration approval; active frontend version 3862f733 captured, rollback execution unverified |
 | Final domain / DNS | Existing custom domain observed | Screenshot lists notationeducation.online as Production custom domain on notation-education-lms. Worker and preview workers.dev URLs enabled. No DNS change proposed; actual TLS/runtime smoke remains pending | Final launch approval, not DNS editing |
 | Remaining device/time acceptance | Unverified, proposed deferral | Physical iOS/Safari, actual overnight rollover and time-based link expiry. WebKit launch attempted: executable missing. No device-result claim | Explicit deferral or actual device verification |
-| Existing loading/enrolment behavior | Known limitations | No automatic year-enrolment trigger in either schema; keep tutor-managed enrolment. Brief loading-empty state persists | Accept existing behavior or request scoped fix |
+| Existing loading/enrolment behavior | Loading defects fixed; enrolment limitation retained | Catalogue loading/failure/retry now explicit; no false empty catalogue. Practice locked until saved history is available, with failure retry. No automatic year-enrolment behavior added or changed | Accept current tutor-managed enrolment behavior before launch |
 | Security findings | Unresolved warning, proposed deferral | SECURITY DEFINER exposure and leaked-password protection warning; same policies/role checks as tested preview. No exploit-free claim or silent revocation | Review/accept limitation or separately approve remediation plan |
 | Full-content hosted fidelity | Unverified | Source registries do not write on login; no production question text downloaded. Full live rendering requires approved test-access/smoke scope | Final account/access approval |
 | Official launch | Blocked | Resolve hard prerequisites, review exact package and approve actions before launch | One final specific approval |
+
+## Preview acceptance follow-up — 7 November 2026
+
+[Detailed evidence and exact tested commits](mm-acceptance/preview-final-followup.json). No production request/content access, DNS change, new connection, purchase or email send during this task. Earlier owner-approved email DNS additions are a separate historical action, still pending Resend verification.
+
+### Passing
+
+- Expired/reused confirmation links show fixed guidance after hydration; consumed error parameters are then removed so the notice does not return after successful sign-in/reload. Untrusted callback descriptions are not displayed. Recovery invalid/expired screens retain their separate flow; URL markers/cached ordinary sessions still cannot authorize a password change.
+- Delayed enrolments show loading instead of “No courses assigned”; failed enrolments offer retry. A successful genuinely empty response retains the existing empty-state behavior.
+- MC and short-answer controls are disabled while saved answer history is pending or unavailable; a handler guard also prevents programmatic submission. Retry is offered on history-load failure. Regression holds the history response, verifies both control types are disabled, then releases previously saved answers and verifies restoration. Existing save/retry/account-change tests retain all assertions; their harness now supplies the explicit history-ready prerequisite, with a new negative no-write test.
+- 108/108 source tests, TypeScript and preview build pass. 17/17 mocked browser scenarios pass locally and on hosted `14dae44`; backend HTTP fulfilled in-browser, with no real mail. No unhandled main-page exceptions in these scenarios.
+- On hosted `b6d9939`: 4/4 actual private-PDF desktop/mobile signin/reload render checks and 5/5 review/assignment/retry/account-switch flows pass. Tutor notes and two private images save and survive reload. Enrolled student decodes all 3 private images. On `3f01eca`: representative Year 9/10 chapter access, flag persistence/withdrawal and previously saved 8 core answers/completion reread pass. This is representative fixture acceptance, not all-section or production coverage.
+- Eight fresh preview read-boundary API checks pass: anonymous denial, unenrolled denial, cross-student profile denial, enrolled student/tutor reads. Earlier write-boundary/private-file permission/API and tutor diagram-save checks are retained explicitly as previous evidence because no backend/policy code changed. They were not falsely counted as fresh API tests. Real email evidence is retained; no repeat messages needed.
+
+### Failing / unresolved
+
+- No failing check in the final named source/browser runs. Five regression cases were observed failing before their fixes. An initial review-runner timeout selected another synthetic question that became due after the date changed; fixture scheduling was isolated and unchanged assertions then passed. Original next_due values restored; synthetic review attempts/monotonic revisions retained.
+- Physical iOS/Safari, time-based token expiry, real overnight rollover and full hosted visual/content parity remain unverified. Earlier WebKit launch failed because its executable is absent; no physical-device result is claimed.
+- Production email/DNS verification, backup/recovery, build/Auth configuration, inherited security warnings and owner launch approval remain outside or blocked in this preview task. These passing results do not establish launch readiness.
 
 ## Owner dashboard observations — 7 November 2026
 
@@ -76,7 +95,7 @@ These are information blockers, not a new request for blanket production permiss
 
 Stop on wrong backend hostname, failed authentication/authorization boundaries, content-baseline differences not attributable to approved activity, missing resources or failed saving. Restore the previous frontend version first; do not overwrite new student work with an old database. The prepared backend rollback script restores only the two original definitions and guards against drift. It is not a data backup and restores legacy timeout behavior; use only when required and authorized. Roll back any changed Auth/route settings using captured originals. Database/Storage restoration requires separate impact review and approval.
 
-No promised downtime/cost: these depend on the unverified domain/integration, backup and email configuration. No paid service or DNS action has been taken. Current active frontend version prefix 3862f733 was captured from the owner dashboard, serving 100% traffic. This is a frontend rollback candidate, not a verified database/Storage recovery plan; recovery readiness remains **not passing**.
+No promised downtime/cost: these depend on the unverified domain/integration, backup and email configuration. No paid service was purchased. Owner added only the three explicitly approved email-verification DNS records; website routing is unchanged. Current active frontend version prefix 3862f733 was captured from the owner dashboard, serving 100% traffic. This is a frontend rollback candidate, not a verified database/Storage recovery plan; recovery readiness remains **not passing**.
 
 ## Evidence
 

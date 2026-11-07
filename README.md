@@ -22,6 +22,6 @@ Do not run the historic `supabase/schema.sql` or other setup files on production
 
 - `pnpm test:config`: backend isolation and key validation.
 - `pnpm exec tsc --noEmit --incremental false`: TypeScript check.
-- `pnpm test`: existing application checks plus configuration tests. All 105 current source tests pass at the prepared application baseline; see `docs/mm-preview-status.md` for exact limits and pending acceptance checks.
+- `pnpm test`: existing application checks plus configuration tests. All 108 current source tests pass at the prepared application baseline; see `docs/mm-preview-status.md` for exact limits and pending acceptance checks.
 
 Source provenance: Sites commit `116e72b356169832f15c18529d77d0072361ab57`, imported on top of GitHub main `97ab688d9ef138429fd05d78678e2d1236be9957`. PR #2 was not merged or used as the migration baseline. Private backups and uploaded learning content remain outside this repository.

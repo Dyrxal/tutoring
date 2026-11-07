@@ -2,6 +2,10 @@
 
 This branch moves the verified published Sites application into the existing GitHub/Cloudflare build workflow. It does not release production or change DNS. Existing application UI, learning templates and functionality are preserved. Midnight redesign work remains separate.
 
+## Latest preview acceptance — 7 November 2026
+
+[Single current checklist](mm-launch-readiness.md#preview-acceptance-follow-up--7-november-2026) and [evidence](mm-acceptance/preview-final-followup.json). Candidate `14dae44` fixes expired-confirmation guidance, false catalogue-empty/loading errors and submissions racing saved-history restoration. 108 source tests and 17 local/hosted mocked scenarios pass. Named real preview PDF/review/editor/student fixture results and reused permission evidence are distinguished in the current checklist. No production access, DNS changes or email sends in this follow-up. Older checkpoints below are historical.
+
 ## Current status — launch preparation, 7 November 2026
 
 **Use the [single current completion checklist](mm-launch-readiness.md)** for status, owners, evidence and exact remaining input. All following checkpoints are historical unless reaffirmed there. Owner dashboard screenshots now show localhost Site URL/no redirects, custom SMTP off and no project backups on the Free plan; production Auth/recovery readiness remains blocked. Cloudflare screenshots now confirm main builds enabled, existing notationeducation.online custom domain and no production build variables; exact build-time backend settings are proposed in the current checklist, not applied. No DNS change is presently proposed. Retain existing Supabase/content: no data import is part of cutover. Authorized read-only comparison now confirms columns/constraints/policies/triggers/table grants match preview, and only four logical conflict codes differ across the two review RPC definitions. See [evidence](mm-acceptance/launch-preparation.json). No production writes, emails, merge, production deployment or DNS changes in this preparation.
