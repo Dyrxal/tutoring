@@ -105,3 +105,9 @@ User supplied the three sending records. See [the exact reviewed proposal](mm-la
 ## DNS approval update
 
 Owner approved the three exact Resend sending records. No repeat permission needed. Actual execution blocked by absent Cloudflare connection/desktop-control tool; owner dashboard steps provided. DNS not yet changed/verified by assistant. No need to create a broad connection. Manual-backup planning continued independently: [backup preparation](mm-launch/manual-backup-plan.md).
+
+## Owner DNS execution / verification pending
+
+Owner added the three approved records through Cloudflare. Initial CNAMEs were proxied; later screenshot shows both changed to DNS only. Zone total is now 5 records, versus the original 2 website records. DKIM TXT name matches; content is visually shown quoted by Cloudflare. Full live authoritative DNS readback has not been performed by the assistant.
+
+Latest Resend screenshot shows domain status Pending, Checking DNS and DKIM Pending. It also displays Resend Forge Disabled, so do not infer sending readiness merely from the earlier Forge-target proposal. If Pending persists, compare the full currently expected Resend records (including all sending rows) with the exact Cloudflare values before changing anything. DNS verification is not passing yet; no API key or production SMTP activation is requested at this stage.

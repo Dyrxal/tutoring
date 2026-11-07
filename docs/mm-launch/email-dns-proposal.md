@@ -25,3 +25,7 @@ Conflict check is now complete; DNS additions remain unapplied. Original migrati
 Owner explicitly approved these three DNS additions, then continuing migration. No further approval is needed for that exact scope. Approval does not cover website-record edits, root MX/DMARC, broad OAuth, production SMTP settings, merge or deployment.
 
 Execution discovery found Cloudflare DNS tools but no active Cloudflare connection (Composio session `this`). Wrangler was previously unauthenticated; environment reports no credentials/identities. Shared desktop is enabled/state unknown for environment `ccarenv_b64_Y2NhcmVudl9hYzg2YTk5MDBiOTg4MTkxODZjZWFlODNjYTBlNzM5Mg`, but no desktop js/control tool is offered. No broader connection was created, no API write attempted and no uncertain write exists to retry. Owner dashboard entry is the available narrow path. After entry, Resend DNS verification and exact record readback are required; neither is claimed complete yet.
+
+## Owner execution observation
+
+Subsequent owner screenshots show all three additions, five zone records total, and both CNAMEs corrected from Proxied to DNS only. Resend currently shows Pending/Checking DNS, DKIM Pending and Forge Disabled. Approval is executed by the owner, but verified sending remains pending. Existing prior access-blocker statements describe assistant API access, not the current existence of owner-created records. If verification stalls, obtain current full expected records and compare before reapplying or replacing anything; no duplicate additions.
