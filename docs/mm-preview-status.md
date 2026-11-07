@@ -13,7 +13,16 @@ This branch moves the verified published Sites application into the existing Git
 - 94 tests: **91 pass, 3 fail**, matching the three existing published-source failures. All 9 new backend-isolation tests pass. The existing failures are Year 10/99-section identification, Year 9/97-section rollout, and the next-tasks test expecting a UI component absent from the published source. They were not hidden or repaired by changing application behavior.
 - Local baseline/migration render comparisons: login, student dashboard and lesson at **1440×1000** and **390×844**. Each matched comparison has **0 changed pixels**; no page exceptions or horizontal overflow. These are comparisons of local builds with mocked synthetic requests, not proof of a hosted end-to-end match. See [screenshots and machine-readable results](mm-comparisons/results.json).
 
-## Current acceptance — live preview email, 7 November 2026
+## Current acceptance — confirmation retry blocked, 7 November 2026
+
+Continued from `432f716`. The user explicitly approved one additional Gmail alias for a fresh preview signup to investigate confirmation automatic navigation. One hosted signup request to preview `lcddnpafrkbwsrhqexqe` returned **HTTP429 / `over_email_send_rate_limit` / “email rate limit exceeded”**, displayed by the app. No success/session returned. [Redacted evidence](mm-acceptance/email-confirmation-retry.json).
+
+- **Passing:** request remained on the allowed branch and preview backend; requested confirmation redirect was the branch root. The UI surfaced the provider error.
+- **Blocked:** fresh confirmation delivery and automatic sign-in reproduction cannot proceed until the preview sender rate limit resets. No exact reset time was supplied in the captured response. The alias's eligibility for default SMTP delivery remains unverified; rate limiting does not establish acceptance or rejection of that recipient.
+- **Unresolved:** earlier first-use confirmation automatic navigation timeout, full Site URL fallback value and other acceptance gaps remain as recorded below. Prior successful signup/reset results are unchanged.
+- Stopped after one request: no send retries, no broad OAuth connection, no sender/rate-limit/settings changes, no production access, merge, production deployment or DNS changes. Do not bypass the quota with alternate recipients or team changes. The approved alias can be retried later without requesting address approval again.
+
+## Previous acceptance — live preview email, 7 November 2026
 
 Continued from `cdf4bc8`. User approved the exact test inbox and updated preview Auth URLs in the dashboard. [Redacted live evidence](mm-acceptance/email-live.json). This section supersedes earlier missing-inbox/allowlist blockers; all backend access remained on `lcddnpafrkbwsrhqexqe`. No broad OAuth connection, production access, merge, production deployment or DNS change.
 

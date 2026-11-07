@@ -1,0 +1,19 @@
+{
+  "phase": "signup",
+  "status": 429,
+  "error_code": "over_email_send_rate_limit",
+  "message": "email rate limit exceeded",
+  "has_user": false,
+  "has_session": false,
+  "redirect": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/",
+  "ui": "email rate limit exceeded",
+  "date": "2026-11-07",
+  "review_base": "432f716",
+  "project_ref": "lcddnpafrkbwsrhqexqe",
+  "recipient": "explicitly approved Gmail alias (redacted)",
+  "real_signup_requests": 1,
+  "subsequent_send_retries": 0,
+  "confirmation_followup": "blocked before email delivery by sender rate limit; earlier automatic-signin timeout remains unresolved",
+  "settings_changed": false,
+  "production_access": false
+}

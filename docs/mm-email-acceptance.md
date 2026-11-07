@@ -1,5 +1,9 @@
 # Email signup, confirmation and password reset
 
+## Latest follow-up — sender rate limit
+
+A fresh Gmail alias was explicitly approved for confirmation investigation. The single preview signup request returned HTTP429 `over_email_send_rate_limit`, surfaced in the UI. No automatic resend or configuration change followed. Delivery/alias eligibility and the original confirmation-navigation issue remain unverified. Retry the same approved alias after the preview sender quota resets; no exact reset time was established. [Evidence](mm-acceptance/email-confirmation-retry.json).
+
 ## Latest live results — 7 November 2026
 
 The user approved an inbox and updated only preview Auth URLs. Both emails delivered. Real signup/unconfirmed-login denial, account confirmation/profile, fresh sign-in/reload, recovery redirect/reload/update/signout, old-password denial/new-password success and consumed-link denial were verified on preview only. **First-use confirmation automatic navigation timed out and remains unresolved**, despite persisted confirmation and successful fresh login. See [current checklist](mm-preview-status.md#current-acceptance--live-preview-email-7-november-2026) and [redacted evidence](mm-acceptance/email-live.json).
