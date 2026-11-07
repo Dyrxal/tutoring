@@ -100,4 +100,4 @@ Owner can create a free account and add the proposed domain to obtain its DNS ve
 
 ## Exact Resend DNS values received
 
-User supplied the three sending records. See [the exact reviewed proposal](mm-launch/email-dns-proposal.md). Existing-record conflict check is pending; request Cloudflare zone DNS Records filtered by auth before final approval. No DNS record, optional DMARC policy, SMTP setting or website route has been changed.
+User supplied the three sending records. See [the exact reviewed proposal](mm-launch/email-dns-proposal.md). Conflict check passed from owner screenshot listing all 2 zone records (apex Worker and www CNAME); none matches proposed email names. Three email additions still await explicit DNS approval; website records remain unchanged. No DNS record, optional DMARC policy, SMTP setting or website route has been changed.
