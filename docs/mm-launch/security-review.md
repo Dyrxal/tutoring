@@ -2,6 +2,31 @@
 
 Scope: existing reviewed metadata, fresh read-only retained-project metadata/role inspection, static review of the 25 public function definitions, and [disposable synthetic database tests](../mm-acceptance/local-database-rehearsal.json). No production policy, role, data, password or private object was changed/read. This is a bounded migration review, not a complete penetration test or a claim that every RPC/argument combination is secure.
 
+## Current staged remediation — 8 November 2026
+
+The findings below are historical read-only production evidence, not a fresh production capture. Current live ACL/definition drift cannot be checked in this session: no Supabase SQL tool or approved database route is available. No production permission, role, data or provider setting was changed.
+
+Prepared [narrow forward SQL](security-privileges.forward.sql) and [exact grant rollback](security-privileges.rollback.sql):
+
+- Remove only the four documented redundant PUBLIC EXECUTE grants on `is_tutor()`, `enrolled_in(uuid)`, `can_read_lesson(uuid)` and `create_profile()`. Keep explicit anon/authenticated EXECUTE on the three required read/authorization helpers.
+- Remove direct anon/authenticated EXECUTE on `create_profile()`; retain its trigger and service/owner access. This is a trigger function, not an application RPC. Direct invocation was not a demonstrated privilege-escalation path; removing unnecessary grants narrows its ACL.
+- Revoke only app-role TRUNCATE on `enrolments`, `lesson_progress`, `practice_attempts`, `profiles`. The earlier owner-content package covers the four curriculum tables. Combined, the eight documented app-role TRUNCATE grants per role are removed without altering normal DML or profile column grants.
+
+This package requires owner-content forward first and verifies that a single tutor remains and app roles cannot TRUNCATE curriculum. On rollback, undo security first, then owner-content. Each transaction has bounded timeouts and explicit original/post-change ACL guards; unexpected inherited trigger/TRUNCATE access aborts forward. Rollback restores the specific original grants, including inherited findings, rather than granting new permissions indiscriminately. Later admin changes require re-review before rollback.
+
+No SECURITY DEFINER body, signature, search path, policy, function owner, service_role grant, schema or application feature changes. Do not blanket-revoke helper access: RLS and RPCs depend on it. Do not relocate all definers solely to silence an advisory.
+
+### Evidence classification and unresolved decisions
+
+- **Confirmed SQL-level excess privilege:** documented app-role TRUNCATE grants bypass RLS. Isolated tests check rejection after revocation. No public HTTP endpoint executing arbitrary TRUNCATE was demonstrated, and no destructive production test was attempted.
+- **Exposure advisory / unnecessary grants:** PUBLIC helpers duplicate explicit app-role access. SECURITY DEFINER advisory exposure remains after this narrowing because necessary definer helpers still exist; these changes are not a complete security audit or proof every RPC argument is safe.
+- **Deferred privilege decisions:** TRIGGER and REFERENCES grants remain as recorded. They are not needed by the normal frontend, but no web exploit was demonstrated and this task does not revoke every advisory grant. Additional removal needs a scoped dependency/ACL review.
+- **Provider setting/plan limitation:** current production leaked-password protection availability/enabled state remains unknown. Obtain non-secret dashboard readback and a supported-plan decision; no purchase, claim of Free-plan support, or password-policy change.
+- **Live evidence and release tooling:** refresh production metadata/roles/ACLs before approval. The preview-derived metadata contract still represents the original ACLs; the existing strict comparator must account for only the exact approved privilege deltas before final release, without weakening drift checks or silently accepting unrelated differences. Contract/tooling changes are not implemented here.
+- **Recovery and enrolment:** backup remains owner-deferred with no verified backup. Tutor-managed enrolment is preserved. Neither decision is cleared by these synthetic security tests.
+
+The existing network-isolated local runner now applies the real security package inside the owner-only scenario, verifies required owner/student content/file actions and helper access, verifies profile creation still defaults to student through the trigger, rejects TRUNCATE for both app roles, and checks repeated-package guards and exact schema/ACL/data rollback. Auth/Storage are local stubs, not the hosted services. Final results are recorded in the current checklist and [local evidence](../mm-acceptance/local-database-rehearsal.json).
+
 ## Passing evidence
 
 - Fresh production metadata matches the reviewed contract's effective app-role grants, policies, columns, constraints, triggers and definitions, except the already prepared four legacy conflict codes and four explicitly recorded PUBLIC ACL differences. No unexpected widening was found in this comparison.
@@ -18,3 +43,5 @@ Scope: existing reviewed metadata, fresh read-only retained-project metadata/rol
 4. **Tutor-managed enrolment:** profile creation does not auto-enrol by year; local tests verify this remains true. Existing enrolment behavior is preserved. Any promise of automatic year access needs explicit owner acceptance or a separately scoped behavior change, not bootstrap SQL on production.
 
 The `security_acceptance` and `enrolment_behavior` release gates remain unverified. The concrete evidence narrows the decision; it does not accept the risks on the owner's behalf or authorize production changes. Retain the existing protected original definitions/grants and fresh baselines before any later approved hardening.
+
+Security package verification at 2026-11-08T10:03:44.721Z: **45 isolated checks passed, 0 failures; 144 unit tests passed, 0 failures**. Evidence input hashes match the current staged SQL and runner. All run-created containers/volumes were removed. No production or hosted-preview access. Security forward SHA-256 `4c53f4bb685775addb60a0a9112159c7340bdb6861a1f01df0def3a119a4d70c`; rollback SHA-256 `52eb81fb11206f75a3f1b28ec024aa9b7b8c851424ee52d836d7008fa315b6de`.

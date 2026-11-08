@@ -2,6 +2,187 @@
 
 Authoritative current status; older checkpoints in mm-preview-status.md are historical. Owner scope: retain current content and production Supabase, no new curriculum or redesign. Tested executable candidate **`f21dabf2e021a0dcef439bc1329bb51ebc043081`** includes the completed preview fixes and release-preflight tools. The final evidence/documentation commit adds no application changes. Historical preview evidence at `14dae44` and launch-package evidence at `af9dc66` remain applicable within their stated limits. Production read-only inspection authorized; production writes, merge, deployment and DNS await final approval. No emails were sent during the preflight-tooling preparation; the later preview Resend recovery check is recorded below.
 
+## Current owner direction — launch preparation only
+
+Review branch inspected at `8dd72888745a73cf0e0a412c0b1825d54dbbddd7` on 8 November 2026 (Australia/Sydney). The restored checkout was clean on `work` at `97ab688d9ef138429fd05d78678e2d1236be9957`; the fetched review branch matched the expected SHA and was selected without resetting or overwriting local work. The recorded tested executable candidate remains `f21dabf2e021a0dcef439bc1329bb51ebc043081`; its test/build results below are historical and were not rerun in this inspection.
+
+**Backup setup and real restore rehearsal are deferred by the owner. No verified database or private Storage backup exists.** Do not resume backup setup or purchases. This deferral does not establish recovery readiness or authorize launch. The existing automated gates remain blocked, with the deferral recorded in their evidence; no new gate status or release bypass was introduced. This current direction supersedes the older backup-start instructions below.
+
+Remaining work, not implemented by this inspection:
+
+1. Prepare owner-only curriculum/content management using existing permissions while preserving student answers, progress and permitted profile actions. Owner email supplied; production UUID/role snapshot and live enforcement still need verification.
+2. Prepare production Auth URLs, email templates, SMTP and rate limits; preview Resend evidence does not verify production configuration.
+3. Prepare production-only Cloudflare build settings and verify the resulting artifact targets the retained production project.
+4. Recheck and validate the existing guarded two-function review fix and rollback; do not apply it yet.
+5. Resolve or obtain explicit decisions on the recorded security findings.
+6. Verify relevant device/session/review behaviour and confirm current tutor-managed enrolment; identify unverified physical-device/time cases.
+7. Refresh release evidence, establish the full frontend rollback version, and prepare exact production smoke-test scope and one final approval package.
+
+No production settings, permissions, records, deployments or preview data were changed. This inspection changes documentation only and does not approve merge, deployment, production writes or emails.
+
+## Owner-only content permissions — staged, not applied
+
+The owner supplied their existing sign-in email privately in this conversation. It has not yet been resolved to a production UUID or verified against current account roles; no live account-inspection tool/database route is available in this session. No owner UUID or account list was guessed.
+
+The smallest staged approach reuses `profiles.role='tutor'` and `is_tutor()`. Curriculum table policies, tutor mutation RPCs and uploads/deletions in the three private content buckets already use that gate. [Forward SQL](mm-launch/owner-content.forward.sql) retains the confirmed owner as tutor, demotes only other UUIDs in the reviewed original tutor snapshot, and revokes ordinary app-role TRUNCATE on `courses`, `modules`, `lessons`, `questions`. No application code, new role, helper, table, policy rewrite or dependency is added. Other tutors consequently lose tutor-wide reads, enrolment management and tutor RPC access; they need ordinary enrolments for student access. Student answer/progress writes, permitted profile updates and enrolled content/private-file reads keep their existing policies. Database-owner/dashboard/service-role access remains administrative access outside LMS roles.
+
+[Rollback SQL](mm-launch/owner-content.rollback.sql) restores only the originally demoted tutor UUIDs and original eight direct TRUNCATE grants. Both packages use a transaction, bounded locks/timeouts, unique owner email/UUID/role checks, the exact original tutor UUID list, helper/RLS checks and expected role/grant-state checks. Forward verifies the original direct grants are non-grantable and issued by the executing table owner, and aborts if inherited TRUNCATE remains. Rollback aborts on unexpected current tutor roles or missing accounts. These are present-state guards, not an audit log capable of detecting every intervening role change; re-review the original snapshot and later administrative activity before rollback.
+
+### Remaining production prerequisite and operator inputs
+
+Do not execute the forward/rollback packages yet. From the verified production project `lmuwsjjrqmmmtmxjvqln`, use an approved read-only metadata path to resolve the supplied email case-insensitively in `auth.users` and `public.profiles`; require exactly one matching UUID and existing tutor status. Capture the current tutor UUID array, check live policy/function/grant drift against the reviewed contract, and retain that original snapshot for review and rollback. If the account is missing/not tutor, or another tutor needs to retain tutor-wide access, stop and revise the proposal. No password or student-answer query is required.
+
+The packages require explicit session inputs, set separately before the selected package in the same database session:
+
+```sql
+-- Replace placeholders only after the production account/role review and approval.
+SELECT set_config('mm.owner_id', '<verified owner UUID>', false);
+SELECT set_config('mm.owner_email', '<confirmed owner sign-in email>', false);
+SELECT set_config('mm.expected_tutors', '["<original tutor UUID including owner>"]', false);
+```
+
+The array must include every original tutor UUID exactly once; reuse the same original inputs for rollback. Missing inputs fail before role changes. These settings are assertions, not project authentication: independently verify the selected project/connection. Do not run the synthetic bootstrap/seed against production. Final production write approval remains separate.
+
+### Isolated verification
+
+The existing disposable local runner now exercises the shipped owner forward/rollback files with a synthetic owner, second tutor, enrolled student and other student. It checks curriculum mutations, tutor RPC denial, uploads/deletions in all three private buckets, app-role TRUNCATE denial, preserved student actions, owner access, row/schema/grant restoration, and fail-closed missing/wrong owner, tutor-list drift and inherited-privilege cases. Auth/Storage are minimal local stubs; no hosted account, file bytes, email or actual Storage service is tested. The first new assertion failed against a no-op forward package because the non-owner remained tutor; production was untouched. Final run at 2026-11-08T07:26:29.033Z passed **40 local checks, 0 failures**; `pnpm test` passed **144 tests, 0 failures**. Input hashes match the shipped files. Results are recorded in the linked [local evidence](mm-acceptance/local-database-rehearsal.json). This is staged-package evidence, not evidence of installed production permissions.
+
+## Production Auth and email — proposed settings, not applied
+
+Prepared on 8 November 2026 from the application callbacks, historical production dashboard observations, [verified preview Resend evidence](mm-acceptance/preview-resend-smtp.json), and current public upstream Supabase dashboard/docs source. No production settings were read live or changed, no credentials accessed, and no email sent. Historical production observations remain Site URL `http://localhost:3000`, empty redirects and custom SMTP disabled; these need current non-secret readback before applying a reviewed diff. Preview sender recovery passed by owner report, with its single request independently observed; do not repeat that preview test. Older DNS Pending/Forge Disabled notes below are historical and superseded by the later verified sender evidence.
+
+| Setting | Proposed production value | Verification / constraint |
+|---|---|---|
+| Site URL | `https://notationeducation.online/` | Official apex origin; not localhost or a preview host |
+| Redirect allowlist | `https://notationeducation.online/` and `https://notationeducation.online/?auth=recovery` | Exact paths generated by `app/page.tsx` and `app/password-recovery.ts`; no wildcard or preview callback |
+| Custom SMTP | Enabled after final settings approval | Existing Resend service, no new OAuth connection, provider or DNS edits |
+| Sender address | `no-reply@auth.notationeducation.online` | Reuse the preview-verified sender/domain |
+| Sender display name | `Notation Education` | Proposed display text; actual existing preview display name not recorded |
+| SMTP host / port | `smtp.resend.com` / `465` | TLS transport; reuse preview configuration |
+| SMTP username | `resend` | Provider's SMTP username, not the owner's login email |
+| SMTP password | Existing appropriate scoped Resend sending key, entered privately in provider settings | No value in this repository/chat. Confirm permission/domain scope and availability; do not rotate, create, copy through chat or expose the saved key |
+| Confirm-email requirement | Preserve enabled email confirmation | Do not disable confirmation to bypass delivery; inspect the actual setting before final diff |
+| Project email send rate | Initial proposal **30 emails/hour** with custom SMTP | Official documented initial custom-SMTP limit; not a measured traffic requirement or verified current value. Review existing value and expected signup/reset traffic before changing |
+| Minimum interval per user | Initial proposal **60 seconds** with custom SMTP | Dashboard setting is `Minimum interval per user`; inspect current value and retain a more restrictive value pending review |
+| Other login/refresh/OTP verification limits and email-token expiry | Preserve existing settings pending non-secret inspection | No unsupported default values or broad limit increases proposed |
+
+The documented Resend Free limits previously observed were 100/day and 3,000/month; these are historical, not current account readback. Check the actual account plan, remaining quota and combined preview/production use before rollout. A Supabase hourly limit does not enforce a provider daily/monthly quota. Keep email click/link tracking off for Auth links. Do not buy a plan or add a custom mail queue/hook to solve a configuration problem.
+
+### Confirmation and recovery templates
+
+Inspect the current production **Confirm signup** and **Reset password** templates before proposing replacements; preserve compatible existing branding/copy. Their action links must use the Supabase verification URL `{{ .ConfirmationURL }}`. A bare `{{ .SiteURL }}` or `{{ .RedirectTo }}` link does not verify the token. Do not introduce a custom `/auth/confirm` endpoint, manually compose token links, or paste real sent email links/tokens into chat. Existing client code handles Supabase's session callback and recovery event on the root page.
+
+If a template is incompatible, these minimal replacements are prepared for review only (no code change):
+
+Confirm signup — subject: `Confirm your Notation Education account`
+
+```html
+<h2>Confirm your email</h2>
+<p><a href="{{ .ConfirmationURL }}">Confirm email address</a></p>
+```
+
+Reset password — subject: `Reset your Notation Education password`
+
+```html
+<h2>Reset your password</h2>
+<p><a href="{{ .ConfirmationURL }}">Choose a new password</a></p>
+<p>If you did not request this, you can ignore this email.</p>
+```
+
+With the proposed allowlist and current application requests, confirmation returns to `https://notationeducation.online/`; recovery returns to `https://notationeducation.online/?auth=recovery`. Template compatibility is not yet established from the existing screenshots. Do not change unrelated invite, magic-link, email-change or security-notification templates.
+
+### Dashboard inspection — one step at a time
+
+Public upstream dashboard routes/menu were checked; authenticated deployed UI and current project values remain unverified. Production project must be `lmuwsjjrqmmmtmxjvqln` throughout.
+
+1. **Current next step:** [Authentication → Notifications → Emails → Templates](https://supabase.com/dashboard/project/lmuwsjjrqmmmtmxjvqln/auth/templates). Open **Confirm signup** and provide only its subject/template HTML (or screenshot of the editor). Do not save, send a test email or share a real email/token. After reviewing it, inspect **Reset password** the same way.
+2. Then inspect [URL Configuration](https://supabase.com/dashboard/project/lmuwsjjrqmmmtmxjvqln/auth/url-configuration): current Site URL and full redirect list only. Preserve legitimate existing production callbacks through transition; any removal requires review.
+3. Then inspect [Emails → SMTP Settings](https://supabase.com/dashboard/project/lmuwsjjrqmmmtmxjvqln/auth/smtp): enabled state, sender address/display name, host/port/username only. Keep password/API-key fields hidden. Existing scoped credential availability is a private owner check, not a request for its value.
+4. Then inspect [Rate Limits](https://supabase.com/dashboard/project/lmuwsjjrqmmmtmxjvqln/auth/rate-limits): displayed limits, units and minimum per-user interval. Check provider quota separately without exposing account billing/payment details or keys. Inspect email confirmation/token expiry where actually exposed; do not invent a control if it is absent.
+
+Remaining blockers: current template/URL/SMTP/limit readback; current sending-domain/quota/key-scope check; canonical `www` to apex behaviour (the app generates callbacks from the browser origin); final settings/deployment sequencing approval; and an approved minimal production confirmation/recovery acceptance test after settings are applied. Existing preview acceptance is retained but cannot prove production delivery. No new application code, dependencies or test tooling is needed for this preparation.
+
+Sources checked: [Supabase email templates](https://supabase.com/docs/guides/auth/auth-email-templates), [custom SMTP](https://supabase.com/docs/guides/auth/auth-smtp), [rate limits](https://supabase.com/docs/guides/auth/rate-limits), and public upstream `apps/studio/components/layouts/AuthLayout/AuthLayout.utils.ts`, `pages/project/[ref]/auth/templates/index.tsx`, `auth/smtp.tsx`, `auth/url-configuration.tsx`, `auth/rate-limits.tsx`, plus `components/interfaces/Auth/RateLimits/RateLimits.tsx`. Retrieved from the public Supabase GitHub source through already-permitted HTTPS hosts; no network policy changed.
+
+## Cloudflare migration build — prepared, not deployed
+
+[Fresh build-only evidence](mm-acceptance/cloudflare-build-preparation.json) records the local production build, archived artifact rescan and restored preview build. Remote Git refs were checked: review branch remains `8dd72888745a73cf0e0a412c0b1825d54dbbddd7`; `main` remains `97ab688d9ef138429fd05d78678e2d1236be9957`. The recorded Cloudflare integration is `Dyrxal/tutoring`, production branch `main`, Worker `notation-education-lms`, root `/`, build `npm run build`, deploy `npx wrangler deploy`; these are historical owner dashboard observations, not a fresh authenticated Cloudflare read. No Cloudflare credential/management tool is available in this session. Do not merge to verify integration because a merge may trigger deployment.
+
+### Exact proposed production build settings
+
+Apply only after final settings approval in **Worker → Settings → Builds → Production → Variables and secrets** (the production build scope, not Previews Base or only Worker runtime bindings). Preserve preview variables and commands unchanged. Existing production build values must be read back before editing.
+
+| Name | Proposed value |
+|---|---|
+| `NEXT_PUBLIC_LMS_TARGET` | `production` |
+| `NEXT_PUBLIC_SUPABASE_URL` | `https://lmuwsjjrqmmmtmxjvqln.supabase.co` |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Existing production publishable client key, selected/entered privately; no literal value recorded here |
+| `NEXT_PUBLIC_DESIGN_PREVIEW` | `false` (or absent if it is not inherited as true; explicit false is the reviewed choice) |
+| `NODE_VERSION` | `24.19.0`, matching this successful local rehearsal; repository requirement is Node `>=22.13.0` |
+
+The repository already pins `packageManager: pnpm@11.25.0` and contains `pnpm-lock.yaml`; do not add another lockfile, version file or duplicate pin. Local pnpm is `11.25.0`. Current public Cloudflare build-image docs confirm `NODE_VERSION` support, lockfile-based package-manager selection and `packageManager` precedence over `PNPM_VERSION`; no extra `PNPM_VERSION` override is proposed. Do not confuse the Node build tool version with the Worker's compatibility date (`2026-05-15` in tracked Wrangler config); no runtime/date upgrade is proposed.
+
+Retain the existing `npm run build` and `npx wrangler deploy` commands: the build script invokes the committed `vinext build`, and the repository supplies Wrangler `4.92.0`. Preview deploy commands remain unchanged. Current Cloudflare logs must confirm pnpm `11.25.0`, the intended Node version and installation from the committed lockfile. Required install semantics are `pnpm install --frozen-lockfile`. If automatic installation cannot establish those semantics, review an explicit build-command change to `pnpm install --frozen-lockfile && pnpm build` before applying it; do not invent an unavailable separate Install command control or modify the lockfile to work around a failed install.
+
+### Verification and limits
+
+- The retained pre-migration frontend contains one existing production publishable key. It was selected in process memory and accepted by a read-only request to production `/auth/v1/settings` (HTTP 200); response contents were suppressed. No key was printed or copied to Git and no student/private records were requested. No service-role key was used.
+- `pnpm build` succeeded with production variables scoped only to its child process. The two backup secret variables were omitted from that build process. Existing asset checks passed **5/5** across **100 served files**, with the intended production hostname, zero unexpected Supabase hosts and zero supported secret-exposure findings.
+- The production artifact was copied to a new private temporary directory and rescanned successfully with an identical artifact digest. It was not served or deployed.
+- The local build was restored to preview using unchanged preview defaults; preview asset checks passed **5/5**. No production variables were persisted to shell files, `.env`, Vite defaults or preview settings.
+- **Candidate provenance remains unverified:** the earlier permission-runner changes are uncommitted and included in the existing input digest, so current inputs do not match HEAD. The strict preflight guard was preserved; no clean-candidate manifest was fabricated. These are local build/scan results, not a verified production release artifact. Commit reviewed changes and rerun the existing guarded `preflight build`/archive checks before final approval.
+
+Remaining blockers: authenticated Cloudflare production settings/build-log readback; final candidate commit/provenance; full prior frontend version/rollback availability; official-domain smoke testing; and explicit final settings/merge/deployment approval. The existing production build gate remains blocked despite passing local scans. No new application code, dependencies or build tooling was added.
+
+**Owner reminder for final launch approval:** production Auth/email template/settings inspection is postponed at the owner's request, not completed or waived. Resume that inspection before final release approval using the production Auth/email section above. No reminder time was specified; this is a checklist reminder, not a scheduled notification.
+
+Sources checked through already-permitted public GitHub HTTPS: Cloudflare [build image](https://developers.cloudflare.com/workers/ci-cd/builds/build-image/) and [build configuration](https://developers.cloudflare.com/workers/ci-cd/builds/configuration/), plus the tracked repository configuration. No environment network setting was changed.
+
+## Review-function conflict fix — unchanged package verified locally
+
+[Current package review](mm-acceptance/review-package-verification.json) and [fresh isolated execution evidence](mm-acceptance/local-database-rehearsal.json): **43 passing local checks, 0 failures**, plus **144 passing unit tests, 0 failures**. Existing tests were extended only to exercise stale revision and changed-question errors in original, installed and restored states. No application code, unrelated migration or SQL-package change was made.
+
+Exact existing files:
+
+- [Forward](mm-launch/review-conflicts.forward.sql), SHA-256 `2164ce7f88ddd913b75e0af3e1d0ce2fe7ae021a32b693838a62a3e5553cb3d7`.
+- [Rollback](mm-launch/review-conflicts.rollback.sql), SHA-256 `454aa94ebbcaab6b5955f50e809a46cba2b7de36488ab3313816326b55bb48e1`.
+
+The forward package replaces only four explicitly raised logical-conflict SQLSTATEs (`40001` → `PT409`) in `public.note_mistake_review_help(uuid,uuid)` and `public.submit_mistake_review(uuid,uuid,uuid,integer,text,boolean,bigint,jsonb)`: missing schedule in each function, stale revision and changed question in submission. No other function body text changes. PostgreSQL-generated serialization failures are not rewritten or caught by a new handler. Existing actor/enrolment/idempotency checks, function signatures, security settings, ownership and ACLs remain intact. The opposite package's definition guards exactly match the definitions installed by each direction. Both packages retain transactions, 5-second lock timeout, 60-second statement timeout and full definition-drift guards.
+
+Synthetic execution confirms all four conflict paths return `40001` originally and `PT409` after forward; exact rollback restores original definitions/schema/owners/ACLs and every synthetic row digest. Repeated forward/rollback and unexpected definitions abort. Student boundaries remain tested; no real student answer, private file or password input is used. No production/hosted preview SQL was executed.
+
+**Fresh live drift check is blocked, not passed.** Historical authorized production metadata at `2026-11-07T12:48:32.975902+00:00` and the associated review result matched the forward preconditions, as recorded in `independent-verification.json`. This is historical evidence, not a current production capture. The checked-in metadata contract is a preview capture and must not be relabelled as production. Current session exposes no Supabase SQL tool and has no approved database TCP grants/VPN; no connection/policy widening was attempted.
+
+The existing capture generator produced `/tmp/mm-review-verification/production-metadata.sql` using:
+
+```sh
+pnpm --silent preflight sql --kind metadata --project-ref lmuwsjjrqmmmtmxjvqln
+```
+
+This query uses a read-only transaction, 30-second timeout, and production database/system-identifier guard; it returns schema/function/policy/grant metadata rather than student rows. Run it only through an approved production read-only path (for example, the verified production dashboard SQL Editor). Normalize the captured JSON with the existing `preflight snapshot --kind metadata --project-ref lmuwsjjrqmmmtmxjvqln` command, then run the existing `preflight review --actual FRESH_PRODUCTION_METADATA_JSON --direction forward --out NEW_REPORT_PATH` and metadata comparison. Do not alter captured timestamps, widen freshness windows to pass, or substitute preview/synthetic definitions.
+
+Readiness: package unchanged and verified for later review; production execution remains unapproved and live drift unverified. Before execution, obtain fresh identity-bound metadata, resolve final release prerequisites/explicit deferrals (backup remains owner-deferred with no verified backup), and approve the exact production change. Do not replay migration history, bootstrap/seed/import SQL or apply either package merely to check it.
+
+## Security privilege remediation — staged, not applied
+
+See [current security review](mm-launch/security-review.md), [forward package](mm-launch/security-privileges.forward.sql) and [rollback](mm-launch/security-privileges.rollback.sql). Reuses existing roles and policies: removes four redundant PUBLIC function grants, two direct app-role trigger-function grants, and remaining app-role TRUNCATE privileges on four non-curriculum tables. Apply after owner-content forward; roll back security before owner-content. Normal DML, required helper EXECUTE, service access and function bodies are preserved.
+
+Current production ACL/role/definition drift is unverified; only historical source observations are available. The existing test runner exercises both staged packages together with synthetic data. Results and file hashes are retained in the local evidence after verification. No production access/change, purchase, new role, dependency or unrelated refactoring occurred.
+
+Unresolved: fresh production metadata; exact post-hardening comparator/contract update before release; inherited TRIGGER/REFERENCES review/acceptance; required definer exposure; production leaked-password setting and plan availability; final production approval. These are explicit decisions, not confirmed public exploits or silently passing gates. Backup deferral and Auth/email reminder remain unchanged.
+
+## Launch behaviour follow-up — 8 November 2026
+
+[Fresh focused evidence](mm-acceptance/launch-behaviour-followup.json): **53 existing tests passed, 0 failures; 7 focused Chromium browser checks passed** on the local preview build. All backend responses were synthetic, external destinations intercepted/blocked, and no production/hosted-preview writes or emails occurred. Application/configuration inputs match review HEAD; no product defect was demonstrated and no application fix, dependency or permanent browser framework was added.
+
+Fresh coverage: 390px mobile sign-in/recovery layout without horizontal overflow; invalid/expired recovery guidance using a synthetic URL; delayed enrolments show loading rather than false empty content; failed enrolments show retry; retry resolves genuine empty enrolment; synthetic normal session persists after reload. Focused existing source tests cover recovery identity/session/expiry boundaries, saved-answer restoration/failure handling, review scheduling/date calculations, conflicts/account changes and assigned next tasks. Date/expiry tests simulate inputs; they do not establish actual elapsed-time behaviour.
+
+Retained without unnecessary repeat: prior hosted saved answers/completion reread, private PDF mobile/desktop, review/retry/account-switch flows and preview email delivery/password-update acceptance. These remain historical observations with their original scopes, not new hosted or production results. Tutor-managed enrolment is explicitly retained as requested; no automatic year access added.
+
+Local test startup initially hit an unwritable default config directory, resolved by the documented XDG config setting; existing Worker persisted state then failed with a local SQLite `_cf_ALARM` schema mismatch. Existing Wrangler started successfully against a new temporary state directory; old state was preserved. No code/runtime version change was made to mask the issue, and this is not evidence of a production failure.
+
+**Unverified / owner decisions before release:** physical iPhone/Safari (WebKit executable unavailable), actual overnight rollover and actual token/link expiry. Either perform those checks or explicitly accept their deferral in the final release package. Production login/email/saved-progress/review smoke still needs its approved test identity/scope and final configuration. No device/time deferral is inferred from passing synthetic tests. Auth/email dashboard inspection remains postponed with the previously recorded reminder before approval.
+
 ## Executable release preflight — current result
 
 [Generated concise report](mm-acceptance/release-preflight.json): **126 passing, 0 failing, 9 blocked, 4 unverified**. This is preparation evidence, not an approved or completed launch. [Verification details](mm-acceptance/independent-verification.json) record the actual candidate, build digests, read-only observation times and limitations. Use [the tested commands](mm-launch/preflight-tools.md), [exact cutover sequence](mm-existing-backend-cutover.md#tested-release-and-rollback-sequence) and [backup/restore checklist](mm-launch/manual-backup-plan.md).
@@ -24,9 +205,9 @@ The checked-in report is a dated observation. Fresh captures and reports are req
 | Real preview email | Passing named checks; new sender recovery owner-verified | Resend domain verified; preview SMTP saved. Controlled reset request HTTP 200; owner confirmed delivery, recovery screen, password update, sign-in and reload. Earlier confirmation/reused-token evidence retained; no new signup send. See preview-resend-smtp.json | No repeat message needed |
 | Production build isolation | Passing build-only | Tested candidate built with actual retained-project public settings obtained through existing scoped access; all served files scanned, no preview hostname or secret exposure detected, Git/input/artifact provenance matches. Actual Cloudflare build environment unverified; local preview build restored | No |
 | Executable release checks | Passing tooling; launch blocked | 144 unit tests plus 37 local synthetic database checks; metadata/baseline/package guards exercised against read-only captures and synthetic negative fixtures. Generated report above retains 9 blockers and 4 unverified gates | Resolve named prerequisites before final approval |
-| Review timeout production fix | Prepared, not applied | Exact guarded forward/rollback SQL in mm-launch; definitions compared against production; both executed/asserted in a preview transaction and rolled back | Final write approval after prerequisites |
+| Review timeout production fix | Package verified locally; fresh production drift blocked | Pinned forward/rollback files unchanged; all four conflict paths and exact rollback tested in synthetic isolated PostgreSQL. Historical production comparison retained separately | Fresh production metadata and final write approval |
 | Production Auth/email/templates | Blocked | Existing tools lack management settings; no broad OAuth. Owner screenshots: localhost Site URL, no redirects, custom SMTP off. Need official-origin plan plus templates/limits | Dashboard values/screenshots, no passwords |
-| Database + Storage recovery | Blocked | No backup metadata/restore/download interface available through existing tools. Owner screenshot: Free plan has no project backups. Need verified manual/existing backup and separate Storage recovery, or an explicitly approved alternative | Dashboard backup information and existing backup evidence; no student-data uploads to chat |
+| Database + Storage recovery | Deferred by owner; recovery unverified | No verified database or private Storage backup exists. Setup and real restore rehearsal paused; automated recovery gates remain blocked | No backup setup input requested; retain this limitation in final launch approval |
 | Cloudflare integration | Dashboard verified; configuration change pending approval | Owner screenshots: Dyrxal/tutoring, production main, builds enabled, npm run build, npx wrangler deploy, root /. No production build variables/secrets. Migration defaults to preview: explicit production configuration required before merge | Final configuration approval; active frontend version 3862f733 captured, rollback execution unverified |
 | Final domain / DNS | Existing custom domain observed | Screenshot lists notationeducation.online as Production custom domain on notation-education-lms. Worker and preview workers.dev URLs enabled. No DNS change proposed; actual TLS/runtime smoke remains pending | Final launch approval, not DNS editing |
 | Remaining device/time acceptance | Unverified, proposed deferral | Physical iOS/Safari, actual overnight rollover and time-based link expiry. WebKit launch attempted: executable missing. No device-result claim | Explicit deferral or actual device verification |
@@ -35,7 +216,7 @@ The checked-in report is a dated observation. Fresh captures and reports are req
 | Full-content hosted fidelity | Unverified | Source registries do not write on login; no production question text downloaded. Full live rendering requires approved test-access/smoke scope | Final account/access approval |
 | Official launch | Blocked | Resolve hard prerequisites, review exact package and approve actions before launch | One final specific approval |
 
-## Protected backup start — current blocker
+## Historical protected backup start — superseded by owner deferral
 
 The owner requested starting the actual protected backup. [Precheck evidence](mm-acceptance/protected-backup-start.json): no sensitive export has started. The owner selected Google Drive on 8 November (Australia/Sydney). A folder and non-sensitive status note were created through the existing connection and read back with owner-only permissions; no sharing was added. No encrypted archive exists. This environment still has no configured database/Storage export credential, approved database TCP target or owner-controlled encryption/retrieval setup. Existing metadata/SQL tools cannot safely substitute for a native sensitive dump or private-file export. Backup permission need not be requested again; the next inputs are the existing source credential through a private setup path and an owner-controlled recovery key. Production was not changed; database, Storage and real restore gates remain blocked.
 
@@ -164,3 +345,5 @@ Owner approved the three exact Resend sending records. No repeat permission need
 Owner added the three approved records through Cloudflare. Initial CNAMEs were proxied; later screenshot shows both changed to DNS only. Zone total is now 5 records, versus the original 2 website records. DKIM TXT name matches; content is visually shown quoted by Cloudflare. Full live authoritative DNS readback has not been performed by the assistant.
 
 Latest Resend screenshot shows domain status Pending, Checking DNS and DKIM Pending. It also displays Resend Forge Disabled, so do not infer sending readiness merely from the earlier Forge-target proposal. If Pending persists, compare the full currently expected Resend records (including all sending rows) with the exact Cloudflare values before changing anything. DNS verification is not passing yet; no API key or production SMTP activation is requested at this stage.
+
+Security package verification at 2026-11-08T10:03:44.721Z: **45 isolated checks passed, 0 failures; 144 unit tests passed, 0 failures**. Evidence input hashes match the current staged SQL and runner. All run-created containers/volumes were removed. No production or hosted-preview access. Security forward SHA-256 `4c53f4bb685775addb60a0a9112159c7340bdb6861a1f01df0def3a119a4d70c`; rollback SHA-256 `52eb81fb11206f75a3f1b28ec024aa9b7b8c851424ee52d836d7008fa315b6de`.

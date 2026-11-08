@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "kind": "review-package-verification",
+  "observed_at": "2026-11-08T07:45:43.003211+00:00",
+  "production_project_ref": "lmuwsjjrqmmmtmxjvqln",
+  "status": "prepared; current production drift unverified",
+  "sql_package": {
+    "checks": [
+      {
+        "direction": "forward",
+        "status": "passing",
+        "detail": "Pinned bytes; two exact definition guards; only four explicit conflict SQLSTATE replacements; opposite package guards match installed definitions; no additional top-level data/grant changes; transaction retained"
+      },
+      {
+        "direction": "rollback",
+        "status": "passing",
+        "detail": "Pinned bytes; two exact definition guards; only four explicit conflict SQLSTATE replacements; opposite package guards match installed definitions; no additional top-level data/grant changes; transaction retained"
+      }
+    ],
+    "sha256": {
+      "forward": "2164ce7f88ddd913b75e0af3e1d0ce2fe7ae021a32b693838a62a3e5553cb3d7",
+      "rollback": "454aa94ebbcaab6b5955f50e809a46cba2b7de36488ab3313816326b55bb48e1"
+    },
+    "functions": [
+      "public.note_mistake_review_help(uuid,uuid)",
+      "public.submit_mistake_review(uuid,uuid,uuid,integer,text,boolean,bigint,jsonb)"
+    ]
+  },
+  "sql_files_changed": false,
+  "isolated_tests": {
+    "report": "local-database-rehearsal.json",
+    "summary": {
+      "passing": 43,
+      "failing": 0
+    },
+    "input_hashes_match": true,
+    "conflict_paths": [
+      "note_mistake_review_help: missing schedule",
+      "submit_mistake_review: missing schedule",
+      "submit_mistake_review: stale revision",
+      "submit_mistake_review: changed question"
+    ],
+    "original_sqlstate": "40001",
+    "installed_sqlstate": "PT409",
+    "rollback": "Exact original schema/ACL/owner/definitions and data restored; repeated/mismatched guards abort",
+    "scope": "Disposable network-isolated local PostgreSQL with synthetic data and minimal Auth/Storage stubs"
+  },
+  "unit_tests": {
+    "command": "pnpm test",
+    "passing": 144,
+    "failing": 0
+  },
+  "production_drift": {
+    "status": "blocked",
+    "fresh_capture_performed": false,
+    "historical_metadata_evidence_at": "2026-11-07T12:48:32.975902+00:00",
+    "historical_evidence": "independent-verification.json: read_only_checks.production_metadata / production_review",
+    "blocker": "No Supabase SQL tool, approved database TCP route or configured VPN in the current session. Existing password availability alone does not establish connectivity. No policy change attempted.",
+    "prepared_capture_command": "pnpm --silent preflight sql --kind metadata --project-ref lmuwsjjrqmmmtmxjvqln",
+    "prepared_capture_is_read_only": true,
+    "identity_guard": "postgres / system_identifier 7678071634733212629",
+    "run_after_capture": "pnpm --silent preflight review --actual PATH_TO_FRESH_PRODUCTION_METADATA_JSON --direction forward --out NEW_REPORT_PATH",
+    "do_not_relabel_preview_contract_as_production": true
+  },
+  "production_writes": 0,
+  "production_answers_read": false,
+  "emails_sent": 0,
+  "preview_hosted_changes": false,
+  "new_migrations": false,
+  "final_production_approval": false
+}

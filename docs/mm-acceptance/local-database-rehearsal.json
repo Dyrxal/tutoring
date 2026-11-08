@@ -1,19 +1,23 @@
 {
   "format": 1,
   "kind": "local-synthetic-database-rehearsal",
-  "observed_at": "2026-11-07T12:47:28.095Z",
+  "observed_at": "2026-11-08T10:03:44.721Z",
   "image": "postgres@sha256:665dc7b37ac52a17e298511414c21d23ffa4e6a6ef6225b3e5d59c7afb35e994",
-  "repository_head": "e8fff08b8a82326db567f2661d270ba956e6d8c3",
+  "repository_head": "8dd72888745a73cf0e0a412c0b1825d54dbbddd7",
   "inputs_sha256": {
-    "scripts/check-mm-local-database.mjs": "87e6b91357fc77976cde56afa46816d9b17d86a67f69a313fabc898cc9715e6c",
+    "scripts/check-mm-local-database.mjs": "0da41d748ee18d622d4983b6a7c28a7afac8b2f2189ca577eb0d61016aa5e782",
     "supabase/preview/bootstrap.sql": "8c62b1840bc4ba962827a54dacfe92ac7f95aff782e7f5077a93e22d674eb02a",
     "supabase/preview/seed-synthetic.sql": "fae11e79fb9642ef914bc11ba341b8ec6b58c089cf34f67eacb14cee08bd8837",
     "docs/mm-launch/review-conflicts.forward.sql": "2164ce7f88ddd913b75e0af3e1d0ce2fe7ae021a32b693838a62a3e5553cb3d7",
-    "docs/mm-launch/review-conflicts.rollback.sql": "454aa94ebbcaab6b5955f50e809a46cba2b7de36488ab3313816326b55bb48e1"
+    "docs/mm-launch/review-conflicts.rollback.sql": "454aa94ebbcaab6b5955f50e809a46cba2b7de36488ab3313816326b55bb48e1",
+    "docs/mm-launch/owner-content.forward.sql": "cb586bbfa7d74e0b4e67846d2340be9c018cf7630a0743473101dc9a664edf1e",
+    "docs/mm-launch/owner-content.rollback.sql": "a5e94ab88ecd93fa41052796869fab98281e18dcdde266b72a1f4185e7b041ef",
+    "docs/mm-launch/security-privileges.forward.sql": "4c53f4bb685775addb60a0a9112159c7340bdb6861a1f01df0def3a119a4d70c",
+    "docs/mm-launch/security-privileges.rollback.sql": "52eb81fb11206f75a3f1b28ec024aa9b7b8c851424ee52d836d7008fa315b6de"
   },
   "ready": true,
   "summary": {
-    "passing": 37,
+    "passing": 45,
     "failing": 0
   },
   "checks": [
@@ -26,6 +30,31 @@
       "id": "registration-metadata",
       "status": "passing",
       "detail": "User-supplied tutor role ignored; profile creation does not auto-enrol by year"
+    },
+    {
+      "id": "owner-content:guards",
+      "status": "passing",
+      "detail": "Missing/wrong identity, tutor roster drift and inherited TRUNCATE bypass abort without partial role changes"
+    },
+    {
+      "id": "security:trigger-and-truncate",
+      "status": "passing",
+      "detail": "Direct trigger EXECUTE denied and trigger still creates student; non-curriculum TRUNCATE denied for both app roles"
+    },
+    {
+      "id": "owner-content:boundaries",
+      "status": "passing",
+      "detail": "Owner edits/uploads preserved; non-owner curriculum DML, tutor RPC/upload/delete and app-role TRUNCATE blocked; student answers/progress/profile/read access preserved"
+    },
+    {
+      "id": "security:rollback",
+      "status": "passing",
+      "detail": "Owner/student/content/Storage checks ran under narrowed privileges; exact original schema/ACL and rows restored before owner rollback"
+    },
+    {
+      "id": "owner-content:rollback",
+      "status": "passing",
+      "detail": "Exact original rows and schema/grants restored; repeated forward and wrong-owner rollback abort without partial changes"
     },
     {
       "id": "original:anonymous",
@@ -53,9 +82,14 @@
       "detail": "Both review RPCs return 40001 for an enrolled student with no schedule"
     },
     {
+      "id": "original:review-stale-state",
+      "status": "passing",
+      "detail": "Stale revision and changed-question guards return 40001; each synthetic transaction rolls back"
+    },
+    {
       "id": "original:attempt-boundaries",
       "status": "passing",
-      "detail": "Direct review metadata and another student’s answer writes denied"
+      "detail": "Direct review metadata and another student\u2019s answer writes denied"
     },
     {
       "id": "original:private-storage",
@@ -103,9 +137,14 @@
       "detail": "Both review RPCs return PT409 for an enrolled student with no schedule"
     },
     {
+      "id": "prepared:review-stale-state",
+      "status": "passing",
+      "detail": "Stale revision and changed-question guards return PT409; each synthetic transaction rolls back"
+    },
+    {
       "id": "prepared:attempt-boundaries",
       "status": "passing",
-      "detail": "Direct review metadata and another student’s answer writes denied"
+      "detail": "Direct review metadata and another student\u2019s answer writes denied"
     },
     {
       "id": "prepared:private-storage",
@@ -163,9 +202,14 @@
       "detail": "Both review RPCs return PT409 for an enrolled student with no schedule"
     },
     {
+      "id": "restored:review-stale-state",
+      "status": "passing",
+      "detail": "Stale revision and changed-question guards return PT409; each synthetic transaction rolls back"
+    },
+    {
       "id": "restored:attempt-boundaries",
       "status": "passing",
-      "detail": "Direct review metadata and another student’s answer writes denied"
+      "detail": "Direct review metadata and another student\u2019s answer writes denied"
     },
     {
       "id": "restored:private-storage",

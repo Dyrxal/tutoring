@@ -1,0 +1,196 @@
+{
+  "format": 1,
+  "kind": "cloudflare-build-preparation",
+  "observed_at": "2026-11-08T07:32:02.865953+00:00",
+  "review_branch": "feat/mm-cloudflare-migration",
+  "review_head": "8dd72888745a73cf0e0a412c0b1825d54dbbddd7",
+  "remote_main": "97ab688d9ef138429fd05d78678e2d1236be9957",
+  "production_project_ref": "lmuwsjjrqmmmtmxjvqln",
+  "preview_project_ref": "lcddnpafrkbwsrhqexqe",
+  "worker": "notation-education-lms",
+  "toolchain": {
+    "node": "v24.19.0",
+    "pnpm": "11.25.0",
+    "package_manager_pin": "pnpm@11.25.0",
+    "node_requirement": ">=22.13.0"
+  },
+  "public_key_validation": {
+    "source": "Existing pre-migration tracked public frontend: main 97ab688, app/page.tsx",
+    "type": "publishable client key",
+    "production_auth_settings_http_status": 200,
+    "response_contents_retained": false,
+    "key_value_retained": false,
+    "private_rows_accessed": false
+  },
+  "production_build": {
+    "command": "pnpm build with production-only variables in child environment",
+    "exit_code": 0,
+    "report": {
+      "format": 1,
+      "kind": "assets",
+      "project_ref": "lmuwsjjrqmmmtmxjvqln",
+      "captured_at": "2026-11-08T07:31:14.425Z",
+      "source_commit": null,
+      "provenance": {
+        "status": "unverified"
+      },
+      "artifact_digest": "7af0bae057ad10260ecac54617defb64cf7ebbdeba0882ecd685e1491c0939c4",
+      "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+      "ready": true,
+      "summary": {
+        "passing": 5,
+        "failing": 0,
+        "blocked": 0,
+        "unverified": 0
+      },
+      "checks": [
+        {
+          "id": "build_manifest",
+          "status": "passing",
+          "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+        },
+        {
+          "id": "files",
+          "status": "passing",
+          "detail": "Browser files scanned: 100"
+        },
+        {
+          "id": "backend",
+          "status": "passing",
+          "detail": "Intended hostname present; unexpected project count: 0"
+        },
+        {
+          "id": "public_key",
+          "status": "passing",
+          "detail": "Publishable/ matching legacy anon key present"
+        },
+        {
+          "id": "secrets",
+          "status": "passing",
+          "detail": "Exposure findings: 0"
+        }
+      ]
+    }
+  },
+  "production_archive_rescan": {
+    "fresh_archive_directory": true,
+    "matching_digest": true,
+    "report": {
+      "format": 1,
+      "kind": "assets",
+      "project_ref": "lmuwsjjrqmmmtmxjvqln",
+      "captured_at": "2026-11-08T07:31:36.661Z",
+      "source_commit": null,
+      "provenance": {
+        "status": "unverified"
+      },
+      "artifact_digest": "7af0bae057ad10260ecac54617defb64cf7ebbdeba0882ecd685e1491c0939c4",
+      "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+      "ready": true,
+      "summary": {
+        "passing": 5,
+        "failing": 0,
+        "blocked": 0,
+        "unverified": 0
+      },
+      "checks": [
+        {
+          "id": "build_manifest",
+          "status": "passing",
+          "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+        },
+        {
+          "id": "files",
+          "status": "passing",
+          "detail": "Browser files scanned: 100"
+        },
+        {
+          "id": "backend",
+          "status": "passing",
+          "detail": "Intended hostname present; unexpected project count: 0"
+        },
+        {
+          "id": "public_key",
+          "status": "passing",
+          "detail": "Publishable/ matching legacy anon key present"
+        },
+        {
+          "id": "secrets",
+          "status": "passing",
+          "detail": "Exposure findings: 0"
+        }
+      ]
+    }
+  },
+  "preview_restored": {
+    "command": "pnpm build with original preview defaults",
+    "exit_code": 0,
+    "report": {
+      "format": 1,
+      "kind": "assets",
+      "project_ref": "lcddnpafrkbwsrhqexqe",
+      "captured_at": "2026-11-08T07:31:44.944Z",
+      "source_commit": null,
+      "provenance": {
+        "status": "unverified"
+      },
+      "artifact_digest": "983349c4c5857468c4e0e0c3b104f4319ba6f587f2ec082c0c42a0e41963d86b",
+      "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+      "ready": true,
+      "summary": {
+        "passing": 5,
+        "failing": 0,
+        "blocked": 0,
+        "unverified": 0
+      },
+      "checks": [
+        {
+          "id": "build_manifest",
+          "status": "passing",
+          "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+        },
+        {
+          "id": "files",
+          "status": "passing",
+          "detail": "Browser files scanned: 100"
+        },
+        {
+          "id": "backend",
+          "status": "passing",
+          "detail": "Intended hostname present; unexpected project count: 0"
+        },
+        {
+          "id": "public_key",
+          "status": "passing",
+          "detail": "Publishable/ matching legacy anon key present"
+        },
+        {
+          "id": "secrets",
+          "status": "passing",
+          "detail": "Exposure findings: 0"
+        }
+      ]
+    }
+  },
+  "candidate_provenance": "unverified: uncommitted permission-runner changes are included in the build-input digest; current inputs do not match HEAD. No manifest fabricated or guard changed. Commit reviewed inputs and rerun preflight build near release.",
+  "cloudflare_configuration": "Historical owner dashboard evidence only; current authenticated Cloudflare settings/build logs unavailable.",
+  "no_settings_changed": true,
+  "no_deploy_or_merge": true,
+  "no_production_database_write": true,
+  "no_emails_sent": true,
+  "preview_settings_changed": false,
+  "tracked_inputs_sha256": {
+    "package.json": "b1bddf97c558973fce8910dfe306de571d091feab5558e6c28b9731b385b2e92",
+    "pnpm-lock.yaml": "9a6f82b5b1e332fba311bf91dd28f40e22cae50dc02e799562052dfa5fdd0c22",
+    "pnpm-workspace.yaml": "a054fd9884436f417b7d804c19615ad6048999e94438cd3f7e74fdef2d300c8f",
+    "wrangler.jsonc": "f01449bd9e642ccaa953548352cfaf78ecfbc8f644d743b8c642ee93ff362094",
+    "vite.config.ts": "4b2339a3475de19427ce50a284855b92aa080b129b7b3594fc9a408497cf97a8",
+    "lib/backend-config.ts": "6953a6d654c91e81776f7581d898da99981be02833c15535c134db1aab7d0594",
+    "config/preview-public.json": "794b8e6fdb2ad6adb49f4c4429c41778366fae9aaab5d24eea22e4ce44dea16a"
+  },
+  "limitations": [
+    "Asset scans do not cryptographically bind an opaque publishable key; separate read-only production acceptance is recorded above.",
+    "Scanner detects its supported literal/escaped/compressed secret patterns; no claim of arbitrary-obfuscation detection.",
+    "Local build-only result does not verify actual Cloudflare installation, environment variables, deployed assets or canonical-domain routing."
+  ]
+}

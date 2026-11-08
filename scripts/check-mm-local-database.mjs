@@ -99,6 +99,19 @@ function boundaries(name, phase, expectedConflict) {
         assert.match(stale.stderr, new RegExp(expectedConflict));
     }
     pass(phase + ':review-conflict', 'Both review RPCs return ' + expectedConflict + ' for an enrolled student with no schedule');
+    for (const [revision, state] of [
+        ['0', `(SELECT jsonb_build_object('prompt',prompt,'options',options,'correct_index',correct_index,'explanation',explanation) FROM public.questions WHERE id='${question}')`],
+        ['1', "'{}'::jsonb"]
+    ]) {
+        const stale = sql(name, `BEGIN;
+          INSERT INTO public.mistake_review_schedules(student_id,question_id,timezone,next_due)
+            VALUES('${ids.student}','${question}','Australia/Melbourne',current_date);
+          SET LOCAL ROLE authenticated; SET LOCAL request.jwt.claim.sub='${ids.student}';
+          SELECT public.submit_mistake_review('f1111111-1111-4111-8111-000000000001','${ids.student}','${question}',0,'1',false,${revision},${state});
+          ROLLBACK;`, false);
+        assert.notEqual(stale.status, 0); assert.match(stale.stderr, new RegExp(expectedConflict));
+    }
+    pass(phase + ':review-stale-state', 'Stale revision and changed-question guards return ' + expectedConflict + '; each synthetic transaction rolls back');
     denied(name, 'authenticated', ids.student, `INSERT INTO public.practice_attempts(student_id,question_id,selected_index,is_correct,attempt_context) VALUES('${ids.student}','${question}',0,true,'review')`);
     denied(name, 'authenticated', ids.student, `INSERT INTO public.practice_attempts(student_id,question_id,selected_index,is_correct) VALUES('${ids.other}','${question}',0,true)`);
     pass(phase + ':attempt-boundaries', 'Direct review metadata and another student’s answer writes denied');
@@ -110,6 +123,105 @@ function boundaries(name, phase, expectedConflict) {
     assert.equal(value(name, 'authenticated', ids.tutor, 'SELECT count(*) FROM public.courses'), '2');
     assert.equal(value(name, 'authenticated', ids.tutor, `UPDATE public.lessons SET objective='Synthetic tutor edit' WHERE id='${lesson}' RETURNING objective`), 'Synthetic tutor edit');
     pass(phase + ':tutor', 'Tutor can view both courses and edit; transaction rolled back');
+}
+
+// Exercise the staged owner-only package on the same disposable synthetic source.
+function ownerPermissions(name) {
+    const forward = read('docs/mm-launch/owner-content.forward.sql');
+    const rollback = read('docs/mm-launch/owner-content.rollback.sql');
+    const setup = `SELECT set_config('mm.owner_id','${ids.tutor}',false),
+      set_config('mm.owner_email','tutor@synthetic.invalid',false),
+      set_config('mm.expected_tutors','["${ids.tutor}","${ids.outside}"]',false);`;
+    sql(name, `UPDATE public.profiles SET role='tutor' WHERE id='${ids.outside}';
+      INSERT INTO public.enrolments(student_id,course_id) VALUES('${ids.outside}','${course}');
+      INSERT INTO storage.objects(bucket_id,name) VALUES('lesson-images','${lesson}/synthetic.png');`);
+    const before = baseline(name), originalSchema = schema(name);
+    assert.equal(value(name,'authenticated',ids.outside,'SELECT public.is_tutor()'),'t');
+    for (const prefix of ['',setup+`SELECT set_config('mm.owner_email','wrong@synthetic.invalid',false);`,setup+`SELECT set_config('mm.expected_tutors','["${ids.tutor}"]',false);`]) {
+        assert.notEqual(sql(name,prefix+forward,false).status,0);
+        assert.deepEqual(baseline(name),before); assert.equal(schema(name),originalSchema);
+    }
+    sql(name,'GRANT TRUNCATE ON public.courses TO PUBLIC;');
+    assert.notEqual(sql(name,setup+forward,false).status,0);
+    assert.deepEqual(baseline(name),before);
+    sql(name,'REVOKE TRUNCATE ON public.courses FROM PUBLIC;');
+    pass('owner-content:guards','Missing/wrong identity, tutor roster drift and inherited TRUNCATE bypass abort without partial role changes');
+    sql(name, setup + forward);
+    // Model the four historical production PUBLIC grants, absent from preview bootstrap.
+    const publicHelpers='public.is_tutor(),public.enrolled_in(uuid),public.can_read_lesson(uuid),public.create_profile()';
+    sql(name,`GRANT EXECUTE ON FUNCTION ${publicHelpers} TO PUBLIC;`);
+    const securitySchema=schema(name), securityRows=baseline(name);
+    sql(name,read('docs/mm-launch/security-privileges.forward.sql'));
+    assert.equal(value(name,'authenticated',ids.student,"SELECT has_function_privilege('authenticated','public.create_profile()','EXECUTE')"),'f');
+    for(const table of ['enrolments','lesson_progress','practice_attempts','profiles'])
+        for(const role of ['anon','authenticated']) denied(name,role,ids.student,`TRUNCATE public.${table} CASCADE`);
+    sql(name,`BEGIN; INSERT INTO auth.users(id,email,raw_user_meta_data) VALUES('e1111111-1111-4111-8111-000000000098','security-trigger@synthetic.invalid','{"role":"tutor"}');
+      DO $$ BEGIN IF (SELECT role FROM public.profiles WHERE id='e1111111-1111-4111-8111-000000000098') IS DISTINCT FROM 'student' THEN RAISE EXCEPTION 'Trigger failed'; END IF; END $$; ROLLBACK;`);
+    assert.deepEqual(baseline(name),securityRows);
+    assert.notEqual(sql(name,read('docs/mm-launch/security-privileges.forward.sql'),false).status,0);
+    assert.deepEqual(baseline(name),securityRows);
+    pass('security:trigger-and-truncate','Direct trigger EXECUTE denied and trigger still creates student; non-curriculum TRUNCATE denied for both app roles');
+
+    assert.equal(value(name,'authenticated',ids.outside,'SELECT public.is_tutor()'),'f', 'Non-owner tutor must lose privileged access');
+    assert.equal(value(name,'authenticated',ids.tutor,'SELECT public.is_tutor()'),'t');
+    for (const table of ['courses','modules','lessons','questions']) {
+        assert.equal(value(name,'authenticated',ids.outside,`WITH changed AS (UPDATE public.${table} SET id=id RETURNING 1) SELECT count(*) FROM changed`),'0');
+        assert.equal(value(name,'authenticated',ids.outside,`WITH changed AS (DELETE FROM public.${table} RETURNING 1) SELECT count(*) FROM changed`),'0');
+        assert(Number(value(name,'authenticated',ids.tutor,`WITH changed AS (UPDATE public.${table} SET id=id RETURNING 1) SELECT count(*) FROM changed`))>0);
+        // Delete newly created content without existing review-setting references.
+        const chain = `INSERT INTO public.courses(id,title) VALUES('a9999999-1111-4111-8111-111111111111','Delete test');
+          INSERT INTO public.modules(id,course_id,title) VALUES('b9999999-1111-4111-8111-111111111111','a9999999-1111-4111-8111-111111111111','Delete test');
+          INSERT INTO public.lessons(id,module_id,title) VALUES('c9999999-1111-4111-8111-111111111111','b9999999-1111-4111-8111-111111111111','Delete test');
+          INSERT INTO public.questions(id,lesson_id,prompt,options,correct_index) VALUES('d9999999-1111-4111-8111-111111111111','c9999999-1111-4111-8111-111111111111','Delete test','["A","B"]',0);`;
+        const targetId = {courses:'a',modules:'b',lessons:'c',questions:'d'}[table]+'9999999-1111-4111-8111-111111111111';
+        assert.equal(value(name,'authenticated',ids.tutor,chain+`WITH removed AS (DELETE FROM public.${table} WHERE id='${targetId}' RETURNING 1) SELECT count(*) FROM removed`),'1');
+        for (const role of ['anon','authenticated']) denied(name,role,ids.outside,`TRUNCATE public.${table} CASCADE`);
+    }
+    denied(name,'authenticated',ids.outside,"INSERT INTO public.courses(title) VALUES('Denied synthetic course')");
+    for (const statement of [
+        `INSERT INTO public.modules(course_id,title) VALUES('${course}','Owner module') RETURNING title`,
+        `INSERT INTO public.lessons(module_id,title) SELECT id,'Owner lesson' FROM public.modules LIMIT 1 RETURNING title`,
+        `INSERT INTO public.questions(lesson_id,prompt,options,correct_index) VALUES('${lesson}','Owner question','["A","B"]',0) RETURNING prompt`
+    ]) assert.match(value(name,'authenticated',ids.tutor,statement),/^Owner /);
+    assert.equal(value(name,'authenticated',ids.tutor,`UPDATE public.lessons SET objective='Owner edit' WHERE id='${lesson}' RETURNING objective`),'Owner edit');
+    assert.equal(value(name,'authenticated',ids.tutor,"INSERT INTO public.courses(title) VALUES('Owner course') RETURNING title"),'Owner course');
+    assert.equal(value(name,'authenticated',ids.outside,`SELECT count(*) FROM public.questions WHERE id='${question}'`),'1');
+    assert.equal(value(name,'authenticated',ids.student,`INSERT INTO public.practice_attempts(student_id,question_id,selected_index,is_correct) VALUES('${ids.student}','${question}',0,true) RETURNING student_id`),ids.student);
+    assert.equal(value(name,'authenticated',ids.student,`INSERT INTO public.lesson_progress(student_id,lesson_id) VALUES('${ids.student}','${lesson}') RETURNING student_id`),ids.student);
+    assert.equal(value(name,'authenticated',ids.student,`UPDATE public.profiles SET full_name='Permitted profile edit' WHERE id='${ids.student}' RETURNING full_name`),'Permitted profile edit');
+    denied(name,'authenticated',ids.outside,`UPDATE public.profiles SET role='tutor' WHERE id='${ids.outside}'`);
+    denied(name,'authenticated',ids.outside,`SELECT public.assign_student_lesson_tasks('${ids.outside}','${ids.student}','[]'::jsonb)`);
+    for (const [bucket,key] of [['question-images',question],['lesson-resources',lesson],['lesson-images',lesson]]) {
+        denied(name,'authenticated',ids.outside,`INSERT INTO storage.objects(bucket_id,name) VALUES('${bucket}','${key}/nonowner.png')`);
+        assert.equal(value(name,'authenticated',ids.outside,`WITH removed AS (DELETE FROM storage.objects WHERE bucket_id='${bucket}' RETURNING 1) SELECT count(*) FROM removed`),'0');
+        assert.equal(value(name,'authenticated',ids.outside,`WITH changed AS (UPDATE storage.objects SET name=name WHERE bucket_id='${bucket}' RETURNING 1) SELECT count(*) FROM changed`),'0');
+        assert.equal(value(name,'authenticated',ids.tutor,`WITH removed AS (DELETE FROM storage.objects WHERE bucket_id='${bucket}' RETURNING 1) SELECT count(*) FROM removed`),'1');
+        assert.equal(value(name,'authenticated',ids.tutor,`INSERT INTO storage.objects(bucket_id,name) VALUES('${bucket}','${key}/owner.png') RETURNING bucket_id`),bucket);
+    }
+    assert.equal(value(name,'authenticated',ids.student,'SELECT count(*) FROM storage.objects'),'3');
+    pass('owner-content:boundaries','Owner edits/uploads preserved; non-owner curriculum DML, tutor RPC/upload/delete and app-role TRUNCATE blocked; student answers/progress/profile/read access preserved');
+    assert.equal(value(name,'authenticated',ids.student,`SELECT public.enrolled_in('${course}') AND public.can_read_lesson('${lesson}')`),'t');
+    sql(name,read('docs/mm-launch/security-privileges.rollback.sql'));
+    assert.equal(schema(name),securitySchema);assert.deepEqual(baseline(name),securityRows);
+    assert.notEqual(sql(name,read('docs/mm-launch/security-privileges.rollback.sql'),false).status,0);
+    assert.equal(schema(name),securitySchema);
+    sql(name,`REVOKE EXECUTE ON FUNCTION ${publicHelpers} FROM PUBLIC;`);
+    pass('security:rollback','Owner/student/content/Storage checks ran under narrowed privileges; exact original schema/ACL and rows restored before owner rollback');
+    const after = baseline(name);
+    assert.deepEqual(after.filter(x=>x.table!=='public.profiles'),before.filter(x=>x.table!=='public.profiles'));
+    const repeated=sql(name,setup+forward,false); assert.notEqual(repeated.status,0);
+    assert.deepEqual(baseline(name),after);
+    const wrong=sql(name,setup+`SELECT set_config('mm.owner_id','${ids.student}',false);`+rollback,false);
+    assert.notEqual(wrong.status,0); assert.deepEqual(baseline(name),after);
+    sql(name,`UPDATE public.profiles SET role='tutor' WHERE id='${ids.student}';`);
+    assert.notEqual(sql(name,setup+rollback,false).status,0);
+    sql(name,`UPDATE public.profiles SET role='student' WHERE id='${ids.student}';`);
+    sql(name,setup+rollback);
+    assert.deepEqual(baseline(name),before); assert.equal(schema(name),originalSchema);
+    assert.equal(value(name,'authenticated',ids.outside,'SELECT public.is_tutor()'),'t');
+    pass('owner-content:rollback','Exact original rows and schema/grants restored; repeated forward and wrong-owner rollback abort without partial changes');
+    // Leave the original fixture unchanged for the existing 37 checks.
+    sql(name,`UPDATE public.profiles SET role='student' WHERE id='${ids.outside}'; DELETE FROM public.enrolments WHERE student_id='${ids.outside}'; DELETE FROM storage.objects WHERE bucket_id='lesson-images';`);
 }
 
 let output, failure;
@@ -144,6 +256,7 @@ try {
     assert.equal(sql(source, `SELECT role FROM public.profiles WHERE id='${ids.student}'`).stdout.trim(), 'student');
     assert.equal(sql(source, `SELECT count(*) FROM enrolments WHERE student_id='${ids.outside}'`).stdout.trim(), '0');
     pass('registration-metadata', 'User-supplied tutor role ignored; profile creation does not auto-enrol by year');
+    ownerPermissions(source);
     boundaries(source, 'original', '40001');
     const original = baseline(source), originalSchema = schema(source);
     // These are the exact shipped files. No project guard is removed or repinned.
@@ -204,7 +317,7 @@ finally {
 }
 const report = { format:1,kind:'local-synthetic-database-rehearsal',observed_at:new Date().toISOString(),image,
     repository_head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),
-    inputs_sha256:Object.fromEntries(['scripts/check-mm-local-database.mjs','supabase/preview/bootstrap.sql','supabase/preview/seed-synthetic.sql','docs/mm-launch/review-conflicts.forward.sql','docs/mm-launch/review-conflicts.rollback.sql'].map(f=>[f,sha(read(f))])),
+    inputs_sha256:Object.fromEntries(['scripts/check-mm-local-database.mjs','supabase/preview/bootstrap.sql','supabase/preview/seed-synthetic.sql','docs/mm-launch/review-conflicts.forward.sql','docs/mm-launch/review-conflicts.rollback.sql','docs/mm-launch/owner-content.forward.sql','docs/mm-launch/owner-content.rollback.sql','docs/mm-launch/security-privileges.forward.sql','docs/mm-launch/security-privileges.rollback.sql'].map(f=>[f,sha(read(f))])),
     ready:!failure,summary:{passing:checks.filter(x=>x.status==='passing').length,failing:checks.filter(x=>x.status==='failing').length},checks,
     production_access:false,hosted_preview_access:false,emails_sent:0,cleanup:checks.some(c=>c.id==='cleanup')?'Container cleanup failed; see failing checks. Temporary synthetic byte files removed.':'Run-created containers and volumes removed; temporary synthetic byte files removed',
     limitations:['Synthetic Auth/Storage schema stubs; no live Auth/Storage service or actual email/login/file rendering tested.','Raw local pg_dump is deliberately not the Supabase CLI production backup procedure.','No real data/secret export, managed-project restore or production backup verified.','No physical-device/time/quota acceptance implied.'] };
