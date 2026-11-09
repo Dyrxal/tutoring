@@ -1,8 +1,34 @@
 # MM current completion checklist — 9 November 2026 (Australia/Sydney)
 
-Authoritative current status; older checkpoints in mm-preview-status.md are historical. Owner scope: retain current content and production Supabase, no new curriculum or redesign. Current locally committed executable candidate: **`e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02`**; not pushed or deployed. Earlier tested candidate `f21dabf2e021a0dcef439bc1329bb51ebc043081` and its reports below are historical. The current release package and prompt tracker take precedence for status. Historical preview evidence at `14dae44` and launch-package evidence at `af9dc66` remain applicable within their stated limits. Production read-only inspection authorized; production writes, merge, deployment and DNS await final approval. No emails were sent during the preflight-tooling preparation; the later preview Resend recovery check is recorded below.
+This is the single current checklist. The status below supersedes historical checkpoints retained later in this file. Keep existing production content/data and preview isolation. Backup remains owner-deferred; no verified DB/private Storage backup exists.
 
-## Latest launch progress — 9 November 2026
+## Current release candidate and verified preparation
+
+- Executable candidate: **`08c999ca3841b53f68c92ab15972cff053829ed1`**, committed and pushed to `feat/mm-cloudflare-migration`; remote Git and PR web page confirm it. Main remains `97ab688d9ef138429fd05d78678e2d1236be9957`. No merge or production frontend/SQL/permission deployment performed.
+- Revised owner/security/review SQL and exact expected after-state are committed. Expected delta: 48 app-role table grants removed, four narrowed helper ACLs, create_profile effective app-role EXECUTE removed, two review definitions changed; unrelated metadata unchanged. See [comparison evidence](mm-acceptance/expected-permissions-validation.json) and [release package](mm-launch/release-approval-package.md).
+- 146 unit tests pass, including 35 preflight tests. Retained 46 isolated synthetic SQL checks still match every SQL/runner hash; no redundant database test rerun. Independent final code review found no material functional/security issue.
+- Exact candidate production and preview builds each passed all five artifact/provenance checks; archived production rescan matched, preview output restored. See [build evidence](mm-acceptance/finalized-candidate-builds.json). These are local builds, not deployed production verification.
+- PR #3 remains Draft. Public PR/check pages confirm head08c999c and a successful Cloudflare check (build714fb97c-cac6-4cc8-b8e2-4ba4bbbeb12d, shown as0s); REST/GraphQL remain blocked. This check is not independent proof of a deployed artifact. Current [candidate finalization evidence](mm-acceptance/candidate-finalization.json) records actual outcomes. Earlier screenshot check at8dd7288 is historical. Required-review status is not established by logged-out readback.
+
+## Completed owner setup and observations
+
+- Owner identity/sole tutor confirmed. No demotion needed; guarded permission scripts retain assertions at execution.
+- Production Site URL and exact root/recovery callbacks saved; Resend domain Verified; production SMTP saved and one approved recovery email Delivered to an owner-controlled test account. Both templates use {{ .ConfirmationURL }}. Recovery opened sign-in rather than new-password form; complete production recovery is not passing. Existing preview request UI and earlier preview recovery acceptance are retained.
+- Owner entered five reviewed production-only build variables: production target/project URL/publishable client key, DESIGN_PREVIEW=false, NODE_VERSION=24.19.0. Editable screenshot matches values; saved persistence is owner-reported. Leave Previews Base unchanged. Current configured commands npm run build / npx wrangler deploy, root /; historical manual build log separately used pnpm commands and frozen pnpm install.
+- Fresh production drift capture at 2026-11-09T07:37:56.764764+00:00 passed 85 metadata checks and 3 review guards. Raw capture stays outside Git. Its timestamp has not been refreshed or its scope expanded into content baseline/installed-state verification.
+
+## Remaining before launch approval/execution
+
+1. Authenticated frontend rollback operator/version-availability check using the exact retained Worker ID in [rollback procedure](mm-launch/frontend-rollback.md). Command syntax is locally verified; Cloudflare access is not.
+2. Production leaked-password protection/plan readback, remaining required-definer advisory decision, provider quota/key scope/effective email-limit and confirmation-enabled checks. No service purchase authorized.
+3. Content/resource aggregate baseline immediately before release, then compare after approved actions. Do not repeat the completed metadata audit now; respect freshness/apply guards at actual cutover.
+4. Final release approval covering exact SQL/settings/merge/deploy and bounded test identity/writes/emails/cleanup, backup risk and outstanding physical iPhone/Safari/overnight/real-expiry test or deferral decisions.
+5. Apply only approved actions, verify installed permissions with the exact after contract and review rollback guards, and verify production login/enrolment/saving/reviews/confirmation/recovery. Claim launch success only after this passes.
+
+## Historical preparation checkpoints — superseded by current status above
+
+Earlier packaging ledger (retained for evidence; current candidate above supersedes older candidate/status wording):
+
 
 Final candidate packaging is authorized: commit revised SQL/evidence and exact expected permissions, push only feat/mm-cloudflare-migration, and inspect PR #3 checks. Production merge/deploy/SQL application remain unapproved. Current remote review head was read as 8dd72888745a73cf0e0a412c0b1825d54dbbddd7; main remains 97ab688d9ef138429fd05d78678e2d1236be9957. Main is the configured Cloudflare production branch; the authorized review-branch push may run its existing check/preview integration, and will not merge into main.
 
@@ -29,6 +55,7 @@ This snapshot supersedes older preparation-only descriptions below. Production A
 - Prepared locally: candidate `e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02`, narrow owner/security/review SQL with guarded rollback, builds and synthetic permission/behavior evidence. Candidate remains unpushed. Current checklist/package reports remain uncommitted working files.
 - Still required: fresh production metadata/ACL/definition/content baselines and expected permission contract; scoped security decisions; production build variable configuration after approval; reviewed push and fresh PR checks; workable frontend rollback selection; final bounded smoke/cleanup and release approval; deployment followed by production verification including recovery and saved progress.
 - Deferred/unverified: no verified DB/private Storage backup or real restore rehearsal; physical Safari/iPhone, real overnight rollover and real expiry need checks or explicit final deferral. Do not resume backups or infer launch approval.
+
 
 ## Cross-chat reconciliation — 9 November 2026 (Australia/Sydney)
 

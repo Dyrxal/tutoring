@@ -1,0 +1,56 @@
+{
+  "kind": "candidate-finalization",
+  "observed_at": "2026-11-09T10:06:45.075180+00:00",
+  "executable_candidate": "08c999ca3841b53f68c92ab15972cff053829ed1",
+  "review_branch": "feat/mm-cloudflare-migration",
+  "remote_main": "97ab688d9ef138429fd05d78678e2d1236be9957",
+  "remote_candidate_verified": true,
+  "pr": {
+    "number": 3,
+    "url": "https://github.com/Dyrxal/tutoring/pull/3",
+    "head_sha": "08c999ca3841b53f68c92ab15972cff053829ed1",
+    "state": "DRAFT",
+    "check": {
+      "name": "Cloudflare Workers and Pages / Workers Builds: notation-education-lms",
+      "conclusion": "succeeded",
+      "displayed_duration": "0s",
+      "build_id": "714fb97c-cac6-4cc8-b8e2-4ba4bbbeb12d"
+    },
+    "verification": "Public PR/check HTML HTTP200 readback; no secrets/cookies needed. REST and GraphQL blocked.",
+    "required_review_status": "Not established from logged-out web readback",
+    "check_limit": "A green external check shown as0s does not independently prove a deployed artifact or target. Local candidate artifact/provenance checks recorded separately."
+  },
+  "unit_tests": {
+    "command": "pnpm test",
+    "passing": 146,
+    "failing": 0,
+    "preflight_subset": 35
+  },
+  "sql_evidence": {
+    "file": "schema-grants-review.json",
+    "passing": 46,
+    "failing": 0,
+    "all_input_hashes_match": true,
+    "reuse_reason": "SQL and isolated runner bytes unchanged since this run; no redundant SQL rehearsal."
+  },
+  "expected_permissions": "expected-permissions-validation.json",
+  "builds": "finalized-candidate-builds.json",
+  "merge_tree": {
+    "base": "97ab688d9ef138429fd05d78678e2d1236be9957",
+    "exit_code": 0,
+    "tree": "89581439b05f74c97438ee57c3817e6c8ce3de08",
+    "scope": "local conflict check, not GitHub review approval"
+  },
+  "independent_review": {
+    "material_findings": 0,
+    "scope": "Whole branch/source changes and exact permissions model",
+    "limitations": "Local code/captured metadata only; no production execution or repeat DB rehearsal."
+  },
+  "production_actions": {
+    "merged": false,
+    "deployed": false,
+    "sql_applied": false,
+    "emails_sent_by_this_task": 0
+  },
+  "note": "Executable source candidate is pinned above. A subsequent documentation-only commit records these post-commit/post-push outcomes; candidate input integrity must remain true."
+}

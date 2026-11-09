@@ -1,0 +1,151 @@
+{
+  "kind": "finalized-candidate-builds",
+  "observed_at": "2026-11-09T10:01:11.973Z",
+  "candidate": "08c999ca3841b53f68c92ab15972cff053829ed1",
+  "production": {
+    "format": 1,
+    "kind": "assets",
+    "project_ref": "lmuwsjjrqmmmtmxjvqln",
+    "captured_at": "2026-11-09T10:00:56.587Z",
+    "source_commit": "08c999ca3841b53f68c92ab15972cff053829ed1",
+    "provenance": {
+      "status": "passing",
+      "source_commit": "08c999ca3841b53f68c92ab15972cff053829ed1",
+      "project_ref": "lmuwsjjrqmmmtmxjvqln"
+    },
+    "artifact_digest": "6c72ba5f53a9a5c653771d2f1bb6fc555164125aad1fd70145fdaf3f40b1f41b",
+    "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+    "ready": true,
+    "summary": {
+      "passing": 5,
+      "failing": 0,
+      "blocked": 0,
+      "unverified": 0
+    },
+    "checks": [
+      {
+        "id": "build_manifest",
+        "status": "passing",
+        "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+      },
+      {
+        "id": "files",
+        "status": "passing",
+        "detail": "Browser files scanned: 100"
+      },
+      {
+        "id": "backend",
+        "status": "passing",
+        "detail": "Intended hostname present; unexpected project count: 0"
+      },
+      {
+        "id": "public_key",
+        "status": "passing",
+        "detail": "Publishable/ matching legacy anon key present"
+      },
+      {
+        "id": "secrets",
+        "status": "passing",
+        "detail": "Exposure findings: 0"
+      }
+    ]
+  },
+  "archive_rescan": {
+    "format": 1,
+    "kind": "assets",
+    "project_ref": "lmuwsjjrqmmmtmxjvqln",
+    "captured_at": "2026-11-09T10:00:57.918Z",
+    "source_commit": "08c999ca3841b53f68c92ab15972cff053829ed1",
+    "provenance": {
+      "status": "passing",
+      "source_commit": "08c999ca3841b53f68c92ab15972cff053829ed1",
+      "project_ref": "lmuwsjjrqmmmtmxjvqln"
+    },
+    "artifact_digest": "6c72ba5f53a9a5c653771d2f1bb6fc555164125aad1fd70145fdaf3f40b1f41b",
+    "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+    "ready": true,
+    "summary": {
+      "passing": 5,
+      "failing": 0,
+      "blocked": 0,
+      "unverified": 0
+    },
+    "checks": [
+      {
+        "id": "build_manifest",
+        "status": "passing",
+        "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+      },
+      {
+        "id": "files",
+        "status": "passing",
+        "detail": "Browser files scanned: 100"
+      },
+      {
+        "id": "backend",
+        "status": "passing",
+        "detail": "Intended hostname present; unexpected project count: 0"
+      },
+      {
+        "id": "public_key",
+        "status": "passing",
+        "detail": "Publishable/ matching legacy anon key present"
+      },
+      {
+        "id": "secrets",
+        "status": "passing",
+        "detail": "Exposure findings: 0"
+      }
+    ]
+  },
+  "preview": {
+    "format": 1,
+    "kind": "assets",
+    "project_ref": "lcddnpafrkbwsrhqexqe",
+    "captured_at": "2026-11-09T10:01:11.963Z",
+    "source_commit": "08c999ca3841b53f68c92ab15972cff053829ed1",
+    "provenance": {
+      "status": "passing",
+      "source_commit": "08c999ca3841b53f68c92ab15972cff053829ed1",
+      "project_ref": "lcddnpafrkbwsrhqexqe"
+    },
+    "artifact_digest": "6624285ce2073d341543c39e9d43ed4ffba875af9c3f4db42a7cb89a9c03fa6d",
+    "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+    "ready": true,
+    "summary": {
+      "passing": 5,
+      "failing": 0,
+      "blocked": 0,
+      "unverified": 0
+    },
+    "checks": [
+      {
+        "id": "build_manifest",
+        "status": "passing",
+        "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+      },
+      {
+        "id": "files",
+        "status": "passing",
+        "detail": "Browser files scanned: 100"
+      },
+      {
+        "id": "backend",
+        "status": "passing",
+        "detail": "Intended hostname present; unexpected project count: 0"
+      },
+      {
+        "id": "public_key",
+        "status": "passing",
+        "detail": "Publishable/ matching legacy anon key present"
+      },
+      {
+        "id": "secrets",
+        "status": "passing",
+        "detail": "Exposure findings: 0"
+      }
+    ]
+  },
+  "production_mutations": false,
+  "public_key_value_recorded": false
+}
