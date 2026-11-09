@@ -1,11 +1,11 @@
 {
   "production_auth": {
     "status": "blocked",
-    "evidence": "Production Auth settings proposal prepared in docs/mm-launch-readiness.md: official apex Site URL, two exact root/recovery callbacks, confirmation/recovery verification-link templates. Historical screenshot showed localhost/empty redirects; current template, URLs, confirmation/expiry and limits readback still missing. No settings changed or production email sent. Owner postponed dashboard inspection; remind before final launch approval. This is not acceptance or completion."
+    "evidence": "Owner production screenshots on 9 November show official Site URL and two exact root/recovery callbacks, with confirmation and recovery templates using {{ .ConfirmationURL }}. One approved recovery email to an owner-controlled test account was delivered, but its link opened sign-in with no new-password form. Production end-to-end recovery remains unresolved. Preview request UI works and earlier preview acceptance is retained; no repeat preview email needed."
   },
   "smtp": {
     "status": "blocked",
-    "evidence": "Existing preview Resend recovery acceptance retained (docs/mm-acceptance/preview-resend-smtp.json); no repeat send. Production proposal reuses smtp.resend.com:465, username resend, no-reply@auth.notationeducation.online and a privately configured scoped sending key. Initial 30 emails/hour and 60-second per-user interval proposed pending current limits, quota and traffic review. Current production SMTP/domain/quota/credential-scope readback and approved production acceptance remain missing; no settings changed."
+    "evidence": "Owner configured production custom SMTP; screenshot confirms smtp.resend.com:465, username resend, no-reply@auth.notationeducation.online, Notation Education, masked saved credential. Resend domain Verified. One approved dashboard-triggered production recovery email marked Delivered to owner-controlled test account; transport/delivery passed. Remaining quota/credential-scope and resulting hourly-limit review are not established by delivery. End-to-end recovery remains blocked in production_auth."
   },
   "database_backup": {
     "status": "blocked",
@@ -21,11 +21,11 @@
   },
   "production_build_settings": {
     "status": "blocked",
-    "evidence": "Fresh local production build and 5/5 asset checks passed over 100 files; fresh archive rescan matched its digest; preview build restored and 5/5 checks passed (docs/mm-acceptance/cloudflare-build-preparation.json). Existing production public client key accepted by read-only Auth settings HTTP 200. Exact production-only variables/Node pin proposed in checklist. Actual Cloudflare settings/install logs unavailable; uncommitted input changes leave candidate provenance unverified. No Cloudflare setting, merge or deployment performed; gate remains blocked."
+    "evidence": "Owner authorized production-only Cloudflare build-variable entry and reports completion. Screenshot shows reviewed production target, exact retained-project URL, publishable client-key type (value not retained), DESIGN_PREVIEW=false and NODE_VERSION=24.19.0. Screenshot contains editable fields without save confirmation; persistence is owner-reported. No build/deploy performed. Current configured commands npm run build / npx wrangler deploy and prior frozen pnpm install evidence recorded. Revised SQL/runner require a new candidate; updated PR/build artifact provenance, production hostname/public-key checks and unchanged preview settings remain verification requirements."
   },
   "rollback_version": {
     "status": "unverified",
-    "evidence": "Owner screenshot captures active prefix 3862f733, but full rollback selection/recovery not verified."
+    "evidence": "Owner supplied full active Worker version 3862f733-48df-4d59-bf0e-d6abe51557a6 and screenshot of 100% traffic. Dashboard views did not expose rollback control; selection/restoration remains unverified."
   },
   "owner_launch_approval": {
     "status": "blocked",
@@ -37,7 +37,7 @@
   },
   "security_acceptance": {
     "status": "unverified",
-    "evidence": "Narrow security forward/rollback prepared: redundant PUBLIC EXECUTE on four helpers, direct app-role EXECUTE on create_profile trigger, and TRUNCATE on four remaining non-curriculum tables; composes with staged owner-only package. Required helper/DML/column/service access retained. No production application. Synthetic combined permissions/rollback checks recorded in docs/mm-acceptance/local-database-rehearsal.json. Fresh production ACL/role/definition capture and exact post-hardening comparator update remain pending, along with definer exposure, TRIGGER/REFERENCES decisions and leaked-password provider setting/plan readback. See docs/mm-launch/security-review.md."
+    "evidence": "Owner required TRIGGER/REFERENCES review before launch. Dependency review completed against fresh production metadata: 32 unused table-level grants across eight tables; no reviewed frontend or public function schema-creation dependency. Revised existing security SQL removes only these alongside earlier scoped grants; exact guarded rollback retained. Revised combined local runner passed 46 isolated synthetic checks with zero failures, normal owner/student behavior, FK enforcement, existing triggers and exact ACL/schema/row rollback (docs/mm-acceptance/schema-grants-review.json). No production changes. Revised SQL/runner require a new committed candidate and reviewed post-permission expected contract. Remaining definer advisory acceptance and leaked-password setting/plan readback unresolved."
   },
   "enrolment_behavior": {
     "status": "passing",

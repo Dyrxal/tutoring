@@ -1,0 +1,22 @@
+{
+  "kind": "expected-production-permissions-validation",
+  "observed_at": "2026-11-09T09:57:34.477Z",
+  "production_mutations": false,
+  "source_capture_at": "2026-11-09T07:37:56.764764+00:00",
+  "source_capture_sha256": "f8a820cc0a7e1e3e47c20783dbdc534fd69c3b9bcfd321f1581cbb59a677a9ef",
+  "expected_contract_sha256": "7917ea71430351a7cfd5e699966f688e6ea16f287120afed85f9bf6b25e61f6e",
+  "removed_table_grants": 48,
+  "changed_function_acls": 4,
+  "changed_effective_entries": 1,
+  "changed_review_definitions": 2,
+  "unrelated_sections_unchanged": true,
+  "synthetic_sql_evidence": {
+    "file": "schema-grants-review.json",
+    "summary": {
+      "passing": 46,
+      "failing": 0
+    },
+    "input_hashes_match": true
+  },
+  "note": "Derived expected state and comparison tooling validation; not an observed installed production state."
+}

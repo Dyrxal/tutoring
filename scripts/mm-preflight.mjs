@@ -62,8 +62,11 @@ try {
         process.stdout.write(captureSQL(o.kind, o['project-ref'], o.fixtures ? read(o.fixtures) : {}) + '\n');
         process.exit(0);
     }
-    else if (command === 'metadata')
-        r = metadata(read(o.actual), read(o.expected || root + '/docs/mm-launch/metadata-contract.json'), states(), o.phase || 'before', age);
+    else if (command === 'metadata') {
+        const actual = read(o.actual), phase = o.phase || 'before';
+        const expected = o.expected || root + '/docs/mm-launch/' + (actual.project_ref === 'lmuwsjjrqmmmtmxjvqln' && phase === 'after' ? 'production-after-contract.json' : 'metadata-contract.json');
+        r = metadata(actual, read(expected), states(), phase, age);
+    }
     else if (command === 'baseline')
         r = baseline(read(o.before), read(o.after), o.approvals ? read(o.approvals) : [], age);
     else if (command === 'review')

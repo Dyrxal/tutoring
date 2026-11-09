@@ -34,6 +34,22 @@ BEGIN
  END LOOP;
 END
 $guard$;
+DO $schema_grants$
+DECLARE r text; t text; v text; present boolean;
+BEGIN
+ FOREACH t IN ARRAY ARRAY['courses','modules','lessons','questions','enrolments','lesson_progress','practice_attempts','profiles'] LOOP
+  FOREACH r IN ARRAY ARRAY['anon','authenticated'] LOOP
+   FOREACH v IN ARRAY ARRAY['TRIGGER','REFERENCES'] LOOP
+      SELECT EXISTS(SELECT 1 FROM pg_class c CROSS JOIN LATERAL aclexplode(c.relacl) a
+       WHERE c.oid=format('public.%I',t)::regclass AND c.relowner=current_user::regrole
+        AND a.grantee=r::regrole AND a.privilege_type=v
+        AND a.grantor=current_user::regrole AND NOT a.is_grantable) INTO present;
+      IF present IS DISTINCT FROM true THEN RAISE EXCEPTION 'Schema privilege ACL drift: % % %',t,r,v; END IF;
+   END LOOP;
+  END LOOP;
+ END LOOP;
+END
+$schema_grants$;
 REVOKE EXECUTE ON FUNCTION public.is_tutor(),public.enrolled_in(uuid),public.can_read_lesson(uuid),public.create_profile() FROM PUBLIC;
 REVOKE EXECUTE ON FUNCTION public.create_profile() FROM anon,authenticated;
 REVOKE TRUNCATE ON public.enrolments,public.lesson_progress,public.practice_attempts,public.profiles FROM anon,authenticated;
@@ -53,4 +69,18 @@ BEGIN
  END LOOP;
 END
 $check$;
+REVOKE TRIGGER,REFERENCES ON public.courses,public.modules,public.lessons,public.questions,public.enrolments,public.lesson_progress,public.practice_attempts,public.profiles FROM anon,authenticated;
+DO $schema_check$
+DECLARE r text; t text;
+BEGIN
+ FOREACH t IN ARRAY ARRAY['courses','modules','lessons','questions','enrolments','lesson_progress','practice_attempts','profiles'] LOOP
+  FOREACH r IN ARRAY ARRAY['anon','authenticated'] LOOP
+   IF has_table_privilege(r,format('public.%I',t),'TRIGGER')
+      OR has_table_privilege(r,format('public.%I',t),'REFERENCES') THEN
+    RAISE EXCEPTION 'Inherited schema privileges remain: % %',t,r;
+   END IF;
+  END LOOP;
+ END LOOP;
+END
+$schema_check$;
 COMMIT;

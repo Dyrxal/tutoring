@@ -81,7 +81,7 @@ export function metadata(actual, expected, states, phase = 'before', maxAge = 36
         checks.push(check('owner:' + e.identity, a.owner === e.owner, 'Function owner'));
         const acl = x => (x || '').replace(/[{}]/g, '').split(',').filter(Boolean).sort();
         const ac = acl(a.acl), ec = acl(e.acl);
-        if (actual.project_ref === refs.production && ['public.is_tutor()', 'public.enrolled_in(uuid)', 'public.can_read_lesson(uuid)', 'public.create_profile()'].includes(e.identity))
+        if (actual.project_ref === refs.production && expected.project_ref === refs.preview && ['public.is_tutor()', 'public.enrolled_in(uuid)', 'public.can_read_lesson(uuid)', 'public.create_profile()'].includes(e.identity))
             ec.push('=X/postgres');
         checks.push(check('acl:' + e.identity, canonical(ac) === canonical([...new Set(ec)]), 'Explicit ACL, including reviewed PUBLIC difference'));
     }
@@ -150,7 +150,7 @@ export function report(reports, gates, candidate, maxAge = 3600) {
         if (!r || r.format !== 1 || !Array.isArray(r.checks) || !['assets', 'metadata', 'baseline', 'review'].includes(r.kind) || byKind.has(r.kind))
             throw Error('Invalid or duplicate report');
         const required = { assets: ['build_manifest', 'files', 'backend', 'public_key', 'secrets'], metadata: ['columns', 'constraints', 'policies', 'triggers', 'table_grants', 'effective', 'rls', 'buckets', 'function_count'], baseline: ['storage:question-images', 'storage:lesson-images', 'storage:lesson-resources', 'content:courses', 'content:modules', 'content:lessons', 'content:questions', 'resource:questions', 'resource:notes', 'resource:examples', 'resource:resources'], review: ['guard:public.note_mistake_review_help(uuid,uuid)', 'guard:public.submit_mistake_review(uuid,uuid,uuid,integer,text,boolean,bigint,jsonb)'] };
-        const contract = read(new URL('../../docs/mm-launch/metadata-contract.json', import.meta.url));
+        const contract = read(new URL(r.kind === 'metadata' && r.project_ref === refs.production && r.phase === 'after' ? '../../docs/mm-launch/production-after-contract.json' : '../../docs/mm-launch/metadata-contract.json', import.meta.url));
         if (r.kind === 'metadata') {
             required.metadata.push(...contract.data.functions.flatMap(f => ['definition:', 'owner:', 'acl:'].map(prefix => prefix + f.identity)));
             checks.push(check('contract', r.contract_digest === hash(canonical(contract.data)), 'Reviewed metadata contract identity'));

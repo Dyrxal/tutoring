@@ -1,14 +1,161 @@
-# MM current completion checklist — 8 November 2026 (Australia/Sydney)
+# MM current completion checklist — 9 November 2026 (Australia/Sydney)
 
-Authoritative current status; older checkpoints in mm-preview-status.md are historical. Owner scope: retain current content and production Supabase, no new curriculum or redesign. Tested executable candidate **`f21dabf2e021a0dcef439bc1329bb51ebc043081`** includes the completed preview fixes and release-preflight tools. The final evidence/documentation commit adds no application changes. Historical preview evidence at `14dae44` and launch-package evidence at `af9dc66` remain applicable within their stated limits. Production read-only inspection authorized; production writes, merge, deployment and DNS await final approval. No emails were sent during the preflight-tooling preparation; the later preview Resend recovery check is recorded below.
+Authoritative current status; older checkpoints in mm-preview-status.md are historical. Owner scope: retain current content and production Supabase, no new curriculum or redesign. Current locally committed executable candidate: **`e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02`**; not pushed or deployed. Earlier tested candidate `f21dabf2e021a0dcef439bc1329bb51ebc043081` and its reports below are historical. The current release package and prompt tracker take precedence for status. Historical preview evidence at `14dae44` and launch-package evidence at `af9dc66` remain applicable within their stated limits. Production read-only inspection authorized; production writes, merge, deployment and DNS await final approval. No emails were sent during the preflight-tooling preparation; the later preview Resend recovery check is recorded below.
 
-## Current owner direction — launch preparation only
+## Latest launch progress — 9 November 2026
+
+Final candidate packaging is authorized: commit revised SQL/evidence and exact expected permissions, push only feat/mm-cloudflare-migration, and inspect PR #3 checks. Production merge/deploy/SQL application remain unapproved. Current remote review head was read as 8dd72888745a73cf0e0a412c0b1825d54dbbddd7; main remains 97ab688d9ef138429fd05d78678e2d1236be9957. Main is the configured Cloudflare production branch; the authorized review-branch push may run its existing check/preview integration, and will not merge into main.
+
+Exact after-permission expectation is now prepared in production-after-contract.json and independently compared with the supplied production snapshot: precisely 48 removed app-role table grants, four narrowed function ACLs, one effective trigger-function EXECUTE entry changed and two pinned review definitions changed. Columns/constraints/policies/triggers/RLS/buckets and function owners remain unchanged. It is a derived expectation, not observed installed state. Existing comparator defaults to this contract for production phase=after; before/preview retain the historical reviewed contract. Candidate integrity protects all six SQL files and both metadata contracts. New negative tests reject restored PUBLIC access, extra schema grants and contract/SQL edits after commit. 146 unit tests passed; exact 46-check SQL evidence reused without rerun.
+
+Ruling: use this single checklist as the execution ledger and preserve existing feature-branch workspace, per owner instruction to avoid duplicate tracking/rework. No extra plan, worktree or deployment tooling was introduced.
+
+
+Owner reports completing production build-variable entry. Screenshot shows the five reviewed names and values: NEXT_PUBLIC_LMS_TARGET=production; NEXT_PUBLIC_SUPABASE_URL=https://lmuwsjjrqmmmtmxjvqln.supabase.co; NEXT_PUBLIC_SUPABASE_ANON_KEY contains a publishable client key (value deliberately not transcribed); NEXT_PUBLIC_DESIGN_PREVIEW=false; NODE_VERSION=24.19.0. The image shows editable fields and no save confirmation, so persistence is owner-reported and not independently confirmed. If a Save button remains, owner should save this form once; no repeated screenshot requested. No build/merge/deploy triggered. Future build target/provenance and preview preservation still need release verification; this observation does not pass the production build gate by itself.
+
+Owner now explicitly requested adding the reviewed production build variables. Scope: Cloudflare Worker notation-education-lms → Settings → Builds → Production only, using the existing five-variable proposal; preserve Previews Base and runtime settings. No build, merge or deploy is authorized by this step. Names rechecked against lib/backend-config.ts, vite.config.ts and existing preflight. Assistant has no Cloudflare management credential; owner dashboard entry/readback pending. Do not mark variables installed until confirmed saved. Existing blank build-variable list is the prior state.
+
+**Required TRIGGER/REFERENCES review completed:** owner chose review before launch, superseding the proposed deferral. Fresh metadata confirms 32 unused app-role table grants across the eight named curriculum/student tables; reviewed frontend/RPCs do not create schema dependencies. Extended existing security forward/rollback with only those removals and exact grant restoration. Revised combined isolated run: **46 passing, 0 failures**, including denied schema privileges, existing FK enforcement, owner/student actions, trigger behavior and exact rollback. [Revised evidence/hashes](mm-acceptance/schema-grants-review.json) match current SQL/runner; run-created containers/volumes cleaned. Nothing applied to production. These SQL/runner changes are uncommitted; e98847f is now the prior candidate, not a commit containing the revised package. A new candidate and exact post-permission expected contract remain required. Leaked-password setting/plan and authenticated frontend rollback access remain open.
+
+Security/rollback package follow-up: refreshed security-review.md and release-approval-package.md against the fresh successful drift check and completed Auth/Cloudflare observations. Proposed security disposition is narrow tested revokes plus retaining required definer helpers and deferring TRIGGER/REFERENCES changes; owner decision requested, not assumed. Leaked-password protection still needs non-secret production readback. Added [frontend rollback runbook](mm-launch/frontend-rollback.md) with exact retained version and read-only operator/version checks, interactive pinned-Wrangler rollback, 100% verification and stop conditions. CLI syntax and implementation checked locally only; authenticated target/operator availability is not yet verified. No production action or new tool/dependency added. Exact post-permission expected contract remains an application prerequisite.
+
+**Fresh production drift check completed:** owner ran the prepared READ ONLY metadata query in the production SQL editor and returned its JSON export. Capture time `2026-11-09T07:37:56.764764+00:00`; database identity validated. Existing preflight metadata comparison: **85 passing, 0 failing**. Existing two-function forward guard comparison: **3 passing, 0 failing**. No unexpected drift found against the reviewed contract (including its documented production/preview allowances). Definitions, owners, ACLs, policies, RLS, grants, constraints, triggers and bucket configuration pass their existing checks. This is a before-change check, not installed-fix or launch verification. Evidence: [production drift report](mm-acceptance/production-drift-check.json). Raw capture stays outside Git. Content/resource aggregate baseline was not part of this query and remains separate; no production writes, student answers or private object bytes retrieved. This supersedes the blocked-execution note below for this capture.
+
+Owner requested a fresh drift check now. Tool/configuration check confirms no Supabase SQL connector and no approved pooler route; database password entry is ready but does not provide SQL connectivity. No production SQL was executed and no fresh drift result exists yet. Existing generator produced identity-bound READ ONLY metadata and baseline queries at `/workspace/work/mm-drift-check/production-metadata.sql` and `production-baseline.sql`, each ending ROLLBACK. Next action is owner execution of the metadata query in the production SQL editor and JSON result export; then normalize/compare using existing preflight commands. Do not broaden network access, reuse old timestamps, or claim drift passed from query generation.
+
+This snapshot supersedes older preparation-only descriptions below. Production Auth URLs and SMTP were changed by the owner during guided setup, and one recovery email to an owner-controlled test account was approved, sent via dashboard and delivered. Recovery then opened sign-in rather than a password-change screen, so the complete production flow remains unresolved. No frontend deployment, merge, or production SQL/permission change has been performed.
+
+- Completed dashboard evidence: owner identity/sole tutor, official Auth URLs and template link expressions, verified Resend domain, saved SMTP and delivered production recovery email; current Cloudflare commands/no build variables, active full Worker ID/100% traffic; remote PR draft, one check passed and no conflicts.
+- Prepared locally: candidate `e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02`, narrow owner/security/review SQL with guarded rollback, builds and synthetic permission/behavior evidence. Candidate remains unpushed. Current checklist/package reports remain uncommitted working files.
+- Still required: fresh production metadata/ACL/definition/content baselines and expected permission contract; scoped security decisions; production build variable configuration after approval; reviewed push and fresh PR checks; workable frontend rollback selection; final bounded smoke/cleanup and release approval; deployment followed by production verification including recovery and saved progress.
+- Deferred/unverified: no verified DB/private Storage backup or real restore rehearsal; physical Safari/iPhone, real overnight rollover and real expiry need checks or explicit final deferral. Do not resume backups or infer launch approval.
+
+## Cross-chat reconciliation — 9 November 2026 (Australia/Sydney)
+
+Owner supplied another chat's Master Migration handoff and current URL/SMTP/template screenshots. Reviewed and reconciled against this chat; do not restart its older backup instructions or repeat answered questions. The full pasted handoff remains a private attachment, not copied wholesale into Git.
+
+- Current URL screenshot shows Site URL `http://localhost:3000` and no redirect URLs. Recent SMTP screenshot shows custom SMTP disabled; templates screen reports default templates and source editing locked until custom SMTP setup. These are owner-supplied production-context observations; the cropped images do not independently display the project ref. No setting was saved. Do not ask for these same screenshots again in this inspection.
+- Handoff confirms preview sender display name **Notation Education**, matching the production proposal, and approved preview test inbox. Retain the successful preview Resend recovery evidence; no repeat email is needed. That approval is not authorization to create the proposed new production smoke account or send production messages.
+- Preview URL/SMTP configuration was already performed in the other chat. Preserve preview isolation; use only the approved branch preview for interactive acceptance, not version-specific preview URLs.
+- The handoff's missing-Personal-variables report is historical: this chat subsequently verified both entries ready without exposing values. Its request to obtain the pooler endpoint is also superseded: the supplied session pooler is `aws-0-ap-northeast-1.pooler.supabase.com:5432`, database `postgres`, username `postgres.lmuwsjjrqmmmtmxjvqln`. Do not ask for that endpoint or passwords again. Connectivity remains a separate unresolved limitation.
+- Backup work was explicitly deferred later in this chat. No verified database/private Storage backup exists; do not resume backup setup from the older handoff.
+- Version prefix `3862f733` refers to a historical **Cloudflare frontend Worker version**, not a Supabase database version. Full current rollback ID/traffic is still unknown; do not repeat the handoff's misclassification or invent the ID.
+- Historical Cloudflare integration/DNS observations remain recorded. Existing Resend DNS additions and verification are not tasks to reapply. Remote review SHA `8dd7288` is historical; this chat's exact locally committed executable candidate remains `e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02`, not pushed or deployed.
+
+## Current owner focus — production Auth and email (9 November)
+
+The owner is completing launch items one at a time and chose Auth/email as the active task. Use this section and evidence below as the running state; do not repeat answered dashboard questions. Work remains readback/preparation until the owner explicitly approves particular production changes or messages. No production Auth setting, SMTP credential, or email has been changed/sent by this work.
+
+- Confirmed from screenshots: production Site URL is `http://localhost:3000`; redirect allowlist is empty; custom SMTP is off; default confirmation template is locked until custom SMTP is enabled; current email send limit is 2/hour. Other displayed Auth limits are captured later in this file.
+- Resend: latest owner screenshot (9 November) shows `auth.notationeducation.online` **Verified**. This supersedes the earlier Pending screenshot; no DNS correction is needed based on current evidence. The screenshot does not establish production Supabase SMTP is configured. Do not share API keys or email tokens.
+- Production Auth URL screenshot now shows Site URL `https://notationeducation.online/` and exactly two redirects: `https://notationeducation.online/` and `https://notationeducation.online/?auth=recovery`. No preview callback is present. Dashboard displays no pending Site URL save. This is owner screenshot evidence, not API readback.
+- Production SMTP screenshot now shows custom SMTP enabled with sender `no-reply@auth.notationeducation.online`, name `Notation Education`, host `smtp.resend.com`, port `465`, username `resend`, and a masked saved password. Do not request or record the password. Supabase UI says the email limit increases to 30/hour after enabling SMTP.
+- Production Confirm signup source screenshot shows subject `Confirm your email address` and link href `{{ .ConfirmationURL }}`. Reset password source screenshot shows subject `Reset your password` and link href `{{ .ConfirmationURL }}`. Both use the expected Supabase confirmation link variable; no template edits are currently justified. These screenshots do not verify delivered links or resulting app flow.
+- Owner clarified the apparent student account is owner-controlled test data and there are currently no real students. One recovery email to that account was approved and triggered once via Supabase Auth Users. Owner reports its link opened the production sign-in page, without a new-password form. Latest Resend screenshot shows the matching recovery email to that test account marked **Delivered** 27 minutes ago. SMTP transport/delivery therefore passed; end-to-end recovery did not. Current local candidate contains the recovery UI, but is not deployed; stale Worker code is a plausible explanation, not yet confirmed. No second email requested, and owner reports no password change.
+- Owner then opened the existing branch preview and confirmed its login page includes **Forgot password?** and that the reset-request screen opens. No preview email was sent in this check. This confirms only the request UI, not the complete email/new-password flow. Existing earlier preview recovery acceptance remains separately recorded; do not repeat its email test.
+- Auth/email next blocker: after the reviewed candidate is deployed through the approved release, repeat one bounded production recovery check against the owner-controlled test account only if explicitly included in final approval. Do not send another email now. Treat recovery as unresolved until the deployed production link reaches the new-password screen and the flow completes.
+- Resend screenshot shows a password-reset email marked Delivered, but does not establish it originated from this production Supabase project. Preserve this as delivery evidence with origin unverified. A controlled production test and template/link verification are still needed to prove the full path; agree recipient and bounded scope in the approval package before sending.
+- Preserve preview isolation and do not repeat preview email tests.
+
+## Cloudflare production build observation — owner screenshot and log
+
+PR Conversation merge-status screenshot now confirms **All checks have passed** (one successful check), **No conflicts with base branch**, and **Draft / work in progress** with merging disabled. This is the remote `8dd7288` state shown in the preceding screenshot; it does not verify the newer local candidate. No required-review approval is established by this screenshot. PR dashboard evidence collection is complete for this head; refresh checks/conflicts/reviews after any approved push of the reviewed candidate. No Ready for review or merge action taken.
+
+GitHub PR #3 owner screenshot (9 November): **Draft**, `feat/mm-cloudflare-migration` into `main`, 36 commits and 131 changed files. Checks tab shows one successful Cloudflare Workers and Pages check (`Workers Builds: notation-education-lms`) on displayed commit `8dd7288`, completed two days ago in 0s, build ID `9b2e2091-b106-4264-a2d8-f53c4e8c4c89`. This does not prove a build or test of local candidate `e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02`, nor establish artifact provenance from the 0s check. Merge conflict/required review status is not shown; inspect the PR Conversation merge-status section next. Do not rerun checks or merge from this screenshot.
+
+Owner supplied Cloudflare build details for successful Build `4839a62c`, `main`, manually deployed 25 days ago, repository `Dyrxal/tutoring`. Displayed settings: build `pnpm run build`, deploy `pnpm run deploy`, root `/`, build variables `None`; build-token label visible but no token value. Pasted log confirms detected Node `24.18.0` and pnpm `11.25.0`, install `pnpm install --frozen-lockfile`, build command success and deploy command success. This is evidence for that historical manual production build only; it does not prove current migration candidate settings, provenance, or build variables. In particular, there are no production build variables shown, so the current app may use defaults/preview target. Do not retry or deploy from this screen. The previous proposal's `npm run build` / `npx wrangler deploy` commands are superseded by this log; package build uses `pnpm run build` and `pnpm run deploy`.
+
+Owner supplied the **Settings → Builds → Production** screenshot on 9 November. It shows Git repo `Dyrxal/tutoring`, production branch `main`, builds enabled, configured build command `npm run build`, deploy command `npx wrangler deploy`, root `/`, include path `*`, excludes `node_modules/**` and `.git/`, existing API token selected by label `notation-education-lms build token` (secret value not shown), **no build variables or secrets**, no deploy hooks, build cache off, and no cron triggers. No settings were changed.
+
+The separately supplied successful manual build (`Build #4839a62c`) showed `pnpm run build` / `pnpm run deploy`; this differs from the current configured automatic build commands and should not be conflated with it. The manual log proves a locked pnpm install worked for that build. Current build configuration has no explicit production target/project variables, so it cannot yet be verified to target production. Do not edit from this readback alone; the exact proposed production variables remain in the release package and need explicit approval before entry.
+
+Latest owner Settings screenshot is specifically **Variables and secrets → Runtime variables and secrets**, with the Production scope selected. It shows no production runtime variables/secrets and no connected production bindings. Logs/traces/issues switches shown are off; no change made. This is separate from the build variables above.
+
+## Additional cross-chat project summary — received 9 November 2026
+
+Owner supplied a table of earlier dashboard findings, explicitly noting some may be outdated. Source screenshots are described in that table but not independently re-read in this update; screenshot dates are unknown. Retain this as historical owner-provided evidence, not a fresh settings capture.
+
+- Production identity: Tutoring LMS, `lmuwsjjrqmmmtmxjvqln`; organisation Drisyant Shrestha tutoring; Free plan. Reported database: Primary Database, Tokyo (`ap-northeast-1`), Nano. These agree with the known pooler region; no plan/compute change is proposed.
+- Reported Supabase branch `main` marked PRODUCTION is a Supabase database branch label, not proof of GitHub/Cloudflare release state. Supabase **No repository connected** does not contradict the historically connected Cloudflare `Dyrxal/tutoring` integration and is not a reason to create a new connection.
+- Reported No backups and last migration `add_missing_lms_foreign_key_indexes` are dated-unknown observations, not current migration-history verification. Do not replay that migration or infer PITR configuration from an Enable PITR prompt. Backup remains explicitly deferred with no verified recovery copy.
+- Reported Upgrade to unlock branching and `$0.01344/hour` are historical UI text/pricing, not authorization to purchase or create a branch. Existing isolated preview project remains unchanged.
+- The supplied table's Auth Unknown means absent from that source conversation only: current-chat screenshots already show localhost Site URL, empty redirect list, custom SMTP off and locked default-template source. Do not erase those observations or request them again. Rate limits, signup/password/session settings and template source remain unverified.
+- Storage/policies Unknown likewise does not erase the earlier read-only metadata contract, three private bucket inventory or aggregate observations. Those observations remain historical and require fresh identity-bound metadata before release; no private bytes or student answers are requested.
+
+No production setting, connection, plan, migration or data was changed. Next missing non-secret dashboard information remains production Auth Rate Limits; this table does not supply it.
+
+## Production Auth rate-limit screenshot — 9 November 2026
+
+Owner supplied the requested Rate Limits screenshot in the production dashboard sequence (crop does not independently show project ref). Recorded displayed values; no settings saved:
+
+| Setting | Displayed value / scope |
+|---|---|
+| Sending emails | 2 emails/hour, project-wide |
+| Sending SMS | 30 SMS/hour |
+| Token refresh | 150 requests/5 minutes per IP |
+| Token verification (OTP/magic link) | 30 requests/5 minutes per IP |
+| Anonymous sign-ins | 30 requests/hour per IP |
+| Sign-ups/sign-ins, excluding anonymous | 30 requests/5 minutes per IP |
+| Web3 sign-ups/sign-ins | 30 requests/5 minutes per IP |
+| Minimum email interval per user | 60 seconds; UI states applicable only with custom SMTP |
+
+This completes the current displayed rate-limit readback; do not request it again unchanged. The proposed 30-email/hour custom-SMTP setting is not installed. Custom SMTP remains off. The 2/hour project email limit is unsuitable for unrestricted launch signup/recovery traffic; use the already proposed existing Resend SMTP configuration after explicit settings approval, review actual sending quota and verify resulting email limit. Do not raise unrelated auth limits or interpret the 60-second value as active under the current default sender.
+
+Next non-secret missing account fact: owner Auth UUID and current tutor status. Obtain from production Authentication → Users by exact supplied owner email; no account reset, invitation or private token needed. SMTP/template changes and production test emails remain unapproved; no repeat preview test is needed.
+
+## Owner Auth identity screenshot — 9 November 2026
+
+Owner provided the production-context Authentication Users list. The row matching the previously supplied owner email shows Auth UID **`5f568899-c69c-4838-b527-3dbe68f04e7d`**, email provider. The crop does not independently display project ref. Only the owner row is recorded; unrelated account details are not transcribed. No reset, invitation, email or account change occurred.
+
+Owner Auth UUID is now supplied; do not ask for it again unless later evidence conflicts. This screen does not show `public.profiles.role` or prove the owner is the only tutor. Remaining permission prerequisites: verify this exact profile exists with matching email and role `tutor`, capture the current tutor UUID list, and refresh the approved metadata/ACL evidence. Keep the prepared owner script's matching Auth/profile identity assertions; do not promote or demote any account during inspection.
+
+Next dashboard step: production Table Editor → `public.profiles`, filter `id` equal to the owner UID above, then inspect only that row's `role` (and matching ID/email if needed). No edits. Do not screenshot unrelated profiles.
+
+## Owner production profile role — 9 November 2026
+
+Owner supplied a Table Editor screenshot showing production project `lmuwsjjrqmmmtmxjvqln` in the dashboard URL, Tutoring LMS / main / PRODUCTION, and `public.profiles`. The matching owner email and UUID prefix correspond to previously supplied Auth UID `5f568899-c69c-4838-b527-3dbe68f04e7d`; role is **tutor**. The ID cell is truncated, so the full UUID comes from the preceding Auth screenshot rather than being inferred from this image alone. Owner role is confirmed by dashboard evidence; no account change is needed to promote the owner. Unrelated profile details are not transcribed.
+
+The visible grid includes one tutor row, but no complete-row-count or role-filter evidence establishes the entire tutor set. Before pinning the owner package's expected tutor array, filter `role = tutor` and confirm the result count/UUIDs. If the owner is already the sole tutor, no demotion is needed: retaining that role and applying the separately reviewed privilege removals remains sufficient for the proposed existing-role approach. Do not add an owner role or new policy merely to restate the current account assignment. Fresh metadata/ACL/definition capture and production action approval are still required.
+
+No production edit, SQL write, reset, invitation or email occurred.
+
+## Production tutor filter — 9 November 2026
+
+Owner supplied the production `public.profiles` Table Editor with visible filter `role = tutor` (also reflected in the project URL). The displayed result is one owner row, matching the previously confirmed email/UUID prefix and tutor role. Record the owner as the sole tutor shown by this filtered dashboard observation; no account demotion or promotion is needed. Do not request the same role/filter screenshots again.
+
+Reviewed expected tutor input for the staged owner package is now `["5f568899-c69c-4838-b527-3dbe68f04e7d"]`, subject to the script's live identity/role-set assertions at approved execution time. The owner's role already supplies the requested ordinary LMS content-management exclusivity under the existing reviewed policies. This screenshot does not verify current function definitions, effective SQL privileges or Storage policies; fresh metadata and the separately staged privilege removals remain pending. Do not mark production security hardening applied or launch readiness passed.
+
+Next desktop evidence: Cloudflare Worker `notation-education-lms` → Deployments → current active production deployment/version details. Record full version ID(s) and traffic allocation for rollback; historical prefix `3862f733` is insufficient. No deployment, rollback or settings change is requested.
+
+## Current prompt tracker — resume here, do not repeat completed preparation
+
+This is the single tracker for the owner's sequential launch prompts. The linked release package defines the proposed execution scope; a prompt requesting execution of already-approved actions is not evidence that its still-unapproved actions were approved.
+
+| Owner prompt/task | Completed preparation / evidence | Remaining action or decision |
+|---|---|---|
+| Inspect current branch and launch gates | Reviewed branch; preserved work; backup deferral recorded | Keep backup deferred; no verified backup exists |
+| Restrict content changes to owner | Guarded owner forward/rollback staged and tested; owner sign-in email supplied | Owner Auth UUID/role and sole-tutor filtered result confirmed; no demotions needed. Fresh ACL/definition checks and approval remain pending |
+| Prepare production Auth/email | Exact URLs, SMTP, template-link requirements and initial limits documented; previous preview delivery retained | Owner postponed dashboard template/settings inspection; remind before approval; no repeat preview email test |
+| Prepare Cloudflare release build | Exact production variables/toolchain proposed; guarded production/preview builds and archive checks passed for current candidate | Live settings/install logs, PR state and full prior version readback |
+| Review two-function database fix | Existing SQL unchanged/pinned; all four conflict cases and rollback verified synthetically | Fresh identity-bound production definition capture; approval before applying |
+| Review security privileges | Narrow ACL/TRUNCATE forward/rollback staged; combined owner/student checks and exact rollback pass | Fresh live ACLs, approved expected post-change contract and remaining security/provider decisions |
+| Verify enrolment/session/progress/review/mobile behaviour | Tutor-managed enrolment retained; 53 focused tests and 7 local Chromium checks pass; prior hosted evidence reused | Physical iPhone/Safari, actual overnight rollover/expiry: test or explicitly defer; production smoke remains separate |
+| Assemble final release package | [Single package](mm-launch/release-approval-package.md), exact local candidate and bounded smoke/cleanup proposal prepared; 144 tests/types/guarded builds pass | Package is blocked, not approved; resolve its named live facts and decisions |
+| Execute approved package / keep track of prompts | Checked candidate and package approval state; this tracker added | **No production action currently approved for execution. Nothing deployed or smoke-tested in production.** |
+
+Current candidate: `e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02`; production project: `lmuwsjjrqmmmtmxjvqln`; preview remains `lcddnpafrkbwsrhqexqe`. Final-package documentation and reports currently remain local working changes; no push performed.
+
+Resume with missing facts, not another implementation pass: production Auth/email readback, production owner/tutor/metadata/content capture, Cloudflare/PR readiness and full rollback version. Known rollback prefix `3862f733` is insufficient for execution. Obtain explicit device/time/security decisions and agreement on the named smoke recipient/writes/cleanup; then revise the same package and obtain specific execution approval. Backup deferral remains a recorded risk, not a passing recovery gate.
+
+Reuse passing evidence while source and scope remain unchanged. Rerun affected checks after changes/failures and refresh time-sensitive captures near cutover; never refresh an old timestamp or repeat email/account writes just to recreate evidence. Record any future approval here with its exact candidate, actions and exceptions before execution.
+
+## Historical initial launch-preparation inspection
 
 Review branch inspected at `8dd72888745a73cf0e0a412c0b1825d54dbbddd7` on 8 November 2026 (Australia/Sydney). The restored checkout was clean on `work` at `97ab688d9ef138429fd05d78678e2d1236be9957`; the fetched review branch matched the expected SHA and was selected without resetting or overwriting local work. The recorded tested executable candidate remains `f21dabf2e021a0dcef439bc1329bb51ebc043081`; its test/build results below are historical and were not rerun in this inspection.
 
 **Backup setup and real restore rehearsal are deferred by the owner. No verified database or private Storage backup exists.** Do not resume backup setup or purchases. This deferral does not establish recovery readiness or authorize launch. The existing automated gates remain blocked, with the deferral recorded in their evidence; no new gate status or release bypass was introduced. This current direction supersedes the older backup-start instructions below.
 
-Remaining work, not implemented by this inspection:
+Initial requested work at that inspection (current completion status is in the tracker above):
 
 1. Prepare owner-only curriculum/content management using existing permissions while preserving student answers, progress and permitted profile actions. Owner email supplied; production UUID/role snapshot and live enforcement still need verification.
 2. Prepare production Auth URLs, email templates, SMTP and rate limits; preview Resend evidence does not verify production configuration.
@@ -57,7 +204,7 @@ Prepared on 8 November 2026 from the application callbacks, historical productio
 | Redirect allowlist | `https://notationeducation.online/` and `https://notationeducation.online/?auth=recovery` | Exact paths generated by `app/page.tsx` and `app/password-recovery.ts`; no wildcard or preview callback |
 | Custom SMTP | Enabled after final settings approval | Existing Resend service, no new OAuth connection, provider or DNS edits |
 | Sender address | `no-reply@auth.notationeducation.online` | Reuse the preview-verified sender/domain |
-| Sender display name | `Notation Education` | Proposed display text; actual existing preview display name not recorded |
+| Sender display name | `Notation Education` | Preview display name confirmed as Notation Education by owner-supplied cross-chat handoff |
 | SMTP host / port | `smtp.resend.com` / `465` | TLS transport; reuse preview configuration |
 | SMTP username | `resend` | Provider's SMTP username, not the owner's login email |
 | SMTP password | Existing appropriate scoped Resend sending key, entered privately in provider settings | No value in this repository/chat. Confirm permission/domain scope and availability; do not rotate, create, copy through chat or expose the saved key |
@@ -183,6 +330,12 @@ Local test startup initially hit an unwritable default config directory, resolve
 
 **Unverified / owner decisions before release:** physical iPhone/Safari (WebKit executable unavailable), actual overnight rollover and actual token/link expiry. Either perform those checks or explicitly accept their deferral in the final release package. Production login/email/saved-progress/review smoke still needs its approved test identity/scope and final configuration. No device/time deferral is inferred from passing synthetic tests. Auth/email dashboard inspection remains postponed with the previously recorded reminder before approval.
 
+## Consolidated release package — not approved / live blockers remain
+
+[One proposed approval package](mm-launch/release-approval-package.md) pins executable candidate `e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02` (local only). Fresh guarded production/preview builds and archive checks have passing provenance; 144 tests and TypeScript pass. Local merge-tree check is clean. PR/API readiness is unavailable (GraphQL Forbidden); remote branch still has the old head. No push, merge, deployment or production write occurred.
+
+[Current preflight](mm-acceptance/final-release-preflight.json): 14 passing, 0 failing, 11 blocked, 3 unverified. Fresh live production captures and full prior frontend version are unavailable; only prefix `3862f733` is known. Exact settings/role inputs, original rollback settings, PR/Cloudflare readback and approved smoke scope remain unresolved. The package includes bounded synthetic fixtures, dedicated recipient, cleanup, risk/deferral decisions and rollback sequence; it is not yet executable. Backup remains deferred and unverified; Auth/email reminder retained.
+
 ## Executable release preflight — current result
 
 [Generated concise report](mm-acceptance/release-preflight.json): **126 passing, 0 failing, 9 blocked, 4 unverified**. This is preparation evidence, not an approved or completed launch. [Verification details](mm-acceptance/independent-verification.json) record the actual candidate, build digests, read-only observation times and limitations. Use [the tested commands](mm-launch/preflight-tools.md), [exact cutover sequence](mm-existing-backend-cutover.md#tested-release-and-rollback-sequence) and [backup/restore checklist](mm-launch/manual-backup-plan.md).
@@ -290,7 +443,7 @@ Supply only these non-secret observations (screenshots are fine):
 
 1. **Production Supabase project lmuwsjjrqmmmtmxjvqln**: URL and SMTP screenshots received. Remaining: confirm/reset templates showing link expressions and Auth → Rate Limits. These are production observations, not preview settings; do not change them yet. Public flags do not establish delivery readiness.
 2. **Same project**: Database → Backups showing available backups/recovery type/date; what separate backup exists for the 13 Storage objects and how it can be restored. If absent, a concrete backup/restore rehearsal must be separately prepared and authorized; do not purchase an upgrade automatically.
-3. **Cloudflare Worker notation-education-lms**: Builds and Domains screenshots received. Deployments screenshot received: active version 3862f733, 100% traffic, main, Ready; earlier versions 13a8552f and 2afeeb91 are listed. No further Cloudflare screenshots requested at this stage. Full version identifier and actual rollback availability/execution still need confirmation before launch.
+3. **Cloudflare Worker notation-education-lms**: Builds and Domains screenshots received. Latest Deployments screenshot (9 November): active version `3862f733-48df-4d59-bf0e-d6abe51557a6`, 100% traffic, main, Ready; requests 0/sec and displayed error rate 0% at capture time. Earlier Ready versions with prefixes `13a8552f` and `2afeeb91` are listed, both marked manually deployed. Whether the active version is selectable for rollback remains unconfirmed. No deployment or rollout changed.
 
 These are information blockers, not a new request for blanket production permission. Do not create a broad OAuth connection or paste API/SMTP secrets. No launch approval is being requested until the missing facts make the package executable.
 
@@ -322,7 +475,7 @@ No promised downtime/cost: these depend on the unverified domain/integration, ba
 
 ## Active deployment observation
 
-Owner screenshot: version prefix `3862f733`, main build Ready, 100% traffic, deployed “23 days ago”; listed older versions `13a8552f` and `2afeeb91` are manually deployed/Ready. These are version identifiers, not assumed Git commit SHAs. The screenshot's instantaneous 0% error rate is not a reliability test. Retain this frontend version through cutover; obtain the full identifier from the dashboard before an approved rollback action. No deployment/rollout was changed.
+Owner screenshot dated 9 November: active version `3862f733-48df-4d59-bf0e-d6abe51557a6`, main build Ready, 100% traffic, deployed “25 days ago”; listed older versions `13a8552f` and `2afeeb91` are manually deployed/Ready. The dashboard showed 0 requests/sec and 0% error rate at the instant captured; this is not a reliability test. These are version identifiers, not assumed Git commit SHAs. Rollback selectability remains unknown. No deployment/rollout was changed.
 
 Next owner information: whether an existing email delivery provider/account already serves notationeducation.online. Do not open accounts, purchase service, configure SMTP or add DNS records without the final concrete approval. Manual database/Storage backup preparation remains an option; executing exports of sensitive data needs explicitly scoped handling authorization, with no dumps/credentials in chat or Git.
 

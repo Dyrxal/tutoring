@@ -152,6 +152,13 @@ function ownerPermissions(name) {
     sql(name,`GRANT EXECUTE ON FUNCTION ${publicHelpers} TO PUBLIC;`);
     const securitySchema=schema(name), securityRows=baseline(name);
     sql(name,read('docs/mm-launch/security-privileges.forward.sql'));
+    for (const table of ['courses','modules','lessons','questions','enrolments','lesson_progress','practice_attempts','profiles'])
+        for (const role of ['anon','authenticated'])
+            for (const privilege of ['TRIGGER','REFERENCES'])
+                assert.equal(value(name,role,ids.student,`SELECT has_table_privilege('${role}','public.${table}','${privilege}')`),'f');
+    const badForeignKey=sql(name,actor('authenticated',ids.tutor,`INSERT INTO public.enrolments(student_id,course_id) VALUES('${ids.student}','a9999999-9999-4999-8999-999999999999')`),false);
+    assert.notEqual(badForeignKey.status,0); assert.match(badForeignKey.stderr,/23503/);
+    pass('security:schema-grants','App roles lack TRIGGER/REFERENCES across eight tables; existing FK enforcement still rejects invalid owner writes');
     assert.equal(value(name,'authenticated',ids.student,"SELECT has_function_privilege('authenticated','public.create_profile()','EXECUTE')"),'f');
     for(const table of ['enrolments','lesson_progress','practice_attempts','profiles'])
         for(const role of ['anon','authenticated']) denied(name,role,ids.student,`TRUNCATE public.${table} CASCADE`);

@@ -54,7 +54,7 @@ export function build(target, scan) {
     return scan(dir, target);
 }
 export function candidateIntegrity(commit, cwd = process.cwd()) { if (inputDigest(cwd) !== candidateDigest(commit, cwd))
-    return false; for (const f of ['docs/mm-launch/metadata-contract.json', 'docs/mm-launch/project-bindings.json', 'docs/mm-acceptance/launch-preparation.json', 'docs/mm-launch/review-conflicts.forward.sql', 'docs/mm-launch/review-conflicts.rollback.sql']) {
+    return false; for (const f of ['docs/mm-launch/metadata-contract.json', 'docs/mm-launch/production-after-contract.json', 'docs/mm-launch/project-bindings.json', 'docs/mm-acceptance/launch-preparation.json', 'docs/mm-launch/review-conflicts.forward.sql', 'docs/mm-launch/review-conflicts.rollback.sql', 'docs/mm-launch/owner-content.forward.sql', 'docs/mm-launch/owner-content.rollback.sql', 'docs/mm-launch/security-privileges.forward.sql', 'docs/mm-launch/security-privileges.rollback.sql']) {
     const blob = execFileSync('git', ['show', commit + ':' + f], { cwd, maxBuffer: 50 * 1024 * 1024 });
     if (hash(blob) !== hash(fs.readFileSync(path.join(cwd, f))))
         return false;

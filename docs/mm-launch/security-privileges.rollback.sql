@@ -32,7 +32,22 @@ BEGIN
  END LOOP;
 END
 $guard$;
+DO $schema_grants$
+DECLARE r text; t text; v text; present boolean;
+BEGIN
+ FOREACH t IN ARRAY ARRAY['courses','modules','lessons','questions','enrolments','lesson_progress','practice_attempts','profiles'] LOOP
+  FOREACH r IN ARRAY ARRAY['anon','authenticated'] LOOP
+   FOREACH v IN ARRAY ARRAY['TRIGGER','REFERENCES'] LOOP
+      IF has_table_privilege(r,format('public.%I',t),v) THEN
+       RAISE EXCEPTION 'Schema privilege restored or inherited: % % %',t,r,v;
+      END IF;
+   END LOOP;
+  END LOOP;
+ END LOOP;
+END
+$schema_grants$;
 GRANT EXECUTE ON FUNCTION public.is_tutor(),public.enrolled_in(uuid),public.can_read_lesson(uuid),public.create_profile() TO PUBLIC;
 GRANT EXECUTE ON FUNCTION public.create_profile() TO anon,authenticated;
 GRANT TRUNCATE ON public.enrolments,public.lesson_progress,public.practice_attempts,public.profiles TO anon,authenticated;
+GRANT TRIGGER,REFERENCES ON public.courses,public.modules,public.lessons,public.questions,public.enrolments,public.lesson_progress,public.practice_attempts,public.profiles TO anon,authenticated;
 COMMIT;

@@ -1,0 +1,4702 @@
+{
+  "data": {
+    "rls": [
+      {
+        "table": "courses",
+        "forced": false,
+        "enabled": true
+      },
+      {
+        "table": "enrolments",
+        "forced": false,
+        "enabled": true
+      },
+      {
+        "table": "lesson_progress",
+        "forced": false,
+        "enabled": true
+      },
+      {
+        "table": "lessons",
+        "forced": false,
+        "enabled": true
+      },
+      {
+        "table": "mistake_review_schedules",
+        "forced": false,
+        "enabled": true
+      },
+      {
+        "table": "mistake_review_settings",
+        "forced": false,
+        "enabled": true
+      },
+      {
+        "table": "modules",
+        "forced": false,
+        "enabled": true
+      },
+      {
+        "table": "practice_attempts",
+        "forced": false,
+        "enabled": true
+      },
+      {
+        "table": "problem_report_history",
+        "forced": false,
+        "enabled": true
+      },
+      {
+        "table": "problem_reports",
+        "forced": false,
+        "enabled": true
+      },
+      {
+        "table": "profiles",
+        "forced": false,
+        "enabled": true
+      },
+      {
+        "table": "question_flag_courses",
+        "forced": false,
+        "enabled": true
+      },
+      {
+        "table": "question_flags",
+        "forced": false,
+        "enabled": true
+      },
+      {
+        "table": "questions",
+        "forced": false,
+        "enabled": true
+      },
+      {
+        "table": "student_lesson_tasks",
+        "forced": false,
+        "enabled": true
+      }
+    ],
+    "buckets": [
+      {
+        "name": "lesson-images",
+        "public": false,
+        "file_size_limit": 8388608,
+        "allowed_mime_types": [
+          "image/png",
+          "image/jpeg",
+          "image/webp"
+        ]
+      },
+      {
+        "name": "lesson-resources",
+        "public": false,
+        "file_size_limit": 20971520,
+        "allowed_mime_types": [
+          "application/pdf"
+        ]
+      },
+      {
+        "name": "question-images",
+        "public": false,
+        "file_size_limit": 8388608,
+        "allowed_mime_types": [
+          "image/png",
+          "image/jpeg",
+          "image/webp"
+        ]
+      }
+    ],
+    "columns": [
+      {
+        "type": "uuid",
+        "table": "student_lesson_tasks",
+        "column": "removed_by",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "problem_report_history",
+        "column": "actor_id",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "timestamptz",
+        "table": "problem_report_history",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "problem_reports",
+        "column": "id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "problem_reports",
+        "column": "student_id",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "problem_reports",
+        "column": "course_id",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "problem_reports",
+        "column": "lesson_id",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "problem_reports",
+        "column": "question_id",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "jsonb",
+        "table": "problem_reports",
+        "column": "context",
+        "default": "'{}'::jsonb",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "problem_reports",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "problem_reports",
+        "column": "updated_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "profiles",
+        "column": "id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "profiles",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "question_flag_courses",
+        "column": "course_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "question_flags",
+        "column": "id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "question_flags",
+        "column": "student_id",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "question_flags",
+        "column": "course_id",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "question_flags",
+        "column": "lesson_id",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "question_flags",
+        "column": "question_id",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "jsonb",
+        "table": "question_flags",
+        "column": "context",
+        "default": "'{}'::jsonb",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "question_flags",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "question_flags",
+        "column": "closed_at",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "question_flags",
+        "column": "reviewed_by",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "questions",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "questions",
+        "column": "lesson_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "jsonb",
+        "table": "questions",
+        "column": "options",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "int4",
+        "table": "questions",
+        "column": "correct_index",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "int4",
+        "table": "questions",
+        "column": "position",
+        "default": "0",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "student_lesson_tasks",
+        "column": "id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "student_lesson_tasks",
+        "column": "student_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "student_lesson_tasks",
+        "column": "lesson_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "student_lesson_tasks",
+        "column": "assigned_by",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "timestamptz",
+        "table": "student_lesson_tasks",
+        "column": "assigned_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "int4",
+        "table": "student_lesson_tasks",
+        "column": "sort_order",
+        "default": "0",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "student_lesson_tasks",
+        "column": "removed_at",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "courses",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "courses",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "enrolments",
+        "column": "student_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "enrolments",
+        "column": "course_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "enrolments",
+        "column": "enrolled_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "lesson_progress",
+        "column": "student_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "lesson_progress",
+        "column": "lesson_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "lesson_progress",
+        "column": "completed_at",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "timestamptz",
+        "table": "lesson_progress",
+        "column": "last_accessed_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "lessons",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "lessons",
+        "column": "module_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "jsonb",
+        "table": "lessons",
+        "column": "resources",
+        "default": "'[]'::jsonb",
+        "nullable": "NO"
+      },
+      {
+        "type": "int4",
+        "table": "lessons",
+        "column": "position",
+        "default": "0",
+        "nullable": "NO"
+      },
+      {
+        "type": "jsonb",
+        "table": "lessons",
+        "column": "lesson_flow",
+        "default": "'{}'::jsonb",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "mistake_review_schedules",
+        "column": "student_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "mistake_review_schedules",
+        "column": "question_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "int4",
+        "table": "mistake_review_schedules",
+        "column": "stage",
+        "default": "0",
+        "nullable": "NO"
+      },
+      {
+        "type": "date",
+        "table": "mistake_review_schedules",
+        "column": "next_due",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "date",
+        "table": "mistake_review_schedules",
+        "column": "last_scheduled_date",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "date",
+        "table": "mistake_review_schedules",
+        "column": "help_used_on",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "int8",
+        "table": "mistake_review_schedules",
+        "column": "revision",
+        "default": "1",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "mistake_review_schedules",
+        "column": "created_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "mistake_review_schedules",
+        "column": "updated_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "mistake_review_settings",
+        "column": "lesson_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "_int4",
+        "table": "mistake_review_settings",
+        "column": "intervals",
+        "default": "ARRAY[1, 3, 7, 14, 30, 60]",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "modules",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "modules",
+        "column": "course_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "int4",
+        "table": "modules",
+        "column": "position",
+        "default": "0",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "practice_attempts",
+        "column": "id",
+        "default": "gen_random_uuid()",
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "practice_attempts",
+        "column": "student_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "practice_attempts",
+        "column": "question_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "int4",
+        "table": "practice_attempts",
+        "column": "selected_index",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "bool",
+        "table": "practice_attempts",
+        "column": "is_correct",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "timestamptz",
+        "table": "practice_attempts",
+        "column": "attempted_at",
+        "default": "now()",
+        "nullable": "NO"
+      },
+      {
+        "type": "bool",
+        "table": "practice_attempts",
+        "column": "review_help_used",
+        "default": "false",
+        "nullable": "NO"
+      },
+      {
+        "type": "date",
+        "table": "practice_attempts",
+        "column": "review_local_date",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "jsonb",
+        "table": "practice_attempts",
+        "column": "review_outcome",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "uuid",
+        "table": "problem_report_history",
+        "column": "id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "uuid",
+        "table": "problem_report_history",
+        "column": "report_id",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "courses",
+        "column": "title",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "courses",
+        "column": "description",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "problem_report_history",
+        "column": "internal_note",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "mistake_review_settings",
+        "column": "fallback_timezone",
+        "default": "'Australia/Melbourne'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "profiles",
+        "column": "role",
+        "default": "'student'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "question_flags",
+        "column": "reviewer_name",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "modules",
+        "column": "title",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "profiles",
+        "column": "year_level",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "profiles",
+        "column": "avatar_key",
+        "default": "'book'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "profiles",
+        "column": "review_timezone",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "question_flags",
+        "column": "status",
+        "default": "'outstanding'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "problem_reports",
+        "column": "category",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "lessons",
+        "column": "title",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "lessons",
+        "column": "objective",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "lessons",
+        "column": "notes",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "lessons",
+        "column": "worked_example",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "lessons",
+        "column": "video_url",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "problem_reports",
+        "column": "description",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "problem_reports",
+        "column": "status",
+        "default": "'new'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "practice_attempts",
+        "column": "response_text",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "lessons",
+        "column": "notes_image_path",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "lessons",
+        "column": "notes_image_alt",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "lessons",
+        "column": "example_image_path",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "lessons",
+        "column": "example_image_alt",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "practice_attempts",
+        "column": "attempt_context",
+        "default": "'lesson'::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "questions",
+        "column": "image_path",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "mistake_review_schedules",
+        "column": "timezone",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "questions",
+        "column": "explanation",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "questions",
+        "column": "prompt",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "questions",
+        "column": "image_alt",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "profiles",
+        "column": "email",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "profiles",
+        "column": "full_name",
+        "default": "''::text",
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "problem_report_history",
+        "column": "actor_name",
+        "default": null,
+        "nullable": "NO"
+      },
+      {
+        "type": "text",
+        "table": "problem_report_history",
+        "column": "from_status",
+        "default": null,
+        "nullable": "YES"
+      },
+      {
+        "type": "text",
+        "table": "problem_report_history",
+        "column": "to_status",
+        "default": null,
+        "nullable": "NO"
+      }
+    ],
+    "policies": [
+      {
+        "cmd": "INSERT",
+        "qual": null,
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "objects",
+        "permissive": "PERMISSIVE",
+        "policyname": "question_image_upload",
+        "schemaname": "storage",
+        "with_check": "((bucket_id = 'question-images'::text) AND is_tutor() AND (EXISTS ( SELECT 1\n   FROM questions q\n  WHERE (q.id = (split_part(objects.name, '/'::text, 1))::uuid))))"
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "((bucket_id = 'question-images'::text) AND (EXISTS ( SELECT 1\n   FROM questions q\n  WHERE ((q.id = (split_part(objects.name, '/'::text, 1))::uuid) AND can_read_lesson(q.lesson_id)))))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "objects",
+        "permissive": "PERMISSIVE",
+        "policyname": "question_image_read",
+        "schemaname": "storage",
+        "with_check": null
+      },
+      {
+        "cmd": "DELETE",
+        "qual": "((bucket_id = 'question-images'::text) AND is_tutor())",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "objects",
+        "permissive": "PERMISSIVE",
+        "policyname": "question_image_delete",
+        "schemaname": "storage",
+        "with_check": null
+      },
+      {
+        "cmd": "INSERT",
+        "qual": null,
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "objects",
+        "permissive": "PERMISSIVE",
+        "policyname": "lesson_resource_upload",
+        "schemaname": "storage",
+        "with_check": "((bucket_id = 'lesson-resources'::text) AND is_tutor() AND can_read_lesson((split_part(name, '/'::text, 1))::uuid))"
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "((bucket_id = 'lesson-resources'::text) AND can_read_lesson((split_part(name, '/'::text, 1))::uuid))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "objects",
+        "permissive": "PERMISSIVE",
+        "policyname": "lesson_resource_read",
+        "schemaname": "storage",
+        "with_check": null
+      },
+      {
+        "cmd": "DELETE",
+        "qual": "((bucket_id = 'lesson-resources'::text) AND is_tutor())",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "objects",
+        "permissive": "PERMISSIVE",
+        "policyname": "lesson_resource_delete",
+        "schemaname": "storage",
+        "with_check": null
+      },
+      {
+        "cmd": "INSERT",
+        "qual": null,
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "objects",
+        "permissive": "PERMISSIVE",
+        "policyname": "lesson_images_upload",
+        "schemaname": "storage",
+        "with_check": "((bucket_id = 'lesson-images'::text) AND is_tutor() AND (EXISTS ( SELECT 1\n   FROM lessons l\n  WHERE (l.id = (split_part(objects.name, '/'::text, 1))::uuid))))"
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "((bucket_id = 'lesson-images'::text) AND (EXISTS ( SELECT 1\n   FROM lessons l\n  WHERE ((l.id = (split_part(objects.name, '/'::text, 1))::uuid) AND can_read_lesson(l.id)))))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "objects",
+        "permissive": "PERMISSIVE",
+        "policyname": "lesson_images_read",
+        "schemaname": "storage",
+        "with_check": null
+      },
+      {
+        "cmd": "DELETE",
+        "qual": "((bucket_id = 'lesson-images'::text) AND is_tutor())",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "objects",
+        "permissive": "PERMISSIVE",
+        "policyname": "lesson_images_delete",
+        "schemaname": "storage",
+        "with_check": null
+      },
+      {
+        "cmd": "ALL",
+        "qual": "is_tutor()",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "courses",
+        "permissive": "PERMISSIVE",
+        "policyname": "courses_write",
+        "schemaname": "public",
+        "with_check": "is_tutor()"
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(is_tutor() OR enrolled_in(id))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "courses",
+        "permissive": "PERMISSIVE",
+        "policyname": "courses_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "ALL",
+        "qual": "is_tutor()",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "enrolments",
+        "permissive": "PERMISSIVE",
+        "policyname": "enrolments_write",
+        "schemaname": "public",
+        "with_check": "is_tutor()"
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "((student_id = auth.uid()) OR is_tutor())",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "enrolments",
+        "permissive": "PERMISSIVE",
+        "policyname": "enrolments_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "UPDATE",
+        "qual": "((student_id = auth.uid()) AND can_read_lesson(lesson_id))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_progress",
+        "permissive": "PERMISSIVE",
+        "policyname": "progress_update",
+        "schemaname": "public",
+        "with_check": "((student_id = auth.uid()) AND can_read_lesson(lesson_id))"
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "((student_id = auth.uid()) OR is_tutor())",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_progress",
+        "permissive": "PERMISSIVE",
+        "policyname": "progress_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "INSERT",
+        "qual": null,
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lesson_progress",
+        "permissive": "PERMISSIVE",
+        "policyname": "progress_insert",
+        "schemaname": "public",
+        "with_check": "((student_id = auth.uid()) AND can_read_lesson(lesson_id))"
+      },
+      {
+        "cmd": "ALL",
+        "qual": "is_tutor()",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lessons",
+        "permissive": "PERMISSIVE",
+        "policyname": "lessons_write",
+        "schemaname": "public",
+        "with_check": "is_tutor()"
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(is_tutor() OR (EXISTS ( SELECT 1\n   FROM modules m\n  WHERE ((m.id = lessons.module_id) AND enrolled_in(m.course_id)))))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "lessons",
+        "permissive": "PERMISSIVE",
+        "policyname": "lessons_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(((student_id = auth.uid()) OR is_tutor()) AND (EXISTS ( SELECT 1\n   FROM ((((questions q\n     JOIN lessons l ON ((l.id = q.lesson_id)))\n     JOIN mistake_review_settings cfg ON ((cfg.lesson_id = l.id)))\n     JOIN modules m ON ((m.id = l.module_id)))\n     JOIN enrolments e ON ((e.course_id = m.course_id)))\n  WHERE ((q.id = mistake_review_schedules.question_id) AND (e.student_id = mistake_review_schedules.student_id)))))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "mistake_review_schedules",
+        "permissive": "PERMISSIVE",
+        "policyname": "mistake_review_schedules_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "can_read_lesson(lesson_id)",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "mistake_review_settings",
+        "permissive": "PERMISSIVE",
+        "policyname": "mistake_review_settings_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "ALL",
+        "qual": "is_tutor()",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "modules",
+        "permissive": "PERMISSIVE",
+        "policyname": "modules_write",
+        "schemaname": "public",
+        "with_check": "is_tutor()"
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(is_tutor() OR enrolled_in(course_id))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "modules",
+        "permissive": "PERMISSIVE",
+        "policyname": "modules_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "INSERT",
+        "qual": null,
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "practice_attempts",
+        "permissive": "RESTRICTIVE",
+        "policyname": "review_metadata_rpc_only",
+        "schemaname": "public",
+        "with_check": "((attempt_context = 'lesson'::text) AND (NOT review_help_used) AND (review_local_date IS NULL) AND (review_outcome IS NULL))"
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "((student_id = auth.uid()) OR is_tutor())",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "practice_attempts",
+        "permissive": "PERMISSIVE",
+        "policyname": "attempts_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "INSERT",
+        "qual": null,
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "practice_attempts",
+        "permissive": "PERMISSIVE",
+        "policyname": "attempts_insert",
+        "schemaname": "public",
+        "with_check": "((student_id = auth.uid()) AND (EXISTS ( SELECT 1\n   FROM questions q\n  WHERE ((q.id = practice_attempts.question_id) AND can_read_lesson(q.lesson_id)))))"
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "is_tutor()",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "problem_report_history",
+        "permissive": "PERMISSIVE",
+        "policyname": "problem_report_history_tutor_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "((student_id = auth.uid()) OR is_tutor())",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "problem_reports",
+        "permissive": "PERMISSIVE",
+        "policyname": "problem_reports_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "UPDATE",
+        "qual": "((id = auth.uid()) AND (role = 'student'::text))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "profiles",
+        "permissive": "PERMISSIVE",
+        "policyname": "profiles_update_own",
+        "schemaname": "public",
+        "with_check": "((id = auth.uid()) AND (role = 'student'::text))"
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "((id = auth.uid()) OR is_tutor())",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "profiles",
+        "permissive": "PERMISSIVE",
+        "policyname": "profiles_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(is_tutor() OR (EXISTS ( SELECT 1\n   FROM enrolments e\n  WHERE ((e.course_id = question_flag_courses.course_id) AND (e.student_id = auth.uid())))))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "question_flag_courses",
+        "permissive": "PERMISSIVE",
+        "policyname": "question_flag_courses_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "((student_id = auth.uid()) OR is_tutor())",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "question_flags",
+        "permissive": "PERMISSIVE",
+        "policyname": "question_flags_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "ALL",
+        "qual": "is_tutor()",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "questions",
+        "permissive": "PERMISSIVE",
+        "policyname": "questions_write",
+        "schemaname": "public",
+        "with_check": "is_tutor()"
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "can_read_lesson(lesson_id)",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "questions",
+        "permissive": "PERMISSIVE",
+        "policyname": "questions_read",
+        "schemaname": "public",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "(is_tutor() OR ((student_id = auth.uid()) AND (EXISTS ( SELECT 1\n   FROM ((lessons l\n     JOIN modules m ON ((m.id = l.module_id)))\n     JOIN enrolments e ON ((e.course_id = m.course_id)))\n  WHERE ((l.id = student_lesson_tasks.lesson_id) AND (e.student_id = auth.uid()))))))",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "student_lesson_tasks",
+        "permissive": "PERMISSIVE",
+        "policyname": "student_lesson_tasks_read",
+        "schemaname": "public",
+        "with_check": null
+      }
+    ],
+    "triggers": [
+      {
+        "table": "users",
+        "definition": "CREATE TRIGGER on_auth_user_created AFTER INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION create_profile()"
+      },
+      {
+        "table": "practice_attempts",
+        "definition": "CREATE TRIGGER mistake_review_enrol_attempt_trigger AFTER INSERT ON public.practice_attempts FOR EACH ROW EXECUTE FUNCTION mistake_review_enrol_attempt()"
+      },
+      {
+        "table": "practice_attempts",
+        "definition": "CREATE TRIGGER mistake_review_guard_attempt_trigger BEFORE INSERT ON public.practice_attempts FOR EACH ROW EXECUTE FUNCTION mistake_review_guard_attempt()"
+      }
+    ],
+    "effective": [
+      {
+        "anon": false,
+        "identity": "public.flag_question_1a(uuid,uuid,uuid)",
+        "authenticated": true
+      },
+      {
+        "anon": true,
+        "identity": "public.enrolled_in(uuid)",
+        "authenticated": true
+      },
+      {
+        "anon": false,
+        "identity": "public.create_profile()",
+        "authenticated": false
+      },
+      {
+        "anon": false,
+        "identity": "public.flag_question(uuid,uuid,uuid)",
+        "authenticated": true
+      },
+      {
+        "anon": false,
+        "identity": "public.mistake_review_enrol_attempt()",
+        "authenticated": false
+      },
+      {
+        "anon": false,
+        "identity": "public.mistake_review_guard_attempt()",
+        "authenticated": false
+      },
+      {
+        "anon": false,
+        "identity": "public._mistake_review_grade(jsonb,integer,integer,text)",
+        "authenticated": false
+      },
+      {
+        "anon": false,
+        "identity": "public._mistake_review_has_access(uuid,uuid)",
+        "authenticated": false
+      },
+      {
+        "anon": false,
+        "identity": "public._mistake_review_normalise(text)",
+        "authenticated": false
+      },
+      {
+        "anon": false,
+        "identity": "public._mistake_review_numeric(text)",
+        "authenticated": false
+      },
+      {
+        "anon": false,
+        "identity": "public._mistake_review_timezone(uuid,text)",
+        "authenticated": false
+      },
+      {
+        "anon": false,
+        "identity": "public._mistake_review_transition(integer,date,date,date,date,boolean,boolean,integer[])",
+        "authenticated": false
+      },
+      {
+        "anon": false,
+        "identity": "public.assign_student_lesson_tasks(uuid,uuid,jsonb)",
+        "authenticated": true
+      },
+      {
+        "anon": true,
+        "identity": "public.can_read_lesson(uuid)",
+        "authenticated": true
+      },
+      {
+        "anon": false,
+        "identity": "public.configure_mistake_review(uuid,integer[])",
+        "authenticated": true
+      },
+      {
+        "anon": false,
+        "identity": "public.configure_mistake_review(uuid,integer[],uuid)",
+        "authenticated": true
+      },
+      {
+        "anon": false,
+        "identity": "public.initialise_mistake_reviews(uuid,text)",
+        "authenticated": true
+      },
+      {
+        "anon": true,
+        "identity": "public.is_tutor()",
+        "authenticated": true
+      },
+      {
+        "anon": false,
+        "identity": "public.manage_problem_report(uuid,uuid,text,text,text)",
+        "authenticated": true
+      },
+      {
+        "anon": false,
+        "identity": "public.remove_student_lesson_task(uuid,uuid)",
+        "authenticated": true
+      },
+      {
+        "anon": false,
+        "identity": "public.review_question_flag(uuid)",
+        "authenticated": true
+      },
+      {
+        "anon": false,
+        "identity": "public.note_mistake_review_help(uuid,uuid)",
+        "authenticated": true
+      },
+      {
+        "anon": false,
+        "identity": "public.submit_mistake_review(uuid,uuid,uuid,integer,text,boolean,bigint,jsonb)",
+        "authenticated": true
+      },
+      {
+        "anon": false,
+        "identity": "public.submit_problem_report(uuid,uuid,uuid,text,text)",
+        "authenticated": true
+      },
+      {
+        "anon": false,
+        "identity": "public.withdraw_question_flag(uuid,uuid)",
+        "authenticated": true
+      }
+    ],
+    "functions": [
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.flag_question_1a(uuid,uuid,uuid)",
+        "definition": "CREATE OR REPLACE FUNCTION public.flag_question_1a(p_id uuid, p_question_id uuid, p_student_id uuid)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\nbegin\n if not exists(select 1 from public.questions where id=p_question_id and lesson_id='1313fc50-2b9a-405d-a64a-7f385a1db1b8'::uuid) then\n  raise exception 'Use the shared Year 9/10 flag action for this lesson.' using errcode='42501';\n end if;\n return public.flag_question(p_id,p_question_id,p_student_id);\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,anon=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.enrolled_in(uuid)",
+        "definition": "CREATE OR REPLACE FUNCTION public.enrolled_in(c uuid)\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO 'public'\nAS $function$select exists(select 1 from enrolments where student_id=auth.uid() and course_id=c)$function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.create_profile()",
+        "definition": "CREATE OR REPLACE FUNCTION public.create_profile()\n RETURNS trigger\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'public'\nAS $function$\nbegin\n insert into public.profiles(id,email,full_name,year_level,avatar_key)\n values(\n  new.id,\n  new.email,\n  coalesce(new.raw_user_meta_data->>'full_name',''),\n  case when new.raw_user_meta_data->>'year_level' in ('Year 7','Year 8','Year 9','Year 10','Year 11','Year 12') then new.raw_user_meta_data->>'year_level' else null end,\n  case when new.raw_user_meta_data->>'avatar_key' in ('book','owl','cat','fish','leaf','rocket','star','person') then new.raw_user_meta_data->>'avatar_key' else 'book' end\n );\n return new;\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.flag_question(uuid,uuid,uuid)",
+        "definition": "CREATE OR REPLACE FUNCTION public.flag_question(p_id uuid, p_question_id uuid, p_student_id uuid)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare actor uuid:=auth.uid(); ticket public.question_flags%rowtype; ctx record; student_name text;\nbegin\n if actor is null or actor is distinct from p_student_id or not exists(select 1 from public.profiles where id=actor and role='student') then\n  raise exception 'Student permission is required.' using errcode='42501';\n end if;\n if p_id is null then raise exception 'Submission ID is required.' using errcode='22023'; end if;\n select q.prompt,q.position,l.id as lesson_id,l.title as lesson_title,c.id as course_id,c.title as course_title,m.title as chapter_title\n into ctx from public.questions q join public.lessons l on l.id=q.lesson_id\n join public.modules m on m.id=l.module_id join public.courses c on c.id=m.course_id\n join public.question_flag_courses scope on scope.course_id=c.id\n where q.id=p_question_id\n and exists(select 1 from public.enrolments e where e.student_id=actor and e.course_id=c.id);\n if not found then raise exception 'This question is not in an enrolled Year 9 or Year 10 course.' using errcode='42501'; end if;\n -- Serialise this student's flags: concurrent clicks cannot create two active rows.\n perform 1 from public.profiles where id=actor for update;\n select * into ticket from public.question_flags where id=p_id;\n if found then\n  if ticket.student_id is distinct from actor or ticket.question_id is distinct from p_question_id then\n   raise exception 'This submission ID was already used.' using errcode='22023';\n  end if;\n  return to_jsonb(ticket);\n end if;\n select * into ticket from public.question_flags where student_id=actor and question_id=p_question_id and status='outstanding';\n if found then return to_jsonb(ticket); end if;\n select coalesce(nullif(full_name,''),email) into student_name from public.profiles where id=actor;\n insert into public.question_flags(id,student_id,course_id,lesson_id,question_id,context)\n values(p_id,actor,ctx.course_id,ctx.lesson_id,p_question_id,\n  jsonb_build_object('student_name',student_name,'course_title',ctx.course_title,'lesson_title',ctx.lesson_title,'chapter_title',ctx.chapter_title,'question_prompt',ctx.prompt,'question_number',ctx.position+1)) returning * into ticket;\n return to_jsonb(ticket);\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.mistake_review_enrol_attempt()",
+        "definition": "CREATE OR REPLACE FUNCTION public.mistake_review_enrol_attempt()\n RETURNS trigger\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare zone text; today date; first_gap integer;\nbegin\n if new.attempt_context<>'lesson' or new.is_correct or not exists(\n  select 1 from public.questions q join public.mistake_review_settings cfg on cfg.lesson_id=q.lesson_id where q.id=new.question_id\n ) then return new; end if;\n zone:=public._mistake_review_timezone(new.student_id);today:=(now() at time zone zone)::date;\n select cfg.intervals[1] into first_gap from public.mistake_review_settings cfg join public.questions q on q.lesson_id=cfg.lesson_id where q.id=new.question_id;\n insert into public.mistake_review_schedules(student_id,question_id,timezone,next_due)\n values(new.student_id,new.question_id,zone,today+coalesce(first_gap,1))\n on conflict(student_id,question_id) do update set stage=0,next_due=excluded.next_due,\n  revision=public.mistake_review_schedules.revision+1,updated_at=now();\n return new;\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.mistake_review_guard_attempt()",
+        "definition": "CREATE OR REPLACE FUNCTION public.mistake_review_guard_attempt()\n RETURNS trigger\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare question public.questions%rowtype; graded boolean;\nbegin\n select q.* into question from public.questions q join public.mistake_review_settings cfg on cfg.lesson_id=q.lesson_id where q.id=new.question_id for share of q;\n if not found then return new; end if;\n if auth.uid() is not null and (auth.uid() is distinct from new.student_id or not public._mistake_review_has_access(new.student_id,new.question_id)) then\n  raise exception 'This question is not available to this student.' using errcode='42501';\n end if;\n perform public._mistake_review_timezone(new.student_id);\n graded:=public._mistake_review_grade(question.options,question.correct_index,new.selected_index,new.response_text);\n if new.attempt_context='lesson' and new.is_correct is distinct from graded then\n  raise exception 'The answer key has changed. Reload the lesson before answering.' using errcode='40001';\n end if;\n new.is_correct:=graded;\n if jsonb_typeof(question.options)<>'array' then new.selected_index:=case when new.is_correct then 0 else 1 end; end if;\n new.attempted_at:=now();\n return new;\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "owner": "postgres",
+        "identity": "public._mistake_review_grade(jsonb,integer,integer,text)",
+        "definition": "CREATE OR REPLACE FUNCTION public._mistake_review_grade(p_options jsonb, p_correct_index integer, p_selected integer, p_response text)\n RETURNS boolean\n LANGUAGE plpgsql\n IMMUTABLE\n SET search_path TO ''\nAS $function$\ndeclare candidate text; actual numeric; expected numeric;\nbegin\n if jsonb_typeof(p_options)='array' then\n  if p_selected is null or p_selected<0 or p_selected>=jsonb_array_length(p_options) then\n   raise exception 'Choose a valid answer.' using errcode='22023';\n  end if;\n  return p_selected=p_correct_index;\n end if;\n if p_options->>'kind' is distinct from 'short_answer' or jsonb_typeof(p_options->'accepted') is distinct from 'array' then\n  raise exception 'This question needs a valid answer key.' using errcode='22023';\n end if;\n if public._mistake_review_normalise(p_response)='' then raise exception 'Enter an answer.' using errcode='22023'; end if;\n if length(p_response)>2000 then raise exception 'The answer is too long.' using errcode='22023'; end if;\n for candidate in select jsonb_array_elements_text(p_options->'accepted') loop\n  if public._mistake_review_normalise(p_response)=public._mistake_review_normalise(candidate) then return true; end if;\n  if coalesce((p_options->>'exact')::boolean,false) then continue; end if;\n  actual:=public._mistake_review_numeric(p_response);expected:=public._mistake_review_numeric(candidate);\n  if actual is not null and expected is not null and abs(actual-expected)<=0.000000001*greatest(1,abs(expected)) then return true; end if;\n end loop;\n return false;\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "owner": "postgres",
+        "identity": "public._mistake_review_has_access(uuid,uuid)",
+        "definition": "CREATE OR REPLACE FUNCTION public._mistake_review_has_access(p_student_id uuid, p_question_id uuid)\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\n select exists(select 1 from public.questions q join public.mistake_review_settings cfg on cfg.lesson_id=q.lesson_id\n  join public.lessons l on l.id=q.lesson_id join public.modules m on m.id=l.module_id\n  join public.enrolments e on e.course_id=m.course_id join public.profiles p on p.id=e.student_id\n  where q.id=p_question_id and e.student_id=p_student_id and p.role='student')\n$function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "owner": "postgres",
+        "identity": "public._mistake_review_normalise(text)",
+        "definition": "CREATE OR REPLACE FUNCTION public._mistake_review_normalise(p_value text)\n RETURNS text\n LANGUAGE sql\n IMMUTABLE\n SET search_path TO ''\nAS $function$\n select lower(btrim(regexp_replace(replace(replace(coalesce(p_value,''),'−','-'),'–','-'),'\\s+',' ','g')))\n$function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "owner": "postgres",
+        "identity": "public._mistake_review_numeric(text)",
+        "definition": "CREATE OR REPLACE FUNCTION public._mistake_review_numeric(p_value text)\n RETURNS numeric\n LANGUAGE plpgsql\n IMMUTABLE\n SET search_path TO ''\nAS $function$\ndeclare value text:=replace(public._mistake_review_normalise(p_value),',',''); parts text[];\nbegin\n parts:=regexp_match(value,'^([+-]?[0-9]+)\\s*/\\s*([+-]?[0-9]+)$');\n if parts is not null then\n  if parts[2]::numeric=0 then return null; end if;\n  return parts[1]::numeric/parts[2]::numeric;\n end if;\n if value ~ '^[+-]?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)$' then return value::numeric; end if;\n return null;\nexception when numeric_value_out_of_range or division_by_zero then return null;\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "owner": "postgres",
+        "identity": "public._mistake_review_timezone(uuid,text)",
+        "definition": "CREATE OR REPLACE FUNCTION public._mistake_review_timezone(p_student_id uuid, p_candidate text DEFAULT NULL::text)\n RETURNS text\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare chosen text; fallback text;\nbegin\n select review_timezone into chosen from public.profiles where id=p_student_id and role='student' for update;\n if not found then raise exception 'Student profile was not found.' using errcode='42501'; end if;\n if chosen is not null and exists(select 1 from pg_catalog.pg_timezone_names where name=chosen) then return chosen; end if;\n fallback:='Australia/Melbourne';\n chosen:=case when exists(select 1 from pg_catalog.pg_timezone_names where name=p_candidate) then p_candidate else coalesce(fallback,'Australia/Melbourne') end;\n if not exists(select 1 from pg_catalog.pg_timezone_names where name=chosen) then chosen:='Australia/Melbourne'; end if;\n update public.profiles set review_timezone=chosen where id=p_student_id;\n return chosen;\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres}",
+        "owner": "postgres",
+        "identity": "public._mistake_review_transition(integer,date,date,date,date,boolean,boolean,integer[])",
+        "definition": "CREATE OR REPLACE FUNCTION public._mistake_review_transition(p_stage integer, p_due date, p_last_date date, p_help_date date, p_today date, p_correct boolean, p_help boolean, p_gaps integer[])\n RETURNS jsonb\n LANGUAGE plpgsql\n IMMUTABLE\n SET search_path TO ''\nAS $function$\ndeclare kind text; stage integer:=p_stage; due date:=p_due; last_date date:=p_last_date; used_help boolean:=p_help or coalesce(p_help_date=p_today,false);\nbegin\n kind:=case when p_due<=p_today and p_last_date is distinct from p_today then 'scheduled_review'\n  when p_last_date=p_today then 'review_retry' else 'early_practice' end;\n if kind='scheduled_review' then\n  last_date:=p_today;\n  if p_correct and not used_help then stage:=least(stage+1,cardinality(p_gaps)-1);due:=p_today+p_gaps[stage+1];\n  else stage:=0;due:=p_today+p_gaps[1];end if;\n elsif not p_correct or used_help then stage:=0;due:=least(due,p_today+p_gaps[1]);end if;\n return jsonb_build_object('context',kind,'stage',stage,'next_due',due,'last_scheduled_date',last_date,'help_used',used_help);\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.assign_student_lesson_tasks(uuid,uuid,jsonb)",
+        "definition": "CREATE OR REPLACE FUNCTION public.assign_student_lesson_tasks(p_tutor_id uuid, p_student_id uuid, p_items jsonb)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare\n actor uuid:=auth.uid();\n item record;\n task public.student_lesson_tasks%rowtype;\n saved jsonb:='[]'::jsonb;\nbegin\n if actor is null\n  or actor is distinct from p_tutor_id\n  or not public.is_tutor()\n then\n  raise exception 'Tutor permission is required.'\n   using errcode='42501';\n end if;\n\n if p_items is null or jsonb_typeof(p_items)<>'array' then\n  raise exception 'Select subchapters to assign.'\n   using errcode='22023';\n end if;\n\n if jsonb_array_length(p_items)=0 then\n  raise exception 'Select at least one subchapter.'\n   using errcode='22023';\n end if;\n\n perform 1 from public.profiles\n  where id=p_student_id and role='student'\n  for update;\n\n if not found then\n  raise exception 'Student profile was not found.'\n   using errcode='42501';\n end if;\n\n if exists(\n  select 1\n  from jsonb_to_recordset(p_items)\n   as x(id uuid,lesson_id uuid,sort_order integer)\n  where x.id is null\n   or x.lesson_id is null\n   or x.sort_order is null\n   or x.sort_order<0\n )\n or (\n  select count(distinct x.lesson_id)\n  from jsonb_to_recordset(p_items) as x(lesson_id uuid)\n )<>jsonb_array_length(p_items)\n or (\n  select count(distinct x.id)\n  from jsonb_to_recordset(p_items) as x(id uuid)\n )<>jsonb_array_length(p_items)\n then\n  raise exception\n   'Each selected lesson needs a unique submission ID and order.'\n   using errcode='22023';\n end if;\n\n if exists(\n  select 1\n  from jsonb_to_recordset(p_items) as x(lesson_id uuid)\n  where not exists(\n   select 1\n   from public.lessons l\n   join public.modules m on m.id=l.module_id\n   join public.enrolments e on e.course_id=m.course_id\n   where l.id=x.lesson_id\n    and e.student_id=p_student_id\n    and exists(\n     select 1 from public.questions q where q.lesson_id=l.id\n    )\n  )\n ) then\n  raise exception\n   'Only practice subchapters in the student''s enrolled courses can be assigned.'\n   using errcode='42501';\n end if;\n\n for item in\n  select *\n  from jsonb_to_recordset(p_items)\n   as x(id uuid,lesson_id uuid,sort_order integer)\n  order by x.sort_order,x.id\n loop\n  select * into task\n  from public.student_lesson_tasks\n  where id=item.id;\n\n  if found then\n   if task.student_id is distinct from p_student_id\n    or task.lesson_id is distinct from item.lesson_id\n    or task.assigned_by is distinct from actor\n   then\n    raise exception 'This submission ID was already used.'\n     using errcode='22023';\n   end if;\n\n   saved:=saved||jsonb_build_array(to_jsonb(task));\n   continue;\n  end if;\n\n  select * into task\n  from public.student_lesson_tasks\n  where student_id=p_student_id\n   and lesson_id=item.lesson_id\n   and removed_at is null;\n\n  if not found then\n   insert into public.student_lesson_tasks(\n    id,student_id,lesson_id,assigned_by,sort_order\n   )\n   values(\n    item.id,p_student_id,item.lesson_id,actor,item.sort_order\n   )\n   returning * into task;\n  end if;\n\n  saved:=saved||jsonb_build_array(to_jsonb(task));\n end loop;\n\n return saved;\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,anon=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.can_read_lesson(uuid)",
+        "definition": "CREATE OR REPLACE FUNCTION public.can_read_lesson(l uuid)\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO 'public'\nAS $function$select public.is_tutor() or exists(select 1 from lessons join modules on modules.id=lessons.module_id where lessons.id=l and public.enrolled_in(modules.course_id))$function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.configure_mistake_review(uuid,integer[])",
+        "definition": "CREATE OR REPLACE FUNCTION public.configure_mistake_review(p_tutor_id uuid, p_intervals integer[])\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare settings public.mistake_review_settings%rowtype;\nbegin\n if auth.uid() is null or auth.uid() is distinct from p_tutor_id or not public.is_tutor() then raise exception 'Tutor permission is required.' using errcode='42501'; end if;\n if p_intervals is null or cardinality(p_intervals)<>6 or p_intervals[1]<>1 or exists(\n  select 1 from generate_subscripts(p_intervals,1) i where p_intervals[i] is null or p_intervals[i]<1 or p_intervals[i]>365 or (i>1 and p_intervals[i]<=p_intervals[i-1])\n ) then raise exception 'Use six increasing day intervals, starting at 1 and ending at no more than 365.' using errcode='22023'; end if;\n update public.mistake_review_settings set intervals=p_intervals where lesson_id='1313fc50-2b9a-405d-a64a-7f385a1db1b8'::uuid returning * into settings;\n if not found then raise exception 'The pilot settings are missing.' using errcode='22023'; end if;\n return to_jsonb(settings);\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.configure_mistake_review(uuid,integer[],uuid)",
+        "definition": "CREATE OR REPLACE FUNCTION public.configure_mistake_review(p_tutor_id uuid, p_intervals integer[], p_lesson_id uuid)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare settings public.mistake_review_settings%rowtype;\nbegin\n if auth.uid() is null or auth.uid() is distinct from p_tutor_id or not public.is_tutor() then raise exception 'Tutor permission is required.' using errcode='42501'; end if;\n if p_intervals is null or cardinality(p_intervals)<>6 or p_intervals[1]<>1 or exists(\n  select 1 from generate_subscripts(p_intervals,1) i where p_intervals[i] is null or p_intervals[i]<1 or p_intervals[i]>365 or (i>1 and p_intervals[i]<=p_intervals[i-1])\n ) then raise exception 'Use six increasing day intervals, starting at 1 and ending at no more than 365.' using errcode='22023'; end if;\n update public.mistake_review_settings set intervals=p_intervals where lesson_id=p_lesson_id and public.can_read_lesson(p_lesson_id) returning * into settings;\n if not found then raise exception 'This lesson is not enabled for review.' using errcode='22023'; end if;\n return to_jsonb(settings);\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.initialise_mistake_reviews(uuid,text)",
+        "definition": "CREATE OR REPLACE FUNCTION public.initialise_mistake_reviews(p_student_id uuid, p_timezone text DEFAULT NULL::text)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare zone text; gaps integer[];\nbegin\n if auth.uid() is null or auth.uid() is distinct from p_student_id or not exists(select 1 from public.profiles where id=p_student_id and role='student') then\n  raise exception 'Student permission is required.' using errcode='42501';\n end if;\n zone:=public._mistake_review_timezone(p_student_id,p_timezone);\n insert into public.mistake_review_schedules(student_id,question_id,timezone,next_due)\n select p_student_id,a.question_id,zone,(a.attempted_at at time zone zone)::date+a.first_gap\n from (\n  select distinct on (pa.question_id) pa.question_id,pa.is_correct,pa.attempted_at,cfg.intervals[1] as first_gap\n  from public.practice_attempts pa join public.questions q on q.id=pa.question_id\n  join public.mistake_review_settings cfg on cfg.lesson_id=q.lesson_id\n  join public.lessons l on l.id=q.lesson_id join public.modules m on m.id=l.module_id\n  join public.enrolments e on e.course_id=m.course_id and e.student_id=p_student_id\n  where pa.student_id=p_student_id and pa.attempt_context='lesson'\n  order by pa.question_id,pa.attempted_at desc,pa.id desc\n ) a where not a.is_correct\n on conflict(student_id,question_id) do nothing;\n gaps:=array[1,3,7,14,30,60];\n return jsonb_build_object('timezone',zone,'today',(now() at time zone zone)::date,'intervals',gaps,'scope','year9_year10');\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,anon=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.is_tutor()",
+        "definition": "CREATE OR REPLACE FUNCTION public.is_tutor()\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO 'public'\nAS $function$select exists(select 1 from profiles where id=auth.uid() and role='tutor')$function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.manage_problem_report(uuid,uuid,text,text,text)",
+        "definition": "CREATE OR REPLACE FUNCTION public.manage_problem_report(p_action_id uuid, p_report_id uuid, p_expected_status text, p_status text, p_internal_note text)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare\n actor uuid:=auth.uid();\n ticket public.problem_reports%rowtype;\n event public.problem_report_history%rowtype;\n actor_label text;\nbegin\n if actor is null or not public.is_tutor() then\n  raise exception 'Tutor permission is required.'\n   using errcode='42501';\n end if;\n\n if p_action_id is null or p_status is null\n  or p_status not in ('new','accepted','resolved','ignored')\n  or p_expected_status is null\n  or p_expected_status not in ('new','accepted','resolved','ignored')\n  or char_length(coalesce(p_internal_note,''))>4000\n then\n  raise exception 'Invalid status or note.' using errcode='22023';\n end if;\n\n select * into ticket from public.problem_reports\n where id=p_report_id for update;\n\n if not found then\n  raise exception 'Report not found.' using errcode='22023';\n end if;\n\n select * into event from public.problem_report_history\n where id=p_action_id;\n\n if found then\n  if event.report_id is distinct from p_report_id\n   or event.actor_id is distinct from actor\n   or event.from_status is distinct from p_expected_status\n   or event.to_status is distinct from p_status\n   or event.internal_note is distinct from btrim(coalesce(p_internal_note,''))\n  then\n   raise exception 'This action ID was already used.'\n    using errcode='22023';\n  end if;\n  return to_jsonb(ticket);\n end if;\n\n if ticket.status is distinct from p_expected_status then\n  raise exception 'This report changed. Refresh it before choosing an action.'\n   using errcode='40001';\n end if;\n\n if ticket.status=p_status then\n  raise exception 'Choose a different status.' using errcode='22023';\n end if;\n\n select coalesce(nullif(full_name,''),email)\n into actor_label from public.profiles where id=actor;\n\n insert into public.problem_report_history(\n  id,report_id,actor_id,actor_name,\n  from_status,to_status,internal_note\n )\n values(\n  p_action_id,p_report_id,actor,actor_label,\n  ticket.status,p_status,btrim(coalesce(p_internal_note,''))\n );\n\n update public.problem_reports\n set status=p_status,updated_at=now()\n where id=p_report_id returning * into ticket;\n\n return to_jsonb(ticket);\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.remove_student_lesson_task(uuid,uuid)",
+        "definition": "CREATE OR REPLACE FUNCTION public.remove_student_lesson_task(p_tutor_id uuid, p_id uuid)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare\n task public.student_lesson_tasks%rowtype;\nbegin\n if auth.uid() is null\n  or auth.uid() is distinct from p_tutor_id\n  or not public.is_tutor()\n then\n  raise exception 'Tutor permission is required.'\n   using errcode='42501';\n end if;\n\n select * into task\n from public.student_lesson_tasks\n where id=p_id\n for update;\n\n if not found then\n  raise exception 'Extra task was not found.'\n   using errcode='22023';\n end if;\n\n if task.removed_at is null then\n  update public.student_lesson_tasks\n  set removed_at=now(),removed_by=auth.uid()\n  where id=p_id\n  returning * into task;\n end if;\n\n return to_jsonb(task);\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.review_question_flag(uuid)",
+        "definition": "CREATE OR REPLACE FUNCTION public.review_question_flag(p_id uuid)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare ticket public.question_flags%rowtype; actor_name text;\nbegin\n if auth.uid() is null or not public.is_tutor() then raise exception 'Tutor permission is required.' using errcode='42501'; end if;\n select * into ticket from public.question_flags where id=p_id for update;\n if not found then raise exception 'Flag was not found.' using errcode='22023'; end if;\n if ticket.status='reviewed' then return to_jsonb(ticket); end if;\n if ticket.status<>'outstanding' then raise exception 'The student removed this flag. Refresh the list.' using errcode='40001'; end if;\n select coalesce(nullif(full_name,''),email) into actor_name from public.profiles where id=auth.uid();\n update public.question_flags set status='reviewed',closed_at=now(),reviewed_by=auth.uid(),reviewer_name=actor_name where id=p_id returning * into ticket;\n return to_jsonb(ticket);\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.note_mistake_review_help(uuid,uuid)",
+        "definition": "CREATE OR REPLACE FUNCTION public.note_mistake_review_help(p_student_id uuid, p_question_id uuid)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare zone text; schedule public.mistake_review_schedules%rowtype;\nbegin\n if auth.uid() is null or auth.uid() is distinct from p_student_id then raise exception 'Student permission is required.' using errcode='42501'; end if;\n if not exists(select 1 from public.questions q join public.lessons l on l.id=q.lesson_id join public.modules m on m.id=l.module_id\n  join public.enrolments e on e.course_id=m.course_id where q.id=p_question_id and exists(select 1 from public.mistake_review_settings cfg where cfg.lesson_id=l.id) and e.student_id=p_student_id) then\n  raise exception 'This question is not available in your enrolled review lessons.' using errcode='42501';\n end if;\n zone:=public._mistake_review_timezone(p_student_id);\n update public.mistake_review_schedules set help_used_on=(now() at time zone zone)::date\n  where student_id=p_student_id and question_id=p_question_id returning * into schedule;\n if not found then raise exception 'This question has no review schedule.' using errcode='PT409'; end if;\n return to_jsonb(schedule);\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.submit_mistake_review(uuid,uuid,uuid,integer,text,boolean,bigint,jsonb)",
+        "definition": "CREATE OR REPLACE FUNCTION public.submit_mistake_review(p_id uuid, p_student_id uuid, p_question_id uuid, p_selected_index integer, p_response_text text, p_help_used boolean, p_revision bigint, p_question_state jsonb)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare question public.questions%rowtype; schedule public.mistake_review_schedules%rowtype; attempt public.practice_attempts%rowtype;\n today date; zone text; gaps integer[]; correct boolean; used_help boolean; kind text; chosen integer; outcome jsonb; transition jsonb;\nbegin\n if auth.uid() is null or auth.uid() is distinct from p_student_id or not exists(select 1 from public.profiles where id=p_student_id and role='student') then\n  raise exception 'Student permission is required.' using errcode='42501';\n end if;\n if p_id is null or p_help_used is null then raise exception 'Submission details are required.' using errcode='22023'; end if;\n select q.* into question from public.questions q join public.lessons l on l.id=q.lesson_id\n join public.modules m on m.id=l.module_id join public.enrolments e on e.course_id=m.course_id\n where q.id=p_question_id and exists(select 1 from public.mistake_review_settings cfg where cfg.lesson_id=l.id) and e.student_id=p_student_id for share of q;\n if not found then raise exception 'This question is not available in your enrolled review lessons.' using errcode='42501'; end if;\n -- All attempt/enrolment/schedule writers take the same student lock first.\n zone:=public._mistake_review_timezone(p_student_id);today:=(now() at time zone zone)::date;\n select * into schedule from public.mistake_review_schedules where student_id=p_student_id and question_id=p_question_id for update;\n if not found then raise exception 'This question has no review schedule. Refresh your review list.' using errcode='PT409'; end if;\n select * into attempt from public.practice_attempts where id=p_id;\n if found then\n  if attempt.student_id is distinct from p_student_id or attempt.question_id is distinct from p_question_id or attempt.attempt_context='lesson'\n   or attempt.response_text is distinct from p_response_text or coalesce((attempt.review_outcome->>'reported_help_used')::boolean,attempt.review_help_used) is distinct from p_help_used\n   or (jsonb_typeof(question.options)='array' and attempt.selected_index is distinct from p_selected_index) then\n   raise exception 'This submission ID was already used.' using errcode='22023';\n  end if;\n  return jsonb_build_object('attempt',to_jsonb(attempt),'schedule',to_jsonb(schedule));\n end if;\n if p_revision is null or p_revision<>schedule.revision then raise exception 'This review changed in another tab. Refresh its schedule before trying again.' using errcode='PT409'; end if;\n if p_question_state is distinct from jsonb_build_object('prompt',question.prompt,'options',question.options,'correct_index',question.correct_index,'explanation',question.explanation) then\n  raise exception 'This question was edited. Refresh the question and schedule before answering.' using errcode='PT409';\n end if;\n select intervals into gaps from public.mistake_review_settings where lesson_id=question.lesson_id;\n if gaps is null then raise exception 'Review settings are missing.' using errcode='22023'; end if;\n correct:=public._mistake_review_grade(question.options,question.correct_index,p_selected_index,p_response_text);\n chosen:=case when jsonb_typeof(question.options)='array' then p_selected_index when correct then 0 else 1 end;\n transition:=public._mistake_review_transition(schedule.stage,schedule.next_due,schedule.last_scheduled_date,schedule.help_used_on,today,correct,p_help_used,gaps);\n kind:=transition->>'context';used_help:=(transition->>'help_used')::boolean;\n schedule.stage:=(transition->>'stage')::integer;schedule.next_due:=(transition->>'next_due')::date;\n schedule.last_scheduled_date:=(transition->>'last_scheduled_date')::date;\n update public.mistake_review_schedules set stage=schedule.stage,next_due=schedule.next_due,last_scheduled_date=schedule.last_scheduled_date,\n  help_used_on=case when used_help then today else help_used_on end,\n  revision=revision+1,updated_at=now() where student_id=p_student_id and question_id=p_question_id returning * into schedule;\n outcome:=jsonb_build_object('stage',schedule.stage,'next_due',schedule.next_due,'revision',schedule.revision,'timezone',schedule.timezone,'reported_help_used',p_help_used);\n insert into public.practice_attempts(id,student_id,question_id,selected_index,is_correct,response_text,attempt_context,review_help_used,review_local_date,review_outcome)\n values(p_id,p_student_id,p_question_id,chosen,correct,p_response_text,kind,used_help,today,outcome) returning * into attempt;\n return jsonb_build_object('attempt',to_jsonb(attempt),'schedule',to_jsonb(schedule));\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.submit_problem_report(uuid,uuid,uuid,text,text)",
+        "definition": "CREATE OR REPLACE FUNCTION public.submit_problem_report(p_id uuid, p_lesson_id uuid, p_question_id uuid, p_category text, p_description text)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare\n actor uuid:=auth.uid();\n existing public.problem_reports%rowtype;\n saved public.problem_reports%rowtype;\n ctx record;\n actor_label text;\nbegin\n if actor is null or not exists(\n  select 1 from public.profiles where id=actor and role='student'\n ) then\n  raise exception 'Only signed-in students can submit reports.'\n   using errcode='42501';\n end if;\n\n if p_id is null or p_category is null\n  or p_category not in ('incorrect_answer','unclear_wording','formatting','other')\n  or p_description is null\n  or char_length(btrim(p_description)) not between 1 and 4000\n then\n  raise exception 'Choose a category and enter a description of up to 4000 characters.'\n   using errcode='22023';\n end if;\n\n select c.id as course_id,c.title as course_title,\n  l.title as lesson_title,q.prompt as question_prompt\n into ctx\n from public.lessons l\n join public.modules m on m.id=l.module_id\n join public.courses c on c.id=m.course_id\n left join public.questions q\n  on q.id=p_question_id and q.lesson_id=l.id\n where l.id=p_lesson_id\n  and (p_question_id is null or q.id is not null)\n  and exists(\n   select 1 from public.enrolments e\n   where e.student_id=actor and e.course_id=c.id\n  );\n\n if not found then\n  raise exception 'This content is not available to your account.'\n   using errcode='42501';\n end if;\n\n select coalesce(nullif(full_name,''),email)\n into actor_label from public.profiles where id=actor;\n\n insert into public.problem_reports(\n  id,student_id,course_id,lesson_id,question_id,\n  category,description,context\n )\n values(\n  p_id,actor,ctx.course_id,p_lesson_id,p_question_id,\n  p_category,btrim(p_description),\n  jsonb_build_object(\n   'student_name',actor_label,\n   'course_title',ctx.course_title,\n   'lesson_title',ctx.lesson_title,\n   'question_prompt',ctx.question_prompt\n  )\n )\n on conflict(id) do nothing returning * into saved;\n\n if found then\n  insert into public.problem_report_history(\n   id,report_id,actor_id,actor_name,from_status,to_status\n  ) values(p_id,p_id,actor,actor_label,null,'new');\n  return to_jsonb(saved);\n end if;\n\n select * into existing from public.problem_reports where id=p_id;\n\n if existing.student_id is distinct from actor\n  or existing.lesson_id is distinct from p_lesson_id\n  or existing.question_id is distinct from p_question_id\n  or existing.category is distinct from p_category\n  or existing.description is distinct from btrim(p_description)\n then\n  raise exception 'This submission ID was already used. Retry the original report.'\n   using errcode='22023';\n end if;\n\n return to_jsonb(existing);\nend $function$\n"
+      },
+      {
+        "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "identity": "public.withdraw_question_flag(uuid,uuid)",
+        "definition": "CREATE OR REPLACE FUNCTION public.withdraw_question_flag(p_id uuid, p_student_id uuid)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare ticket public.question_flags%rowtype;\nbegin\n if auth.uid() is null or auth.uid() is distinct from p_student_id then raise exception 'Sign in to remove your flag.' using errcode='42501'; end if;\n select * into ticket from public.question_flags where id=p_id and student_id=auth.uid() for update;\n if not found then raise exception 'Your flag was not found.' using errcode='42501'; end if;\n if ticket.status='outstanding' then\n  update public.question_flags set status='withdrawn',closed_at=now() where id=p_id returning * into ticket;\n end if;\n return to_jsonb(ticket);\nend $function$\n"
+      }
+    ],
+    "constraints": [
+      {
+        "name": "lesson_progress_lesson_id_fkey",
+        "table": "lesson_progress",
+        "definition": "FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "lesson_progress_student_id_fkey",
+        "table": "lesson_progress",
+        "definition": "FOREIGN KEY (student_id) REFERENCES profiles(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "lessons_module_id_fkey",
+        "table": "lessons",
+        "definition": "FOREIGN KEY (module_id) REFERENCES modules(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "mistake_review_schedules_question_id_fkey",
+        "table": "mistake_review_schedules",
+        "definition": "FOREIGN KEY (question_id) REFERENCES questions(id)"
+      },
+      {
+        "name": "mistake_review_schedules_student_id_fkey",
+        "table": "mistake_review_schedules",
+        "definition": "FOREIGN KEY (student_id) REFERENCES profiles(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "mistake_review_settings_lesson_id_fkey",
+        "table": "mistake_review_settings",
+        "definition": "FOREIGN KEY (lesson_id) REFERENCES lessons(id)"
+      },
+      {
+        "name": "modules_course_id_fkey",
+        "table": "modules",
+        "definition": "FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "practice_attempts_question_id_fkey",
+        "table": "practice_attempts",
+        "definition": "FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "practice_attempts_student_id_fkey",
+        "table": "practice_attempts",
+        "definition": "FOREIGN KEY (student_id) REFERENCES profiles(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "problem_report_history_actor_id_fkey",
+        "table": "problem_report_history",
+        "definition": "FOREIGN KEY (actor_id) REFERENCES profiles(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "problem_report_history_report_id_fkey",
+        "table": "problem_report_history",
+        "definition": "FOREIGN KEY (report_id) REFERENCES problem_reports(id)"
+      },
+      {
+        "name": "problem_reports_course_id_fkey",
+        "table": "problem_reports",
+        "definition": "FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "problem_reports_lesson_id_fkey",
+        "table": "problem_reports",
+        "definition": "FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "problem_reports_question_id_fkey",
+        "table": "problem_reports",
+        "definition": "FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "courses_pkey",
+        "table": "courses",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "enrolments_pkey",
+        "table": "enrolments",
+        "definition": "PRIMARY KEY (student_id, course_id)"
+      },
+      {
+        "name": "lesson_progress_pkey",
+        "table": "lesson_progress",
+        "definition": "PRIMARY KEY (student_id, lesson_id)"
+      },
+      {
+        "name": "lessons_pkey",
+        "table": "lessons",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "mistake_review_schedules_pkey",
+        "table": "mistake_review_schedules",
+        "definition": "PRIMARY KEY (student_id, question_id)"
+      },
+      {
+        "name": "mistake_review_schedules_stage_check",
+        "table": "mistake_review_schedules",
+        "definition": "CHECK ((stage >= 0))"
+      },
+      {
+        "name": "mistake_review_settings_pkey",
+        "table": "mistake_review_settings",
+        "definition": "PRIMARY KEY (lesson_id)"
+      },
+      {
+        "name": "modules_pkey",
+        "table": "modules",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "practice_attempts_pkey",
+        "table": "practice_attempts",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "practice_attempts_selected_index_check",
+        "table": "practice_attempts",
+        "definition": "CHECK (((selected_index >= 0) AND (selected_index <= 3)))"
+      },
+      {
+        "name": "problem_report_history_from_status_check",
+        "table": "problem_report_history",
+        "definition": "CHECK ((from_status = ANY (ARRAY['new'::text, 'accepted'::text, 'resolved'::text, 'ignored'::text])))"
+      },
+      {
+        "name": "problem_reports_student_id_fkey",
+        "table": "problem_reports",
+        "definition": "FOREIGN KEY (student_id) REFERENCES profiles(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "problem_report_history_internal_note_check",
+        "table": "problem_report_history",
+        "definition": "CHECK ((char_length(internal_note) <= 4000))"
+      },
+      {
+        "name": "problem_report_history_pkey",
+        "table": "problem_report_history",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "problem_report_history_to_status_check",
+        "table": "problem_report_history",
+        "definition": "CHECK ((to_status = ANY (ARRAY['new'::text, 'accepted'::text, 'resolved'::text, 'ignored'::text])))"
+      },
+      {
+        "name": "problem_reports_category_check",
+        "table": "problem_reports",
+        "definition": "CHECK ((category = ANY (ARRAY['incorrect_answer'::text, 'unclear_wording'::text, 'formatting'::text, 'other'::text])))"
+      },
+      {
+        "name": "problem_reports_description_check",
+        "table": "problem_reports",
+        "definition": "CHECK (((char_length(btrim(description)) >= 1) AND (char_length(btrim(description)) <= 4000)))"
+      },
+      {
+        "name": "problem_reports_pkey",
+        "table": "problem_reports",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "problem_reports_status_check",
+        "table": "problem_reports",
+        "definition": "CHECK ((status = ANY (ARRAY['new'::text, 'accepted'::text, 'resolved'::text, 'ignored'::text])))"
+      },
+      {
+        "name": "questions_correct_index_check",
+        "table": "questions",
+        "definition": "CHECK (((correct_index >= 0) AND (correct_index <= 3)))"
+      },
+      {
+        "name": "questions_pkey",
+        "table": "questions",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "student_lesson_tasks_pkey",
+        "table": "student_lesson_tasks",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "enrolments_course_id_fkey",
+        "table": "enrolments",
+        "definition": "FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "profiles_avatar_key_check",
+        "table": "profiles",
+        "definition": "CHECK ((avatar_key = ANY (ARRAY['book'::text, 'owl'::text, 'cat'::text, 'fish'::text, 'leaf'::text, 'rocket'::text, 'star'::text, 'person'::text])))"
+      },
+      {
+        "name": "profiles_pkey",
+        "table": "profiles",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "profiles_role_check",
+        "table": "profiles",
+        "definition": "CHECK ((role = ANY (ARRAY['student'::text, 'tutor'::text])))"
+      },
+      {
+        "name": "profiles_year_level_check",
+        "table": "profiles",
+        "definition": "CHECK (((year_level IS NULL) OR (year_level = ANY (ARRAY['Year 7'::text, 'Year 8'::text, 'Year 9'::text, 'Year 10'::text, 'Year 11'::text, 'Year 12'::text]))))"
+      },
+      {
+        "name": "question_flag_courses_pkey",
+        "table": "question_flag_courses",
+        "definition": "PRIMARY KEY (course_id)"
+      },
+      {
+        "name": "question_flags_check",
+        "table": "question_flags",
+        "definition": "CHECK ((((status = 'outstanding'::text) AND (closed_at IS NULL)) OR ((status <> 'outstanding'::text) AND (closed_at IS NOT NULL))))"
+      },
+      {
+        "name": "question_flags_pkey",
+        "table": "question_flags",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "question_flags_status_check",
+        "table": "question_flags",
+        "definition": "CHECK ((status = ANY (ARRAY['outstanding'::text, 'reviewed'::text, 'withdrawn'::text])))"
+      },
+      {
+        "name": "enrolments_student_id_fkey",
+        "table": "enrolments",
+        "definition": "FOREIGN KEY (student_id) REFERENCES profiles(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "profiles_id_fkey",
+        "table": "profiles",
+        "definition": "FOREIGN KEY (id) REFERENCES auth.users(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "question_flag_courses_course_id_fkey",
+        "table": "question_flag_courses",
+        "definition": "FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "question_flags_course_id_fkey",
+        "table": "question_flags",
+        "definition": "FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "question_flags_lesson_id_fkey",
+        "table": "question_flags",
+        "definition": "FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "question_flags_question_id_fkey",
+        "table": "question_flags",
+        "definition": "FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "question_flags_reviewed_by_fkey",
+        "table": "question_flags",
+        "definition": "FOREIGN KEY (reviewed_by) REFERENCES profiles(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "question_flags_student_id_fkey",
+        "table": "question_flags",
+        "definition": "FOREIGN KEY (student_id) REFERENCES profiles(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "questions_lesson_id_fkey",
+        "table": "questions",
+        "definition": "FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "student_lesson_tasks_assigned_by_fkey",
+        "table": "student_lesson_tasks",
+        "definition": "FOREIGN KEY (assigned_by) REFERENCES profiles(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "student_lesson_tasks_lesson_id_fkey",
+        "table": "student_lesson_tasks",
+        "definition": "FOREIGN KEY (lesson_id) REFERENCES lessons(id)"
+      },
+      {
+        "name": "student_lesson_tasks_removed_by_fkey",
+        "table": "student_lesson_tasks",
+        "definition": "FOREIGN KEY (removed_by) REFERENCES profiles(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "student_lesson_tasks_student_id_fkey",
+        "table": "student_lesson_tasks",
+        "definition": "FOREIGN KEY (student_id) REFERENCES profiles(id) ON DELETE CASCADE"
+      }
+    ],
+    "table_grants": [
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "enrolments",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "lesson_progress",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "lessons",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "mistake_review_schedules",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "mistake_review_schedules",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "mistake_review_schedules",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "mistake_review_schedules",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "mistake_review_schedules",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "mistake_review_schedules",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "mistake_review_schedules",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "mistake_review_schedules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "mistake_review_schedules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "mistake_review_schedules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "mistake_review_schedules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "mistake_review_schedules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "mistake_review_schedules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "mistake_review_schedules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "mistake_review_schedules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "mistake_review_settings",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "mistake_review_settings",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "mistake_review_settings",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "mistake_review_settings",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "mistake_review_settings",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "mistake_review_settings",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "mistake_review_settings",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "mistake_review_settings",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "mistake_review_settings",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "mistake_review_settings",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "mistake_review_settings",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "mistake_review_settings",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "mistake_review_settings",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "mistake_review_settings",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "mistake_review_settings",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "modules",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "practice_attempts",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "problem_report_history",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "problem_report_history",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "problem_report_history",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "problem_report_history",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "problem_report_history",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "problem_report_history",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "problem_report_history",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "problem_report_history",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "problem_report_history",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "problem_report_history",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "problem_report_history",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "problem_report_history",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "problem_report_history",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "problem_report_history",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "problem_report_history",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "problem_reports",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "problem_reports",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "problem_reports",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "problem_reports",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "problem_reports",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "problem_reports",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "problem_reports",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "problem_reports",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "problem_reports",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "problem_reports",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "problem_reports",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "problem_reports",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "problem_reports",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "problem_reports",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "problem_reports",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "profiles",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "question_flag_courses",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "question_flag_courses",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "question_flag_courses",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "question_flag_courses",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "question_flag_courses",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "question_flag_courses",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "question_flag_courses",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "question_flag_courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "question_flag_courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "question_flag_courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "question_flag_courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "question_flag_courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "question_flag_courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "question_flag_courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "question_flag_courses",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "question_flags",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "question_flags",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "question_flags",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "question_flags",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "question_flags",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "question_flags",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "question_flags",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "question_flags",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "question_flags",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "question_flags",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "question_flags",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "question_flags",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "question_flags",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "question_flags",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "question_flags",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "anon",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "questions",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "student_lesson_tasks",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "student_lesson_tasks",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "student_lesson_tasks",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "student_lesson_tasks",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "student_lesson_tasks",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "student_lesson_tasks",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "postgres",
+        "grantor": "postgres",
+        "table_name": "student_lesson_tasks",
+        "is_grantable": "YES",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "authenticated",
+        "grantor": "postgres",
+        "table_name": "student_lesson_tasks",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "student_lesson_tasks",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "INSERT",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "student_lesson_tasks",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "SELECT",
+        "with_hierarchy": "YES"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "student_lesson_tasks",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "UPDATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "student_lesson_tasks",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "DELETE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "student_lesson_tasks",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRUNCATE",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "student_lesson_tasks",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "REFERENCES",
+        "with_hierarchy": "NO"
+      },
+      {
+        "grantee": "service_role",
+        "grantor": "postgres",
+        "table_name": "student_lesson_tasks",
+        "is_grantable": "NO",
+        "table_schema": "public",
+        "table_catalog": "postgres",
+        "privilege_type": "TRIGGER",
+        "with_hierarchy": "NO"
+      }
+    ]
+  },
+  "kind": "metadata",
+  "scope": {},
+  "format": 1,
+  "captured_at": "2026-11-07T05:56:34.823701+00:00",
+  "project_ref": "lmuwsjjrqmmmtmxjvqln",
+  "database_identity": {
+    "database": "postgres",
+    "system_identifier": "7678071634733212629"
+  },
+  "contract_role": "expected-production-after-approved-sql",
+  "derivation": {
+    "source_contract": "docs/mm-launch/metadata-contract.json",
+    "source_sha256": "c10e29e064fff19693cff04083160f90336dc0bf34e2826d8e20f1f58fe1e97a",
+    "note": "Derived expected state, not a production observation. Source timestamp retained; only the reviewed SQL deltas below are modeled.",
+    "sql": [
+      {
+        "file": "owner-content.forward.sql",
+        "sha256": "cb586bbfa7d74e0b4e67846d2340be9c018cf7630a0743473101dc9a664edf1e"
+      },
+      {
+        "file": "security-privileges.forward.sql",
+        "sha256": "12f613e78ffadb8fc104161fc2b83760105605f6a8c02669974cd6240f21073c"
+      },
+      {
+        "file": "review-conflicts.forward.sql",
+        "sha256": "2164ce7f88ddd913b75e0af3e1d0ce2fe7ae021a32b693838a62a3e5553cb3d7"
+      }
+    ]
+  }
+}

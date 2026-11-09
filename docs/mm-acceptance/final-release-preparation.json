@@ -1,0 +1,187 @@
+{
+  "format": 1,
+  "kind": "final-release-preparation",
+  "observed_at": "2026-11-08T12:01:10.429203+00:00",
+  "candidate": "e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02",
+  "candidate_location": "Local commit only; not pushed",
+  "remote_review_head": "8dd72888745a73cf0e0a412c0b1825d54dbbddd7",
+  "remote_main": "97ab688d9ef138429fd05d78678e2d1236be9957",
+  "merge_tree_exit": 0,
+  "merge_tree": "bba08d9519b46db622ace3cc52891db5ee54f439",
+  "pr": {
+    "historical_number": 3,
+    "current_readiness": "unverified",
+    "read_attempt": "gh pr view 3 --repo Dyrxal/tutoring --json ...",
+    "result": "GitHub GraphQL Forbidden; no access widening attempted"
+  },
+  "unit_tests": {
+    "passing": 144,
+    "failing": 0
+  },
+  "typescript": {
+    "exit_code": 0
+  },
+  "isolated_database_tests": {
+    "passing": 45,
+    "failing": 0,
+    "evidence": "local-database-rehearsal.json",
+    "reuse_reason": "Exact committed SQL/runner unchanged since passing run"
+  },
+  "production_assets": {
+    "format": 1,
+    "kind": "assets",
+    "project_ref": "lmuwsjjrqmmmtmxjvqln",
+    "captured_at": "2026-11-08T11:58:15.255Z",
+    "source_commit": "e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02",
+    "provenance": {
+      "status": "passing",
+      "source_commit": "e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02",
+      "project_ref": "lmuwsjjrqmmmtmxjvqln"
+    },
+    "artifact_digest": "d027da0b5bd49bc040410fda99f0aba193aee2d8f72159b194db365a01e6589b",
+    "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+    "ready": true,
+    "summary": {
+      "passing": 5,
+      "failing": 0,
+      "blocked": 0,
+      "unverified": 0
+    },
+    "checks": [
+      {
+        "id": "build_manifest",
+        "status": "passing",
+        "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+      },
+      {
+        "id": "files",
+        "status": "passing",
+        "detail": "Browser files scanned: 100"
+      },
+      {
+        "id": "backend",
+        "status": "passing",
+        "detail": "Intended hostname present; unexpected project count: 0"
+      },
+      {
+        "id": "public_key",
+        "status": "passing",
+        "detail": "Publishable/ matching legacy anon key present"
+      },
+      {
+        "id": "secrets",
+        "status": "passing",
+        "detail": "Exposure findings: 0"
+      }
+    ]
+  },
+  "production_archive": {
+    "format": 1,
+    "kind": "assets",
+    "project_ref": "lmuwsjjrqmmmtmxjvqln",
+    "captured_at": "2026-11-08T11:58:17.135Z",
+    "source_commit": "e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02",
+    "provenance": {
+      "status": "passing",
+      "source_commit": "e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02",
+      "project_ref": "lmuwsjjrqmmmtmxjvqln"
+    },
+    "artifact_digest": "d027da0b5bd49bc040410fda99f0aba193aee2d8f72159b194db365a01e6589b",
+    "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+    "ready": true,
+    "summary": {
+      "passing": 5,
+      "failing": 0,
+      "blocked": 0,
+      "unverified": 0
+    },
+    "checks": [
+      {
+        "id": "build_manifest",
+        "status": "passing",
+        "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+      },
+      {
+        "id": "files",
+        "status": "passing",
+        "detail": "Browser files scanned: 100"
+      },
+      {
+        "id": "backend",
+        "status": "passing",
+        "detail": "Intended hostname present; unexpected project count: 0"
+      },
+      {
+        "id": "public_key",
+        "status": "passing",
+        "detail": "Publishable/ matching legacy anon key present"
+      },
+      {
+        "id": "secrets",
+        "status": "passing",
+        "detail": "Exposure findings: 0"
+      }
+    ]
+  },
+  "preview_assets_restored": {
+    "format": 1,
+    "kind": "assets",
+    "project_ref": "lcddnpafrkbwsrhqexqe",
+    "captured_at": "2026-11-08T11:58:31.602Z",
+    "source_commit": "e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02",
+    "provenance": {
+      "status": "passing",
+      "source_commit": "e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02",
+      "project_ref": "lcddnpafrkbwsrhqexqe"
+    },
+    "artifact_digest": "983f0a5b5003ba8ddb30341774ca2e8947b14ce31c199736b7fb2e5b9153385f",
+    "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+    "ready": true,
+    "summary": {
+      "passing": 5,
+      "failing": 0,
+      "blocked": 0,
+      "unverified": 0
+    },
+    "checks": [
+      {
+        "id": "build_manifest",
+        "status": "passing",
+        "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+      },
+      {
+        "id": "files",
+        "status": "passing",
+        "detail": "Browser files scanned: 100"
+      },
+      {
+        "id": "backend",
+        "status": "passing",
+        "detail": "Intended hostname present; unexpected project count: 0"
+      },
+      {
+        "id": "public_key",
+        "status": "passing",
+        "detail": "Publishable/ matching legacy anon key present"
+      },
+      {
+        "id": "secrets",
+        "status": "passing",
+        "detail": "Exposure findings: 0"
+      }
+    ]
+  },
+  "fresh_production_metadata_and_baseline": "blocked: no available SQL connector/approved TCP route; previous observations not re-timestamped",
+  "full_previous_frontend_version": null,
+  "known_previous_frontend_prefix": "3862f733",
+  "backup": "owner deferred; no verified database or private Storage backup",
+  "smoke_proposed_fixture_ids": {
+    "course": "5c781615-c6d5-4d1e-a21a-f22807ed0b35",
+    "module": "7594de05-af34-44dd-be86-e69254dad729",
+    "lesson": "d8ccd17b-555c-4a08-a6bf-504c763cd5ba",
+    "mc_question": "0b186ae5-7992-4c83-8f69-1bff73de750f",
+    "short_question": "7fdd6443-eda6-47e5-abef-724a849d65fb"
+  },
+  "no_push_merge_deploy_or_production_write": true,
+  "no_accounts_created_or_emails_sent": true
+}

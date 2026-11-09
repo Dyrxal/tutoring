@@ -2,6 +2,18 @@
 
 Scope: existing reviewed metadata, fresh read-only retained-project metadata/role inspection, static review of the 25 public function definitions, and [disposable synthetic database tests](../mm-acceptance/local-database-rehearsal.json). No production policy, role, data, password or private object was changed/read. This is a bounded migration review, not a complete penetration test or a claim that every RPC/argument combination is secure.
 
+## Current decision package — 9 November 2026
+
+Fresh owner-executed production metadata capture passed **85 metadata comparisons and 3 review-function forward guard checks**, with no unexpected drift. See [current evidence](../mm-acceptance/production-drift-check.json). The earlier unavailable-live-route statements below describe historical preparation, not the status of this completed capture. No permission changes were applied.
+
+Owner rejected deferring the TRIGGER/REFERENCES grant review and required it before launch. The dependency review is now complete: fresh capture shows 32 direct grants (two privileges × two app roles × eight tables: courses, modules, lessons, questions, enrolments, lesson_progress, practice_attempts, profiles). All reviewed public function bodies and frontend RPC calls were inspected; none creates tables/triggers/foreign keys or exposes a dynamic SQL executor. Capture includes 29 foreign keys and three non-internal triggers. Existing FK enforcement and trigger firing on normal DML do not require app-role REFERENCES/TRIGGER respectively; those privileges permit creating schema dependencies. Required authorization helpers and their actor checks remain in scope for retention, rather than removing definer functions indiscriminately.
+
+Recommendation: remove only these 32 unused table-level grants using the existing security package, preserve owner/service_role grants and all normal DML/column privileges, and keep the original grants in guarded rollback. Prepared security forward/rollback now includes this scoped change. This is removal of demonstrated excess SQL privileges; no public HTTP exploit using them was demonstrated. No production grants changed. Isolated tests and hashes for the revised bytes are recorded in schema-grants-review.json; older 45-check evidence below applies only to the old package bytes. A new committed release candidate will be needed because SQL and the existing local runner changed.
+
+Remaining non-secret provider fact: production leaked-password protection enabled/available/upgrade-only state. Get dashboard readback; do not buy a plan, change password rules or mark the protection enabled without evidence. If unavailable on the current plan, present retaining the current plan without that protection as an explicit owner decision.
+
+The exact post-permission expected metadata contract is now prepared as production-after-contract.json, independently validated against the supplied production capture, and integrated with the existing strict comparator. The fresh before-state capture does not verify that not-yet-installed after state. Preserve the strict comparator and exact intended delta; do not mark security acceptance passing merely because the before check passed.
+
 ## Current staged remediation — 8 November 2026
 
 The findings below are historical read-only production evidence, not a fresh production capture. Current live ACL/definition drift cannot be checked in this session: no Supabase SQL tool or approved database route is available. No production permission, role, data or provider setting was changed.
