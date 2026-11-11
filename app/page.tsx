@@ -70,7 +70,7 @@ import {year10Chapter810Practice} from "./year10-ch8-10-practice";
 import {previousYear10SeedRows} from "./year10-ch1-previous-rows";
 import {isGraphChoice,isShortAnswer,matchesShortAnswer,multipleChoiceOptions,type QuestionOptions} from "./question-types";
 
-function BrandLogo(){return <svg className="brand-mark" width="38" height="38" viewBox="0 0 48 48" role="img" aria-label="Notation Education"><path d="M7 16H41V23L20 34H41V42H7V35L28 24H7Z" fill="#18243A"/><circle cx="42" cy="8" r="3.2" fill="#4C9A92"/></svg>}
+function BrandLogo(){return <svg className="brand-mark" width="38" height="38" viewBox="0 0 48 48" role="img" aria-label="Notation Education"><path d="M7 42V16h8.5v4.4c3-3.9 7-5.8 12.2-5.8 9.3 0 14.8 6.1 14.8 15.7V42h-8.5V30.4c0-5.1-2.5-8-7.2-8-5.2 0-9.3 3.5-9.3 9V42Z" fill="#18243A"/><circle cx="42" cy="8" r="3.2" fill="#4C9A92"/></svg>}
 
 type Q={id:string;prompt:string;options:QuestionOptions;correct_index:number;explanation:string;image_path?:string|null;image_alt?:string};
 type Lesson={id:string;module_id:string;title:string;objective:string;notes:string;worked_example:string;video_url:string|null;lesson_flow?:Flow|null;notes_image_path?:string|null;notes_image_alt?:string;example_image_path?:string|null;example_image_alt?:string;resources:{title:string;url?:string;path?:string}[];position:number;questions:Q[]};
