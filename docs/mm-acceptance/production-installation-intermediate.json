@@ -1,0 +1,26 @@
+{
+  "kind": "production-installation-intermediate",
+  "observed_at": "2026-11-12T11:14:00.972Z",
+  "captured_at": "2026-11-12T11:05:42.270619+00:00",
+  "project_ref": "lmuwsjjrqmmmtmxjvqln",
+  "database_identity": {
+    "database": "postgres",
+    "system_identifier": "7678071634733212629"
+  },
+  "source_sha256": "0804ff39f7c0ecba0e7f19185a1eba969fc645f3b12502acbb4b0862c05b7d54",
+  "intended_permissions_and_other_metadata_checks": {
+    "passing": 83,
+    "failing": 0,
+    "note": "Full after-contract comparison had only the two review-definition mismatches; no permission or unrelated metadata mismatch."
+  },
+  "review_functions": "Both exactly match pinned original definitions; step3 is not installed.",
+  "before_guard_checks": {
+    "passing": 3,
+    "failing": 0,
+    "blocked": 0,
+    "unverified": 0
+  },
+  "installed_review_fix": false,
+  "production_changes_by_assistant": false,
+  "next_action": "Test equivalent compact delivery with hashes of the unchanged pinned original definitions; do not relax or repin guard expectations."
+}

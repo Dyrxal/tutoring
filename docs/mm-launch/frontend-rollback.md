@@ -1,12 +1,20 @@
 # Master Migration frontend rollback procedure
 
-Prepared 9 November 2026. No rollback executed or production authentication added. Local installed Wrangler `4.92.0` help and implementation were checked; authenticated Cloudflare version availability and operator access remain unverified.
+Prepared 9 November 2026. Owner's authenticated Cloudflare dashboard now shows an enabled **Rollback** action for an inactive Worker version (prefix `2afeeb91`). The retained version below is observed active at 100%. Dashboard rollback-control access is confirmed; no rollback was selected or executed and recovery is not rehearsed. Local Wrangler `4.92.0` command syntax was separately checked; CLI authentication is optional and remains unavailable here.
 
 ## Exact target and prerequisites
 
 Worker: `notation-education-lms`. Retained production version: `3862f733-48df-4d59-bf0e-d6abe51557a6`, observed receiving 100% traffic. Restore that allocation, not an inferred Git commit or a newly rebuilt artifact. This version predates the migration recovery UI; rolling back restores that older behavior too.
 
-Use the reviewed repository and its installed, pinned Wrangler in an already authorized Cloudflare operator terminal. Do not create a broad token, paste tokens into commands/chat, install a second deployment tool, or expand this cloud environment's network policy. If no authenticated operator terminal is available, this prerequisite is blocked. The selected build token label in the dashboard does not establish interactive CLI credentials.
+## Primary path: existing dashboard
+
+The owner can use the existing authenticated dashboard without installing software or creating an API token. Cloudflare → Workers & Pages → notation-education-lms → Deployments. Before cutover, retain the full version ID below and verify it remains the reviewed active 100% version. After a new release, it should appear as an inactive version. At an approved stop condition, use the ellipsis on the row matching **3862f733-48df-4d59-bf0e-d6abe51557a6**, then **Rollback**. Verify the full target (using version details/copy ID as needed) and proposed 100% allocation before confirming. If the target is absent, its action unavailable, or confirmation names another version/allocation, cancel and stop; do not substitute the older `2afeeb91` version used to inspect menu availability. The active version's menu only showed View logs; that is distinct from an inactive version's rollback menu.
+
+This control will mutate production when confirmed. It is not authorized during preparation. Actual target selection after cutover and rollback execution remain untested. Apply the stop conditions and verification steps below to the dashboard path too.
+
+## Optional CLI path
+
+If an already authorized operator terminal is available, use the reviewed repository and its installed, pinned Wrangler. Do not create a broad token, paste tokens into commands/chat, install a second deployment tool, or expand this cloud environment's network policy. The selected build token label does not establish interactive CLI credentials. Lack of CLI access does not block the observed dashboard path.
 
 Before release, run only these read-only commands in that terminal:
 

@@ -1,0 +1,113 @@
+{
+  "kind": "compact-review-delivery-verification",
+  "observed_at": "2026-11-12T11:14:19.583Z",
+  "production_access": false,
+  "hosted_preview_access": false,
+  "production_mutations": false,
+  "compact_sha256": "9ed7631ebdbac1692cc3ef19f91159fbda9b855272a56e5bae09c7ebbea2c8a2",
+  "canonical_source_sha256": "2164ce7f88ddd913b75e0af3e1d0ce2fe7ae021a32b693838a62a3e5553cb3d7",
+  "fixture_identity_rebinding": "Only local database name/system identifier substituted for positive tests. Unchanged production identifier explicitly tested for rejection; function before/after hashes unchanged.",
+  "ready": true,
+  "summary": {
+    "passing": 19,
+    "failing": 0
+  },
+  "checks": [
+    {
+      "id": "local-isolation",
+      "status": "passing",
+      "detail": "Two new labelled containers on fixed local Docker socket; network none; no published ports or mounted production inputs"
+    },
+    {
+      "id": "registration-metadata",
+      "status": "passing",
+      "detail": "User-supplied tutor role ignored; profile creation does not auto-enrol by year"
+    },
+    {
+      "id": "canonical-reference",
+      "status": "passing",
+      "detail": "Established the exact canonical installed schema/ACLs and restored original definitions under narrowed permissions"
+    },
+    {
+      "id": "production-identity-rejection",
+      "status": "passing",
+      "detail": "Production database binding rejected in the isolated database with no changes"
+    },
+    {
+      "id": "hash-guards",
+      "status": "passing",
+      "detail": "Incorrect original or result hash aborts before function replacement, preserving schema and rows"
+    },
+    {
+      "id": "partial-state-rejection",
+      "status": "passing",
+      "detail": "Already changed first function rejects the operation without touching the second"
+    },
+    {
+      "id": "compact-exact-equivalence",
+      "status": "passing",
+      "detail": "Compact delivery produces the exact canonical schema, definitions, owners and ACLs with no row changes"
+    },
+    {
+      "id": "compact:anonymous",
+      "status": "passing",
+      "detail": "No question rows or tutor status; privileged student action denied"
+    },
+    {
+      "id": "compact:enrolment-reads",
+      "status": "passing",
+      "detail": "Enrolled content visible; unenrolled course/actor denied"
+    },
+    {
+      "id": "compact:self-escalation",
+      "status": "passing",
+      "detail": "Role column update and self-enrolment rejected; cross-student profile hidden"
+    },
+    {
+      "id": "compact:actor-spoofing",
+      "status": "passing",
+      "detail": "Cross-account review, spoofed tutor action and private helper invocation denied"
+    },
+    {
+      "id": "compact:review-conflict",
+      "status": "passing",
+      "detail": "Both review RPCs return PT409 for an enrolled student with no schedule"
+    },
+    {
+      "id": "compact:review-stale-state",
+      "status": "passing",
+      "detail": "Stale revision and changed-question guards return PT409; each synthetic transaction rolls back"
+    },
+    {
+      "id": "compact:attempt-boundaries",
+      "status": "passing",
+      "detail": "Direct review metadata and another student’s answer writes denied"
+    },
+    {
+      "id": "compact:private-storage",
+      "status": "passing",
+      "detail": "Anonymous/unenrolled objects hidden; enrolled metadata visible; student upload denied (Storage service not emulated)"
+    },
+    {
+      "id": "compact:tutor",
+      "status": "passing",
+      "detail": "Tutor can view both courses and edit; transaction rolled back"
+    },
+    {
+      "id": "repeat-rejected",
+      "status": "passing",
+      "detail": "Repeated compact install aborts without changes"
+    },
+    {
+      "id": "canonical-rollback",
+      "status": "passing",
+      "detail": "Existing reviewed inverse restores the original definitions/schema and every synthetic row"
+    },
+    {
+      "id": "combined-permission-rollback",
+      "status": "passing",
+      "detail": "Original owner/security grants restore exactly after review rollback"
+    }
+  ],
+  "cleanup": "All run-created containers/volumes and temporary files removed"
+}

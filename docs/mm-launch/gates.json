@@ -24,12 +24,12 @@
     "evidence": "Owner authorized production-only Cloudflare build-variable entry and reports completion. Screenshot shows reviewed production target, exact retained-project URL, publishable client-key type (value not retained), DESIGN_PREVIEW=false and NODE_VERSION=24.19.0. Screenshot contains editable fields without save confirmation; persistence is owner-reported. No build/deploy performed. Current configured commands npm run build / npx wrangler deploy and prior frozen pnpm install evidence recorded. Revised SQL/runner require a new candidate; updated PR/build artifact provenance, production hostname/public-key checks and unchanged preview settings remain verification requirements. Final executable candidate 08c999ca3841b53f68c92ab15972cff053829ed1 has passed local production/preview build provenance and archive checks (finalized-candidate-builds.json); remote production artifact/deployment remains unverified. No production merge/deploy performed."
   },
   "rollback_version": {
-    "status": "unverified",
-    "evidence": "Owner supplied full active Worker version 3862f733-48df-4d59-bf0e-d6abe51557a6 and screenshot of 100% traffic. Dashboard views did not expose rollback control; selection/restoration remains unverified."
+    "status": "passing",
+    "evidence": "Rollback preparation/access only: owner recorded retained full version3862f733-48df-4d59-bf0e-d6abe51557a6 active at100%, and authenticated dashboard screenshot shows enabled Rollback for inactive version2afeeb91. Primary dashboard procedure and full target/100% confirmation/stop conditions are in frontend-rollback.md. Do not substitute the older menu-inspection version. No rollback executed; actual target selection after cutover and recovery remain untested. CLI authentication is not required for the observed dashboard path."
   },
   "owner_launch_approval": {
-    "status": "blocked",
-    "evidence": "Production changes/merge/deployment not approved by current task."
+    "status": "passing",
+    "evidence": "Owner explicitly approved PR3 normal merge and existing Cloudflare production deployment on12 November; three DB fixes were separately approved and installed/verified85+3+12 checks. Scope includes public read-only release verification, not new test identities/emails/data writes/cleanup. REST/GraphQL Forbidden blocks assistant merge; owner GitHub dashboard action required. This approval is not deployment or launch success."
   },
   "device_time_acceptance": {
     "status": "unverified",
@@ -37,7 +37,7 @@
   },
   "security_acceptance": {
     "status": "unverified",
-    "evidence": "Owner required TRIGGER/REFERENCES review before launch. Dependency review completed against fresh production metadata: 32 unused table-level grants across eight tables; no reviewed frontend or public function schema-creation dependency. Revised existing security SQL removes only these alongside earlier scoped grants; exact guarded rollback retained. Revised combined local runner passed 46 isolated synthetic checks with zero failures, normal owner/student behavior, FK enforcement, existing triggers and exact ACL/schema/row rollback (docs/mm-acceptance/schema-grants-review.json). No production changes. Revised SQL/runner and reviewed exact post-permission contract/comparator are committed in executable candidate 08c999ca3841b53f68c92ab15972cff053829ed1; 146 unit tests pass, and retained46 SQL checks match current bytes. Production installed state is still unverified. Remaining definer advisory acceptance and leaked-password setting/plan readback unresolved."
+    "evidence": "Owner required TRIGGER/REFERENCES review before launch. Dependency review completed against fresh production metadata: 32 unused table-level grants across eight tables; no reviewed frontend or public function schema-creation dependency. Revised existing security SQL removes only these alongside earlier scoped grants; exact guarded rollback retained. Revised combined local runner passed 46 isolated synthetic checks with zero failures, normal owner/student behavior, FK enforcement, existing triggers and exact ACL/schema/row rollback (docs/mm-acceptance/schema-grants-review.json). No production changes. Revised SQL/runner and reviewed exact post-permission contract/comparator are committed in executable candidate 08c999ca3841b53f68c92ab15972cff053829ed1; 146 unit tests pass, and retained46 SQL checks match current bytes. Production installed state is still unverified. Remaining definer advisory acceptance and leaked-password setting/plan readback unresolved. Latest12 November production metadata matches intended owner/security ACLs and all other non-review-definition checks (83 passing); review functions still match originals. Remaining application smoke/owner-required security decisions not declared passed. Final12 November installed production metadata now passes85/85 after-contract checks, including intended privilege removals and both corrected review functions; review inverse guards pass3/3 (production-installed-state-verification.json). These changes are installed, not merely prepared. Content-preservation and bounded application smoke remain separate; no broader audit claim."
   },
   "enrolment_behavior": {
     "status": "passing",
@@ -45,6 +45,6 @@
   },
   "production_smoke_scope": {
     "status": "blocked",
-    "evidence": "Production test accounts/recipients and minimal smoke writes require explicit owner approval."
+    "evidence": "Exact proposed fixture UUIDs and bounded writes/cleanup in release-approval-package.md; at most two messages (signup confirmation+recovery) only to drisyantshrestha+mm-launch-20261109@gmail.com, with fresh alias/collision guards. Owner approval and inbox confirmation pending; no account/email/fixture created."
   }
 }
