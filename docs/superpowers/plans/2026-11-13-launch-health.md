@@ -42,10 +42,10 @@
 
 **Interfaces:** Existing install/build scripts and frontend module imports remain unchanged.
 
-- [ ] Preserve initial audit output as the failing security baseline.
-- [ ] Update Next.js to a patched published release >=16.4.1 and align eslint-config-next. Resolve remaining production advisories using supported updates; preserve release-age/build policy.
-- [ ] Run frozen install, production audit, full tests and TypeScript. Expect no critical/high production advisories and no new behavior/type failures; record any unresolved constraints exactly.
-- [ ] Commit only reviewed dependency changes.
+- [x] Preserve initial audit output as the failing security baseline.
+- [x] Update Next.js to a patched published release >=16.4.1 and align eslint-config-next. Resolve remaining production advisories using supported updates; preserve release-age/build policy.
+- [x] Run frozen install, production audit, full tests and TypeScript. Expect no critical/high production advisories and no new behavior/type failures; record any unresolved constraints exactly.
+- [x] Commit only reviewed dependency changes.
 
 ### Task 3: Build/runtime verification and handoff
 
