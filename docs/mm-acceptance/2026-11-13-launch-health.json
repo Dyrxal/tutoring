@@ -1,0 +1,1427 @@
+{
+  "kind": "launch-health-check-and-maintenance",
+  "task_requested_date_sydney": "2026-11-13",
+  "completed_at": "2026-11-13T13:04:46.218519+00:00",
+  "completed_at_sydney": "2026-11-14T00:04:46.218878+11:00",
+  "overall_status": "Live HTTPS/UI/API checks pass; live plain-HTTP application delivery and dependency findings have tested fixes prepared on a review branch. Candidate not deployed; real-account functional acceptance remains unverified.",
+  "live_release": {
+    "merge_commit": "f6e42e9e8d7d9486dfca93577ad9e7b9641b0228",
+    "reported_worker_version": "afeaaf7c-312b-4dd4-a6af-04666a9e62a0",
+    "public_checks": {
+      "kind": "production-public-health-check",
+      "observed_at": "2026-11-13T12:24:08.267054+00:00",
+      "checks": [
+        {
+          "check": "HTTPS website https://notationeducation.online/",
+          "passed": true,
+          "detail": {
+            "url": "https://notationeducation.online/",
+            "final_url": "https://www.notationeducation.online/",
+            "status": 200,
+            "seconds": 0.382,
+            "bytes": 10326,
+            "sha256": "18316b3f900787a4e300d7706b08b9d4534b5cc73782a1832ee8daa231766a98",
+            "updated_signin": true,
+            "original_n_logo": true,
+            "page_assets": [
+              "/_next/static/chunks/page-Fx9z6qmR.js"
+            ]
+          }
+        },
+        {
+          "check": "HTTPS website https://www.notationeducation.online/",
+          "passed": true,
+          "detail": {
+            "url": "https://www.notationeducation.online/",
+            "final_url": "https://www.notationeducation.online/",
+            "status": 200,
+            "seconds": 0.254,
+            "bytes": 10326,
+            "sha256": "18316b3f900787a4e300d7706b08b9d4534b5cc73782a1832ee8daa231766a98",
+            "updated_signin": true,
+            "original_n_logo": true,
+            "page_assets": [
+              "/_next/static/chunks/page-Fx9z6qmR.js"
+            ]
+          }
+        },
+        {
+          "check": "HTTP upgrades to HTTPS http://notationeducation.online/",
+          "passed": false,
+          "detail": {
+            "url": "http://notationeducation.online/",
+            "final_url": "http://notationeducation.online/",
+            "status": 200,
+            "seconds": 0.188,
+            "bytes": 10326,
+            "sha256": "18316b3f900787a4e300d7706b08b9d4534b5cc73782a1832ee8daa231766a98",
+            "updated_signin": true,
+            "original_n_logo": true,
+            "page_assets": [
+              "/_next/static/chunks/page-Fx9z6qmR.js"
+            ]
+          }
+        },
+        {
+          "check": "HTTP upgrades to HTTPS http://www.notationeducation.online/",
+          "passed": false,
+          "detail": {
+            "url": "http://www.notationeducation.online/",
+            "final_url": "http://www.notationeducation.online/",
+            "status": 200,
+            "seconds": 0.152,
+            "bytes": 10326,
+            "sha256": "18316b3f900787a4e300d7706b08b9d4534b5cc73782a1832ee8daa231766a98",
+            "updated_signin": true,
+            "original_n_logo": true,
+            "page_assets": [
+              "/_next/static/chunks/page-Fx9z6qmR.js"
+            ]
+          }
+        },
+        {
+          "check": "Initial JavaScript and styles load",
+          "passed": true,
+          "detail": [
+            {
+              "url": "https://www.notationeducation.online/_next/static/css/index.BAqDqtoQ.css",
+              "final_url": "https://www.notationeducation.online/_next/static/css/index.BAqDqtoQ.css",
+              "status": 200,
+              "seconds": 0.253,
+              "bytes": 285837,
+              "sha256": "9d333fe1775aae80e0f8c5dbf74e8f3cb854b6e41a60daacc01f953642ed2f11"
+            },
+            {
+              "url": "https://www.notationeducation.online/_next/static/css/page.CNMUQXD7.css",
+              "final_url": "https://www.notationeducation.online/_next/static/css/page.CNMUQXD7.css",
+              "status": 200,
+              "seconds": 0.231,
+              "bytes": 25704,
+              "sha256": "59fc101a75887916364f7743763f721c23785e22bf543e0f3e7f5ccf74cf5e6d"
+            },
+            {
+              "url": "https://www.notationeducation.online/_next/static/chunks/index-BlqH4oOY.js",
+              "final_url": "https://www.notationeducation.online/_next/static/chunks/index-BlqH4oOY.js",
+              "status": 200,
+              "seconds": 0.229,
+              "bytes": 192348,
+              "sha256": "1f4976fb31d59142795b998b87b02fe58572d3c88860717629222f6879974d2d"
+            },
+            {
+              "url": "https://www.notationeducation.online/_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+              "final_url": "https://www.notationeducation.online/_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+              "status": 200,
+              "seconds": 0.165,
+              "bytes": 694,
+              "sha256": "5db5ba82eef00d1dee7e86e663098c9427d01183a88d357437daff295aec3e75"
+            },
+            {
+              "url": "https://www.notationeducation.online/_next/static/chunks/framework-D_rUT4EX.js",
+              "final_url": "https://www.notationeducation.online/_next/static/chunks/framework-D_rUT4EX.js",
+              "status": 200,
+              "seconds": 0.166,
+              "bytes": 190152,
+              "sha256": "939d0fabebb3b2f01753bb866b067d8d3384fb06da19f0e6557609d3b1a9f4f7"
+            },
+            {
+              "url": "https://www.notationeducation.online/_next/static/chunks/layout-segment-context-DdbO7-zF.js",
+              "final_url": "https://www.notationeducation.online/_next/static/chunks/layout-segment-context-DdbO7-zF.js",
+              "status": 200,
+              "seconds": 0.156,
+              "bytes": 494,
+              "sha256": "5c0a79a89888949d2a8e5bad43e4f5ac074fa20abc6e1fc058a2176711afe15e"
+            },
+            {
+              "url": "https://www.notationeducation.online/_next/static/chunks/page-Fx9z6qmR.js",
+              "final_url": "https://www.notationeducation.online/_next/static/chunks/page-Fx9z6qmR.js",
+              "status": 200,
+              "seconds": 0.159,
+              "bytes": 1590676,
+              "sha256": "a5f0a4733b0d7049a25a6f05658b2c25f3971c93c1e8665e4b1c33acf6b1b412"
+            }
+          ]
+        },
+        {
+          "check": "Production backend selected",
+          "passed": true,
+          "detail": {
+            "project_refs": [
+              "lmuwsjjrqmmmtmxjvqln"
+            ]
+          }
+        },
+        {
+          "check": "No literal secret/service-role key in initial assets",
+          "passed": true,
+          "detail": {
+            "secret_key_literals": 0,
+            "service_role_keys": 0,
+            "scope": "Static pattern/decoded JWT scan of served initial assets; not a complete secret audit"
+          }
+        },
+        {
+          "check": "Production Auth settings reachable",
+          "passed": true,
+          "detail": {
+            "status": 200,
+            "seconds": 0.601,
+            "public_flags": {
+              "disable_signup": false,
+              "mailer_autoconfirm": false,
+              "external": {
+                "anonymous_users": false,
+                "apple": false,
+                "azure": false,
+                "bitbucket": false,
+                "discord": false,
+                "facebook": false,
+                "snapchat": false,
+                "figma": false,
+                "fly": false,
+                "github": false,
+                "gitlab": false,
+                "google": false,
+                "keycloak": false,
+                "kakao": false,
+                "linkedin": false,
+                "linkedin_oidc": false,
+                "notion": false,
+                "spotify": false,
+                "slack": false,
+                "slack_oidc": false,
+                "workos": false,
+                "twitch": false,
+                "twitter": false,
+                "email": true,
+                "phone": false,
+                "zoom": false
+              }
+            }
+          }
+        },
+        {
+          "check": "Production Auth permits website origin",
+          "passed": true,
+          "detail": {
+            "access_control_allow_origin": "https://www.notationeducation.online"
+          }
+        },
+        {
+          "check": "Data API zero-row reachability checks",
+          "passed": true,
+          "detail": [
+            {
+              "table": "courses",
+              "status": 200,
+              "zero_row_response": true,
+              "seconds": 0.715
+            },
+            {
+              "table": "enrolments",
+              "status": 200,
+              "zero_row_response": true,
+              "seconds": 0.289
+            },
+            {
+              "table": "lesson_progress",
+              "status": 200,
+              "zero_row_response": true,
+              "seconds": 0.712
+            },
+            {
+              "table": "lessons",
+              "status": 200,
+              "zero_row_response": true,
+              "seconds": 0.277
+            },
+            {
+              "table": "modules",
+              "status": 200,
+              "zero_row_response": true,
+              "seconds": 0.66
+            },
+            {
+              "table": "practice_attempts",
+              "status": 200,
+              "zero_row_response": true,
+              "seconds": 0.285
+            },
+            {
+              "table": "profiles",
+              "status": 200,
+              "zero_row_response": true,
+              "seconds": 0.259
+            },
+            {
+              "table": "questions",
+              "status": 200,
+              "zero_row_response": true,
+              "seconds": 0.263
+            }
+          ]
+        },
+        {
+          "check": "Unknown route has a controlled 404 response",
+          "passed": true,
+          "detail": {
+            "url": "https://www.notationeducation.online/__mm_healthcheck_missing_page__",
+            "status": 404,
+            "seconds": 0.134
+          }
+        }
+      ],
+      "passing": 9,
+      "failing": 2,
+      "roots": [
+        {
+          "url": "https://notationeducation.online/",
+          "final_url": "https://www.notationeducation.online/",
+          "status": 200,
+          "seconds": 0.382,
+          "bytes": 10326,
+          "sha256": "18316b3f900787a4e300d7706b08b9d4534b5cc73782a1832ee8daa231766a98",
+          "updated_signin": true,
+          "original_n_logo": true,
+          "page_assets": [
+            "/_next/static/chunks/page-Fx9z6qmR.js"
+          ]
+        },
+        {
+          "url": "https://www.notationeducation.online/",
+          "final_url": "https://www.notationeducation.online/",
+          "status": 200,
+          "seconds": 0.254,
+          "bytes": 10326,
+          "sha256": "18316b3f900787a4e300d7706b08b9d4534b5cc73782a1832ee8daa231766a98",
+          "updated_signin": true,
+          "original_n_logo": true,
+          "page_assets": [
+            "/_next/static/chunks/page-Fx9z6qmR.js"
+          ]
+        },
+        {
+          "url": "http://notationeducation.online/",
+          "final_url": "http://notationeducation.online/",
+          "status": 200,
+          "seconds": 0.188,
+          "bytes": 10326,
+          "sha256": "18316b3f900787a4e300d7706b08b9d4534b5cc73782a1832ee8daa231766a98",
+          "updated_signin": true,
+          "original_n_logo": true,
+          "page_assets": [
+            "/_next/static/chunks/page-Fx9z6qmR.js"
+          ]
+        },
+        {
+          "url": "http://www.notationeducation.online/",
+          "final_url": "http://www.notationeducation.online/",
+          "status": 200,
+          "seconds": 0.152,
+          "bytes": 10326,
+          "sha256": "18316b3f900787a4e300d7706b08b9d4534b5cc73782a1832ee8daa231766a98",
+          "updated_signin": true,
+          "original_n_logo": true,
+          "page_assets": [
+            "/_next/static/chunks/page-Fx9z6qmR.js"
+          ]
+        }
+      ],
+      "initial_assets": [
+        {
+          "url": "https://www.notationeducation.online/_next/static/css/index.BAqDqtoQ.css",
+          "final_url": "https://www.notationeducation.online/_next/static/css/index.BAqDqtoQ.css",
+          "status": 200,
+          "seconds": 0.253,
+          "bytes": 285837,
+          "sha256": "9d333fe1775aae80e0f8c5dbf74e8f3cb854b6e41a60daacc01f953642ed2f11"
+        },
+        {
+          "url": "https://www.notationeducation.online/_next/static/css/page.CNMUQXD7.css",
+          "final_url": "https://www.notationeducation.online/_next/static/css/page.CNMUQXD7.css",
+          "status": 200,
+          "seconds": 0.231,
+          "bytes": 25704,
+          "sha256": "59fc101a75887916364f7743763f721c23785e22bf543e0f3e7f5ccf74cf5e6d"
+        },
+        {
+          "url": "https://www.notationeducation.online/_next/static/chunks/index-BlqH4oOY.js",
+          "final_url": "https://www.notationeducation.online/_next/static/chunks/index-BlqH4oOY.js",
+          "status": 200,
+          "seconds": 0.229,
+          "bytes": 192348,
+          "sha256": "1f4976fb31d59142795b998b87b02fe58572d3c88860717629222f6879974d2d"
+        },
+        {
+          "url": "https://www.notationeducation.online/_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+          "final_url": "https://www.notationeducation.online/_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+          "status": 200,
+          "seconds": 0.165,
+          "bytes": 694,
+          "sha256": "5db5ba82eef00d1dee7e86e663098c9427d01183a88d357437daff295aec3e75"
+        },
+        {
+          "url": "https://www.notationeducation.online/_next/static/chunks/framework-D_rUT4EX.js",
+          "final_url": "https://www.notationeducation.online/_next/static/chunks/framework-D_rUT4EX.js",
+          "status": 200,
+          "seconds": 0.166,
+          "bytes": 190152,
+          "sha256": "939d0fabebb3b2f01753bb866b067d8d3384fb06da19f0e6557609d3b1a9f4f7"
+        },
+        {
+          "url": "https://www.notationeducation.online/_next/static/chunks/layout-segment-context-DdbO7-zF.js",
+          "final_url": "https://www.notationeducation.online/_next/static/chunks/layout-segment-context-DdbO7-zF.js",
+          "status": 200,
+          "seconds": 0.156,
+          "bytes": 494,
+          "sha256": "5c0a79a89888949d2a8e5bad43e4f5ac074fa20abc6e1fc058a2176711afe15e"
+        },
+        {
+          "url": "https://www.notationeducation.online/_next/static/chunks/page-Fx9z6qmR.js",
+          "final_url": "https://www.notationeducation.online/_next/static/chunks/page-Fx9z6qmR.js",
+          "status": 200,
+          "seconds": 0.159,
+          "bytes": 1590676,
+          "sha256": "a5f0a4733b0d7049a25a6f05658b2c25f3971c93c1e8665e4b1c33acf6b1b412"
+        }
+      ],
+      "data_api_zero_row_checks": [
+        {
+          "table": "courses",
+          "status": 200,
+          "zero_row_response": true,
+          "seconds": 0.715
+        },
+        {
+          "table": "enrolments",
+          "status": 200,
+          "zero_row_response": true,
+          "seconds": 0.289
+        },
+        {
+          "table": "lesson_progress",
+          "status": 200,
+          "zero_row_response": true,
+          "seconds": 0.712
+        },
+        {
+          "table": "lessons",
+          "status": 200,
+          "zero_row_response": true,
+          "seconds": 0.277
+        },
+        {
+          "table": "modules",
+          "status": 200,
+          "zero_row_response": true,
+          "seconds": 0.66
+        },
+        {
+          "table": "practice_attempts",
+          "status": 200,
+          "zero_row_response": true,
+          "seconds": 0.285
+        },
+        {
+          "table": "profiles",
+          "status": 200,
+          "zero_row_response": true,
+          "seconds": 0.259
+        },
+        {
+          "table": "questions",
+          "status": 200,
+          "zero_row_response": true,
+          "seconds": 0.263
+        }
+      ],
+      "response_security_headers": {},
+      "limits": [
+        "Public GET only; no student or curriculum rows fetched (limit=0).",
+        "No email, login, password reset, data write or private file download.",
+        "No authenticated RLS boundary or actual student lesson/progress verification inferred from zero-row API probes.",
+        "Request durations include this environment proxy and are not a load test or uptime guarantee."
+      ]
+    },
+    "anonymous_browser": {
+      "kind": "production-public-browser-health",
+      "observed_at": "2026-11-13T12:27:40.357262+00:00",
+      "engine": "System Chromium via Playwright",
+      "tls_trust": "Pinned only the supplied environment proxy CA SPKI; no global TLS-error ignore.",
+      "checks": [
+        {
+          "check": "320px signin controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 320,
+            "scrollWidth": 320,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "320px keyboard reaches password",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "320px invalid email blocked locally",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "320px recovery controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 320,
+            "scrollWidth": 320,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "320px registration has name and year",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "320px registration controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 320,
+            "scrollWidth": 320,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "390px signin controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 390,
+            "scrollWidth": 390,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "390px keyboard reaches password",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "390px invalid email blocked locally",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "390px recovery controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 390,
+            "scrollWidth": 390,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "390px registration has name and year",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "390px registration controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 390,
+            "scrollWidth": 390,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "768px signin controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 768,
+            "scrollWidth": 768,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "768px keyboard reaches password",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "768px invalid email blocked locally",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "768px recovery controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 768,
+            "scrollWidth": 768,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "768px registration has name and year",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "768px registration controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 768,
+            "scrollWidth": 768,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "1440px signin controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 1440,
+            "scrollWidth": 1440,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "1440px keyboard reaches password",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "1440px invalid email blocked locally",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "1440px recovery controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 1440,
+            "scrollWidth": 1440,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "1440px registration has name and year",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "1440px registration controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 1440,
+            "scrollWidth": 1440,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "No uncaught production browser exceptions",
+          "passed": true,
+          "detail": []
+        },
+        {
+          "check": "No unexpected backend/external/write requests",
+          "passed": true,
+          "detail": []
+        },
+        {
+          "check": "All observed production page/assets responses succeed",
+          "passed": true,
+          "detail": []
+        }
+      ],
+      "passing": 27,
+      "failing": 0,
+      "timings": [
+        {
+          "width": 320,
+          "domContentLoadedMs": 499,
+          "loadMs": 575
+        },
+        {
+          "width": 390,
+          "domContentLoadedMs": 281,
+          "loadMs": 376
+        },
+        {
+          "width": 768,
+          "domContentLoadedMs": 345,
+          "loadMs": 438
+        },
+        {
+          "width": 1440,
+          "domContentLoadedMs": 261,
+          "loadMs": 362
+        }
+      ],
+      "page_errors": [],
+      "blocked_requests": [],
+      "skipped_cloudflare_analytics_requests": [
+        {
+          "host": "static.cloudflareinsights.com",
+          "path": "/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "method": "GET"
+        },
+        {
+          "host": "static.cloudflareinsights.com",
+          "path": "/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "method": "GET"
+        },
+        {
+          "host": "static.cloudflareinsights.com",
+          "path": "/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "method": "GET"
+        },
+        {
+          "host": "static.cloudflareinsights.com",
+          "path": "/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "method": "GET"
+        }
+      ],
+      "bad_responses": [],
+      "limits": [
+        "Fresh anonymous browser contexts; no real-account login, email or data write.",
+        "Chromium viewport checks are not physical iPhone/Safari testing.",
+        "Timings include the agent proxy and are not real-user performance benchmarks."
+      ]
+    },
+    "mocked_auth_browser": {
+      "base": "https://www.notationeducation.online/",
+      "mockedRequestsOnly": true,
+      "realSupabaseRequests": 0,
+      "results": [
+        {
+          "check": "Expired confirmation shows safe guidance without granting a session",
+          "passed": true
+        },
+        {
+          "check": "Pending enrolments never display a false empty catalogue",
+          "passed": true
+        },
+        {
+          "check": "Failed enrolments offer retry instead of asserting no courses",
+          "passed": true
+        },
+        {
+          "check": "Saved-answer loading locks practice until previous answers are restored",
+          "passed": true
+        },
+        {
+          "check": "Request link uses production www redirect; existing and unknown emails share acknowledgement",
+          "passed": true
+        },
+        {
+          "check": "Rate and network failures keep the email and support retry",
+          "passed": true
+        },
+        {
+          "check": "Marker alone and expired link cannot change a password",
+          "passed": true
+        },
+        {
+          "check": "Recovery verifies session, survives reload, validates passwords, updates and returns to sign-in",
+          "passed": true
+        },
+        {
+          "check": "A cached normal session plus recovery marker is insufficient",
+          "passed": true
+        },
+        {
+          "check": "Mobile recovery screen has no horizontal overflow",
+          "passed": true
+        },
+        {
+          "check": "Existing sign-in and registration fields/metadata remain intact",
+          "passed": true
+        },
+        {
+          "check": "Double submission sends one reset request",
+          "passed": true
+        },
+        {
+          "check": "Account switch clears recovery fields and cannot submit the previous account password",
+          "passed": true
+        },
+        {
+          "check": "Password mutation never uses a newly switched shared account",
+          "passed": true
+        },
+        {
+          "check": "Cancel signout failure never reports a password update",
+          "passed": true
+        },
+        {
+          "check": "Successful password update survives signout failure without another password PUT",
+          "passed": true
+        },
+        {
+          "check": "Signup confirmation callback follows normal sign-in and survives reload",
+          "passed": true
+        }
+      ]
+    },
+    "production_source_inputs_verified_before_maintenance": true
+  },
+  "maintenance_candidate": {
+    "branch": "fix/launch-health-20261113",
+    "source_commit": "b85ce699c090ad806b8e75954235eb0bac89bfc6",
+    "worktree": "/workspace/work/mm-launch-maintenance",
+    "base_commit": "f6e42e9e8d7d9486dfca93577ad9e7b9641b0228",
+    "production_deployed": false,
+    "review_url": "https://github.com/Dyrxal/tutoring/compare/main...fix/launch-health-20261113",
+    "changes": [
+      "308 HTTPS redirects for official application hosts/callbacks, including terminal DNS dot normalization; local/preview hosts unaffected.",
+      "Patched Next/eslint16.4.1, Zod4.6.6, sharp0.35.5, compatible transitive overrides.",
+      "React/ReactDOM/RSC19.3.1 and plugin-rsc0.5.39, including its vendored RSC; runtime dependency classification and installed-vendor regression guards.",
+      "Optional local browser harness keeps loopback traffic local; remote backends remain mocked/blocked."
+    ],
+    "SQL_and_protected_contracts_unchanged": true
+  },
+  "verification": {
+    "unit_tests": {
+      "passing": 165,
+      "failing": 0
+    },
+    "typescript": "passing",
+    "focused_new_source_test_lint": "passing",
+    "frozen_install": "passing",
+    "production_build": {
+      "format": 1,
+      "kind": "assets",
+      "project_ref": "lmuwsjjrqmmmtmxjvqln",
+      "captured_at": "2026-11-13T12:54:25.817Z",
+      "source_commit": "b85ce699c090ad806b8e75954235eb0bac89bfc6",
+      "provenance": {
+        "status": "passing",
+        "source_commit": "b85ce699c090ad806b8e75954235eb0bac89bfc6",
+        "project_ref": "lmuwsjjrqmmmtmxjvqln"
+      },
+      "artifact_digest": "b4a67e17a854dc8c1fe0c0a5bba48723f8b1f47e5ba1522e93afc32c5276ad5d",
+      "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+      "ready": true,
+      "summary": {
+        "passing": 5,
+        "failing": 0,
+        "blocked": 0,
+        "unverified": 0
+      },
+      "checks": [
+        {
+          "id": "build_manifest",
+          "status": "passing",
+          "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+        },
+        {
+          "id": "files",
+          "status": "passing",
+          "detail": "Browser files scanned: 100"
+        },
+        {
+          "id": "backend",
+          "status": "passing",
+          "detail": "Intended hostname present; unexpected project count: 0"
+        },
+        {
+          "id": "public_key",
+          "status": "passing",
+          "detail": "Publishable/ matching legacy anon key present"
+        },
+        {
+          "id": "secrets",
+          "status": "passing",
+          "detail": "Exposure findings: 0"
+        }
+      ]
+    },
+    "production_archive_rescan": {
+      "format": 1,
+      "kind": "assets",
+      "project_ref": "lmuwsjjrqmmmtmxjvqln",
+      "captured_at": "2026-11-13T12:58:35.098Z",
+      "source_commit": "b85ce699c090ad806b8e75954235eb0bac89bfc6",
+      "provenance": {
+        "status": "passing",
+        "source_commit": "b85ce699c090ad806b8e75954235eb0bac89bfc6",
+        "project_ref": "lmuwsjjrqmmmtmxjvqln"
+      },
+      "artifact_digest": "b4a67e17a854dc8c1fe0c0a5bba48723f8b1f47e5ba1522e93afc32c5276ad5d",
+      "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+      "ready": true,
+      "summary": {
+        "passing": 5,
+        "failing": 0,
+        "blocked": 0,
+        "unverified": 0
+      },
+      "checks": [
+        {
+          "id": "build_manifest",
+          "status": "passing",
+          "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+        },
+        {
+          "id": "files",
+          "status": "passing",
+          "detail": "Browser files scanned: 100"
+        },
+        {
+          "id": "backend",
+          "status": "passing",
+          "detail": "Intended hostname present; unexpected project count: 0"
+        },
+        {
+          "id": "public_key",
+          "status": "passing",
+          "detail": "Publishable/ matching legacy anon key present"
+        },
+        {
+          "id": "secrets",
+          "status": "passing",
+          "detail": "Exposure findings: 0"
+        }
+      ]
+    },
+    "preview_build": {
+      "format": 1,
+      "kind": "assets",
+      "project_ref": "lcddnpafrkbwsrhqexqe",
+      "captured_at": "2026-11-13T12:55:46.591Z",
+      "source_commit": "b85ce699c090ad806b8e75954235eb0bac89bfc6",
+      "provenance": {
+        "status": "passing",
+        "source_commit": "b85ce699c090ad806b8e75954235eb0bac89bfc6",
+        "project_ref": "lcddnpafrkbwsrhqexqe"
+      },
+      "artifact_digest": "78132989bbb9aa624c4b96f9ecf19b194c16db709d55eab4f8c74dc1365b7556",
+      "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+      "ready": true,
+      "summary": {
+        "passing": 5,
+        "failing": 0,
+        "blocked": 0,
+        "unverified": 0
+      },
+      "checks": [
+        {
+          "id": "build_manifest",
+          "status": "passing",
+          "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+        },
+        {
+          "id": "files",
+          "status": "passing",
+          "detail": "Browser files scanned: 100"
+        },
+        {
+          "id": "backend",
+          "status": "passing",
+          "detail": "Intended hostname present; unexpected project count: 0"
+        },
+        {
+          "id": "public_key",
+          "status": "passing",
+          "detail": "Publishable/ matching legacy anon key present"
+        },
+        {
+          "id": "secrets",
+          "status": "passing",
+          "detail": "Exposure findings: 0"
+        }
+      ]
+    },
+    "compiled_HTTPS_integration": {
+      "kind": "compiled-production-worker-https-check",
+      "observed_at": "2026-11-13T12:56:18.063686+00:00",
+      "candidate": "b85ce69",
+      "source": "Final production archive in local workerd; official hosts supplied via Host header to loopback only",
+      "checks": [
+        {
+          "check": "localhost stays available",
+          "status": 200,
+          "location": null,
+          "passed": true
+        },
+        {
+          "check": "www app HTTPS upgrade",
+          "status": 308,
+          "location": "https://www.notationeducation.online/",
+          "passed": true
+        },
+        {
+          "check": "apex app HTTPS upgrade",
+          "status": 308,
+          "location": "https://notationeducation.online/",
+          "passed": true
+        },
+        {
+          "check": "recovery callback preserved",
+          "status": 308,
+          "location": "https://www.notationeducation.online/?auth=recovery&next=%2Flesson",
+          "passed": true
+        },
+        {
+          "check": "lookalike host unaffected",
+          "status": 200,
+          "location": null,
+          "passed": true
+        },
+        {
+          "check": "absolute www DNS name normalized",
+          "status": 308,
+          "location": "https://www.notationeducation.online/?auth=recovery",
+          "passed": true
+        },
+        {
+          "check": "absolute apex DNS name normalized",
+          "status": 308,
+          "location": "https://notationeducation.online/",
+          "passed": true
+        }
+      ],
+      "passing": 7,
+      "failing": 0,
+      "scope": "Application pages/callbacks; Cloudflare static assets can precede middleware. Universal edge HTTPS/HSTS is not claimed.",
+      "remote_writes": false
+    },
+    "candidate_public_browser": {
+      "kind": "candidate-preview-browser-health",
+      "observed_at": "2026-11-13T13:00:42.832743+00:00",
+      "engine": "System Chromium via Playwright",
+      "tls_trust": "Pinned only the supplied environment proxy CA SPKI; no global TLS-error ignore.",
+      "checks": [
+        {
+          "check": "320px signin controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 320,
+            "scrollWidth": 320,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "320px keyboard reaches password",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "320px invalid email blocked locally",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "320px recovery controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 320,
+            "scrollWidth": 320,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "320px registration has name and year",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "320px registration controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 320,
+            "scrollWidth": 320,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "390px signin controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 390,
+            "scrollWidth": 390,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "390px keyboard reaches password",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "390px invalid email blocked locally",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "390px recovery controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 390,
+            "scrollWidth": 390,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "390px registration has name and year",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "390px registration controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 390,
+            "scrollWidth": 390,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "768px signin controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 768,
+            "scrollWidth": 768,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "768px keyboard reaches password",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "768px invalid email blocked locally",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "768px recovery controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 768,
+            "scrollWidth": 768,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "768px registration has name and year",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "768px registration controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 768,
+            "scrollWidth": 768,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "1440px signin controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 1440,
+            "scrollWidth": 1440,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "1440px keyboard reaches password",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "1440px invalid email blocked locally",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "1440px recovery controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 1440,
+            "scrollWidth": 1440,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "1440px registration has name and year",
+          "passed": true,
+          "detail": null
+        },
+        {
+          "check": "1440px registration controls fit viewport",
+          "passed": true,
+          "detail": {
+            "width": 1440,
+            "scrollWidth": 1440,
+            "outOfBounds": 0
+          }
+        },
+        {
+          "check": "No uncaught production browser exceptions",
+          "passed": true,
+          "detail": []
+        },
+        {
+          "check": "No unexpected backend/external/write requests",
+          "passed": true,
+          "detail": []
+        },
+        {
+          "check": "All observed production page/assets responses succeed",
+          "passed": true,
+          "detail": []
+        }
+      ],
+      "passing": 27,
+      "failing": 0,
+      "timings": [
+        {
+          "width": 320,
+          "domContentLoadedMs": 535,
+          "loadMs": 732
+        },
+        {
+          "width": 390,
+          "domContentLoadedMs": 320,
+          "loadMs": 509
+        },
+        {
+          "width": 768,
+          "domContentLoadedMs": 155,
+          "loadMs": 272
+        },
+        {
+          "width": 1440,
+          "domContentLoadedMs": 179,
+          "loadMs": 262
+        }
+      ],
+      "page_errors": [],
+      "blocked_requests": [],
+      "skipped_cloudflare_analytics_requests": [],
+      "bad_responses": [],
+      "limits": [
+        "Fresh anonymous browser contexts; no real-account login, email or data write.",
+        "Chromium viewport checks are not physical iPhone/Safari testing.",
+        "Timings include the agent proxy and are not real-user performance benchmarks."
+      ]
+    },
+    "candidate_mocked_auth_browser": {
+      "base": "http://127.0.0.1:8801/",
+      "mockedRequestsOnly": true,
+      "results": [
+        {
+          "check": "Expired confirmation shows safe guidance without granting a session",
+          "passed": true
+        },
+        {
+          "check": "Pending enrolments never display a false empty catalogue",
+          "passed": true
+        },
+        {
+          "check": "Failed enrolments offer retry instead of asserting no courses",
+          "passed": true
+        },
+        {
+          "check": "Saved-answer loading locks practice until previous answers are restored",
+          "passed": true
+        },
+        {
+          "check": "Request link uses preview redirect; existing and unknown emails share acknowledgement",
+          "passed": true
+        },
+        {
+          "check": "Rate and network failures keep the email and support retry",
+          "passed": true
+        },
+        {
+          "check": "Marker alone and expired link cannot change a password",
+          "passed": true
+        },
+        {
+          "check": "Recovery verifies session, survives reload, validates passwords, updates and returns to sign-in",
+          "passed": true
+        },
+        {
+          "check": "A cached normal session plus recovery marker is insufficient",
+          "passed": true
+        },
+        {
+          "check": "Mobile recovery screen has no horizontal overflow",
+          "passed": true
+        },
+        {
+          "check": "Existing sign-in and registration fields/metadata remain intact",
+          "passed": true
+        },
+        {
+          "check": "Double submission sends one reset request",
+          "passed": true
+        },
+        {
+          "check": "Account switch clears recovery fields and cannot submit the previous account password",
+          "passed": true
+        },
+        {
+          "check": "Password mutation never uses a newly switched shared account",
+          "passed": true
+        },
+        {
+          "check": "Cancel signout failure never reports a password update",
+          "passed": true
+        },
+        {
+          "check": "Successful password update survives signout failure without another password PUT",
+          "passed": true
+        },
+        {
+          "check": "Signup confirmation callback follows normal sign-in and survives reload",
+          "passed": true
+        }
+      ]
+    },
+    "production_dependency_audit": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0
+      },
+      "dependencies": 236,
+      "devDependencies": 0,
+      "optionalDependencies": 122,
+      "totalDependencies": 358
+    },
+    "full_dependency_audit": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 7,
+        "moderate": 27,
+        "high": 28,
+        "critical": 0
+      },
+      "dependencies": 274,
+      "devDependencies": 505,
+      "optionalDependencies": 227,
+      "totalDependencies": 863
+    },
+    "full_lint": {
+      "baseline_errors": 72,
+      "baseline_warnings": 75,
+      "candidate_errors": 66,
+      "candidate_warnings": 69,
+      "status": "existing debt remains; not declared passing"
+    }
+  },
+  "independent_review": {
+    "reviewed_range": "f6e42e9e8d7d9486dfca93577ad9e7b9641b0228..500ea06",
+    "assessment_at_review": "With fixes",
+    "findings": [
+      "Bundled vulnerable RSC missed by production-only audit: fixed and regression tested.",
+      "Terminal DNS-dot HTTP bypass: regraded material and fixed with two regressions."
+    ],
+    "resolution_commit": "b85ce699c090ad806b8e75954235eb0bac89bfc6",
+    "verification": "Four regressions failed before fix;165-test suite green after fix; final compiled Worker7/7, final browser44/44 and separate guarded builds pass. No second review claimed."
+  },
+  "test_setup_diagnostics": [
+    "Initial zero-row API probe assumed id columns; changed to select=*&limit=0 for composite-key tables. All8 API probes then returned200 empty responses without row reads.",
+    "Initial registration test label matching was too strict; corrected selector/wait. Known Cloudflare analytics script was intentionally blocked and separately recorded. All27 public UI checks pass.",
+    "Local browser proxy403 corrected in optional runner; old reused local port then served stale asset references after rebuild. Final fresh port8801 readiness required current built asset references;17+27 final candidate checks pass."
+  ],
+  "previous_database_evidence": "12 November85/85 installed metadata +3/3 inverse guards +12/12 content preservation retained. No new production DB snapshot or SQL execution.",
+  "known_limits": [
+    "No real-account login/lesson/progress or live confirmation/recovery email roundtrip tested.",
+    "Physical iPhone/Safari, actual overnight rollover and real token-expiry observation remain unverified.",
+    "Database/private Storage backup remains owner-deferred and unverified; not restarted.",
+    "Full wider graph audit retains7low/27moderate/28high findings (0critical); not all tooling remediated.",
+    "Full repo lint remains66errors/69warnings.",
+    "Universal edge/static HTTPS and HSTS not changed; candidate app redirect awaits merge/deployment."
+  ],
+  "rulings": [
+    {
+      "decision": "Prepared maintenance in an isolated branch while owner sleeps; preserve production until normal review/merge.",
+      "reason": "Owner requested uninterrupted checks and necessary fixes; existing workflow reviews changes before production.",
+      "cost_if_wrong": "Fixes remain pending on live until a normal merge; current working release is retained."
+    },
+    {
+      "decision": "Use exact compatible transitive security overrides instead of relying on deep dependency update.",
+      "reason": "Nested vulnerable versions persisted after selective pnpm update. Existing release-age/build policy remains intact.",
+      "cost_if_wrong": "Pins need future maintenance; frozen install, tests and both builds verified compatibility now."
+    },
+    {
+      "decision": "Treat terminal DNS-dot HTTP bypass as material and normalize the official hostname.",
+      "reason": "Absolute DNS spellings can refer to the same application; redirect to its canonical HTTPS hostname.",
+      "cost_if_wrong": "Only that official-host alias redirects; localhost, preview and lookalikes remain unchanged."
+    },
+    {
+      "decision": "Patch the plugin vendored RSC and align React/ReactDOM/RSC19.3.1, not merely the root RSC package.",
+      "reason": "Production-only audit missed executable React code vendored by the build plugin. Two installed-runtime regressions catch both app and Vinext consumers.",
+      "cost_if_wrong": "React minor update can cause behavior regressions; final165 tests, builds and44 candidate browser checks pass, actual live account writes remain untested."
+    },
+    {
+      "decision": "Correct the optional local mock runner to avoid the outbound proxy for loopback only.",
+      "reason": "Initial local timeout was proxy403, not an app failure. Other external backend requests remain mocked or blocked.",
+      "cost_if_wrong": "Remote preview still uses inherited proxy; local-only behavior is covered by17 passing scenarios."
+    },
+    {
+      "decision": "Describe HTTPS fix as protecting application pages/callbacks, not all edge/static responses or HSTS.",
+      "reason": "Cloudflare can serve static assets before Worker middleware; no edge policy write tool is available.",
+      "cost_if_wrong": "Public static assets may remain accessible over HTTP; universal enforcement requires a Cloudflare edge setting."
+    },
+    {
+      "decision": "Do not infer real account login, lesson saving, private-file access, or email delivery from simulated backend tests.",
+      "reason": "No authenticated test-account/inbox tool or password was available; user data and private files were not fetched.",
+      "cost_if_wrong": "Owner must still confirm those real production flows before considering functional launch acceptance complete."
+    },
+    {
+      "decision": "Retain prior installed DB evidence and unchanged SQL/contracts instead of repeating manual SQL checks.",
+      "reason": "This task changes frontend dependencies/middleware only;12 November installed-state and content-preservation results are already verified.",
+      "cost_if_wrong": "An unrelated external database change since that snapshot would require a fresh scoped check."
+    },
+    {
+      "decision": "Record wider toolchain advisories and pre-existing full lint debt without mass unrelated upgrades/refactoring.",
+      "reason": "Full audit has0critical but62 lower-severity wider graph findings; full lint remains66errors/69warnings (released baseline72/75).",
+      "cost_if_wrong": "Tooling maintenance/security review remains; no claim that the entire repository is lint/security clean."
+    },
+    {
+      "decision": "Do not claim demonstrated RSC exploitability, physical Safari/overnight behavior or production deployment of this candidate.",
+      "reason": "No exploit, physical-device, elapsed-time or deployment test was performed.",
+      "cost_if_wrong": "These remain unverified rather than being represented by unrelated synthetic passes."
+    }
+  ],
+  "remote_database_writes": 0,
+  "emails_sent": 0,
+  "new_test_accounts": 0,
+  "private_student_rows_or_file_bytes_read": false,
+  "production_deployments": 0,
+  "next_required_action": "Review/normal PR merge of prepared branch, verify resulting Cloudflare build/public app, then owner confirms existing test account login/lesson/save and real email roundtrip. Do not repeat approved SQL installers or old drift checks without new DB changes.",
+  "end_of_task_live_public_check": {
+    "kind": "end-of-task-live-public-check",
+    "observed_at": "2026-11-13T13:07:32.153137+00:00",
+    "roots": [
+      {
+        "url": "https://notationeducation.online/",
+        "final_url": "https://www.notationeducation.online/",
+        "status": 200,
+        "updated_signin": true,
+        "page_assets": [
+          "/_next/static/chunks/page-Fx9z6qmR.js"
+        ]
+      },
+      {
+        "url": "https://www.notationeducation.online/",
+        "final_url": "https://www.notationeducation.online/",
+        "status": 200,
+        "updated_signin": true,
+        "page_assets": [
+          "/_next/static/chunks/page-Fx9z6qmR.js"
+        ]
+      }
+    ],
+    "production_deployment_performed": false
+  }
+}

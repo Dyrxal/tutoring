@@ -1,0 +1,88 @@
+{
+  "kind": "production-frontend-release-verification",
+  "observed_at": "2026-11-13T07:23:07.921892+00:00",
+  "pr": 3,
+  "pr_state": "MERGED",
+  "merge_commit": "f6e42e9e8d7d9486dfca93577ad9e7b9641b0228",
+  "merge_parents": [
+    "97ab688d9ef138429fd05d78678e2d1236be9957",
+    "f17169df571cf9e2f615248a8172b174efbe370f"
+  ],
+  "reviewed_executable": "08c999ca3841b53f68c92ab15972cff053829ed1",
+  "executable_input_digest_match": true,
+  "protected_sql_contracts_match": true,
+  "main_commit_cloudflare_check": {
+    "conclusion": "success",
+    "displayed_duration": "0s",
+    "build_id": "dc953d3a-ddd5-49c7-a026-498d2c5b089a",
+    "actual_cloudflare_version": "unverified"
+  },
+  "public_inspection": {
+    "kind": "frontend-release-public-inspection",
+    "observed_at": "2026-11-13T07:20:20.395558+00:00",
+    "status": 200,
+    "final_origin": "www.notationeducation.online",
+    "root_sha256": "079045214b546ef3f566efb342a85038e2d6c24f728333ebef8af3c0569bfce9",
+    "script_paths": [
+      "/_next/static/chunks/index-BWJWQi4W.js",
+      "/_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+      "/_next/static/chunks/framework-D_rUT4EX.js",
+      "/_next/static/chunks/layout-segment-context-zuIlOaIS.js",
+      "/_next/static/chunks/page-CNlMSUEk.js",
+      "/_next/static/chunks/index-BWJWQi4W.js",
+      "/_next/static/chunks/index-BWJWQi4W.js"
+    ],
+    "forgot_password_in_initial_html": false,
+    "original_n_logo": true,
+    "supabase_project_refs": [
+      "lmuwsjjrqmmmtmxjvqln"
+    ],
+    "secret_key_prefix_found": false,
+    "assets": [
+      {
+        "url": "https://www.notationeducation.online/_next/static/chunks/index-BWJWQi4W.js",
+        "status": 200,
+        "bytes": 192348,
+        "sha256": "60824b06858caed4b422f657ec5abf0e1090f3119e8a0a89fa7eb7cd395f463e",
+        "content_type": "text/javascript"
+      },
+      {
+        "url": "https://www.notationeducation.online/_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+        "status": 200,
+        "bytes": 694,
+        "sha256": "5db5ba82eef00d1dee7e86e663098c9427d01183a88d357437daff295aec3e75",
+        "content_type": "text/javascript"
+      },
+      {
+        "url": "https://www.notationeducation.online/_next/static/chunks/framework-D_rUT4EX.js",
+        "status": 200,
+        "bytes": 190152,
+        "sha256": "939d0fabebb3b2f01753bb866b067d8d3384fb06da19f0e6557609d3b1a9f4f7",
+        "content_type": "text/javascript"
+      },
+      {
+        "url": "https://www.notationeducation.online/_next/static/chunks/layout-segment-context-zuIlOaIS.js",
+        "status": 200,
+        "bytes": 494,
+        "sha256": "a4736277af211e26b163fe6ef6566204435a718866fbedf2c8b77c1b5a7c1f67",
+        "content_type": "text/javascript"
+      },
+      {
+        "url": "https://www.notationeducation.online/_next/static/chunks/page-CNlMSUEk.js",
+        "status": 200,
+        "bytes": 1577734,
+        "sha256": "6a3b3a5900d55fbb3ea11a9348d4ffa1ca4f87892db85c70e539b8a332ea3121",
+        "content_type": "text/javascript"
+      }
+    ],
+    "asset_count": 5,
+    "private_data_read": false,
+    "production_writes": false
+  },
+  "publication_status": "NOT VERIFIED: official root redirects to www; public www still has pre-merge index-BWJWQi4W.js and no Forgot password UI. Existing production project ref observed. Need Cloudflare production build/deployment/routing readback.",
+  "stop_action": "No duplicate deployment, DNS change, additional SQL or rollback executed while diagnosis pending.",
+  "launch_success": false,
+  "new_test_emails_or_data_writes": false,
+  "rollback_target": "3862f733-48df-4d59-bf0e-d6abe51557a6",
+  "source_read_limits": "Only public GitHub/HTML/JavaScript metadata and local reviewed source. No private student data/file bytes or passwords retrieved."
+}

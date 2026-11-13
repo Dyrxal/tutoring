@@ -1,0 +1,267 @@
+{
+  "kind": "production-www-routing-public-verification",
+  "observed_at": "2026-11-13T09:46:40.789204+00:00",
+  "roots": [
+    {
+      "url": "https://notationeducation.online/",
+      "status": 301,
+      "location": "https://www.notationeducation.online/",
+      "content_type": "text/html; charset=UTF-8",
+      "error": "HTTP Error 301: Moved Permanently"
+    },
+    {
+      "url": "https://www.notationeducation.online/",
+      "status": 200,
+      "location": null,
+      "content_type": "text/html; charset=utf-8",
+      "body_sha256": "54088bef4d5b734ebe6842d60c0e571321d926b1dc9e1af0de080926e34a857c",
+      "forgot_password_in_initial_html": false,
+      "script_paths": [
+        "/_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+        "/_next/static/chunks/framework-D_rUT4EX.js",
+        "/_next/static/chunks/index-BWJWQi4W.js"
+      ],
+      "stylesheet_paths": [
+        "/_next/static/css/index.HvcBHXoF.css",
+        "/_next/static/css/page.CNMUQXD7.css"
+      ]
+    }
+  ],
+  "scope": "Public GET only; no authenticated user data, emails or writes.",
+  "auth_callbacks_verified": true,
+  "additional_probes": [
+    {
+      "url": "https://www.notationeducation.online/?mm_release_check=20261113",
+      "final_url": "https://www.notationeducation.online/?mm_release_check=20261113",
+      "status": 200,
+      "bytes": 10390,
+      "sha256": "59184956a136ceed4e2c281ac060cb4697f2834dcea4e20390a707298ec33a54",
+      "content_type": "text/html; charset=utf-8",
+      "cf_cache_status": null,
+      "age": null,
+      "server": "envoy",
+      "forgot_password_in_initial_html": true,
+      "all_js_paths": [
+        "/_next/static/chunks/index-BlqH4oOY.js",
+        "/_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+        "/_next/static/chunks/framework-D_rUT4EX.js",
+        "/_next/static/chunks/layout-segment-context-DdbO7-zF.js",
+        "/_next/static/chunks/page-Fx9z6qmR.js"
+      ],
+      "original_n_logo": true
+    },
+    {
+      "url": "https://www.notationeducation.online/_next/static/chunks/page-Fx9z6qmR.js",
+      "final_url": "https://www.notationeducation.online/_next/static/chunks/page-Fx9z6qmR.js",
+      "status": 200,
+      "bytes": 1590676,
+      "sha256": "a5f0a4733b0d7049a25a6f05658b2c25f3971c93c1e8665e4b1c33acf6b1b412",
+      "content_type": "text/javascript",
+      "cf_cache_status": "HIT",
+      "age": null,
+      "server": "envoy",
+      "supabase_project_refs": [
+        "lmuwsjjrqmmmtmxjvqln"
+      ],
+      "contains_forgot_password": true
+    }
+  ],
+  "asset_and_normal_url_checks": [
+    {
+      "url": "https://www.notationeducation.online/_next/static/css/index.BAqDqtoQ.css",
+      "final_url": "https://www.notationeducation.online/_next/static/css/index.BAqDqtoQ.css",
+      "status": 200,
+      "bytes": 285837,
+      "sha256": "9d333fe1775aae80e0f8c5dbf74e8f3cb854b6e41a60daacc01f953642ed2f11",
+      "content_type": "text/css",
+      "cache_control": "public, max-age=31536000, immutable",
+      "cf_cache_status": "HIT",
+      "age": null
+    },
+    {
+      "url": "https://www.notationeducation.online/_next/static/css/page.CNMUQXD7.css",
+      "final_url": "https://www.notationeducation.online/_next/static/css/page.CNMUQXD7.css",
+      "status": 200,
+      "bytes": 25704,
+      "sha256": "59fc101a75887916364f7743763f721c23785e22bf543e0f3e7f5ccf74cf5e6d",
+      "content_type": "text/css",
+      "cache_control": "public, max-age=31536000, immutable",
+      "cf_cache_status": "HIT",
+      "age": null
+    },
+    {
+      "url": "https://www.notationeducation.online/_next/static/chunks/index-BlqH4oOY.js",
+      "final_url": "https://www.notationeducation.online/_next/static/chunks/index-BlqH4oOY.js",
+      "status": 200,
+      "bytes": 192348,
+      "sha256": "1f4976fb31d59142795b998b87b02fe58572d3c88860717629222f6879974d2d",
+      "content_type": "text/javascript",
+      "cache_control": "public, max-age=31536000, immutable",
+      "cf_cache_status": "HIT",
+      "age": null,
+      "supabase_project_refs": [],
+      "secret_key_literal_count": 0,
+      "service_role_key_count": 0
+    },
+    {
+      "url": "https://www.notationeducation.online/_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+      "final_url": "https://www.notationeducation.online/_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+      "status": 200,
+      "bytes": 694,
+      "sha256": "5db5ba82eef00d1dee7e86e663098c9427d01183a88d357437daff295aec3e75",
+      "content_type": "text/javascript",
+      "cache_control": "public, max-age=31536000, immutable",
+      "cf_cache_status": "HIT",
+      "age": null,
+      "supabase_project_refs": [],
+      "secret_key_literal_count": 0,
+      "service_role_key_count": 0
+    },
+    {
+      "url": "https://www.notationeducation.online/_next/static/chunks/framework-D_rUT4EX.js",
+      "final_url": "https://www.notationeducation.online/_next/static/chunks/framework-D_rUT4EX.js",
+      "status": 200,
+      "bytes": 190152,
+      "sha256": "939d0fabebb3b2f01753bb866b067d8d3384fb06da19f0e6557609d3b1a9f4f7",
+      "content_type": "text/javascript",
+      "cache_control": "public, max-age=31536000, immutable",
+      "cf_cache_status": "HIT",
+      "age": null,
+      "supabase_project_refs": [],
+      "secret_key_literal_count": 0,
+      "service_role_key_count": 0
+    },
+    {
+      "url": "https://www.notationeducation.online/_next/static/chunks/layout-segment-context-DdbO7-zF.js",
+      "final_url": "https://www.notationeducation.online/_next/static/chunks/layout-segment-context-DdbO7-zF.js",
+      "status": 200,
+      "bytes": 494,
+      "sha256": "5c0a79a89888949d2a8e5bad43e4f5ac074fa20abc6e1fc058a2176711afe15e",
+      "content_type": "text/javascript",
+      "cache_control": "public, max-age=31536000, immutable",
+      "cf_cache_status": "HIT",
+      "age": null,
+      "supabase_project_refs": [],
+      "secret_key_literal_count": 0,
+      "service_role_key_count": 0
+    },
+    {
+      "url": "https://www.notationeducation.online/_next/static/chunks/page-Fx9z6qmR.js",
+      "final_url": "https://www.notationeducation.online/_next/static/chunks/page-Fx9z6qmR.js",
+      "status": 200,
+      "bytes": 1590676,
+      "sha256": "a5f0a4733b0d7049a25a6f05658b2c25f3971c93c1e8665e4b1c33acf6b1b412",
+      "content_type": "text/javascript",
+      "cache_control": "public, max-age=31536000, immutable",
+      "cf_cache_status": "HIT",
+      "age": null,
+      "supabase_project_refs": [
+        "lmuwsjjrqmmmtmxjvqln"
+      ],
+      "secret_key_literal_count": 0,
+      "service_role_key_count": 0
+    },
+    {
+      "url": "https://www.notationeducation.online/",
+      "final_url": "https://www.notationeducation.online/",
+      "status": 200,
+      "bytes": 10326,
+      "sha256": "18316b3f900787a4e300d7706b08b9d4534b5cc73782a1832ee8daa231766a98",
+      "content_type": "text/html; charset=utf-8",
+      "cache_control": null,
+      "cf_cache_status": null,
+      "age": null,
+      "forgot_password_in_initial_html": true,
+      "original_n_logo": true,
+      "page_paths": [
+        "/_next/static/chunks/page-Fx9z6qmR.js"
+      ]
+    },
+    {
+      "url": "https://notationeducation.online/?mm_release_check=20261113",
+      "final_url": "https://www.notationeducation.online/?mm_release_check=20261113",
+      "status": 200,
+      "bytes": 10390,
+      "sha256": "59184956a136ceed4e2c281ac060cb4697f2834dcea4e20390a707298ec33a54",
+      "content_type": "text/html; charset=utf-8",
+      "cache_control": "no-store, must-revalidate",
+      "cf_cache_status": null,
+      "age": null,
+      "forgot_password_in_initial_html": true,
+      "original_n_logo": true,
+      "page_paths": [
+        "/_next/static/chunks/page-Fx9z6qmR.js"
+      ]
+    }
+  ],
+  "asset_scan_summary": {
+    "public_initial_assets_requested": 7,
+    "all_assets_200": true,
+    "supabase_project_refs": [
+      "lmuwsjjrqmmmtmxjvqln"
+    ],
+    "secret_key_literal_count": 0,
+    "service_role_key_count": 0
+  },
+  "owner_dashboard_binding_observation": {
+    "domains": [
+      "notationeducation.online",
+      "www.notationeducation.online"
+    ],
+    "both_environment": "Production",
+    "source": "Owner screenshot after removing conflicting old www CNAME and retrying Add domain; successful attachment shown. Other DNS records not independently re-exported."
+  },
+  "launch_success": false,
+  "conclusion": "Approved routing/Auth configuration work complete: owner dashboard shows apex/www Production Worker bindings and exactly four expected root/recovery redirect URLs, preserving Site URL. Final public GETs for both bare addresses return HTTP200 on www, serving deployed page-Fx9z6qmR.js, Forgot password and original n. Prior 7/7 initial assets and production backend-reference scan passed. Settings evidence is the owner screenshot; actual confirmation/recovery/login/saved-progress flows were not tested. No full-launch claim.",
+  "public_routing_verified": true,
+  "auth_configuration_observation": {
+    "source": "Owner screenshot of saved production URL Configuration after requested additions",
+    "site_url": "https://notationeducation.online/",
+    "redirect_urls": [
+      "https://notationeducation.online/",
+      "https://notationeducation.online/?auth=recovery",
+      "https://www.notationeducation.online/",
+      "https://www.notationeducation.online/?auth=recovery"
+    ],
+    "total_urls": 4,
+    "existing_apex_entries_preserved": true,
+    "site_url_unchanged": true,
+    "settings_verified_from_owner_screenshot": true,
+    "confirmation_or_recovery_email_tested": false,
+    "authenticated_flow_tested": false
+  },
+  "final_public_root_check": {
+    "kind": "post-callback-public-root-check",
+    "observed_at": "2026-11-13T09:50:02.832624+00:00",
+    "roots": [
+      {
+        "url": "https://notationeducation.online/",
+        "final_url": "https://www.notationeducation.online/",
+        "status": 200,
+        "bytes": 10326,
+        "sha256": "18316b3f900787a4e300d7706b08b9d4534b5cc73782a1832ee8daa231766a98",
+        "forgot_password_in_initial_html": true,
+        "original_n_logo": true,
+        "page_paths": [
+          "/_next/static/chunks/page-Fx9z6qmR.js"
+        ]
+      },
+      {
+        "url": "https://www.notationeducation.online/",
+        "final_url": "https://www.notationeducation.online/",
+        "status": 200,
+        "bytes": 10326,
+        "sha256": "18316b3f900787a4e300d7706b08b9d4534b5cc73782a1832ee8daa231766a98",
+        "forgot_password_in_initial_html": true,
+        "original_n_logo": true,
+        "page_paths": [
+          "/_next/static/chunks/page-Fx9z6qmR.js"
+        ]
+      }
+    ],
+    "private_data_read": false,
+    "emails_sent": false,
+    "authenticated_flows_tested": false
+  },
+  "approved_routing_and_auth_configuration_scope_completed": true
+}
