@@ -1,0 +1,8 @@
+{
+  "format": 1,
+  "bindings": {
+    "lcddnpafrkbwsrhqexqe": {"database":"postgres","system_identifier":"7702071863184491885"},
+    "lmuwsjjrqmmmtmxjvqln": {"database":"postgres","system_identifier":"7678071634733212629"}
+  },
+  "provenance": "Read through existing project-scoped MCP connections on 2026-11-07. Cluster identifiers are non-secret metadata. Rebind explicitly after restore/major upgrade; never auto-learn mismatches."
+}

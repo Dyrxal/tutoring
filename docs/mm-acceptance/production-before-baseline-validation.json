@@ -1,0 +1,61 @@
+{
+  "kind": "production-before-baseline-validation",
+  "observed_at": "2026-11-09T11:55:05.377Z",
+  "project_ref": "lmuwsjjrqmmmtmxjvqln",
+  "database_identity": {
+    "database": "postgres",
+    "system_identifier": "7678071634733212629"
+  },
+  "captured_at": "2026-11-09T11:53:51.641414+00:00",
+  "scope": {},
+  "source_sha256": "44779ee1bacbbc2cc3ed5bb9bc5a5eef5e2f4625652e15785970e4db7ae8ed75",
+  "content": [
+    {
+      "rows": 2,
+      "digest": "1cd230b8380eb57705718e7c9156f0e5",
+      "entity": "courses"
+    },
+    {
+      "rows": 20,
+      "digest": "f14bad9161df0f80ec63030bf8490dee",
+      "entity": "modules"
+    },
+    {
+      "rows": 217,
+      "digest": "21361e3a931b82721b645b4689f81c73",
+      "entity": "lessons"
+    },
+    {
+      "rows": 4138,
+      "digest": "02953316bda1ad489005fe0208633a1c",
+      "entity": "questions"
+    }
+  ],
+  "storage": [
+    {
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e",
+      "entity": "lesson-images"
+    },
+    {
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e",
+      "entity": "lesson-resources"
+    },
+    {
+      "rows": 13,
+      "digest": "58fdfde569499e962963a51a1f3aadb0",
+      "entity": "question-images"
+    }
+  ],
+  "missing_refs": {
+    "notes": 0,
+    "examples": 0,
+    "questions": 0,
+    "resources": 0
+  },
+  "valid": true,
+  "after_capture_present": false,
+  "production_mutations": false,
+  "note": "Existing baseline validator used this single capture for completeness/identity/resource/freshness validation only. No post-release capture or preservation comparison has occurred. No object bytes or student answers retrieved."
+}

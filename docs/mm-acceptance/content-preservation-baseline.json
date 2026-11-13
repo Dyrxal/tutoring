@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-07",
+  "project_ref": "lmuwsjjrqmmmtmxjvqln",
+  "storage": [
+    {
+      "objects": 13,
+      "bucket_id": "question-images",
+      "path_digest": "8357052f3d46ffb9c37dde7ae91c62cd"
+    }
+  ],
+  "baseline": [
+    {
+      "rows": 2,
+      "digest": "1cd230b8380eb57705718e7c9156f0e5",
+      "entity": "courses"
+    },
+    {
+      "rows": 20,
+      "digest": "f14bad9161df0f80ec63030bf8490dee",
+      "entity": "modules"
+    },
+    {
+      "rows": 217,
+      "digest": "21361e3a931b82721b645b4689f81c73",
+      "entity": "lessons"
+    },
+    {
+      "rows": 4138,
+      "digest": "02953316bda1ad489005fe0208633a1c",
+      "entity": "questions"
+    }
+  ],
+  "missing_notes_images": 0,
+  "missing_example_images": 0,
+  "missing_question_images": 0,
+  "missing_private_resources": 0,
+  "limits": "Aggregate row/path MD5 digests detect changes; not backups or cryptographic provenance. Rebaseline immediately before cutover, account for legitimate tutor edits. No raw content or student answers returned."
+}

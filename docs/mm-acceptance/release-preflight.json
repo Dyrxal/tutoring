@@ -1,0 +1,82 @@
+{
+  "format": 1,
+  "kind": "readiness",
+  "project_ref": "lmuwsjjrqmmmtmxjvqln",
+  "captured_at": "2026-11-07T12:55:01.185Z",
+  "candidate": "f21dabf2e021a0dcef439bc1329bb51ebc043081",
+  "note": "Console omits passing checks; --out preserves full evidence. Not launch authorization.",
+  "ready": false,
+  "summary": {
+    "passing": 126,
+    "failing": 0,
+    "blocked": 9,
+    "unverified": 4
+  },
+  "checks": [
+    {
+      "id": "backend_release_state",
+      "status": "blocked",
+      "detail": "Production change is not verified installed; preparation evidence only"
+    },
+    {
+      "id": "production_auth",
+      "status": "blocked",
+      "detail": "Owner screenshot: localhost Site URL, empty redirects; official callbacks/templates/limits not verified."
+    },
+    {
+      "id": "smtp",
+      "status": "blocked",
+      "detail": "Resend auth.notationeducation.online verified by owner screenshot; preview SMTP saved and recovery/delivery/sign-in/reload passed by owner report (docs/mm-acceptance/preview-resend-smtp.json), request HTTP 200 independently observed. Production SMTP/configuration and delivery remain unverified; no production change."
+    },
+    {
+      "id": "database_backup",
+      "status": "blocked",
+      "detail": "Free plan has no scheduled backups; no authorized verified manual export."
+    },
+    {
+      "id": "storage_backup",
+      "status": "blocked",
+      "detail": "Private objects inventoried but separate byte backup/recovery not performed."
+    },
+    {
+      "id": "restore_rehearsal",
+      "status": "blocked",
+      "detail": "37 local synthetic checks pass, including role/schema/data restore and separate byte checksums (docs/mm-acceptance/local-database-rehearsal.json). No real production export or managed-project restore is authorized/rehearsed; this gate remains blocked."
+    },
+    {
+      "id": "production_build_settings",
+      "status": "blocked",
+      "detail": "Local artifact check does not establish Cloudflare Production build configuration; owner screenshot showed no variables."
+    },
+    {
+      "id": "rollback_version",
+      "status": "unverified",
+      "detail": "Owner screenshot captures active prefix 3862f733, but full rollback selection/recovery not verified."
+    },
+    {
+      "id": "owner_launch_approval",
+      "status": "blocked",
+      "detail": "Production changes/merge/deployment not approved by current task."
+    },
+    {
+      "id": "device_time_acceptance",
+      "status": "unverified",
+      "detail": "Physical Safari/iOS, actual overnight rollover and time expiry need verification or explicit owner deferral."
+    },
+    {
+      "id": "security_acceptance",
+      "status": "unverified",
+      "detail": "Bounded review and local permission checks documented in docs/mm-launch/security-review.md; public definer exposure, inherited broad table grants and leaked-password settings still need explicit remediation/acceptance. No silent deferral."
+    },
+    {
+      "id": "enrolment_behavior",
+      "status": "unverified",
+      "detail": "Local registration metadata/role/self-enrolment checks confirm tutor-managed enrolment is preserved. Automatic year-enrolment expectations still need explicit owner acceptance or scoped follow-up."
+    },
+    {
+      "id": "production_smoke_scope",
+      "status": "blocked",
+      "detail": "Production test accounts/recipients and minimal smoke writes require explicit owner approval."
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "format": 1,
+  "kind": "baseline",
+  "project_ref": "lmuwsjjrqmmmtmxjvqln",
+  "captured_at": "2026-11-11T13:16:23.734Z",
+  "evidence_at": "2026-11-11T13:15:36.029196+00:00",
+  "scope": {},
+  "excluded": [
+    {
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e",
+      "entity": "courses"
+    },
+    {
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e",
+      "entity": "modules"
+    },
+    {
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e",
+      "entity": "lessons"
+    },
+    {
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e",
+      "entity": "questions"
+    }
+  ],
+  "note": "Historical baseline compared to refreshed pre-install baseline. No installation or after-install capture yet.",
+  "ready": true,
+  "summary": {
+    "passing": 12,
+    "failing": 0,
+    "blocked": 0,
+    "unverified": 0
+  },
+  "checks": [
+    {
+      "id": "freshness",
+      "status": "passing",
+      "detail": "After snapshot age"
+    },
+    {
+      "id": "content:courses",
+      "status": "passing",
+      "detail": "Count/digest comparison"
+    },
+    {
+      "id": "content:modules",
+      "status": "passing",
+      "detail": "Count/digest comparison"
+    },
+    {
+      "id": "content:lessons",
+      "status": "passing",
+      "detail": "Count/digest comparison"
+    },
+    {
+      "id": "content:questions",
+      "status": "passing",
+      "detail": "Count/digest comparison"
+    },
+    {
+      "id": "storage:lesson-images",
+      "status": "passing",
+      "detail": "Count/digest comparison"
+    },
+    {
+      "id": "storage:lesson-resources",
+      "status": "passing",
+      "detail": "Count/digest comparison"
+    },
+    {
+      "id": "storage:question-images",
+      "status": "passing",
+      "detail": "Count/digest comparison"
+    },
+    {
+      "id": "resource:notes",
+      "status": "passing",
+      "detail": "Missing referenced objects"
+    },
+    {
+      "id": "resource:examples",
+      "status": "passing",
+      "detail": "Missing referenced objects"
+    },
+    {
+      "id": "resource:questions",
+      "status": "passing",
+      "detail": "Missing referenced objects"
+    },
+    {
+      "id": "resource:resources",
+      "status": "passing",
+      "detail": "Missing referenced objects"
+    }
+  ]
+}

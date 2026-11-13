@@ -1,0 +1,273 @@
+{
+  "format": 1,
+  "kind": "local-synthetic-database-rehearsal",
+  "observed_at": "2026-11-08T10:03:44.721Z",
+  "image": "postgres@sha256:665dc7b37ac52a17e298511414c21d23ffa4e6a6ef6225b3e5d59c7afb35e994",
+  "repository_head": "8dd72888745a73cf0e0a412c0b1825d54dbbddd7",
+  "inputs_sha256": {
+    "scripts/check-mm-local-database.mjs": "0da41d748ee18d622d4983b6a7c28a7afac8b2f2189ca577eb0d61016aa5e782",
+    "supabase/preview/bootstrap.sql": "8c62b1840bc4ba962827a54dacfe92ac7f95aff782e7f5077a93e22d674eb02a",
+    "supabase/preview/seed-synthetic.sql": "fae11e79fb9642ef914bc11ba341b8ec6b58c089cf34f67eacb14cee08bd8837",
+    "docs/mm-launch/review-conflicts.forward.sql": "2164ce7f88ddd913b75e0af3e1d0ce2fe7ae021a32b693838a62a3e5553cb3d7",
+    "docs/mm-launch/review-conflicts.rollback.sql": "454aa94ebbcaab6b5955f50e809a46cba2b7de36488ab3313816326b55bb48e1",
+    "docs/mm-launch/owner-content.forward.sql": "cb586bbfa7d74e0b4e67846d2340be9c018cf7630a0743473101dc9a664edf1e",
+    "docs/mm-launch/owner-content.rollback.sql": "a5e94ab88ecd93fa41052796869fab98281e18dcdde266b72a1f4185e7b041ef",
+    "docs/mm-launch/security-privileges.forward.sql": "4c53f4bb685775addb60a0a9112159c7340bdb6861a1f01df0def3a119a4d70c",
+    "docs/mm-launch/security-privileges.rollback.sql": "52eb81fb11206f75a3f1b28ec024aa9b7b8c851424ee52d836d7008fa315b6de"
+  },
+  "ready": true,
+  "summary": {
+    "passing": 45,
+    "failing": 0
+  },
+  "checks": [
+    {
+      "id": "local-isolation",
+      "status": "passing",
+      "detail": "Two new labelled containers on fixed local Docker socket; network none; no published ports or mounted production inputs"
+    },
+    {
+      "id": "registration-metadata",
+      "status": "passing",
+      "detail": "User-supplied tutor role ignored; profile creation does not auto-enrol by year"
+    },
+    {
+      "id": "owner-content:guards",
+      "status": "passing",
+      "detail": "Missing/wrong identity, tutor roster drift and inherited TRUNCATE bypass abort without partial role changes"
+    },
+    {
+      "id": "security:trigger-and-truncate",
+      "status": "passing",
+      "detail": "Direct trigger EXECUTE denied and trigger still creates student; non-curriculum TRUNCATE denied for both app roles"
+    },
+    {
+      "id": "owner-content:boundaries",
+      "status": "passing",
+      "detail": "Owner edits/uploads preserved; non-owner curriculum DML, tutor RPC/upload/delete and app-role TRUNCATE blocked; student answers/progress/profile/read access preserved"
+    },
+    {
+      "id": "security:rollback",
+      "status": "passing",
+      "detail": "Owner/student/content/Storage checks ran under narrowed privileges; exact original schema/ACL and rows restored before owner rollback"
+    },
+    {
+      "id": "owner-content:rollback",
+      "status": "passing",
+      "detail": "Exact original rows and schema/grants restored; repeated forward and wrong-owner rollback abort without partial changes"
+    },
+    {
+      "id": "original:anonymous",
+      "status": "passing",
+      "detail": "No question rows or tutor status; privileged student action denied"
+    },
+    {
+      "id": "original:enrolment-reads",
+      "status": "passing",
+      "detail": "Enrolled content visible; unenrolled course/actor denied"
+    },
+    {
+      "id": "original:self-escalation",
+      "status": "passing",
+      "detail": "Role column update and self-enrolment rejected; cross-student profile hidden"
+    },
+    {
+      "id": "original:actor-spoofing",
+      "status": "passing",
+      "detail": "Cross-account review, spoofed tutor action and private helper invocation denied"
+    },
+    {
+      "id": "original:review-conflict",
+      "status": "passing",
+      "detail": "Both review RPCs return 40001 for an enrolled student with no schedule"
+    },
+    {
+      "id": "original:review-stale-state",
+      "status": "passing",
+      "detail": "Stale revision and changed-question guards return 40001; each synthetic transaction rolls back"
+    },
+    {
+      "id": "original:attempt-boundaries",
+      "status": "passing",
+      "detail": "Direct review metadata and another student\u2019s answer writes denied"
+    },
+    {
+      "id": "original:private-storage",
+      "status": "passing",
+      "detail": "Anonymous/unenrolled objects hidden; enrolled metadata visible; student upload denied (Storage service not emulated)"
+    },
+    {
+      "id": "original:tutor",
+      "status": "passing",
+      "detail": "Tutor can view both courses and edit; transaction rolled back"
+    },
+    {
+      "id": "forward-data-preservation",
+      "status": "passing",
+      "detail": "Exact guarded change applied locally; every synthetic table count/digest unchanged"
+    },
+    {
+      "id": "forward-drift-aborts",
+      "status": "passing",
+      "detail": "Applying forward package to the new definitions aborts without schema/data change"
+    },
+    {
+      "id": "prepared:anonymous",
+      "status": "passing",
+      "detail": "No question rows or tutor status; privileged student action denied"
+    },
+    {
+      "id": "prepared:enrolment-reads",
+      "status": "passing",
+      "detail": "Enrolled content visible; unenrolled course/actor denied"
+    },
+    {
+      "id": "prepared:self-escalation",
+      "status": "passing",
+      "detail": "Role column update and self-enrolment rejected; cross-student profile hidden"
+    },
+    {
+      "id": "prepared:actor-spoofing",
+      "status": "passing",
+      "detail": "Cross-account review, spoofed tutor action and private helper invocation denied"
+    },
+    {
+      "id": "prepared:review-conflict",
+      "status": "passing",
+      "detail": "Both review RPCs return PT409 for an enrolled student with no schedule"
+    },
+    {
+      "id": "prepared:review-stale-state",
+      "status": "passing",
+      "detail": "Stale revision and changed-question guards return PT409; each synthetic transaction rolls back"
+    },
+    {
+      "id": "prepared:attempt-boundaries",
+      "status": "passing",
+      "detail": "Direct review metadata and another student\u2019s answer writes denied"
+    },
+    {
+      "id": "prepared:private-storage",
+      "status": "passing",
+      "detail": "Anonymous/unenrolled objects hidden; enrolled metadata visible; student upload denied (Storage service not emulated)"
+    },
+    {
+      "id": "prepared:tutor",
+      "status": "passing",
+      "detail": "Tutor can view both courses and edit; transaction rolled back"
+    },
+    {
+      "id": "rollback-exact",
+      "status": "passing",
+      "detail": "Exact guarded rollback restores original schema/ACL/owner/definition dump and preserves every synthetic row"
+    },
+    {
+      "id": "rollback-drift-aborts",
+      "status": "passing",
+      "detail": "Rollback against already-original definitions is rejected"
+    },
+    {
+      "id": "trigger-replay-negative-control",
+      "status": "passing",
+      "detail": "Without trigger suppression Auth replay duplicates profiles; stop-on-error transaction rolls back"
+    },
+    {
+      "id": "synthetic-restore",
+      "status": "passing",
+      "detail": "Role/schema/data restore preserves every synthetic table digest and schema definition; triggers return to origin; four users/four profiles"
+    },
+    {
+      "id": "restored:anonymous",
+      "status": "passing",
+      "detail": "No question rows or tutor status; privileged student action denied"
+    },
+    {
+      "id": "restored:enrolment-reads",
+      "status": "passing",
+      "detail": "Enrolled content visible; unenrolled course/actor denied"
+    },
+    {
+      "id": "restored:self-escalation",
+      "status": "passing",
+      "detail": "Role column update and self-enrolment rejected; cross-student profile hidden"
+    },
+    {
+      "id": "restored:actor-spoofing",
+      "status": "passing",
+      "detail": "Cross-account review, spoofed tutor action and private helper invocation denied"
+    },
+    {
+      "id": "restored:review-conflict",
+      "status": "passing",
+      "detail": "Both review RPCs return PT409 for an enrolled student with no schedule"
+    },
+    {
+      "id": "restored:review-stale-state",
+      "status": "passing",
+      "detail": "Stale revision and changed-question guards return PT409; each synthetic transaction rolls back"
+    },
+    {
+      "id": "restored:attempt-boundaries",
+      "status": "passing",
+      "detail": "Direct review metadata and another student\u2019s answer writes denied"
+    },
+    {
+      "id": "restored:private-storage",
+      "status": "passing",
+      "detail": "Anonymous/unenrolled objects hidden; enrolled metadata visible; student upload denied (Storage service not emulated)"
+    },
+    {
+      "id": "restored:tutor",
+      "status": "passing",
+      "detail": "Tutor can view both courses and edit; transaction rolled back"
+    },
+    {
+      "id": "restored-trigger-active",
+      "status": "passing",
+      "detail": "Fresh synthetic user creates exactly one profile after restore"
+    },
+    {
+      "id": "restored-rollback",
+      "status": "passing",
+      "detail": "Rollback guard and original definitions work on the restored synthetic database"
+    },
+    {
+      "id": "separate-storage-bytes",
+      "status": "passing",
+      "detail": "Database-only restore has no object files; separate synthetic byte copy matches paths/checksums (not a real Storage-service restore)"
+    },
+    {
+      "id": "storage-corruption-detected",
+      "status": "passing",
+      "detail": "Checksum comparison detects changed copied bytes"
+    },
+    {
+      "id": "synthetic-manifest",
+      "status": "passing",
+      "detail": [
+        {
+          "bucket": "question-images",
+          "key": "d1111111-1111-4111-8111-000000000001/synthetic.png",
+          "bytes": 68,
+          "sha256": "6b1048f8a6d40bac0b2954c18fefa40c4ea7a96120fc2e54b7317c0e43c2bbec"
+        },
+        {
+          "bucket": "lesson-resources",
+          "key": "c1111111-1111-4111-8111-111111111111/synthetic.pdf",
+          "bytes": 76,
+          "sha256": "f42c51532e0c9878b3aefa4a3cd1f4011dd51c27acefcd8cb960bfdb55102d2e"
+        }
+      ]
+    }
+  ],
+  "production_access": false,
+  "hosted_preview_access": false,
+  "emails_sent": 0,
+  "cleanup": "Run-created containers and volumes removed; temporary synthetic byte files removed",
+  "limitations": [
+    "Synthetic Auth/Storage schema stubs; no live Auth/Storage service or actual email/login/file rendering tested.",
+    "Raw local pg_dump is deliberately not the Supabase CLI production backup procedure.",
+    "No real data/secret export, managed-project restore or production backup verified.",
+    "No physical-device/time/quota acceptance implied."
+  ]
+}

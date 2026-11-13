@@ -1,0 +1,45 @@
+{
+  "kind": "frontend-release-approval",
+  "observed_at": "2026-11-12T11:52:47.920641+00:00",
+  "user_instruction": "okay i say yes to the merge",
+  "reviewed_executable": "08c999ca3841b53f68c92ab15972cff053829ed1",
+  "review_head_before_documentation": "20a189994970bae61d9333c9e78cc3e74cc25040",
+  "production_main_before": "97ab688d9ef138429fd05d78678e2d1236be9957",
+  "permitted_actions": [
+    "mark PR3 ready",
+    "normal GitHub PR3 merge preserving reviewed ancestry",
+    "existing Cloudflare production build/deployment",
+    "public read-only post-deploy verification"
+  ],
+  "excluded_from_this_approval": [
+    "additional SQL changes",
+    "new test identities",
+    "test emails",
+    "new test fixture writes or cleanup",
+    "DNS or routing changes",
+    "paid services"
+  ],
+  "pr_readback": {
+    "head": "20a189994970bae61d9333c9e78cc3e74cc25040",
+    "base": "97ab688d9ef138429fd05d78678e2d1236be9957",
+    "state": "DRAFT",
+    "cloudflare_check": "success"
+  },
+  "production_before": {
+    "observed_at": "2026-11-12T11:49:03.969036+00:00",
+    "status": 200,
+    "origin": "www.notationeducation.online",
+    "root_sha256": "252bfec58aa8cdd7cff8619d6673a5ad90f480b7367e0c814a14d2acfbc48ca8",
+    "public_script_paths": [
+      "/_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+      "/_next/static/chunks/framework-D_rUT4EX.js",
+      "/_next/static/chunks/index-BWJWQi4W.js"
+    ],
+    "supabase_project_hosts": [],
+    "forgot_password_in_initial_html": false,
+    "original_n_logo": true,
+    "private_data_read": false
+  },
+  "merge_executed": false,
+  "api_merge_access": "REST and GraphQL Forbidden; owner dashboard action required"
+}

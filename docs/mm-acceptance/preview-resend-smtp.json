@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-07",
+  "project_ref": "lcddnpafrkbwsrhqexqe",
+  "scope": "Preview-only sender verification; existing approved owner test inbox. No production access or additional email sends in this documentation update.",
+  "owner_setup": {
+    "resend_domain": "auth.notationeducation.online",
+    "domain_status": "Verified (owner screenshot)",
+    "resend_forge": "Enabled (owner screenshot)",
+    "custom_smtp": "Owner confirmed saved in preview after following the project-specific preview link; screenshot itself is cropped and does not show project reference.",
+    "sender": "no-reply@auth.notationeducation.online",
+    "host": "smtp.resend.com",
+    "port": 465,
+    "username": "resend",
+    "secret_accessed": false
+  },
+  "independent_observations": {
+    "branch_browser_status": 200,
+    "preview_auth_settings_status": 200,
+    "approved_preview_account_exists": true,
+    "approved_preview_account_confirmed": true,
+    "account_inspection": "Read-only existence/confirmation booleans for the exact approved address; no password, token or student answer retrieved.",
+    "initial_attempt": "Browser response timeout; no recover request appeared in preview Auth/edge logs for 11:29:46\u201312:29:46 UTC. Outcome was not counted as a successful send.",
+    "controlled_request": {
+      "attempted_at": "2026-11-07T12:30:53.874998+00:00",
+      "completed_at": "2026-11-07T12:30:56.917675+00:00",
+      "status": 200,
+      "response": {},
+      "redirect": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/?auth=recovery",
+      "recipient": "Previously approved owner Gmail inbox (redacted)",
+      "requests": 1
+    }
+  },
+  "owner_reported_results": {
+    "email_received": true,
+    "recovery_link_opened": true,
+    "choose_new_password_screen": true,
+    "password_update": true,
+    "sign_in_with_new_password": true,
+    "signed_in_after_reload": true,
+    "source": "Owner reported receipt, was given the five exact recovery/update/sign-in/reload steps, then replied: it all worked. These browser/inbox results are owner-reported, not independently automated observations."
+  },
+  "status": "passing for owner-reported preview recovery through the new sender",
+  "remaining": [
+    "Production SMTP and official Auth configuration remain blocked and unchanged.",
+    "No fresh signup/confirmation message through this sender; earlier confirmation evidence retained separately.",
+    "No new physical-device, time-expiry, rate-limit or quota coverage.",
+    "Database, separate Storage protection and restore rehearsal remain blocked."
+  ],
+  "password_or_live_link_recorded": false,
+  "production_access": false,
+  "new_connection": false
+}

@@ -1,0 +1,412 @@
+{
+  "format": 1,
+  "kind": "independent-migration-verification",
+  "candidate": "f21dabf2e021a0dcef439bc1329bb51ebc043081",
+  "observed_at": "2026-11-07T12:55:01.185Z",
+  "scope": "New local-only recovery/permission integration test, read-only production metadata/aggregates and preview aggregates, latest-source build-only rehearsals. Application behavior and hosted data unchanged.",
+  "tests": {
+    "unit": {
+      "command": "pnpm test",
+      "passing": 144,
+      "failing": 0,
+      "skipped": 0,
+      "application_and_config": 108,
+      "preflight": 33,
+      "local_runner_safety": 3
+    },
+    "typescript": {
+      "command": "pnpm exec tsc --noEmit --incremental false",
+      "status": "passing"
+    },
+    "database_local": {
+      "command": "node scripts/check-mm-local-database.mjs --out NEW_PATH",
+      "summary": {
+        "passing": 37,
+        "failing": 0
+      },
+      "evidence": "local-database-rehearsal.json",
+      "source_hashes_match_candidate": true,
+      "production_or_hosted_preview_access": false,
+      "negative_controls": "Missing/unsupported target arguments, overwrite/public output, drifted/repeated SQL, normal-trigger duplicate profile restore, copied-byte corruption"
+    }
+  },
+  "build_only": {
+    "production": {
+      "format": 1,
+      "kind": "assets",
+      "project_ref": "lmuwsjjrqmmmtmxjvqln",
+      "captured_at": "2026-11-07T12:53:10.382Z",
+      "source_commit": "f21dabf2e021a0dcef439bc1329bb51ebc043081",
+      "provenance": {
+        "status": "passing",
+        "source_commit": "f21dabf2e021a0dcef439bc1329bb51ebc043081",
+        "project_ref": "lmuwsjjrqmmmtmxjvqln"
+      },
+      "artifact_digest": "d168291d6766deb1518be8707e311c5dea8786b347f5144c5229d4f902b41648",
+      "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+      "ready": true,
+      "summary": {
+        "passing": 5,
+        "failing": 0,
+        "blocked": 0,
+        "unverified": 0
+      },
+      "checks": [
+        {
+          "id": "build_manifest",
+          "status": "passing",
+          "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+        },
+        {
+          "id": "files",
+          "status": "passing",
+          "detail": "Browser files scanned: 100"
+        },
+        {
+          "id": "backend",
+          "status": "passing",
+          "detail": "Intended hostname present; unexpected project count: 0"
+        },
+        {
+          "id": "public_key",
+          "status": "passing",
+          "detail": "Publishable/ matching legacy anon key present"
+        },
+        {
+          "id": "secrets",
+          "status": "passing",
+          "detail": "Exposure findings: 0"
+        }
+      ]
+    },
+    "preview_restored": {
+      "format": 1,
+      "kind": "assets",
+      "project_ref": "lcddnpafrkbwsrhqexqe",
+      "captured_at": "2026-11-07T12:53:21.851Z",
+      "source_commit": "f21dabf2e021a0dcef439bc1329bb51ebc043081",
+      "provenance": {
+        "status": "passing",
+        "source_commit": "f21dabf2e021a0dcef439bc1329bb51ebc043081",
+        "project_ref": "lcddnpafrkbwsrhqexqe"
+      },
+      "artifact_digest": "4f0579ffb51f96af84f407e294bb2bb3f3cda81c65fedfe7f237079be70464e8",
+      "note": "Opaque publishable-key binding and deployment provenance require separate verification. Scanner covers literal/escaped text and gzip/brotli, not arbitrary obfuscation.",
+      "ready": true,
+      "summary": {
+        "passing": 5,
+        "failing": 0,
+        "blocked": 0,
+        "unverified": 0
+      },
+      "checks": [
+        {
+          "id": "build_manifest",
+          "status": "passing",
+          "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+        },
+        {
+          "id": "files",
+          "status": "passing",
+          "detail": "Browser files scanned: 100"
+        },
+        {
+          "id": "backend",
+          "status": "passing",
+          "detail": "Intended hostname present; unexpected project count: 0"
+        },
+        {
+          "id": "public_key",
+          "status": "passing",
+          "detail": "Publishable/ matching legacy anon key present"
+        },
+        {
+          "id": "secrets",
+          "status": "passing",
+          "detail": "Exposure findings: 0"
+        }
+      ]
+    },
+    "note": "Actual retained-project public build settings from existing scoped metadata source; no key values committed. No deploy. Production archive copied into a new empty destination and rescanned."
+  },
+  "read_only_checks": {
+    "production_metadata": {
+      "summary": {
+        "passing": 85,
+        "failing": 0,
+        "blocked": 0,
+        "unverified": 0
+      },
+      "evidence_at": "2026-11-07T12:48:32.975902+00:00",
+      "contract_digest": "3da472f210f6a16ba02796b2fcc432b1c93da08b4a1ce8ea78367bdaf678189c",
+      "phase": "before"
+    },
+    "production_review": {
+      "summary": {
+        "passing": 3,
+        "failing": 0,
+        "blocked": 0,
+        "unverified": 0
+      },
+      "direction": "forward",
+      "note": "Definitions and pinned SQL match; production still original."
+    },
+    "production_content_resources": {
+      "summary": {
+        "passing": 12,
+        "failing": 0,
+        "blocked": 0,
+        "unverified": 0
+      },
+      "before_at": "2026-11-07T10:48:25.157196+00:00",
+      "after_at": "2026-11-07T12:48:42.446157+00:00",
+      "scope": {},
+      "aggregates": {
+        "content": [
+          {
+            "rows": 2,
+            "digest": "1cd230b8380eb57705718e7c9156f0e5",
+            "entity": "courses"
+          },
+          {
+            "rows": 20,
+            "digest": "f14bad9161df0f80ec63030bf8490dee",
+            "entity": "modules"
+          },
+          {
+            "rows": 217,
+            "digest": "21361e3a931b82721b645b4689f81c73",
+            "entity": "lessons"
+          },
+          {
+            "rows": 4138,
+            "digest": "02953316bda1ad489005fe0208633a1c",
+            "entity": "questions"
+          }
+        ],
+        "storage": [
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "lesson-images"
+          },
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "lesson-resources"
+          },
+          {
+            "rows": 13,
+            "digest": "58fdfde569499e962963a51a1f3aadb0",
+            "entity": "question-images"
+          }
+        ],
+        "excluded": [
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "courses"
+          },
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "modules"
+          },
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "lessons"
+          },
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "questions"
+          }
+        ],
+        "missing_refs": {
+          "notes": 0,
+          "examples": 0,
+          "questions": 0,
+          "resources": 0
+        }
+      }
+    },
+    "preview_content_resources": {
+      "summary": {
+        "passing": 12,
+        "failing": 0,
+        "blocked": 0,
+        "unverified": 0
+      },
+      "after_at": "2026-11-07T12:48:50.823528+00:00",
+      "scope": {},
+      "aggregates": {
+        "content": [
+          {
+            "rows": 4,
+            "digest": "a311124d632fd8051454fd61bf92ad43",
+            "entity": "courses"
+          },
+          {
+            "rows": 4,
+            "digest": "16655437e3757cf0b95d1f190d98a36a",
+            "entity": "modules"
+          },
+          {
+            "rows": 7,
+            "digest": "8ebc03f7c553aa1d5dabe3bb4821bfd4",
+            "entity": "lessons"
+          },
+          {
+            "rows": 55,
+            "digest": "5a7ae2ef4967ca13240efbbc560e7452",
+            "entity": "questions"
+          }
+        ],
+        "storage": [
+          {
+            "rows": 2,
+            "digest": "f46c3ffc04a9abc8bc8c00072656d923",
+            "entity": "lesson-images"
+          },
+          {
+            "rows": 1,
+            "digest": "bb932239c05f1dd758132f75ea095689",
+            "entity": "lesson-resources"
+          },
+          {
+            "rows": 1,
+            "digest": "d0c9c29ef7f478d7998b37009513a9a4",
+            "entity": "question-images"
+          }
+        ],
+        "excluded": [
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "courses"
+          },
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "modules"
+          },
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "lessons"
+          },
+          {
+            "rows": 0,
+            "digest": "d41d8cd98f00b204e9800998ecf8427e",
+            "entity": "questions"
+          }
+        ],
+        "missing_refs": {
+          "notes": 0,
+          "examples": 0,
+          "questions": 0,
+          "resources": 0
+        }
+      }
+    },
+    "production_role_metadata": [
+      {
+        "role": "anon",
+        "can_login": false,
+        "bypass_rls": false,
+        "create_public": false,
+        "use_public": true
+      },
+      {
+        "role": "authenticated",
+        "can_login": false,
+        "bypass_rls": false,
+        "create_public": false,
+        "use_public": true
+      }
+    ],
+    "note": "Identity-guarded READ ONLY captures. Counts/digests only for content and object metadata; no student answers, Auth password material or private object bytes. Initial envelope parser failed to save first successful captures; repeated read-only captures were saved with their actual newer timestamps, without relabelling.",
+    "production_server_recovery_metadata": {
+      "observed_at": "2026-11-07T12:56:37.583Z",
+      "project_ref": "lmuwsjjrqmmmtmxjvqln",
+      "server_version": "17.6",
+      "server_version_num": "170006",
+      "extensions": [
+        {
+          "name": "pg_stat_statements",
+          "schema": "extensions",
+          "version": "1.11"
+        },
+        {
+          "name": "pgcrypto",
+          "schema": "extensions",
+          "version": "1.3"
+        },
+        {
+          "name": "plpgsql",
+          "schema": "pg_catalog",
+          "version": "1.0"
+        },
+        {
+          "name": "supabase_vault",
+          "schema": "vault",
+          "version": "0.3.1"
+        },
+        {
+          "name": "uuid-ossp",
+          "schema": "extensions",
+          "version": "1.1"
+        }
+      ],
+      "scope": "Read-only version/extension metadata only; no Vault data/key read."
+    }
+  },
+  "backup_tool_validation": {
+    "supabase_cli_pin": "2.122.1",
+    "latest_cli_observed": "3.0.0",
+    "incompatibility": "CLI 3 help has --remote instead of --db-url. Existing backup procedure requires pinned 2.122.1.",
+    "checked": "Both versions help; pinned schema/data --dry-run with dummy loopback URL, both repeated table exclusions preserved. Default schema dump excludes auth/storage/migration history; managed inventory records nine Storage policies and one Auth trigger.",
+    "real_export_or_managed_restore": false,
+    "ephemeral_cli_version_cache_removed": true
+  },
+  "security_review": "../mm-launch/security-review.md; existing privileged-function/broad table-grant/password-policy findings remain explicitly unaccepted, not silently cleared.",
+  "current_release_result": {
+    "exit_code": 2,
+    "summary": {
+      "passing": 126,
+      "failing": 0,
+      "blocked": 9,
+      "unverified": 4
+    },
+    "ready": false,
+    "report": "release-preflight.json"
+  },
+  "source_evidence_sha256": {
+    "production-metadata.json": "15d9ccc8d93a7cf4906849bc59f423397704e3aa5d43ef398a9bad474b3f0700",
+    "production-baseline.json": "66e1145bec8ea506c238b1563ebab6f4b73d6dca5dce79d7a26360179b7f245b",
+    "preview-baseline.json": "7f12fa38e3882e47cfbe61bd223c4f1563649cf6d1698b0bbe7ee83014054f4e",
+    "metadata-result.json": "8a15b3e6520b3d10423b81a44cf99fa5925bdba3a4d700bcc7fbb0c9ccc95182",
+    "baseline-result.json": "9351d6cafe5bf66c63a8dd5dea5cc1cdfee1fa8b59acc329b503428f908162cb",
+    "preview-baseline-result.json": "8efc1ea11a9ff83ef01a11974b2d5a238e23cba8ccc893879e74599401ce1925",
+    "review-result.json": "ca8e89d9ed2c9c12cf8c8a75a6fcc2a0623c54c6b6283f32c6ca6dc5ad1cb9b9",
+    "production-assets.json": "08bbaa1ef03ccda5635352c151feeeecffcfe6d0a27c953fc53d88c56061b329",
+    "preview-assets.json": "d124c2023be608932cd711f6d39b7263859fbcc16c23726623feda9bd94b1af8",
+    "full-readiness.json": "3c7d5237c5a80c263bc3ee835796fe4923375c0dd58de90abb9d9e4c1454e51f"
+  },
+  "not_performed": [
+    "Production writes or private-data export",
+    "Production restore or managed Supabase restore",
+    "Production data copied to preview",
+    "Additional email requests",
+    "Merge/deployment/DNS changes",
+    "Purchases or broader connections"
+  ],
+  "limitations": [
+    "Local Auth/Storage are minimal stubs; no real service reconstruction/login/file rendering claimed.",
+    "Synthetic byte-copy checksums do not protect actual Storage objects.",
+    "Physical Safari/iOS, actual overnight/time expiry and existing owner decisions remain unverified.",
+    "Fresh report expires after 3600 seconds for live gating; recapture at launch.",
+    "Earlier application/hosted preview and owner-reported Resend evidence retained with original scope; not counted as fresh tests."
+  ]
+}

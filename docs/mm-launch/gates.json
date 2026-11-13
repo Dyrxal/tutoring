@@ -1,0 +1,50 @@
+{
+  "production_auth": {
+    "status": "blocked",
+    "evidence": "Owner production screenshots on 9 November show official Site URL and two exact root/recovery callbacks, with confirmation and recovery templates using {{ .ConfirmationURL }}. One approved recovery email to an owner-controlled test account was delivered, but its link opened sign-in with no new-password form. Production end-to-end recovery remains unresolved. Preview request UI works and earlier preview acceptance is retained; no repeat preview email needed."
+  },
+  "smtp": {
+    "status": "blocked",
+    "evidence": "Owner configured production custom SMTP; screenshot confirms smtp.resend.com:465, username resend, no-reply@auth.notationeducation.online, Notation Education, masked saved credential. Resend domain Verified. One approved dashboard-triggered production recovery email marked Delivered to owner-controlled test account; transport/delivery passed. Remaining quota/credential-scope and resulting hourly-limit review are not established by delivery. End-to-end recovery remains blocked in production_auth."
+  },
+  "database_backup": {
+    "status": "blocked",
+    "evidence": "Owner deferred backup setup and real restore rehearsal on 8 November 2026 (Australia/Sydney). No verified production database or private Storage backup exists; no real restore was performed. Recovery readiness remains blocked, not passed. Do not resume setup or purchases. See current owner direction in docs/mm-launch-readiness.md. Earlier evidence: Owner authorized protected backup and selected Google Drive. Private owner-only destination created; non-sensitive status-note upload/readback verified. Database export credential/TCP access and owner-controlled encryption/retrieval setup still missing; no dump/archive exists (docs/mm-acceptance/protected-backup-start.json)."
+  },
+  "storage_backup": {
+    "status": "blocked",
+    "evidence": "Owner deferred backup setup and real restore rehearsal on 8 November 2026 (Australia/Sydney). No verified production database or private Storage backup exists; no real restore was performed. Recovery readiness remains blocked, not passed. Do not resume setup or purchases. See current owner direction in docs/mm-launch-readiness.md. Earlier evidence: Private Google Drive destination prepared; no object bytes exported or encrypted archive verified. Scoped Storage export access and owner-controlled recovery key remain missing; metadata/local synthetic copy is not a backup."
+  },
+  "restore_rehearsal": {
+    "status": "blocked",
+    "evidence": "Owner deferred backup setup and real restore rehearsal on 8 November 2026 (Australia/Sydney). No verified production database or private Storage backup exists; no real restore was performed. Recovery readiness remains blocked, not passed. Do not resume setup or purchases. See current owner direction in docs/mm-launch-readiness.md. Earlier evidence: 37 local synthetic checks pass, including role/schema/data restore and separate byte checksums (docs/mm-acceptance/local-database-rehearsal.json). No real production export or managed-project restore is authorized/rehearsed; this gate remains blocked."
+  },
+  "production_build_settings": {
+    "status": "blocked",
+    "evidence": "Owner authorized production-only Cloudflare build-variable entry and reports completion. Screenshot shows reviewed production target, exact retained-project URL, publishable client-key type (value not retained), DESIGN_PREVIEW=false and NODE_VERSION=24.19.0. Screenshot contains editable fields without save confirmation; persistence is owner-reported. No build/deploy performed. Current configured commands npm run build / npx wrangler deploy and prior frozen pnpm install evidence recorded. Revised SQL/runner require a new candidate; updated PR/build artifact provenance, production hostname/public-key checks and unchanged preview settings remain verification requirements. Final executable candidate 08c999ca3841b53f68c92ab15972cff053829ed1 has passed local production/preview build provenance and archive checks (finalized-candidate-builds.json); remote production artifact/deployment remains unverified. No production merge/deploy performed."
+  },
+  "rollback_version": {
+    "status": "passing",
+    "evidence": "Rollback preparation/access only: owner recorded retained full version3862f733-48df-4d59-bf0e-d6abe51557a6 active at100%, and authenticated dashboard screenshot shows enabled Rollback for inactive version2afeeb91. Primary dashboard procedure and full target/100% confirmation/stop conditions are in frontend-rollback.md. Do not substitute the older menu-inspection version. No rollback executed; actual target selection after cutover and recovery remain untested. CLI authentication is not required for the observed dashboard path."
+  },
+  "owner_launch_approval": {
+    "status": "passing",
+    "evidence": "Owner explicitly approved PR3 normal merge and existing Cloudflare production deployment on12 November; three DB fixes were separately approved and installed/verified85+3+12 checks. Scope includes public read-only release verification, not new test identities/emails/data writes/cleanup. REST/GraphQL Forbidden blocks assistant merge; owner GitHub dashboard action required. This approval is not deployment or launch success."
+  },
+  "device_time_acceptance": {
+    "status": "unverified",
+    "evidence": "Fresh local Chromium mobile/enrolment/session checks passed (7) and 53 focused source tests passed; prior hosted preview evidence retained (docs/mm-acceptance/launch-behaviour-followup.json). Physical iPhone/Safari and real overnight rollover/token expiry remain unverified; WebKit executable unavailable. Require actual checks or explicit owner deferral before release; synthetic timing is not real elapsed-time evidence."
+  },
+  "security_acceptance": {
+    "status": "unverified",
+    "evidence": "Owner required TRIGGER/REFERENCES review before launch. Dependency review completed against fresh production metadata: 32 unused table-level grants across eight tables; no reviewed frontend or public function schema-creation dependency. Revised existing security SQL removes only these alongside earlier scoped grants; exact guarded rollback retained. Revised combined local runner passed 46 isolated synthetic checks with zero failures, normal owner/student behavior, FK enforcement, existing triggers and exact ACL/schema/row rollback (docs/mm-acceptance/schema-grants-review.json). No production changes. Revised SQL/runner and reviewed exact post-permission contract/comparator are committed in executable candidate 08c999ca3841b53f68c92ab15972cff053829ed1; 146 unit tests pass, and retained46 SQL checks match current bytes. Production installed state is still unverified. Remaining definer advisory acceptance and leaked-password setting/plan readback unresolved. Latest12 November production metadata matches intended owner/security ACLs and all other non-review-definition checks (83 passing); review functions still match originals. Remaining application smoke/owner-required security decisions not declared passed. Final12 November installed production metadata now passes85/85 after-contract checks, including intended privilege removals and both corrected review functions; review inverse guards pass3/3 (production-installed-state-verification.json). These changes are installed, not merely prepared. Content-preservation and bounded application smoke remain separate; no broader audit claim."
+  },
+  "enrolment_behavior": {
+    "status": "passing",
+    "evidence": "Owner explicitly instructed preservation of tutor-managed enrolment. Existing local registration/permission evidence confirms no automatic year enrolment and prevents student self-enrolment; current application inputs unchanged. Fresh browser loading/failure/retry checks pass. This accepts the existing behaviour, not production deployment readiness. See docs/mm-acceptance/launch-behaviour-followup.json."
+  },
+  "production_smoke_scope": {
+    "status": "blocked",
+    "evidence": "Exact proposed fixture UUIDs and bounded writes/cleanup in release-approval-package.md; at most two messages (signup confirmation+recovery) only to drisyantshrestha+mm-launch-20261109@gmail.com, with fresh alias/collision guards. Owner approval and inbox confirmation pending; no account/email/fixture created."
+  }
+}

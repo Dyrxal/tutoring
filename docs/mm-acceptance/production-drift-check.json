@@ -1,0 +1,486 @@
+{
+  "project_ref": "lmuwsjjrqmmmtmxjvqln",
+  "database_identity": {
+    "database": "postgres",
+    "system_identifier": "7678071634733212629"
+  },
+  "evidence_at": "2026-11-09T07:37:56.764764+00:00",
+  "snapshot_sha256": "f8a820cc0a7e1e3e47c20783dbdc534fd69c3b9bcfd321f1581cbb59a677a9ef",
+  "metadata": {
+    "format": 1,
+    "kind": "metadata",
+    "project_ref": "lmuwsjjrqmmmtmxjvqln",
+    "captured_at": "2026-11-09T07:38:46.859Z",
+    "phase": "before",
+    "evidence_at": "2026-11-09T07:37:56.764764+00:00",
+    "contract_digest": "3da472f210f6a16ba02796b2fcc432b1c93da08b4a1ce8ea78367bdaf678189c",
+    "ready": true,
+    "summary": {
+      "passing": 85,
+      "failing": 0,
+      "blocked": 0,
+      "unverified": 0
+    },
+    "checks": [
+      {
+        "id": "freshness",
+        "status": "passing",
+        "detail": "Snapshot age must be within configured window"
+      },
+      {
+        "id": "columns",
+        "status": "passing",
+        "detail": "columns comparison"
+      },
+      {
+        "id": "constraints",
+        "status": "passing",
+        "detail": "constraints comparison"
+      },
+      {
+        "id": "policies",
+        "status": "passing",
+        "detail": "policies comparison"
+      },
+      {
+        "id": "triggers",
+        "status": "passing",
+        "detail": "triggers comparison"
+      },
+      {
+        "id": "table_grants",
+        "status": "passing",
+        "detail": "table_grants comparison"
+      },
+      {
+        "id": "effective",
+        "status": "passing",
+        "detail": "effective comparison"
+      },
+      {
+        "id": "rls",
+        "status": "passing",
+        "detail": "rls comparison"
+      },
+      {
+        "id": "buckets",
+        "status": "passing",
+        "detail": "buckets comparison"
+      },
+      {
+        "id": "function_count",
+        "status": "passing",
+        "detail": "Unique signatures/count"
+      },
+      {
+        "id": "definition:public.flag_question_1a(uuid,uuid,uuid)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.flag_question_1a(uuid,uuid,uuid)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.flag_question_1a(uuid,uuid,uuid)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.enrolled_in(uuid)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.enrolled_in(uuid)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.enrolled_in(uuid)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.create_profile()",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.create_profile()",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.create_profile()",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.flag_question(uuid,uuid,uuid)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.flag_question(uuid,uuid,uuid)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.flag_question(uuid,uuid,uuid)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.mistake_review_enrol_attempt()",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.mistake_review_enrol_attempt()",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.mistake_review_enrol_attempt()",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.mistake_review_guard_attempt()",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.mistake_review_guard_attempt()",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.mistake_review_guard_attempt()",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public._mistake_review_grade(jsonb,integer,integer,text)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public._mistake_review_grade(jsonb,integer,integer,text)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public._mistake_review_grade(jsonb,integer,integer,text)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public._mistake_review_has_access(uuid,uuid)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public._mistake_review_has_access(uuid,uuid)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public._mistake_review_has_access(uuid,uuid)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public._mistake_review_normalise(text)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public._mistake_review_normalise(text)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public._mistake_review_normalise(text)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public._mistake_review_numeric(text)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public._mistake_review_numeric(text)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public._mistake_review_numeric(text)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public._mistake_review_timezone(uuid,text)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public._mistake_review_timezone(uuid,text)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public._mistake_review_timezone(uuid,text)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public._mistake_review_transition(integer,date,date,date,date,boolean,boolean,integer[])",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public._mistake_review_transition(integer,date,date,date,date,boolean,boolean,integer[])",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public._mistake_review_transition(integer,date,date,date,date,boolean,boolean,integer[])",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.assign_student_lesson_tasks(uuid,uuid,jsonb)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.assign_student_lesson_tasks(uuid,uuid,jsonb)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.assign_student_lesson_tasks(uuid,uuid,jsonb)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.can_read_lesson(uuid)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.can_read_lesson(uuid)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.can_read_lesson(uuid)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.configure_mistake_review(uuid,integer[])",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.configure_mistake_review(uuid,integer[])",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.configure_mistake_review(uuid,integer[])",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.configure_mistake_review(uuid,integer[],uuid)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.configure_mistake_review(uuid,integer[],uuid)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.configure_mistake_review(uuid,integer[],uuid)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.initialise_mistake_reviews(uuid,text)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.initialise_mistake_reviews(uuid,text)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.initialise_mistake_reviews(uuid,text)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.is_tutor()",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.is_tutor()",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.is_tutor()",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.manage_problem_report(uuid,uuid,text,text,text)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.manage_problem_report(uuid,uuid,text,text,text)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.manage_problem_report(uuid,uuid,text,text,text)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.remove_student_lesson_task(uuid,uuid)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.remove_student_lesson_task(uuid,uuid)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.remove_student_lesson_task(uuid,uuid)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.review_question_flag(uuid)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.review_question_flag(uuid)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.review_question_flag(uuid)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.note_mistake_review_help(uuid,uuid)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.note_mistake_review_help(uuid,uuid)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.note_mistake_review_help(uuid,uuid)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.submit_mistake_review(uuid,uuid,uuid,integer,text,boolean,bigint,jsonb)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.submit_mistake_review(uuid,uuid,uuid,integer,text,boolean,bigint,jsonb)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.submit_mistake_review(uuid,uuid,uuid,integer,text,boolean,bigint,jsonb)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.submit_problem_report(uuid,uuid,uuid,text,text)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.submit_problem_report(uuid,uuid,uuid,text,text)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.submit_problem_report(uuid,uuid,uuid,text,text)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      },
+      {
+        "id": "definition:public.withdraw_question_flag(uuid,uuid)",
+        "status": "passing",
+        "detail": "Exact definition (line endings normalized)"
+      },
+      {
+        "id": "owner:public.withdraw_question_flag(uuid,uuid)",
+        "status": "passing",
+        "detail": "Function owner"
+      },
+      {
+        "id": "acl:public.withdraw_question_flag(uuid,uuid)",
+        "status": "passing",
+        "detail": "Explicit ACL, including reviewed PUBLIC difference"
+      }
+    ]
+  },
+  "review_forward_preconditions": {
+    "format": 1,
+    "kind": "review",
+    "project_ref": "lmuwsjjrqmmmtmxjvqln",
+    "captured_at": "2026-11-09T07:38:46.921Z",
+    "direction": "forward",
+    "evidence_at": "2026-11-09T07:37:56.764764+00:00",
+    "ready": true,
+    "summary": {
+      "passing": 3,
+      "failing": 0,
+      "blocked": 0,
+      "unverified": 0
+    },
+    "checks": [
+      {
+        "id": "freshness",
+        "status": "passing",
+        "detail": "Snapshot age"
+      },
+      {
+        "id": "guard:public.note_mistake_review_help(uuid,uuid)",
+        "status": "passing",
+        "detail": "Read-only forward precondition; no SQL executed"
+      },
+      {
+        "id": "guard:public.submit_mistake_review(uuid,uuid,uuid,integer,text,boolean,bigint,jsonb)",
+        "status": "passing",
+        "detail": "Read-only forward precondition; no SQL executed"
+      }
+    ]
+  },
+  "production_mutations": false,
+  "content_baseline_captured": false
+}

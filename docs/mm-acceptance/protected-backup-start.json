@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "kind": "protected-backup-start",
+  "observed_at": "2026-11-07T13:00:38.218090+00:00",
+  "production_project_ref": "lmuwsjjrqmmmtmxjvqln",
+  "status": "blocked before sensitive export",
+  "owner_request": "can u start the protected backupo",
+  "authorization": "Owner requested starting the protected database/private-file backup. Continue necessary reversible preparation without asking again for blanket backup permission. Destination, owner-controlled decryption/retrieval, scoped source access and network setup are still missing. No restore, purchase, credential reset, broad connection, production write, merge or deployment authorized by this request.",
+  "prechecks": {
+    "environment_current": true,
+    "network_policy_enforced": true,
+    "configured_database_or_storage_secret_bindings": 0,
+    "configured_runtime_variables": 0,
+    "outbound_identities": 0,
+    "existing_pgpass": false,
+    "existing_database_service_file": false,
+    "approved_database_tcp_targets": 0,
+    "scoped_dump_or_storage_export_tool_available": false,
+    "destination_configured": false,
+    "owner_controlled_encryption_recipient_or_recovery_location_configured": false,
+    "local_crypto_tools_available": [
+      "gpg",
+      "openssl"
+    ],
+    "prepared_procedure": "../mm-launch/manual-backup-plan.md",
+    "synthetic_rehearsal": "local-database-rehearsal.json"
+  },
+  "concrete_missing_setup": [
+    "Owner-controlled encryption/recovery key and retrieval/retention plan, kept separately from Drive archive",
+    "Retained-project database export credential entered privately, with matching database network access; do not reset a live password",
+    "Project-scoped private Storage export access and matching network destination"
+  ],
+  "sensitive_exports_started": 0,
+  "database_backup_verified": false,
+  "storage_backup_verified": false,
+  "restore_performed": false,
+  "no_data_return_through_sql_tool": "Do not replace a native dump with SELECT/COPY output through chat/tool responses; this would expose records/password material and would not establish a complete restorable backup.",
+  "production_changed": false,
+  "destination_follow_up": {
+    "observed_at_australia_sydney": "2026-11-08T00:25:24.017285+11:00",
+    "owner_choice": "Google Drive",
+    "folder_created": true,
+    "folder_name": "Notation Education - Protected Backups",
+    "readback_shared": false,
+    "readback_permissions": "One user-owner permission; no additional sharing/public link added",
+    "non_sensitive_status_note_uploaded_and_read_back": true,
+    "status_note_bytes": 949,
+    "archive_created_or_uploaded": false,
+    "credentials_or_keys_uploaded": false,
+    "folder_identifier_handling": "Folder URL delivered privately in conversation; identifier retained outside Git in /workspace/work/mm-backup-drive/destination.json.",
+    "scope": "Existing Google Drive connection only; no new connection or permission widening."
+  }
+}

@@ -6,12 +6,19 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "vinext dev",
+    "install:ci": "pnpm install --frozen-lockfile",
+    "dev": "vinext dev --port 5173",
     "build": "vinext build",
-    "start": "wrangler dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0",
-    "deploy": "wrangler deploy",
+    "start": "node --import ./scripts/local-runtime.mjs ./node_modules/wrangler/bin/wrangler.js dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "deploy": "wrangler deploy",
+    "preview:deploy": "wrangler preview",
+    "test": "node --experimental-strip-types --test scripts/test-*.mjs",
+    "test:config": "node --experimental-strip-types --test scripts/test-backend-config.mjs",
+    "preflight": "node scripts/mm-preflight.mjs",
+    "test:preflight": "node --test scripts/test-mm-preflight.mjs",
+    "test:database-local": "node scripts/check-mm-local-database.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

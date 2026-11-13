@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-07",
+  "project_ref": "lcddnpafrkbwsrhqexqe",
+  "signup": {
+    "phase": "signup",
+    "status": 200,
+    "error_code": null,
+    "message": null,
+    "has_user": true,
+    "has_session": false,
+    "redirect": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/",
+    "ui": "Check your email to confirm your account."
+  },
+  "confirmation": {
+    "delivery": true,
+    "verified_link_host": "lcddnpafrkbwsrhqexqe.supabase.co",
+    "requested_redirect": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev/",
+    "actual_origin": "https://feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev",
+    "confirmed_signin": true,
+    "blocked_hosts": [],
+    "reload": true
+  },
+  "recipient": "previously approved alias (redacted)",
+  "new_send_requests": 1,
+  "production_access": false,
+  "conclusion": "Fresh confirmation automatic signin and reload pass; previous timeout not reproduced; original root cause unknown."
+}

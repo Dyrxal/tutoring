@@ -30,7 +30,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
-.dev.vars*
+!.env.example
 
 # vercel
 .vercel
@@ -39,9 +39,11 @@ yarn-error.log*
 next-env.d.ts
 /dist/
 /.wrangler/
-# Local tool state; never publish it.
+# Checkout-local execution profile and tool state; never publish them.
 /.sites-runtime/
 /.agents/
 /.codex/
 /outputs/
 /work/
+/site.tar.gz
+*.tsbuildinfo

@@ -1,4 +1,4 @@
-import {isShortAnswer,type QuestionOptions} from "./question-types";
+import {isShortAnswer,multipleChoiceOptions,type QuestionOptions} from "./question-types";
 import {isLessonAttempt} from "./mistake-review";
 
 type Question={id:string;options:QuestionOptions};
@@ -17,9 +17,10 @@ export function restoreAnswers(questions:Question[],attempts:Attempt[],studentId
  for(const question of questions){
   const attempt=latest.get(question.id);
   if(!attempt)continue;
-  if(Array.isArray(question.options)){
+  const choices=multipleChoiceOptions(question.options);
+  if(choices){
    const index=attempt.selected_index;
-   if(typeof index==="number"&&Number.isInteger(index)&&index>=0&&index<question.options.length)answers[question.id]=index;
+   if(typeof index==="number"&&Number.isInteger(index)&&index>=0&&index<choices.length)answers[question.id]=index;
   }else if(isShortAnswer(question.options)&&typeof attempt.response_text==="string"&&attempt.response_text.trim()){
    shortAnswers[question.id]={response:attempt.response_text,correct:attempt.is_correct};
   }

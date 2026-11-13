@@ -1,0 +1,68 @@
+{
+  "format": 1,
+  "kind": "launch-behaviour-followup",
+  "observed_at": "2026-11-08T11:49:27.267255+00:00",
+  "review_head": "8dd72888745a73cf0e0a412c0b1825d54dbbddd7",
+  "scope": "Local preview build, synthetic browser responses and focused existing tests; no remote writes or email",
+  "application_inputs_unchanged_from_head": true,
+  "focused_tests": {
+    "command": "node --experimental-strip-types --test scripts/test-password-recovery.mjs scripts/test-mistake-review.mjs scripts/test-practice-activity.mjs scripts/test-review-expansion.mjs scripts/test-next-tasks.mjs",
+    "passing": 53,
+    "failing": 0,
+    "sha256": {
+      "scripts/test-password-recovery.mjs": "a5ceb24196c3871f7e4fef7d30e1f6fd6065fb98515a942d524e4b759ab4d9a9",
+      "scripts/test-mistake-review.mjs": "625b78b8c7d4a47c313033eddc4d0feed12cb04c5ec9735e7e06967b8b18110e",
+      "scripts/test-practice-activity.mjs": "6f1fd73d769d04d0099d44ca75ec17eade4eb94d091e0b499c2e79fe7ff56a53",
+      "scripts/test-review-expansion.mjs": "be900bcb7ba5936ed4a7e657413db77834609f310bc51710d6b1549be5523c91",
+      "scripts/test-next-tasks.mjs": "4d40d53dac9ee910b99b6b3de535b58cb75114f890c2a3d873d64de8f44e479c"
+    }
+  },
+  "browser": {
+    "status": "passing",
+    "checks": [
+      "390px Chromium sign-in has no horizontal overflow",
+      "390px recovery request renders without overflow; no email submitted",
+      "Synthetic expired recovery URL shows invalid-link guidance",
+      "Held enrolment request shows loading rather than false empty state",
+      "Enrolment failure renders retry guidance",
+      "Enrolment retry resolves to genuine empty student dashboard",
+      "Synthetic normal session survives reload",
+      "WebKit executable unavailable; Safari and physical iPhone remain unverified"
+    ],
+    "mockedPreviewOnly": true,
+    "unexpectedWrites": [],
+    "blockedExternalHosts": [],
+    "physicalDeviceTested": false,
+    "actualOvernightTested": false,
+    "actualTokenExpiryWaited": false
+  },
+  "browser_passed_checks": 7,
+  "browser_engine": "System Chromium via existing Playwright",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "reused_evidence": [
+    "preview-final-followup.json: hosted saved answers/completion/review flows and enrolment/history browser regressions",
+    "preview-resend-smtp.json: owner-reported preview recovery delivery/update/sign-in/reload; no repeat send",
+    "local-database-rehearsal.json: synthetic registration ignores supplied tutor role; no auto year-enrolment; actor/enrolment/answer boundaries"
+  ],
+  "enrolment_policy": "Tutor-managed enrolment explicitly preserved by owner instruction; no automatic year access added",
+  "runtime_diagnosis": {
+    "initial_config_path_failure": "Wrangler tried unwritable user config; used documented XDG_CONFIG_HOME",
+    "existing_local_state_failure": "workerd SQLite _cf_ALARM column mismatch in existing persisted state",
+    "successful_path": "Existing Wrangler preview build with new /tmp/mm-behaviour-isolated-state; no state deletion or source/dependency changes",
+    "not_production_failure": true
+  },
+  "remaining": [
+    "Physical iPhone/Safari not tested; WebKit executable launch unavailable",
+    "No actual overnight rollover observed",
+    "No actual token-expiry waiting or real expiring email-link test; only synthetic expiry cases",
+    "No fresh hosted saved-progress or review write; earlier named hosted evidence retained",
+    "Production smoke and Auth/email settings remain pending final scope/configuration approval"
+  ],
+  "production_access": false,
+  "remote_writes": 0,
+  "emails_sent": 0,
+  "new_application_fixes": false
+}

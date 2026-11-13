@@ -1,0 +1,157 @@
+{
+  "format": 1,
+  "kind": "readiness",
+  "project_ref": "lmuwsjjrqmmmtmxjvqln",
+  "captured_at": "2026-11-08T11:59:06.134Z",
+  "candidate": "e98847f1623dc08bd6dca2f4c5e7dc6b72ff5a02",
+  "note": "Local evidence report, not launch authorization or deployment attestation.",
+  "ready": false,
+  "summary": {
+    "passing": 14,
+    "failing": 0,
+    "blocked": 11,
+    "unverified": 3
+  },
+  "checks": [
+    {
+      "id": "consistent:assets",
+      "status": "passing",
+      "detail": "Input readiness agrees with its checks"
+    },
+    {
+      "id": "complete:assets",
+      "status": "passing",
+      "detail": "Required report checks present"
+    },
+    {
+      "id": "fresh:assets",
+      "status": "passing",
+      "detail": "Source evidence age"
+    },
+    {
+      "id": "assets:build_manifest",
+      "status": "passing",
+      "detail": "Manifest absent is unverified; present manifest must match committed inputs/artifacts"
+    },
+    {
+      "id": "assets:files",
+      "status": "passing",
+      "detail": "Browser files scanned: 100"
+    },
+    {
+      "id": "assets:backend",
+      "status": "passing",
+      "detail": "Intended hostname present; unexpected project count: 0"
+    },
+    {
+      "id": "assets:public_key",
+      "status": "passing",
+      "detail": "Publishable/ matching legacy anon key present"
+    },
+    {
+      "id": "assets:secrets",
+      "status": "passing",
+      "detail": "Exposure findings: 0"
+    },
+    {
+      "id": "metadata",
+      "status": "blocked",
+      "detail": "Required report missing"
+    },
+    {
+      "id": "baseline",
+      "status": "blocked",
+      "detail": "Required report missing"
+    },
+    {
+      "id": "review",
+      "status": "blocked",
+      "detail": "Required report missing"
+    },
+    {
+      "id": "release_target",
+      "status": "passing",
+      "detail": "Retained production project selected"
+    },
+    {
+      "id": "asset_provenance",
+      "status": "passing",
+      "detail": "Build manifest and current input/artifact digests"
+    },
+    {
+      "id": "candidate",
+      "status": "passing",
+      "detail": "Built asset candidate identity"
+    },
+    {
+      "id": "project:assets",
+      "status": "passing",
+      "detail": "Same project across evidence"
+    },
+    {
+      "id": "production_auth",
+      "status": "blocked",
+      "detail": "Production Auth settings proposal prepared in docs/mm-launch-readiness.md: official apex Site URL, two exact root/recovery callbacks, confirmation/recovery verification-link templates. Historical screenshot showed localhost/empty redirects; current template, URLs, confirmation/expiry and limits readback still missing. No settings changed or production email sent. Owner postponed dashboard inspection; remind before final launch approval. This is not acceptance or completion."
+    },
+    {
+      "id": "smtp",
+      "status": "blocked",
+      "detail": "Existing preview Resend recovery acceptance retained (docs/mm-acceptance/preview-resend-smtp.json); no repeat send. Production proposal reuses smtp.resend.com:465, username resend, no-reply@auth.notationeducation.online and a privately configured scoped sending key. Initial 30 emails/hour and 60-second per-user interval proposed pending current limits, quota and traffic review. Current production SMTP/domain/quota/credential-scope readback and approved production acceptance remain missing; no settings changed."
+    },
+    {
+      "id": "database_backup",
+      "status": "blocked",
+      "detail": "Owner deferred backup setup and real restore rehearsal on 8 November 2026 (Australia/Sydney). No verified production database or private Storage backup exists; no real restore was performed. Recovery readiness remains blocked, not passed. Do not resume setup or purchases. See current owner direction in docs/mm-launch-readiness.md. Earlier evidence: Owner authorized protected backup and selected Google Drive. Private owner-only destination created; non-sensitive status-note upload/readback verified. Database export credential/TCP access and owner-controlled encryption/retrieval setup still missing; no dump/archive exists (docs/mm-acceptance/protected-backup-start.json)."
+    },
+    {
+      "id": "storage_backup",
+      "status": "blocked",
+      "detail": "Owner deferred backup setup and real restore rehearsal on 8 November 2026 (Australia/Sydney). No verified production database or private Storage backup exists; no real restore was performed. Recovery readiness remains blocked, not passed. Do not resume setup or purchases. See current owner direction in docs/mm-launch-readiness.md. Earlier evidence: Private Google Drive destination prepared; no object bytes exported or encrypted archive verified. Scoped Storage export access and owner-controlled recovery key remain missing; metadata/local synthetic copy is not a backup."
+    },
+    {
+      "id": "restore_rehearsal",
+      "status": "blocked",
+      "detail": "Owner deferred backup setup and real restore rehearsal on 8 November 2026 (Australia/Sydney). No verified production database or private Storage backup exists; no real restore was performed. Recovery readiness remains blocked, not passed. Do not resume setup or purchases. See current owner direction in docs/mm-launch-readiness.md. Earlier evidence: 37 local synthetic checks pass, including role/schema/data restore and separate byte checksums (docs/mm-acceptance/local-database-rehearsal.json). No real production export or managed-project restore is authorized/rehearsed; this gate remains blocked."
+    },
+    {
+      "id": "production_build_settings",
+      "status": "blocked",
+      "detail": "Fresh local production build and 5/5 asset checks passed over 100 files; fresh archive rescan matched its digest; preview build restored and 5/5 checks passed (docs/mm-acceptance/cloudflare-build-preparation.json). Existing production public client key accepted by read-only Auth settings HTTP 200. Exact production-only variables/Node pin proposed in checklist. Actual Cloudflare settings/install logs unavailable; uncommitted input changes leave candidate provenance unverified. No Cloudflare setting, merge or deployment performed; gate remains blocked."
+    },
+    {
+      "id": "rollback_version",
+      "status": "unverified",
+      "detail": "Owner screenshot captures active prefix 3862f733, but full rollback selection/recovery not verified."
+    },
+    {
+      "id": "owner_launch_approval",
+      "status": "blocked",
+      "detail": "Production changes/merge/deployment not approved by current task."
+    },
+    {
+      "id": "device_time_acceptance",
+      "status": "unverified",
+      "detail": "Fresh local Chromium mobile/enrolment/session checks passed (7) and 53 focused source tests passed; prior hosted preview evidence retained (docs/mm-acceptance/launch-behaviour-followup.json). Physical iPhone/Safari and real overnight rollover/token expiry remain unverified; WebKit executable unavailable. Require actual checks or explicit owner deferral before release; synthetic timing is not real elapsed-time evidence."
+    },
+    {
+      "id": "security_acceptance",
+      "status": "unverified",
+      "detail": "Narrow security forward/rollback prepared: redundant PUBLIC EXECUTE on four helpers, direct app-role EXECUTE on create_profile trigger, and TRUNCATE on four remaining non-curriculum tables; composes with staged owner-only package. Required helper/DML/column/service access retained. No production application. Synthetic combined permissions/rollback checks recorded in docs/mm-acceptance/local-database-rehearsal.json. Fresh production ACL/role/definition capture and exact post-hardening comparator update remain pending, along with definer exposure, TRIGGER/REFERENCES decisions and leaked-password provider setting/plan readback. See docs/mm-launch/security-review.md."
+    },
+    {
+      "id": "enrolment_behavior",
+      "status": "passing",
+      "detail": "Owner explicitly instructed preservation of tutor-managed enrolment. Existing local registration/permission evidence confirms no automatic year enrolment and prevents student self-enrolment; current application inputs unchanged. Fresh browser loading/failure/retry checks pass. This accepts the existing behaviour, not production deployment readiness. See docs/mm-acceptance/launch-behaviour-followup.json."
+    },
+    {
+      "id": "production_smoke_scope",
+      "status": "blocked",
+      "detail": "Production test accounts/recipients and minimal smoke writes require explicit owner approval."
+    },
+    {
+      "id": "candidate_inputs",
+      "status": "passing",
+      "detail": "Candidate Git tree and protected metadata/SQL contracts match current files"
+    }
+  ]
+}

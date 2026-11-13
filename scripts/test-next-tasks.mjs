@@ -47,3 +47,8 @@ test('migration and UI enforce tutor-only writes, enrolment, retry safety, accou
  assert(uiSource.includes('session?.user.id!==actorId'));assert(uiSource.includes('revision.current!==generation'));assert(uiSource.includes('pending.current=selected.map'));assert(uiSource.includes('lock.current=true'));assert(uiSource.indexOf('await addExtraTasks')<uiSource.indexOf('setRows(v=>mergeExtraTasks'));
  assert(page.includes('<StudentNextTasks key={userId}'));assert(page.includes('TutorStudentTasks key={`${userId}:${s.id}`}'));assert(page.includes('e.student_id===s.id&&e.course_id===c.id'));assert(page.includes('r.student_id===s.id&&r.completed_at'));
 });
+
+test('dashboard assignment-only mode does not duplicate the existing automatic continue card',()=>{
+ const html=renderToStaticMarkup(React.createElement(ui.StudentNextTasks,{client:null,studentId:'s',courses,completed:[],lastLessonId:null,showAutomatic:false,onOpen:()=>{}}));
+ assert(!html.includes('Your next task'));assert(!html.includes('Subchapter a'));assert(!html.includes('Continue'));
+});
