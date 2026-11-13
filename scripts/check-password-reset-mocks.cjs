@@ -1,6 +1,7 @@
 // All Supabase requests are fulfilled in-browser. This script never sends email or calls a live backend.
 const {chromium,devices}=require('playwright'),assert=require('node:assert/strict');
 const base=process.env.MM_PREVIEW_URL||'http://127.0.0.1:8787/';const origin=new URL(base).origin;
+const local=['127.0.0.1','localhost'].includes(new URL(base).hostname);
 assert(['127.0.0.1','localhost','feat-mm-cloudflare-migration-notation-education-lms.drisyantshrestha.workers.dev'].includes(new URL(base).hostname));
 const backend='lcddnpafrkbwsrhqexqe.supabase.co',storeKey='sb-lcddnpafrkbwsrhqexqe-auth-token';
 const ids={A:'e4444444-4444-4444-8444-444444444441',B:'e4444444-4444-4444-8444-444444444442'};
@@ -8,7 +9,7 @@ const user=(actor='A')=>({id:ids[actor],aud:'authenticated',role:'authenticated'
 const token=(actor='A')=>[Buffer.from(JSON.stringify({alg:'HS256',typ:'JWT'})).toString('base64url'),Buffer.from(JSON.stringify({sub:ids[actor],session_id:'session-'+actor,aud:'authenticated',role:'authenticated',exp:Math.floor(Date.now()/1000)+3600})).toString('base64url'),'mock-signature'].join('.');
 const session=(actor='A')=>({access_token:token(actor),refresh_token:'mock-refresh-'+actor,token_type:'bearer',expires_in:3600,expires_at:Math.floor(Date.now()/1000)+3600,user:user(actor)});
 const results=[];
-(async()=>{const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,proxy:{server:process.env.HTTPS_PROXY,bypass:'localhost,127.0.0.1'},args:['--no-sandbox']});
+(async()=>{const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',headless:true,...(local?{}:{proxy:{server:process.env.HTTPS_PROXY}}),args:['--no-sandbox']});
 async function setup(mobile=false){const context=await browser.newContext({...mobile?devices['Pixel 5']:{},viewport:mobile?{width:390,height:844}:{width:1440,height:1000}});const state={calls:[],recover:'ok',update:'ok',logout:'ok',putActors:[],switchOnVerify:false};
 await context.route('**/*',async route=>{const req=route.request(),url=new URL(req.url());if(url.host===backend){const path=url.pathname;const body=req.postData()?JSON.parse(req.postData()):null;state.calls.push({path,method:req.method(),body,redirect:url.searchParams.get('redirect_to')});const send=(json,status=200)=>route.fulfill({status,contentType:'application/json',body:JSON.stringify(json)});
 if(path==='/auth/v1/recover'){if(state.recover==='rate')return send({code:429,error_code:'over_email_send_rate_limit',msg:'Too many requests'},429);if(state.recover==='unknown')return send({code:404,error_code:'user_not_found',msg:'User not found'},404);if(state.recover==='network')return route.abort('failed');return send({})}

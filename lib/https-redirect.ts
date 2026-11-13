@@ -5,10 +5,12 @@ export function httpsRedirectUrl(raw: string): string | null {
   } catch {
     return null;
   }
-  if (url.protocol !== 'http:' || !['notationeducation.online', 'www.notationeducation.online'].includes(url.hostname)) {
+  const hostname = url.hostname.replace(/\.$/, '');
+  if (url.protocol !== 'http:' || !['notationeducation.online', 'www.notationeducation.online'].includes(hostname)) {
     return null;
   }
   url.protocol = 'https:';
+  url.hostname = hostname;
   url.port = '';
   url.username = '';
   url.password = '';

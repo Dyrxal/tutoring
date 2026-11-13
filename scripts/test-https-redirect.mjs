@@ -5,6 +5,8 @@ import { httpsRedirectUrl } from '../lib/https-redirect.ts';
 for (const [name, input, expected] of [
   ['apex sign-in upgrades to HTTPS', 'http://notationeducation.online/', 'https://notationeducation.online/'],
   ['www sign-in upgrades to HTTPS', 'http://www.notationeducation.online/', 'https://www.notationeducation.online/'],
+  ['absolute apex DNS name upgrades to canonical HTTPS', 'http://notationeducation.online./', 'https://notationeducation.online/'],
+  ['absolute www DNS name upgrades to canonical HTTPS', 'http://www.notationeducation.online./?auth=recovery', 'https://www.notationeducation.online/?auth=recovery'],
   ['recovery callback retains query and fragment', 'http://www.notationeducation.online/?auth=recovery#type=recovery', 'https://www.notationeducation.online/?auth=recovery#type=recovery'],
   ['paths and encoded parameters survive', 'http://notationeducation.online/lesson/one?next=%2Fchapter%3Fa%3D1', 'https://notationeducation.online/lesson/one?next=%2Fchapter%3Fa%3D1'],
   ['nonstandard HTTP port becomes standard HTTPS', 'http://www.notationeducation.online:8080/', 'https://www.notationeducation.online/'],
