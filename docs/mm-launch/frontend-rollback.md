@@ -1,5 +1,15 @@
 # Master Migration frontend rollback procedure
 
+## Maintenance baseline after the successful main release
+
+For the13 November health-maintenance candidate, the immediate prior release is main merge `f6e42e9e8d7d9486dfca93577ad9e7b9641b0228`, reported deployed as Worker version **afeaaf7c-312b-4dd4-a6af-04666a9e62a0**. Owner build evidence and public reads confirm its new sign-in/recovery UI. Preserve this version when publishing `fix/launch-health-20261113`; the older `3862f733` migration fallback below remains a separate historical target.
+
+If the maintenance release fails its post-deploy checks, the proposed frontend-only recovery target is that exact immediately prior `afeaaf7c` version at100% on `notation-education-lms`. Use the same dashboard selection/verification procedure below, substituting the full immediate-prior target only after confirming it is retained and the owner/operator approves that recovery action. Do not restore older data or reverse the installed permission SQL for a frontend dependency/middleware regression. Both public domains use the same production Worker.
+
+This records the maintenance rollback target and procedure, not a completed rollback rehearsal or proof that this version's inactive menu is currently available. No rollback was performed; the maintenance candidate has not yet been deployed. The restored prior frontend would also restore its known HTTP/dependency maintenance findings, so recovery would not close those findings.
+
+## Original migration fallback record
+
 Prepared 9 November 2026. Owner's authenticated Cloudflare dashboard now shows an enabled **Rollback** action for an inactive Worker version (prefix `2afeeb91`). The retained version below is observed active at 100%. Dashboard rollback-control access is confirmed; no rollback was selected or executed and recovery is not rehearsed. Local Wrangler `4.92.0` command syntax was separately checked; CLI authentication is optional and remains unavailable here.
 
 ## Exact target and prerequisites

@@ -53,7 +53,9 @@
 
 **Interfaces:** Reuse existing preflight build/asset scanners and browser recovery scenarios.
 
-- [ ] Build and scan production and preview separately with explicit correct public settings; archive production artifact and restore preview.
-- [ ] Run local built Worker; exercise HTTP official hosts, local HTTP, and authentication callbacks. Run existing 17 mocked-backend browser cases against the candidate, plus desktop/mobile checks.
-- [ ] Obtain one independent whole-change review, address material findings with regression tests, and retain all evidence without declaring authenticated production flows tested.
-- [ ] Prepare a review branch/compare link and exact release handoff; leave current production deployment unchanged pending normal review/merge.
+- [x] Build and scan production and preview separately with explicit correct public settings; archive production artifact and restore preview.
+- [x] Run local built Worker; exercise HTTP official hosts, local HTTP, and authentication callbacks. Run existing 17 mocked-backend browser cases against the candidate, plus desktop/mobile checks.
+- [x] Obtain one independent whole-change review, address material findings with regression tests, and retain all evidence without declaring authenticated production flows tested.
+- [x] Prepare a review branch/compare link and exact release handoff; leave current production deployment unchanged pending normal review/merge.
+
+Execution result: executable b85ce699c090ad806b8e75954235eb0bac89bfc6,165/165 tests, guarded production/preview builds5/5 each, compiled app redirects7/7 and final candidate browser44/44. Review required updating vendored RSC via plugin0.5.39 and aligning React/ReactDOM/RSC19.3.1; a root-only patch was insufficient. Full graph critical count0; wider tooling/lint debt remains documented. Report docs/mm-acceptance/2026-11-13-launch-health.md.

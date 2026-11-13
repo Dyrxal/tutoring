@@ -1,0 +1,73 @@
+{
+  "kind": "www-domain-routing-observation",
+  "observed_at": "2026-11-13T08:23:40.046495+00:00",
+  "zone": "notationeducation.online",
+  "source_dns_export_sha256": "d6381af3a1407361d7d14a74be1f3d6ada85212ed7834439dadda0234306cd21",
+  "worker_custom_domains_shown": [
+    "notationeducation.online",
+    "www.notationeducation.online"
+  ],
+  "official_apex_behavior": "301 to https://www.notationeducation.online/",
+  "production_worker_updated_ui_owner_confirmed": true,
+  "proposed_change": "Replace only old www CNAME with Cloudflare-managed Custom Domain www.notationeducation.online on notation-education-lms; add exact www production Auth root/recovery callbacks without changing Site URL or existing apex callbacks.",
+  "dns_or_routing_changes_made": true,
+  "approval_status": "approved-scope-completed",
+  "approval": {
+    "owner_reply": "yes please",
+    "scope": "Exact www CNAME replacement with managed Custom Domain on existing production Worker, two exact www production Auth callbacks, and the documented limited rollback.",
+    "execution": "Owner completed www Production Worker attachment and added exactly two approved www Auth callbacks; screenshot preserves Site URL and prior apex callbacks. Public root checks confirm new deployed app. No additional SQL, email or test-data write performed."
+  },
+  "docs_checked": [
+    "Cloudflare Workers routing/routes (Worker origins should use Custom Domains)",
+    "Cloudflare Workers routing/custom-domains (existing CNAME prevents creation; Cloudflare creates managed DNS and certificate)"
+  ],
+  "note": "Attachment treated only as DNS configuration evidence; no export instructions executed.",
+  "previous_www_record": {
+    "name": "www.notationeducation.online",
+    "type": "CNAME",
+    "content": "custom-domains.chatgpt.site",
+    "proxy_status": "Proxied",
+    "ttl": "Auto (export value1)"
+  },
+  "previous_owner_screenshot": {
+    "stage": "www Custom Domain creation attempted; rejected before attachment",
+    "subdomain": "www",
+    "environment": "Production",
+    "message": "Hostname 'www.notationeducation.online' already has externally managed DNS records (A, CNAME, etc). Delete them first or try a different hostname.",
+    "result": "Expected existing-CNAME conflict confirmed; no successful DNS replacement or attachment reported.",
+    "next_action": "Within existing approval, remove only reviewed www CNAME to custom-domains.chatgpt.site, then immediately retry Add domain for www on existing production Worker."
+  },
+  "latest_owner_screenshot": {
+    "stage": "www attached to production Worker",
+    "domains": [
+      "notationeducation.online",
+      "www.notationeducation.online"
+    ],
+    "environment": "Production",
+    "result": "Both Custom Domains and Routes rows now shown on existing Worker; no DNS re-export supplied for other records."
+  },
+  "public_verification": {
+    "observed_at": "2026-11-13T09:50:02.832624+00:00",
+    "report": "production-www-routing-public-verification.json",
+    "public_routing_verified": true,
+    "auth_callbacks_verified": true,
+    "launch_success": false,
+    "approved_routing_and_auth_configuration_scope_completed": true
+  },
+  "auth_configuration_observation": {
+    "source": "Owner screenshot of saved production URL Configuration after requested additions",
+    "site_url": "https://notationeducation.online/",
+    "redirect_urls": [
+      "https://notationeducation.online/",
+      "https://notationeducation.online/?auth=recovery",
+      "https://www.notationeducation.online/",
+      "https://www.notationeducation.online/?auth=recovery"
+    ],
+    "total_urls": 4,
+    "existing_apex_entries_preserved": true,
+    "site_url_unchanged": true,
+    "settings_verified_from_owner_screenshot": true,
+    "confirmation_or_recovery_email_tested": false,
+    "authenticated_flow_tested": false
+  }
+}

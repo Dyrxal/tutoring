@@ -1,0 +1,69 @@
+{
+  "kind": "launch-health-independent-review-resolution",
+  "base": "f6e42e9e8d7d9486dfca93577ad9e7b9641b0228",
+  "reviewed_head": "500ea06",
+  "fixed_head": "b85ce699c090ad806b8e75954235eb0bac89bfc6",
+  "finding_resolution": {
+    "reviewed_range": "f6e42e9e8d7d9486dfca93577ad9e7b9641b0228..500ea06",
+    "assessment_at_review": "With fixes",
+    "findings": [
+      "Bundled vulnerable RSC missed by production-only audit: fixed and regression tested.",
+      "Terminal DNS-dot HTTP bypass: regraded material and fixed with two regressions."
+    ],
+    "resolution_commit": "b85ce699c090ad806b8e75954235eb0bac89bfc6",
+    "verification": "Four regressions failed before fix;165-test suite green after fix; final compiled Worker7/7, final browser44/44 and separate guarded builds pass. No second review claimed."
+  },
+  "rulings": [
+    {
+      "decision": "Prepared maintenance in an isolated branch while owner sleeps; preserve production until normal review/merge.",
+      "reason": "Owner requested uninterrupted checks and necessary fixes; existing workflow reviews changes before production.",
+      "cost_if_wrong": "Fixes remain pending on live until a normal merge; current working release is retained."
+    },
+    {
+      "decision": "Use exact compatible transitive security overrides instead of relying on deep dependency update.",
+      "reason": "Nested vulnerable versions persisted after selective pnpm update. Existing release-age/build policy remains intact.",
+      "cost_if_wrong": "Pins need future maintenance; frozen install, tests and both builds verified compatibility now."
+    },
+    {
+      "decision": "Treat terminal DNS-dot HTTP bypass as material and normalize the official hostname.",
+      "reason": "Absolute DNS spellings can refer to the same application; redirect to its canonical HTTPS hostname.",
+      "cost_if_wrong": "Only that official-host alias redirects; localhost, preview and lookalikes remain unchanged."
+    },
+    {
+      "decision": "Patch the plugin vendored RSC and align React/ReactDOM/RSC19.3.1, not merely the root RSC package.",
+      "reason": "Production-only audit missed executable React code vendored by the build plugin. Two installed-runtime regressions catch both app and Vinext consumers.",
+      "cost_if_wrong": "React minor update can cause behavior regressions; final165 tests, builds and44 candidate browser checks pass, actual live account writes remain untested."
+    },
+    {
+      "decision": "Correct the optional local mock runner to avoid the outbound proxy for loopback only.",
+      "reason": "Initial local timeout was proxy403, not an app failure. Other external backend requests remain mocked or blocked.",
+      "cost_if_wrong": "Remote preview still uses inherited proxy; local-only behavior is covered by17 passing scenarios."
+    },
+    {
+      "decision": "Describe HTTPS fix as protecting application pages/callbacks, not all edge/static responses or HSTS.",
+      "reason": "Cloudflare can serve static assets before Worker middleware; no edge policy write tool is available.",
+      "cost_if_wrong": "Public static assets may remain accessible over HTTP; universal enforcement requires a Cloudflare edge setting."
+    },
+    {
+      "decision": "Do not infer real account login, lesson saving, private-file access, or email delivery from simulated backend tests.",
+      "reason": "No authenticated test-account/inbox tool or password was available; user data and private files were not fetched.",
+      "cost_if_wrong": "Owner must still confirm those real production flows before considering functional launch acceptance complete."
+    },
+    {
+      "decision": "Retain prior installed DB evidence and unchanged SQL/contracts instead of repeating manual SQL checks.",
+      "reason": "This task changes frontend dependencies/middleware only;12 November installed-state and content-preservation results are already verified.",
+      "cost_if_wrong": "An unrelated external database change since that snapshot would require a fresh scoped check."
+    },
+    {
+      "decision": "Record wider toolchain advisories and pre-existing full lint debt without mass unrelated upgrades/refactoring.",
+      "reason": "Full audit has0critical but62 lower-severity wider graph findings; full lint remains66errors/69warnings (released baseline72/75).",
+      "cost_if_wrong": "Tooling maintenance/security review remains; no claim that the entire repository is lint/security clean."
+    },
+    {
+      "decision": "Do not claim demonstrated RSC exploitability, physical Safari/overnight behavior or production deployment of this candidate.",
+      "reason": "No exploit, physical-device, elapsed-time or deployment test was performed.",
+      "cost_if_wrong": "These remain unverified rather than being represented by unrelated synthetic passes."
+    }
+  ],
+  "no_second_review_claimed": true
+}

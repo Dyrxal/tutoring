@@ -1,0 +1,33 @@
+{
+  "kind": "production-cloudflare-deployment-log-verification",
+  "observed_at": "2026-11-13T07:49:38.576972+00:00",
+  "source_log_sha256": "106e7f58716396a22193da34eca207a9b9aab854c4d395efb07ab1f989e19498",
+  "build_id": "dc953d3a-ddd5-49c7-a026-498d2c5b089a",
+  "source_branch": "main",
+  "merge_commit": "f6e42e9e8d7d9486dfca93577ad9e7b9641b0228",
+  "screenshot_variable_names": [
+    "NODE_VERSION",
+    "NEXT_PUBLIC_LMS_TARGET",
+    "NEXT_PUBLIC_SUPABASE_URL",
+    "NEXT_PUBLIC_DESIGN_PREVIEW",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY"
+  ],
+  "toolchain": {
+    "node": "24.19.0",
+    "pnpm": "11.25.0",
+    "install": "pnpm install --frozen-lockfile"
+  },
+  "build_command": "npm run build",
+  "deploy_command": "npx wrangler deploy",
+  "build_succeeded": true,
+  "deploy_succeeded": true,
+  "reported_worker_version": "afeaaf7c-312b-4dd4-a6af-04666a9e62a0",
+  "deployment_completed_at": "2026-11-13T06:41:39.529Z",
+  "production_worker_url": "https://notation-education-lms.drisyantshrestha.workers.dev",
+  "new_page_asset": "/_next/static/chunks/page-Fx9z6qmR.js",
+  "public_official_site_verified": false,
+  "next_diagnostic": "Inspect current Worker Custom Domains and Routes, then exact relevant public DNS/redirect setting if needed; prepare a scoped routing proposal before mutation.",
+  "uploaded_new_page_asset_on_www_http_status": 404,
+  "direct_worker_updated_signin_ui_owner_confirmed": true,
+  "direct_worker_observation_scope": "Owner confirmed Forgot password link visible; no authenticated flow or backend selection inferred from this UI alone."
+}
