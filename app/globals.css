@@ -381,14 +381,14 @@
 .student-dashboard-home .student-dashboard-review-empty{background:#f6f3f8;border-color:#ded5e8}
 
 .student-dashboard-dark-pilot{--dashboard-night:#090e12;--dashboard-sidebar:#0d1317;--dashboard-card:#111a20;--dashboard-border:#35434b;--dashboard-blue:#d6edf7;--dashboard-muted:#a9b9c2;--dashboard-accent:#a8cfdb}
-.student-dashboard-dark-pilot .sidebar{width:254px;background:var(--dashboard-sidebar);border-right:1px solid #27343b;padding:25px 12px 16px;color:#e7f0f4}
-.student-dashboard-dark-pilot .brand{padding:6px 13px 0;color:#e5edf0;font-size:21px;letter-spacing:-.045em}
+.student-dashboard-dark-pilot .sidebar{width:252px;background:var(--dashboard-sidebar);border-right:1px solid #27343b;padding:28px 16px 18px;color:#e7f0f4}
+.student-dashboard-dark-pilot .brand{padding:0 13px;color:#e5edf0;font-size:21px;letter-spacing:-.045em}
 .student-dashboard-dark-pilot .brand-wordmark{display:flex;align-items:baseline;white-space:nowrap}
 .student-dashboard-dark-pilot .brand-wordmark strong{font-weight:800}
 .student-dashboard-dark-pilot .brand-wordmark>span{font-weight:450;color:#b9d7e2;margin-left:4px}
-.student-dashboard-dark-pilot .side-label{padding:43px 13px 16px;color:#adbec7;font-size:11px;letter-spacing:.18em;font-weight:600}
-.student-dashboard-dark-pilot .sidebar nav{gap:4px}
-.student-dashboard-dark-pilot .sidebar nav button{min-height:48px;color:#b8c4ca;font-size:14px;font-weight:550;padding:12px 15px;border-radius:8px}
+.student-dashboard-dark-pilot .side-label{padding:47px 16px 15px;color:#adbec7;font-size:11px;letter-spacing:.18em;font-weight:600}
+.student-dashboard-dark-pilot .sidebar nav{gap:5px}
+.student-dashboard-dark-pilot .sidebar nav button{min-height:48px;color:#b8c4ca;font-size:14px;font-weight:550;padding:13px 15px;border-radius:8px}
 .student-dashboard-dark-pilot .sidebar nav button:hover{background:#182329;color:#eaf5fa}
 .student-dashboard-dark-pilot .sidebar nav button.active{background:#26333a;color:#e9f3f7}
 .student-dashboard-dark-pilot .side-foot{border-color:#27343b;padding:17px 10px 0}
