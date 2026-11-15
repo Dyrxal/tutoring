@@ -664,3 +664,5 @@
 .year9-chapter-outline-dark .value-table-display .value-table-cell{background:#17242e;border-color:#405464;color:#f0f4f7;}
 .year9-chapter-outline-dark .value-table-display .value-table-row-label{color:#a8bdce;}
 @media(max-width:600px){.question-value-table .value-table-options{grid-template-columns:minmax(0,1fr);}}
+
+.sidebar .student-nav{margin-top:32px}
