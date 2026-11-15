@@ -327,7 +327,7 @@
 .student-account-light-pilot .avatar-choices button{background:#fbfaf5;border-color:#ded9ca;color:#373a31}
 .student-account-light-pilot .avatar-choices button.selected{border-color:#596547;box-shadow:0 0 0 2px #d9ddce;color:#34382d}
 
-.midnight-student-brand{width:100%;display:flex;justify-content:center}.midnight-student-mark{display:grid;place-items:center;width:42px;height:42px;border:1px solid #8192a5;border-radius:12px;color:#edf3f8;font-size:25px;font-weight:750;line-height:1;letter-spacing:-.06em;background:#263342}
+.midnight-student-brand{width:100%;display:flex;justify-content:center}.midnight-student-mark{display:grid;place-items:center;width:42px;height:42px;border:1px solid #8192a5;border-radius:12px;background:#263342}
 .student-progress-light-pilot .progress-page-heading{min-height:0;margin:12px 0 19px}
 .student-progress-light-pilot .progress-page-heading h1{font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;font-size:clamp(50px,7.5vw,82px);font-weight:500;max-width:none}
 .student-progress-light-pilot .progress-page-heading p{color:#575b50}
