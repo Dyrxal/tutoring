@@ -312,7 +312,7 @@
 
 /* Light editorial mockups: student Account and Progress destinations. */
 .student-account-light-pilot .workspace{position:relative;isolation:isolate;background:#f3f0e7}
-.student-account-light-pilot .workspace::before{content:"";position:absolute;z-index:-1;top:72px;right:0;bottom:0;width:19%;background:url("/study-table-banner.webp") 82% center/auto 100% no-repeat;opacity:.94;pointer-events:none}
+.student-account-light-pilot .workspace::before{content:"";position:absolute;z-index:-1;top:72px;right:0;bottom:0;width:19%;background:url("/account-geometry.webp") 82% center/auto 100% no-repeat;opacity:.94;pointer-events:none}
 .student-account-light-pilot .topbar{background:#f8f6ef;border-color:#e1ddcf}
 .student-account-light-pilot .content{width:81%;max-width:none;margin:0 auto 0 0;padding:30px clamp(20px,2.4vw,38px) 64px clamp(28px,3.8vw,58px)}
 .student-account-light-pilot .content>.heading{min-height:132px;margin-bottom:24px;padding:18px 0;background:none;border:0;border-radius:0;box-shadow:none;overflow:visible}
@@ -666,3 +666,7 @@
 @media(max-width:600px){.question-value-table .value-table-options{grid-template-columns:minmax(0,1fr);}}
 
 .sidebar .student-nav{margin-top:32px}
+
+/* Account artwork preserves the existing title overlay and panel layout. */
+.shell.student-account-light-pilot[data-student-theme="light-version"] .content>.heading{background-image:linear-gradient(90deg,rgba(247,244,235,.97) 0%,rgba(247,244,235,.91) 39%,rgba(247,244,235,.26) 100%),url("/account-geometry.webp")}
+@media(max-width:700px){.shell.student-account-light-pilot[data-student-theme="light-version"] .content>.heading{background-image:linear-gradient(90deg,rgba(247,244,235,.97) 0%,rgba(247,244,235,.87) 55%,rgba(247,244,235,.48) 100%),url("/account-geometry.webp")}}
