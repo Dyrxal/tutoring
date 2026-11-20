@@ -681,3 +681,11 @@
  .student-dashboard-home .assigned-tasks-list li{flex-direction:column;align-items:stretch;gap:16px}
  .student-dashboard-home .assigned-tasks-list .dashboard-continue-button{align-self:flex-start;min-width:160px}
 }
+
+.student-dashboard-home .assignment-details{margin:9px 0 0;font-size:13px;line-height:1.5;color:#536474;overflow-wrap:anywhere}
+.student-dashboard-dark-pilot .assignment-details{color:#c4d0d5}
+.task-filters input[type="date"]{width:100%;min-width:0;max-width:100%;font:inherit;font-size:16px;color:#334761;border:1px solid #cbd8e8;background:white;border-radius:7px;padding:9px}
+@media(max-width:600px){
+ .student-dashboard-home .student-dashboard-lesson-card{flex-direction:column;align-items:stretch}
+ .student-dashboard-home .student-dashboard-lesson-card>.dashboard-continue-button,.student-dashboard-home .assigned-tasks-list .dashboard-continue-button{width:100%;min-width:0}
+}
