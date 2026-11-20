@@ -52,3 +52,30 @@ test('dashboard assignment-only mode does not duplicate the existing automatic c
  const html=renderToStaticMarkup(React.createElement(ui.StudentNextTasks,{client:null,studentId:'s',courses,completed:[],lastLessonId:null,showAutomatic:false,onOpen:()=>{}}));
  assert(!html.includes('Your next task'));assert(!html.includes('Subchapter a'));assert(!html.includes('Continue'));
 });
+
+test('assigned question requirements count this student’s lesson answers and keep optional work active',()=>{
+ const rows=[extra('core','a',{question_scope:'core',due_date:'2026-12-02'}),extra('all','b',{question_scope:'all'})];
+ const answer=(id,student='s',context='lesson')=>({student_id:student,question_id:id,attempt_context:context});
+ const core=Array.from({length:8},(_,i)=>answer('a-q'+i));
+ const partial=[...core,...Array.from({length:8},(_,i)=>answer('b-q'+i)),answer('b-q8','other'),answer('b-q9','s','mistake_review'),answer('b-q0')];
+ let items=api.extraTaskItems(rows,'s',courses,['a','b'],undefined,partial);
+ const coreItem=items.find(item=>item.row.id==="core");assert.equal(coreItem.completed,true);assert.equal(coreItem.requiredCount,8);assert.equal(coreItem.answeredCount,8);
+ const allItem=items.find(item=>item.row.id==="all");assert.equal(allItem.completed,false);assert.equal(allItem.requiredCount,21);assert.equal(allItem.answeredCount,8);
+ items=api.extraTaskItems(rows,'s',courses,['a','b'],undefined,[...partial,...Array.from({length:21},(_,i)=>answer('b-q'+i))]);
+ assert.equal(items.find(item=>item.row.id==="all").completed,true);
+ assert.equal(api.extraTaskItems([extra('legacy','a')],'s',courses,['a'])[0].completed,true);
+ const small=lesson('tiny',0,3);assert.equal(api.questionRequirement(small,'core','s',[]).requiredCount,3);
+});
+
+test('assignment dates display as calendar dates and become overdue after the due day',()=>{
+ const now=new Date('2026-12-02T14:00:00Z');
+ assert.equal(api.taskDeadline('2026-12-02','Australia/Sydney',now),'Overdue · 2 Dec 2026');
+ assert.equal(api.taskDeadline('2026-12-03','Australia/Sydney',now),'Due today · 3 Dec 2026');
+ assert.equal(api.taskDeadline(null,'Australia/Sydney',now),'No deadline');
+});
+
+test('saving question requirements rejects an older backend that silently ignores them',async()=>{
+ const items=[{id:'new',lesson_id:'a',sort_order:0,question_scope:'all',due_date:'2030-12-05'}];
+ const client={rpc:async()=>({data:[extra('new','a')],error:null})};
+ await assert.rejects(api.addExtraTasks(client,'t','s',items),/requirements were not confirmed/);
+});

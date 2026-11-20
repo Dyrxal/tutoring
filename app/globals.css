@@ -312,7 +312,7 @@
 
 /* Light editorial mockups: student Account and Progress destinations. */
 .student-account-light-pilot .workspace{position:relative;isolation:isolate;background:#f3f0e7}
-.student-account-light-pilot .workspace::before{content:"";position:absolute;z-index:-1;top:72px;right:0;bottom:0;width:19%;background:url("/study-table-banner.webp") 82% center/auto 100% no-repeat;opacity:.94;pointer-events:none}
+.student-account-light-pilot .workspace::before{content:"";position:absolute;z-index:-1;top:72px;right:0;bottom:0;width:19%;background:url("/account-geometry.webp") 82% center/auto 100% no-repeat;opacity:.94;pointer-events:none}
 .student-account-light-pilot .topbar{background:#f8f6ef;border-color:#e1ddcf}
 .student-account-light-pilot .content{width:81%;max-width:none;margin:0 auto 0 0;padding:30px clamp(20px,2.4vw,38px) 64px clamp(28px,3.8vw,58px)}
 .student-account-light-pilot .content>.heading{min-height:132px;margin-bottom:24px;padding:18px 0;background:none;border:0;border-radius:0;box-shadow:none;overflow:visible}
@@ -381,16 +381,9 @@
 .student-dashboard-home .student-dashboard-review-empty{background:#f6f3f8;border-color:#ded5e8}
 
 .student-dashboard-dark-pilot{--dashboard-night:#090e12;--dashboard-sidebar:#0d1317;--dashboard-card:#111a20;--dashboard-border:#35434b;--dashboard-blue:#d6edf7;--dashboard-muted:#a9b9c2;--dashboard-accent:#a8cfdb}
-.student-dashboard-dark-pilot .sidebar{width:252px;background:var(--dashboard-sidebar);border-right:1px solid #27343b;padding:28px 16px 18px;color:#e7f0f4}
-.student-dashboard-dark-pilot .brand{padding:0 13px;color:#e5edf0;font-size:21px;letter-spacing:-.045em}
 .student-dashboard-dark-pilot .brand-wordmark{display:flex;align-items:baseline;white-space:nowrap}
 .student-dashboard-dark-pilot .brand-wordmark strong{font-weight:800}
 .student-dashboard-dark-pilot .brand-wordmark>span{font-weight:450;color:#b9d7e2;margin-left:4px}
-.student-dashboard-dark-pilot .side-label{padding:47px 16px 15px;color:#adbec7;font-size:11px;letter-spacing:.18em;font-weight:600}
-.student-dashboard-dark-pilot .sidebar nav{gap:5px}
-.student-dashboard-dark-pilot .sidebar nav button{min-height:48px;color:#b8c4ca;font-size:14px;font-weight:550;padding:13px 15px;border-radius:8px}
-.student-dashboard-dark-pilot .sidebar nav button:hover{background:#182329;color:#eaf5fa}
-.student-dashboard-dark-pilot .sidebar nav button.active{background:#26333a;color:#e9f3f7}
 .student-dashboard-dark-pilot .side-foot{border-color:#27343b;padding:17px 10px 0}
 .student-dashboard-dark-pilot .side-foot strong{color:#e3edf1;font-size:13px}
 .student-dashboard-dark-pilot .side-foot small{color:#a5b5bd;font-size:12px;margin-top:3px}
@@ -673,3 +666,37 @@
 @media(max-width:600px){.question-value-table .value-table-options{grid-template-columns:minmax(0,1fr);}}
 
 .sidebar .student-nav{margin-top:32px}
+
+/* Account artwork preserves the existing title overlay and panel layout. */
+.shell.student-account-light-pilot[data-student-theme="light-version"] .content>.heading{background-image:linear-gradient(90deg,rgba(247,244,235,.97) 0%,rgba(247,244,235,.91) 39%,rgba(247,244,235,.26) 100%),url("/account-geometry.webp")}
+@media(max-width:700px){.shell.student-account-light-pilot[data-student-theme="light-version"] .content>.heading{background-image:linear-gradient(90deg,rgba(247,244,235,.97) 0%,rgba(247,244,235,.87) 55%,rgba(247,244,235,.48) 100%),url("/account-geometry.webp")}}
+
+/* Assigned tasks shares the Continue learning card's measured dimensions. */
+.student-dashboard-home .assigned-tasks-card{overflow:auto;align-items:stretch;flex-direction:column}
+.student-dashboard-home .assigned-tasks-list{list-style:none;display:flex;flex-direction:column;gap:20px;width:100%;padding:0;margin:auto 0;flex-shrink:0}
+.student-dashboard-home .assigned-tasks-list li{display:flex;align-items:center;justify-content:space-between;gap:28px}
+.student-dashboard-home .assigned-tasks-list li+li{border-top:1px solid #dfe6ee;padding-top:20px}
+.student-dashboard-dark-pilot .assigned-tasks-list li+li{border-color:var(--dashboard-border)}
+@media(max-width:600px){
+ .student-dashboard-home .assigned-tasks-list li{flex-direction:column;align-items:stretch;gap:16px}
+ .student-dashboard-home .assigned-tasks-list .dashboard-continue-button{align-self:flex-start;min-width:160px}
+}
+
+.student-dashboard-home .assignment-details{margin:9px 0 0;font-size:13px;line-height:1.5;color:#536474;overflow-wrap:anywhere}
+.student-dashboard-dark-pilot .assignment-details{color:#c4d0d5}
+.task-filters input[type="date"]{width:100%;min-width:0;max-width:100%;font:inherit;font-size:16px;color:#334761;border:1px solid #cbd8e8;background:white;border-radius:7px;padding:9px}
+@media(max-width:600px){
+ .student-dashboard-home .student-dashboard-lesson-card{flex-direction:column;align-items:stretch}
+ .student-dashboard-home .student-dashboard-lesson-card>.dashboard-continue-button,.student-dashboard-home .assigned-tasks-list .dashboard-continue-button{width:100%;min-width:0}
+}
+
+.task-assignment-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.task-assignment-filters label{min-width:0}
+.task-option-group{border-bottom:1px solid #e2e8f0}
+.task-option-group:last-child{border-bottom:0}
+.task-option-group>.task-option{border-bottom:0}
+.task-requirement{display:grid;gap:6px;max-width:300px;margin:0 0 16px 35px}
+.task-requirement>label{font-size:12px;font-weight:600;color:#536474}
+.task-requirement>select{width:100%;min-width:0;font:inherit;font-size:14px;color:#334761;border:1px solid #cbd8e8;background:white;border-radius:7px;padding:8px;min-height:40px}
+@media(max-width:700px){.task-assignment-filters{grid-template-columns:minmax(0,1fr)}}
+.task-assignment-filters select,.task-assignment-filters input[type="date"]{height:40px}
