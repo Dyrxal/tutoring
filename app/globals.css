@@ -689,3 +689,14 @@
  .student-dashboard-home .student-dashboard-lesson-card{flex-direction:column;align-items:stretch}
  .student-dashboard-home .student-dashboard-lesson-card>.dashboard-continue-button,.student-dashboard-home .assigned-tasks-list .dashboard-continue-button{width:100%;min-width:0}
 }
+
+.task-assignment-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.task-assignment-filters label{min-width:0}
+.task-option-group{border-bottom:1px solid #e2e8f0}
+.task-option-group:last-child{border-bottom:0}
+.task-option-group>.task-option{border-bottom:0}
+.task-requirement{display:grid;gap:6px;max-width:300px;margin:0 0 16px 35px}
+.task-requirement>label{font-size:12px;font-weight:600;color:#536474}
+.task-requirement>select{width:100%;min-width:0;font:inherit;font-size:14px;color:#334761;border:1px solid #cbd8e8;background:white;border-radius:7px;padding:8px;min-height:40px}
+@media(max-width:700px){.task-assignment-filters{grid-template-columns:minmax(0,1fr)}}
+.task-assignment-filters select,.task-assignment-filters input[type="date"]{height:40px}
