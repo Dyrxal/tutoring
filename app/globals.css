@@ -670,3 +670,14 @@
 /* Account artwork preserves the existing title overlay and panel layout. */
 .shell.student-account-light-pilot[data-student-theme="light-version"] .content>.heading{background-image:linear-gradient(90deg,rgba(247,244,235,.97) 0%,rgba(247,244,235,.91) 39%,rgba(247,244,235,.26) 100%),url("/account-geometry.webp")}
 @media(max-width:700px){.shell.student-account-light-pilot[data-student-theme="light-version"] .content>.heading{background-image:linear-gradient(90deg,rgba(247,244,235,.97) 0%,rgba(247,244,235,.87) 55%,rgba(247,244,235,.48) 100%),url("/account-geometry.webp")}}
+
+/* Assigned tasks shares the Continue learning card's measured dimensions. */
+.student-dashboard-home .assigned-tasks-card{overflow:auto;align-items:stretch;flex-direction:column}
+.student-dashboard-home .assigned-tasks-list{list-style:none;display:flex;flex-direction:column;gap:20px;width:100%;padding:0;margin:auto 0;flex-shrink:0}
+.student-dashboard-home .assigned-tasks-list li{display:flex;align-items:center;justify-content:space-between;gap:28px}
+.student-dashboard-home .assigned-tasks-list li+li{border-top:1px solid #dfe6ee;padding-top:20px}
+.student-dashboard-dark-pilot .assigned-tasks-list li+li{border-color:var(--dashboard-border)}
+@media(max-width:600px){
+ .student-dashboard-home .assigned-tasks-list li{flex-direction:column;align-items:stretch;gap:16px}
+ .student-dashboard-home .assigned-tasks-list .dashboard-continue-button{align-self:flex-start;min-width:160px}
+}
