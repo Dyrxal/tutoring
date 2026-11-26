@@ -697,3 +697,5 @@
 .tutor-overview-dark-pilot .course-card .symbol{background:#283849;color:#d6e5f3}
 
 .tutor-overview-dark-pilot .course-card p{color:#b8c4cf}
+
+.course-create-dialog input{width:100%;min-width:0;font:inherit;font-size:16px;color:#18243a;background:#fff;border:1px solid #cbd8e8;border-radius:8px;padding:10px 12px;line-height:1.5}
