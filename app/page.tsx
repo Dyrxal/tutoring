@@ -1,7 +1,7 @@
 "use client";
 import {useEffect,useMemo,useRef,useState} from "react";
 import {createClient} from "@supabase/supabase-js";
-import {BookOpen,LayoutDashboard,BarChart3,Users,Layers3,UserRound,ChevronRight,ChevronDown,ArrowLeft,Plus,Check,Play,FileText,Menu,Flag} from "lucide-react";
+import {BookOpen,LayoutDashboard,BarChart3,Users,Layers3,UserRound,ChevronRight,ChevronDown,ArrowLeft,Plus,Check,FileText,Menu,Flag} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {Progress} from "@/components/ui/progress";
 import PdfViewer from "./PdfViewer";
@@ -36,7 +36,6 @@ import {StudentAvatar,studentAvatars} from "./StudentAvatar";
 import {LessonFlow,LessonEditor,type Flow,type ImageEdit} from "./LessonFlow";
 import {textbookChapters,textbookCourseTitle,textbookCourseDescription,starterSections} from "./textbook-outline";
 import {pilot1AQuestions} from "./year9-1a-practice";
-import {lesson1AId} from "./lesson1a-support";
 import {pilot1BQuestions} from "./year9-1b-practice";
 import {pilot1CQuestions} from "./year9-1c-practice";
 import {pilot1DQuestions} from "./year9-1d-practice";
@@ -55,20 +54,15 @@ import LinearRelationTablePrompt from "./LinearRelationTablePrompt";
 import {chapter5Practice} from "./year9-ch5-practice";
 import {fetchAllQuestions} from "./load-questions";
 import {chapter3Practice} from "./year9-ch3-practice";
-import {chapter2Practice} from "./year9-ch2-practice";
-import {chapter2Fixups} from "./year9-ch2-fixups";
 import {chapter6Practice} from "./year9-ch6-practice";
 import {chapter7Practice} from "./year9-ch7-practice";
 import {chapter8Practice as chapter8EarlyPractice} from "./year9-ch8-practice";
 import {chapter8FurtherPractice} from "./year9-ch8-fk-practice";
 import {chapter9Practice} from "./year9-ch9-practice";
-import {year10Chapter1Practice} from "./year10-ch1-practice";
 import {year10Chapter2Practice} from "./year10-ch2-practice";
 import {year10Chapter3Practice} from "./year10-ch3-practice";
 import {year10Chapter45Practice} from "./year10-ch45-practice";
 import {year10Chapter67Practice} from "./year10-ch67-practice";
-import {year10Chapter810Practice} from "./year10-ch8-10-practice";
-import {previousYear10SeedRows} from "./year10-ch1-previous-rows";
 import {isGraphChoice,isShortAnswer,matchesShortAnswer,multipleChoiceOptions,type QuestionOptions} from "./question-types";
 
 function BrandLogo(){return <svg className="brand-mark" width="38" height="38" viewBox="0 0 48 48" role="img" aria-label="Notation Education"><path d="M7 42V16h8.5v4.4c3-3.9 7-5.8 12.2-5.8 9.3 0 14.8 6.1 14.8 15.7V42h-8.5V30.4c0-5.1-2.5-8-7.2-8-5.2 0-9.3 3.5-9.3 9V42Z" fill="#18243A"/><circle cx="42" cy="8" r="3.2" fill="#4C9A92"/></svg>}
@@ -85,8 +79,6 @@ function tabularChoiceOption(q:Q,option:string){
  }
  return option;
 }
-function stableQuestionData(value:unknown):string{return Array.isArray(value)?`[${value.map(stableQuestionData).join(",")}]`:value&&typeof value==="object"?`{${Object.entries(value as Record<string,unknown>).sort(([a],[b])=>a.localeCompare(b)).map(([key,item])=>`${JSON.stringify(key)}:${stableQuestionData(item)}`).join(",")}}`:JSON.stringify(value)??"undefined"}
-function isPreviousYear10Seed(q:Q):boolean{const previous=previousYear10SeedRows[q.id];return !!previous&&q.prompt===previous.prompt&&stableQuestionData(q.options)===stableQuestionData(previous.options)&&q.correct_index===previous.correct_index&&q.explanation===previous.explanation}
 function courseYear(title:string):string|null{const match=title.match(/^year\s*(7|8|9|10|11|12)(?=\s|-|$)/i);return match?`Year ${match[1]}`:null}
 // These are public Supabase client settings, not a password or service-role key.
 // The hosted client build does not receive runtime environment variables.
@@ -112,22 +104,7 @@ export default function Home(){
  const submissionIds=useRef(new Map<string,string>());
  const [answerSaving,setAnswerSaving]=useState<Record<string,boolean>>({});
  const [answerErrors,setAnswerErrors]=useState<Record<string,string>>({});
- const chapter3Started=useRef(new Set<string>());
- const chapter2Started=useRef(new Set<string>());
- const chapter6Started=useRef(new Set<string>());
- const chapter7Started=useRef(new Set<string>());
- const chapter8Started=useRef(new Set<string>());
- const chapter9Started=useRef(new Set<string>());
- const chapter10Started=useRef(new Set<string>());
- const year10Chapter1Started=useRef(new Set<string>());
- const year10Ch23Started=useRef(new Set<string>());
- const year10Ch45Started=useRef(new Set<string>());
- const year10Ch67Started=useRef(new Set<string>());
- const year10Ch810Started=useRef(new Set<string>());
- const year10Ch810BulkStarted=useRef(false);
  const courseOutlineAutoOpened=useRef(new Set<string>());
- const chapter4Started=useRef(new Set<string>());
- const chapter5Started=useRef(new Set<string>());
  const [session,setSession]=useState<any>(null),[role,setRole]=useState("student"),[page,setPage]=useState("Dashboard"),[courses,setCourses]=useState<Course[]>(db?[]:demo),[students,setStudents]=useState<any[]>([]),[enrolments,setEnrolments]=useState<any[]>([]),[records,setRecords]=useState<any[]>([]),[attemptRecords,setAttemptRecords]=useState<any[]>([]),[completed,setCompleted]=useState<string[]>([]),[last,setLast]=useState<string|null>(null),[answers,setAnswers]=useState<Record<string,number>>({}),[shortAnswers,setShortAnswers]=useState<Record<string,{response:string;correct:boolean}>>({}),[showMorePractice,setShowMorePractice]=useState(false),[courseId,setCourseId]=useState<string|null>(null),[lessonId,setLessonId]=useState<string|null>(null),[expanded,setExpanded]=useState<string|null>("differentiation"),[email,setEmail]=useState(""),[password,setPassword]=useState(""),[signup,setSignup]=useState(false),[signupName,setSignupName]=useState(""),[signupYear,setSignupYear]=useState(""),[signupAvatar,setSignupAvatar]=useState("book"),[message,setMessage]=useState(""),[mobile,setMobile]=useState(false),[viewing,setViewing]=useState<{title:string;path:string}|null>(null),[editingLesson,setEditingLesson]=useState(false),[questionEditor,setQuestionEditor]=useState<string|null>(null),[importing,setImporting]=useState(""),[confirmOldCourseRemoval,setConfirmOldCourseRemoval]=useState(false),[studentTheme,setStudentTheme]=useState<"light"|"midnight"|"light-version">("light");
  const [recoveryMode,setRecoveryMode]=useState<"request"|"reset"|null>(null),[recoveryEventKey,setRecoveryEventKey]=useState<string|null>(null);
  const [reviewAttemptRecords,setReviewAttemptRecords]=useState<ReviewAttempt[]>([]);
@@ -179,19 +156,11 @@ export default function Home(){
  const lightProgressPilot=lightVersionActive&&page==="Progress";
  const pilotShellClass=["shell",tutorOverviewDarkPilot&&"tutor-overview-dark-pilot",studentDashboardHome&&"student-dashboard-home",studentDashboardDarkPilot&&"student-dashboard-dark-pilot",year9CourseDarkPilot&&"year9-course-dark-pilot",year9LessonDarkPilot&&"year9-1a-dark-pilot",year9ChapterLessonOutlineDark&&"year9-chapter-outline-dark",lightAccountPilot&&"student-account-light-pilot",lightProgressPilot&&"student-progress-light-pilot"].filter(Boolean).join(" ");
  const year10Course=courses.find(c=>c.modules.some(m=>m.title==="Chapter 1: Linear relations"&&m.lessons.some(l=>l.title==="1A Review of algebra")));
- const year10Chapter1Module=year10Course?.modules.find(m=>m.title==="Chapter 1: Linear relations");
- const year10Chapter1Targets=Object.keys(year10Chapter1Practice).map(code=>({code,lesson:year10Chapter1Module?.lessons.find(l=>l.title.startsWith(`${code} `))}));
- const year10Chapter1Signature=year10Chapter1Targets.map(({code,lesson})=>`${code}:${lesson?.id||""}:${lesson?.questions.length??-1}`).join("|");
  const year10Chapter2Targets=Object.keys(year10Chapter2Practice).map(code=>({code,lesson:year10Course?.modules.find(m=>m.title==="Chapter 2: Geometry")?.lessons.find(l=>l.title.startsWith(`${code} `))}));
  const year10Chapter3Targets=Object.keys(year10Chapter3Practice).map(code=>({code,lesson:year10Course?.modules.find(m=>m.title==="Chapter 3: Indices and surds")?.lessons.find(l=>l.title.startsWith(`${code} `))}));
  const year10Ch23Targets=[...year10Chapter2Targets,...year10Chapter3Targets];
- const year10Ch23Signature=year10Ch23Targets.map(({code,lesson})=>`${code}:${lesson?.id||""}:${lesson?.questions.length??-1}`).join("|");
  const year10Chapter45Targets=Object.keys(year10Chapter45Practice).map(code=>({code,lesson:year10Course?.modules.find(m=>m.title===(code.startsWith("4")?"Chapter 4: Trigonometry":"Chapter 5: Quadratic expressions and equations"))?.lessons.find(l=>l.title.startsWith(`${code} `))}));
- const year10Ch45Signature=year10Chapter45Targets.map(({code,lesson})=>`${code}:${lesson?.id||""}:${lesson?.questions.length??-1}`).join("|");
  const year10Chapter67Targets=Object.keys(year10Chapter67Practice).map(code=>({code,lesson:year10Course?.modules.find(m=>m.title===(code.startsWith("6")?"Chapter 6: Measurement":"Chapter 7: Parabolas and other graphs"))?.lessons.find(l=>l.title.startsWith(`${code} `))}));
- const year10Ch67Signature=year10Chapter67Targets.map(({code,lesson})=>`${code}:${lesson?.id||""}:${lesson?.questions.length??-1}`).join("|");
- const year10Chapter810Targets=Object.keys(year10Chapter810Practice).map(code=>({code,lesson:year10Course?.modules.find(m=>m.title===(code.startsWith("8")?"Chapter 8: Probability":code.startsWith("9")?"Chapter 9: Statistics":"Chapter 10: Logarithms and polynomials"))?.lessons.find(l=>l.title.startsWith(`${code} `))}));
- const year10Ch810Signature=year10Chapter810Targets.map(({code,lesson})=>`${code}:${lesson?.id||""}:${lesson?.questions.length??-1}`).join("|");
  const pilot1ALesson=textbookCourse?.modules.flatMap(m=>m.lessons).find(l=>l.title==="1A Integer operations");
  const pilot1AReady=!!pilot1ALesson&&pilot1AQuestions.every(q=>pilot1ALesson.questions.some(saved=>saved.prompt===q.prompt));
  const pilot1BLesson=textbookCourse?.modules.flatMap(m=>m.lessons).find(l=>l.title==="1B Decimals and significant figures");
@@ -216,22 +185,12 @@ export default function Home(){
  const pilot1KReady=!!pilot1KLesson&&pilot1KQuestions.every(q=>pilot1KLesson.questions.some(saved=>saved.prompt===q.prompt));
  const chapter10Targets=(Object.keys(chapter10Practice) as (keyof typeof chapter10Practice)[]).map(code=>({code,lesson:textbookCourse?.modules.flatMap(m=>m.lessons).find(l=>l.title.startsWith(`${code} `))}));
  const chapter4Targets=(Object.keys(chapter4Practice) as (keyof typeof chapter4Practice)[]).map(code=>({code,lesson:textbookCourse?.modules.flatMap(m=>m.lessons).find(l=>l.title.startsWith(`${code} `))}));
- const chapter4Signature=chapter4Targets.map(({code,lesson})=>`${code}:${lesson?.id||""}:${lesson?.questions.length??-1}`).join("|");
  const chapter5Targets=(Object.keys(chapter5Practice) as (keyof typeof chapter5Practice)[]).map(code=>({code,lesson:textbookCourse?.modules.flatMap(m=>m.lessons).find(l=>l.title.startsWith(`${code} `))}));
- const chapter5Signature=chapter5Targets.map(({code,lesson})=>`${code}:${lesson?.id||""}:${lesson?.questions.length??-1}`).join("|");
  const chapter6Targets=(Object.keys(chapter6Practice) as (keyof typeof chapter6Practice)[]).map(code=>({code,lesson:textbookCourse?.modules.flatMap(m=>m.lessons).find(l=>l.title.startsWith(`${code} `))}));
- const chapter6Signature=chapter6Targets.map(({code,lesson})=>`${code}:${lesson?.id||""}:${lesson?.questions.length??-1}`).join("|");
  const chapter7Targets=(Object.keys(chapter7Practice) as (keyof typeof chapter7Practice)[]).map(code=>({code,lesson:textbookCourse?.modules.flatMap(m=>m.lessons).find(l=>l.title.startsWith(`${code} `))}));
- const chapter7Signature=chapter7Targets.map(({code,lesson})=>`${code}:${lesson?.id||""}:${lesson?.questions.length??-1}`).join("|");
  const chapter3Targets=Object.keys(chapter3Practice).map(code=>({code,lesson:textbookCourse?.modules.flatMap(m=>m.lessons).find(l=>l.title.startsWith(`${code} `))}));
- const chapter3Signature=chapter3Targets.map(({code,lesson})=>`${code}:${lesson?.id||""}:${lesson?.questions.length??-1}`).join("|");
- const chapter2Targets=Object.keys(chapter2Practice).map(code=>({code,lesson:textbookCourse?.modules.flatMap(m=>m.lessons).find(l=>l.title.startsWith(`${code} `))}));
- const chapter2Signature=chapter2Targets.map(({code,lesson})=>`${code}:${lesson?.id||""}:${lesson?.questions.length??-1}`).join("|");
- const chapter10Signature=chapter10Targets.map(({code,lesson})=>`${code}:${lesson?.id||""}:${lesson?.questions.length??-1}`).join("|");
  const chapter8Targets=(Object.keys(chapter8Practice) as (keyof typeof chapter8Practice)[]).map(code=>({code,lesson:textbookCourse?.modules.flatMap(m=>m.lessons).find(l=>l.title.startsWith(`${code} `))}));
- const chapter8Signature=chapter8Targets.map(({code,lesson})=>`${code}:${lesson?.id||""}:${lesson?.questions.length??-1}`).join("|");
  const chapter9Targets=(Object.keys(chapter9Practice) as (keyof typeof chapter9Practice)[]).map(code=>({code,lesson:textbookCourse?.modules.flatMap(m=>m.lessons).find(l=>l.title.startsWith(`${code} `))}));
- const chapter9Signature=chapter9Targets.map(({code,lesson})=>`${code}:${lesson?.id||""}:${lesson?.questions.length??-1}`).join("|");
  const textbookReady=!!textbookCourse&&textbookCourse.modules.length===textbookChapters.length&&textbookChapters.every(chapter=>textbookCourse.modules.some(m=>m.title===chapter.title&&m.lessons.length>=chapter.sections.length+1));
  const openCourse=(id:string)=>{setCourseId(id);setLessonId(null);setPage("Course");setExpanded(courses.find(c=>c.id===id)?.modules[0]?.id||null)};
  function openFlaggedQuestion(flag:{course_id:string|null;lesson_id:string|null;question_id:string|null}){const c=courses.find(c=>c.id===flag.course_id),l=c&&lessons(c).find(l=>l.id===flag.lesson_id);if(!c||!l){setMessage("This question is no longer available. The flag history is kept.");return}void openLesson(c,l);if(flag.question_id)requestAnimationFrame(()=>requestAnimationFrame(()=>{setShowMorePractice(true);requestAnimationFrame(()=>{const target=document.getElementById(`practice-question-${flag.question_id}`);target?.scrollIntoView({block:"center"});target?.focus({preventScroll:true})})}))}
@@ -364,33 +323,6 @@ export default function Home(){
   }catch(error){setMessage(`Could not finish ${code}: ${error instanceof Error?error.message:"Please retry."}`);await load()}
   finally{setImporting("")}
  }
- async function addYear10Chapter1Practice(code:keyof typeof year10Chapter1Practice){
-  const target=year10Chapter1Targets.find(item=>item.code===code)?.lesson;
-  if(!db||!isTutor||!target||importing)return;
-  setMessage("");setImporting(`Adding original ${code} practice…`);
-  try{
-   const current=await db.from("questions").select("id,prompt,options,correct_index,explanation,position").eq("lesson_id",target.id).order("position");
-   if(current.error)throw current.error;
-   const saved=current.data||[],knownIds=new Set(saved.map(q=>q.id)),knownPrompts=new Set(saved.map(q=>q.prompt));
-   const missing=year10Chapter1Practice[code].filter(q=>!knownIds.has(q.seed_id)&&!knownPrompts.has(q.prompt)).slice(0,Math.max(0,21-saved.length));
-   let safelyUpdated=0;
-   for(const row of saved){
-    const previous=previousYear10SeedRows[row.id],next=year10Chapter1Practice[code].find(q=>q.seed_id===row.id);
-    if(!previous||!next)continue;
-    if(row.prompt!==previous.prompt||stableQuestionData(row.options)!==stableQuestionData(previous.options)||row.correct_index!==previous.correct_index||row.explanation!==previous.explanation)continue;
-    const updated=await db.from("questions").update({prompt:next.prompt,options:next.options,correct_index:next.correct_index,explanation:next.explanation}).eq("id",row.id).eq("lesson_id",target.id).select("id");
-    if(updated.error)throw updated.error;
-    safelyUpdated+=updated.data?.length||0;
-   }
-   if(missing.length){
-    const start=Math.max(-1,...saved.map(q=>q.position))+1;
-    const inserted=await db.from("questions").insert(missing.map((q,i)=>({id:q.seed_id,lesson_id:target.id,prompt:q.prompt,options:q.options,correct_index:q.correct_index,explanation:q.explanation,position:start+i})));
-    if(inserted.error)throw inserted.error;
-   }
-   await load();setMessage(`${code} practice ready: ${missing.length} questions added; ${safelyUpdated} untouched starter questions updated. Tutor edits and progress were kept.`);
-  }catch(error){setMessage(`Could not finish ${code}: ${error instanceof Error?error.message:"Please try again."}`);await load()}
-  finally{setImporting("")}
- }
  async function addYear10Ch23Practice(code:string){
   const target=year10Chapter2Targets.find(item=>item.code===code)?.lesson||year10Chapter3Targets.find(item=>item.code===code)?.lesson;
   const bank=year10Chapter2Practice[code]||year10Chapter3Practice[code];
@@ -447,51 +379,6 @@ export default function Home(){
    }
    await load();setMessage(`${code} practice ready: ${missing.length} questions added. Existing content, tutor edits and progress were kept.`);
   }catch(error){setMessage(`Could not finish ${code}: ${error instanceof Error?error.message:"Please retry."}`);await load()}
-  finally{setImporting("")}
- }
- async function addYear10Ch810Practice(code:string){
-  const target=year10Chapter810Targets.find(item=>item.code===code)?.lesson;
-  const bank=year10Chapter810Practice[code];
-  if(!db||!isTutor||!target||!bank||importing)return;
-  setMessage("");setImporting(`Adding original ${code} practice…`);
-  try{
-   const current=await db.from("questions").select("id,prompt,position").eq("lesson_id",target.id).order("position");
-   if(current.error)throw current.error;
-   const saved=current.data||[],knownIds=new Set(saved.map(q=>q.id)),knownPrompts=new Set(saved.map(q=>q.prompt));
-   const missing=bank.filter(q=>!knownIds.has(q.seed_id)&&!knownPrompts.has(q.prompt)).slice(0,Math.max(0,21-saved.length));
-   if(missing.length){
-    const start=Math.max(-1,...saved.map(q=>q.position))+1;
-    const inserted=await db.from("questions").insert(missing.map((q,i)=>{const {seed_id,...values}=q;return {...values,id:seed_id,lesson_id:target.id,position:start+i}}));
-    if(inserted.error)throw inserted.error;
-   }
-   await load();setMessage(`${code} practice ready: ${missing.length} questions added. Existing lesson content and progress were kept.`);
-  }catch(error){setMessage(`Could not finish ${code}: ${error instanceof Error?error.message:"Please retry."}`);await load()}
-  finally{setImporting("")}
- }
- async function addAllYear10Ch810Practice(){
-  if(!db||!isTutor||importing)return;
-  const targets=year10Chapter810Targets.filter((item):item is typeof item&{lesson:Lesson}=>!!item.lesson);
-  if(targets.length!==25)return;
-  setMessage("");setImporting("Adding Year 10 Chapters 8–10 practice…");
-  try{
-   const lessonIds=targets.map(({lesson})=>lesson.id);
-   const current=await db.from("questions").select("id,lesson_id,prompt,position").in("lesson_id",lessonIds).order("position");
-   if(current.error)throw current.error;
-   const byLesson=new Map<string,typeof current.data>();
-   for(const row of current.data||[]){const rows=byLesson.get(row.lesson_id)||[];rows.push(row);byLesson.set(row.lesson_id,rows)}
-   let added=0;
-   for(const {code,lesson} of targets){
-    const bank=year10Chapter810Practice[code],saved=byLesson.get(lesson.id)||[];
-    const knownIds=new Set(saved.map(q=>q.id)),knownPrompts=new Set(saved.map(q=>q.prompt));
-    const missing=bank.filter(q=>!knownIds.has(q.seed_id)&&!knownPrompts.has(q.prompt)).slice(0,Math.max(0,21-saved.length));
-    if(!missing.length)continue;
-    const start=Math.max(-1,...saved.map(q=>q.position))+1;
-    const inserted=await db.from("questions").insert(missing.map((q,i)=>{const {seed_id,...values}=q;return {...values,id:seed_id,lesson_id:lesson.id,position:start+i}}));
-    if(inserted.error)throw inserted.error;
-    added+=missing.length;
-   }
-   await load();setMessage(`Year 10 Chapters 8–10 ready: ${added} questions added across 25 sections. Existing content, tutor edits and progress were kept.`);
-  }catch(error){setMessage(`Could not finish Year 10 Chapters 8–10: ${String((error as {message?:unknown})?.message??error)}`);await load()}
   finally{setImporting("")}
  }
  async function addChapter8Practice(code:keyof typeof chapter8Practice){
@@ -603,39 +490,6 @@ export default function Home(){
   }catch(error){setMessage(`Could not finish ${code}: ${error instanceof Error?error.message:"Please retry."}`);await load()}
   finally{setImporting("")}
  }
- async function addChapter2Practice(code:string){
-  const target=chapter2Targets.find(item=>item.code===code)?.lesson;
-  const bank=chapter2Practice[code];
-  if(!db||!isTutor||!target||!bank||importing)return;
-  setMessage("");setImporting(`Adding ${code} practice…`);
-  try{
-   const current=await db.from("questions").select("id,prompt,options,correct_index,explanation,position").eq("lesson_id",target.id);
-   if(current.error)throw current.error;
-   const saved=current.data||[];
-   // Repair only importer-authored rows that still match their complete old
-   // values. IDs and positions stay fixed, so attempts/progress remain linked;
-   // rows a tutor has edited are deliberately left alone.
-   const repaired=new Set<string>();
-   for(const fix of chapter2Fixups.filter(item=>item.code===code)){
-    const row=saved.find(q=>q.position===fix.index&&q.prompt===fix.before.prompt&&JSON.stringify(q.options)===JSON.stringify(fix.before.options)&&q.correct_index===fix.before.correct_index&&q.explanation===fix.before.explanation);
-    if(!row)continue;
-    const {error}=await db.from("questions").update(fix.after).eq("id",row.id);
-    if(error)throw error;
-    repaired.add(fix.after.prompt);
-   }
-   const known=new Set(saved.map(q=>q.prompt));
-   for(const prompt of repaired)known.add(prompt);
-   const planned=code==="2D"&&saved.length>=2?bank.slice(2):bank;
-   const missing=planned.filter(q=>!known.has(q.prompt)).slice(0,Math.max(0,21-saved.length));
-   if(missing.length){
-    const start=Math.max(-1,...saved.map(q=>q.position))+1;
-    const added=await db.from("questions").insert(missing.map((q,i)=>({...q,lesson_id:target.id,position:start+i})));
-    if(added.error)throw added.error;
-   }
-   await load();setMessage(`${code} practice ready: ${missing.length} questions added, ${repaired.size} display fixes applied. Existing starters, tutor changes and progress were kept.`);
-  }catch(error){setMessage(`Could not finish ${code}: ${error instanceof Error?error.message:"Please retry."}`);await load()}
-  finally{setImporting("")}
- }
  async function addChapter9Practice(code:keyof typeof chapter9Practice){
   const target=chapter9Targets.find(item=>item.code===code)?.lesson;
   if(!db||!isTutor||!target||importing||chapter9ImportLocks.has(target.id))return;
@@ -720,7 +574,7 @@ export default function Home(){
  const catalogueStatus=db&&activityOwner!==userId&&visible.length===0?<section className="student-dashboard-empty" aria-live="polite">{activityLoadError?<><p role="alert">Your courses could not be loaded.</p><Button onClick={()=>void load()}>Try loading again</Button></>:<p role="status">Loading your courses…</p>}</section>:null;
  if(db&&recoveryMode)return <div className="auth"><div className="brand"><BrandLogo/></div><PasswordRecovery client={db} backendUrl={url!} publicKey={key!} mode={recoveryMode} entry={recoveryEntry} eventKey={recoveryEventKey} actorKey={recoveryIdentity(session)} storageKey={recoveryStorageKey} initialEmail={email} onRequestNew={()=>{setRecoveryEventKey(null);setRecoveryMode("request");history.replaceState(null,"",window.location.pathname)}} onClose={notice=>{try{sessionStorage.removeItem(recoveryStorageKey)}catch{}recoveryEntry.token=undefined;setRecoveryEventKey(null);setRecoveryMode(null);setSignup(false);setPassword("");setMessage(notice||"");const current=new URL(window.location.href);current.searchParams.delete("auth");current.hash="";history.replaceState(null,"",current.pathname+current.search)}}/></div>;
  if(db&&!session)return <div className="auth"><div className="brand"><BrandLogo/></div><form className="auth-card" onSubmit={signIn}><span className="eyebrow">WELCOME</span><h1>{signup?"Create an account":"Sign in to learn"}</h1><p>Lessons, practice and progress in one place.</p>{signup&&<><label>Full name<input value={signupName} onChange={e=>setSignupName(e.target.value)} required autoComplete="name"/></label><label>Year level<select value={signupYear} onChange={e=>setSignupYear(e.target.value)} required><option value="">Choose year level</option>{[7,8,9,10,11,12].map(year=><option key={year}>Year {year}</option>)}</select></label><StudentAvatarChooser value={signupAvatar} onChange={setSignupAvatar}/></>}<label>Email<input type="email" required value={email} onChange={e=>setEmail(e.target.value)}/></label><label>Password<input type="password" required minLength={6} value={password} onChange={e=>setPassword(e.target.value)}/></label><Button className="w-full">{signup?"Create account":"Sign in"}</Button>{!signup&&<button type="button" className="text-button" onClick={()=>{setMessage("");setRecoveryMode("request")}}>Forgot password?</button>}<button type="button" className="text-button" onClick={()=>setSignup(!signup)}>{signup?"Already have an account? Sign in":"New here? Create an account"}</button>{message&&<p role="alert" className="notice">{message}</p>}</form></div>;
- return <div className={pilotShellClass} data-student-theme={renderedTheme}><aside className={`sidebar ${mobile?"open":""}`}><div className={`brand${midnightStudentBrandPilot?" midnight-student-brand":""}`}>{midnightStudentBrandPilot?<BrandLogo/>:studentDashboardHome?<BrandLogo/>:year9CourseDarkPilot?<span className="course-brand-wordmark"><strong>notation</strong><span>education</span></span>:<BrandLogo/>}</div>{isTutor&&<span className="side-label">TUTOR WORKSPACE</span>}<nav className={isTutor?undefined:"student-nav"}>{nav.map(([name,Icon]:any)=><button key={name} className={page===name||name===(isTutor?"Courses":"Dashboard")&&["Course","Lesson"].includes(page)?"active":""} onClick={()=>{setPage(name);setMobile(false)}}><Icon size={19}/>{name}</button>)}</nav><div className="side-foot">{!isTutor&&studentDashboardHome?<StudentAvatar avatarKey={dashboardStudent?.avatar_key} name={dashboardStudent?.full_name||session?.user?.email||"Student"}/>:<span className="avatar">{isTutor?"T":"S"}</span>}<div><strong>{!isTutor&&studentDashboardHome?(dashboardStudent?.full_name||session?.user?.email?.split("@")[0]||"Student"):session?.user?.email?.split("@")[0]||"Preview account"}</strong><small>{isTutor?"Tutor":studentDashboardHome?(dashboardStudent?.year_level||"Year level not set"):"Student"}</small></div></div></aside><div className="workspace"><header className="topbar"><button className="mobile-menu" onClick={()=>setMobile(!mobile)} aria-label="Toggle menu"><Menu size={22}/></button><span>{page==="Lesson"?`${course?.title} / ${lesson?.title}`:page==="Course"?course?.title:page}</span>{preview&&<div className="top-right"><span className="preview-badge">Preview mode</span><button onClick={()=>{setRole(isTutor?"student":"tutor");setPage("Dashboard")}}>View as {isTutor?"student":"tutor"}</button></div>}</header><main className="content">{message&&<div className="notice" role="alert">{message}<button onClick={()=>setMessage("")}>Dismiss</button></div>}
+ return <div className={pilotShellClass} data-student-theme={renderedTheme}><aside className={`sidebar ${mobile?"open":""}`}><div className={`brand${midnightStudentBrandPilot?" midnight-student-brand":""}`}><BrandLogo/></div>{isTutor&&<span className="side-label">TUTOR WORKSPACE</span>}<nav className={isTutor?undefined:"student-nav"}>{nav.map(([name,Icon]:any)=><button key={name} className={page===name||name===(isTutor?"Courses":"Dashboard")&&["Course","Lesson"].includes(page)?"active":""} onClick={()=>{setPage(name);setMobile(false)}}><Icon size={19}/>{name}</button>)}</nav><div className="side-foot">{!isTutor&&studentDashboardHome?<StudentAvatar avatarKey={dashboardStudent?.avatar_key} name={dashboardStudent?.full_name||session?.user?.email||"Student"}/>:<span className="avatar">{isTutor?"T":"S"}</span>}<div><strong>{!isTutor&&studentDashboardHome?(dashboardStudent?.full_name||session?.user?.email?.split("@")[0]||"Student"):session?.user?.email?.split("@")[0]||"Preview account"}</strong><small>{isTutor?"Tutor":studentDashboardHome?(dashboardStudent?.year_level||"Year level not set"):"Student"}</small></div></div></aside><div className="workspace"><header className="topbar"><button className="mobile-menu" onClick={()=>setMobile(!mobile)} aria-label="Toggle menu"><Menu size={22}/></button><span>{page==="Lesson"?`${course?.title} / ${lesson?.title}`:page==="Course"?course?.title:page}</span>{preview&&<div className="top-right"><span className="preview-badge">Preview mode</span><button onClick={()=>{setRole(isTutor?"student":"tutor");setPage("Dashboard")}}>View as {isTutor?"student":"tutor"}</button></div>}</header><main className="content">{message&&<div className="notice" role="alert">{message}<button onClick={()=>setMessage("")}>Dismiss</button></div>}
  {page==="Dashboard"&&!isTutor&&(catalogueStatus||<div className="student-dashboard-page"><section className="student-dashboard-hero" aria-labelledby="student-dashboard-title"><span className="eyebrow">STUDENT WORKSPACE</span><h1 id="student-dashboard-title">Your learning</h1><p>A clear place to pick up where you left off and see what’s next.</p></section><div className="student-dashboard-body"><section className="student-dashboard-continue" aria-labelledby="continue-learning-heading"><div className="dashboard-section-heading"><div><h2 id="continue-learning-heading">Continue learning</h2><p>Pick up from your most recent lesson.</p></div></div>{dashboardTask?<div className="student-dashboard-lesson-card"><div className="dashboard-lesson-copy"><span className="dashboard-course-context">{dashboardTask.course.title} · {dashboardTask.chapter.title}</span><h3>{dashboardTask.lesson.title}</h3><p className="dashboard-lesson-description">{recentDashboardTask?"Core practice · Continue where you left off":"Core practice · Your next lesson is ready"}</p>{dashboardCoreQuestions.length>0?<div className="dashboard-core-progress">{activityLoadError?<p role="status">Saved question progress is unavailable right now.</p>:!dashboardProgressReady?<p role="status">Loading saved question progress…</p>:<><div><span>Core questions answered</span><strong>{dashboardAnsweredCount} of {dashboardCoreQuestions.length}</strong></div><Progress value={Math.round(dashboardAnsweredCount/dashboardCoreQuestions.length*100)}/></>}</div>:<p className="dashboard-lesson-description">Practice questions will appear here when they are added.</p>}</div><Button className="dashboard-continue-button" onClick={()=>void openLesson(dashboardTask.course as Course,dashboardTask.lesson as Lesson)}>Continue lesson <ChevronRight size={17}/></Button></div>:<div className="student-dashboard-empty"><strong>No lesson to continue yet</strong><p>{visible.length?"Your enrolled courses do not have an available practice lesson yet.":"Your enrolled courses will appear here once your tutor assigns them."}</p></div>}</section><StudentNextTasks key={userId} client={db} studentId={userId} courses={visible} completed={completed} lastLessonId={last} attempts={attemptRecords} progressReady={dashboardProgressReady} timezone={dashboardStudent?.review_timezone||"Australia/Sydney"} showAutomatic={false} onOpen={task=>{void openLesson(task.course as Course,task.lesson as Lesson)}}/><section className="student-dashboard-courses" aria-labelledby="my-courses-heading"><div className="dashboard-section-heading"><div><h2 id="my-courses-heading">My courses</h2><p>Your enrolled courses and overall progress.</p></div></div>{visible.length>0?<div className="student-dashboard-course-grid">{visible.map(c=><article className="student-dashboard-course-card" key={c.id}><div className="dashboard-course-card-top"><div><h3>{c.title}</h3><p>{c.description||"Your lessons are organised by chapter."}</p></div><span className="dashboard-course-icon" aria-hidden="true"><BookOpen size={20}/></span></div><div className="dashboard-course-progress"><div><span>Course progress</span><strong>{pct(c)}%</strong></div><Progress value={pct(c)}/></div><button className="dashboard-course-open" onClick={()=>openCourse(c.id)}>Open course <ChevronRight size={16}/></button></article>)}</div>:<div className="student-dashboard-empty"><strong>No courses assigned</strong><p>Courses assigned by your tutor will appear here.</p></div>}</section>{reviewEntries.length>0?<MistakeReview presentation="dashboard" onRefreshContent={load} key={userId} client={db} studentId={userId} entries={reviewEntries} onOpenLesson={entry=>{const c=visible.find(course=>course.id===entry.courseId),l=c&&lessons(c).find(lesson=>lesson.id===entry.lesson.id);if(c&&l)void openLesson(c,l)}} onSaved={result=>setReviewAttemptRecords(rows=>rows.some(row=>row.id===result.attempt.id)?rows:[...rows,result.attempt])}/>:<section className="student-dashboard-review-empty"><strong>Practise my mistakes</strong><p>{visible.length?"Saved mistakes from your lessons will appear here when you have questions to review.":"Saved mistakes from your lessons will be ready to review here."}</p></section>}</div></div>)}
  {page==="Dashboard"&&isTutor&&<><Heading eyebrow="TUTOR WORKSPACE" title="Overview" description="Manage lessons and follow student progress."/><div className="stats"><div><strong>{courses.length}</strong><span>Courses</span></div><div><strong>{students.filter(s=>enrolments.some(e=>e.student_id===s.id)).length}</strong><span>Enrolled students</span></div><div><strong>{courses.reduce((n,c)=>n+lessons(c).length,0)}</strong><span>Lessons</span></div></div>{db&&<FlaggedQuestions key={userId} actorId={userId} client={db} students={students} courses={courses} attempts={attemptRecords} onOpen={openFlaggedQuestion} onRefreshPractice={load}/>}<section><div className="report-dashboard-link"><div><h2>Reported problems</h2><p>Review new student reports and access their full history.</p></div><Button variant="outline" onClick={()=>setPage("Reported Problems")}>Open reports</Button></div></section><section><div className="report-dashboard-link"><div><h2>Student tasks</h2><p>The next subchapter is automatic. Add extra practice from each student’s enrolled courses.</p></div><Button variant="outline" onClick={()=>setPage("Students")}>Manage student tasks</Button></div></section><section><div className="section-head"><h2>Courses</h2><NewCourseButton onCreate={addCourse}/></div><div className="cards">{courses.map(c=><CourseCard key={c.id} c={c} open={()=>openCourse(c.id)}/>)}</div></section></>}
  {page==="Courses"&&isTutor&&(catalogueStatus||<>{year10Rollout.identificationIssue&&<p className="muted">{year10Rollout.identificationIssue}</p>}<Heading eyebrow="COURSE LIBRARY" title="Courses" description="Create and organise your teaching content."/><NewCourseButton onCreate={addCourse}/><div className="cards spaced">{visible.map(c=><CourseCard key={c.id} c={c} open={()=>openCourse(c.id)}/>)}</div></>)}

@@ -1,6 +1,6 @@
 "use client";
 import {useMemo,useState,type ReactNode} from "react";
-import {Search,ArrowLeft,Check,Clock3,ChevronDown,AlertCircle,Target,Users,Activity,BookOpen,CalendarDays} from "lucide-react";
+import {Search,ArrowLeft,Clock3,ChevronDown,AlertCircle,Target,Users,Activity,BookOpen} from "lucide-react";
 import {Progress} from "@/components/ui/progress";
 import MathText from "./MathText";
 import {StudentAvatar} from "./StudentAvatar";
@@ -8,7 +8,7 @@ import {isShortAnswer,type QuestionOptions} from "./question-types";
 import type {SupabaseClient} from "@supabase/supabase-js";
 import TutorMistakeReview from "./TutorMistakeReview";
 import PracticeActivity from "./PracticeActivity";
-import {isLessonAttempt,type ReviewAttempt,type ReviewEntry} from "./mistake-review";
+import {isLessonAttempt,type ReviewAttempt} from "./mistake-review";
 
 type Question={id:string;prompt:string;options:QuestionOptions;correct_index:number;position?:number;explanation?:string};
 type Lesson={id:string;title:string;position:number;questions:Question[];due_date?:string|null;expected_completion_date?:string|null};
@@ -74,7 +74,7 @@ export default function TutorAnalytics({students,courses,enrolments,progressReco
  };
  const yearOptions=[...new Set(studentRows.map(r=>r.student.year_level).filter(Boolean))] as string[];
  const courseOptions=courses.filter(c=>studentRows.some(r=>r.assignedCourses.some(ac=>ac.id===c.id)));
- const chapterOptions=courses.filter(c=>courseFilter==="all"||c.id===courseFilter).flatMap(c=>c.modules.filter(m=>studentRows.some(r=>r.assignedCourses.some(ac=>ac.id===c.id))).map(m=>({id:`${c.id}:${m.id}`,title:m.title,courseId:c.id})));
+ const chapterOptions=courses.filter(c=>(courseFilter==="all"||c.id===courseFilter)&&studentRows.some(r=>r.assignedCourses.some(ac=>ac.id===c.id))).flatMap(c=>c.modules.map(m=>({id:`${c.id}:${m.id}`,title:m.title,courseId:c.id})));
  const filtered=studentRows.filter(row=>{
   const name=`${row.student.full_name||""} ${row.student.email||""}`.toLowerCase();
   return (!query||name.includes(query.toLowerCase()))&&
